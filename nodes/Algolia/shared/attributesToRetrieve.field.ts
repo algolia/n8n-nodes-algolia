@@ -1,7 +1,7 @@
 import type { INodeProperties } from 'n8n-workflow';
 
 export const attributesToRetrieve: INodeProperties = {
-	displayName: 'attributesToRetrieve',
+	displayName: 'Attributes to Retrieve',
 	name: 'attributesToRetrieve',
 	type: 'string',
 	default: [],
