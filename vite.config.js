@@ -1,3 +1,4 @@
+import path from 'node:path';
 import { fileURLToPath, URL } from 'node:url';
 import shelljs from 'shelljs';
 import { defineConfig } from 'vite';
@@ -35,9 +36,10 @@ export default defineConfig({
 			targets: [
 				{
 					src: 'nodes/**/*.{json,svg}',
-					dest: './dist',
-					rename(filename, extension, fullPath) {
-						return fullPath;
+					dest: '.',
+					rename(_, __, fullPath) {
+						const relativePathFromRoot = path.relative(process.cwd(), fullPath);
+						return relativePathFromRoot.split(path.sep).join('/');
 					},
 				},
 			],
