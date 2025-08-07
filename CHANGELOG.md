@@ -1,3 +1,12 @@
+## 0.4.1 (2025-08-07)
+
+
+### Bug Fixes
+
+* workflow ([083e3fa](https://github.com/algolia/n8n-nodes-algolia/commit/083e3fa69737824598c72b0c74725c07bf5dba32))
+
+
+
 # 0.4.0 (2025-08-07)
 
 
