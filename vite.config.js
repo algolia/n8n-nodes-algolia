@@ -35,7 +35,7 @@ export default defineConfig({
 			targets: [
 				{
 					src: 'nodes/**/*.{json,svg}',
-					dest: '.',
+					dest: './dist',
 					rename(filename, extension, fullPath) {
 						return fullPath;
 					},

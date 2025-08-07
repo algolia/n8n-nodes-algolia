@@ -46,8 +46,6 @@
 		"concurrently": "^9.2.0",
 		"eslint": "^8.57.0",
 		"eslint-plugin-n8n-nodes-base": "^1.16.3",
-		"fdir": "^6.4.6",
-		"gulp": "^5.0.0",
 		"prettier": "^3.5.3",
 		"shelljs": "^0.10.0",
 		"tsc-alias": "^1.8.16",
