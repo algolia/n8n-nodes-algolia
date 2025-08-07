@@ -1,6 +1,7 @@
 import { Resource } from '@/helpers';
 
 import { addObject } from './addObject';
+import { deleteObject } from './deleteObject';
 import { getObject } from './getObject';
 
 export const objects = new Resource({
@@ -8,4 +9,5 @@ export const objects = new Resource({
 	value: 'objects',
 })
 	.addOperation(addObject)
-	.addOperation(getObject);
+	.addOperation(getObject)
+	.addOperation(deleteObject);
