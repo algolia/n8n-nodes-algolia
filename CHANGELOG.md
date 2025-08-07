@@ -1,3 +1,12 @@
+## [0.4.3](https://github.com/algolia/n8n-nodes-algolia/compare/v0.4.2...v0.4.3) (2025-08-07)
+
+
+### Bug Fixes
+
+* release process ([48423ed](https://github.com/algolia/n8n-nodes-algolia/commit/48423ed4c4043f4aa8c1df32ee7c322aee7ed259))
+
+
+
 ## 0.4.2 (2025-08-07)
 
 
