@@ -1,3 +1,12 @@
+## 0.4.2 (2025-08-07)
+
+
+### Bug Fixes
+
+* update pacakge name ([6c56011](https://github.com/algolia/n8n-nodes-algolia/commit/6c56011e04b855d71a6e464bef57018ceedfb26c))
+
+
+
 ## 0.4.1 (2025-08-07)
 
 
