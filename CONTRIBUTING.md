@@ -18,7 +18,7 @@ Thank you for your interest in contributing to the n8n-nodes-algolia project! Th
 ### Prerequisites
 
 - **Node.js**: Version 20.15 or higher
-- **pnpm**: Package manager (version 10.14.0+)
+- **npm**: Package manager (version 10.14.0+)
 - **n8n**: Version 1.0.0 or higher for testing
 
 ### Initial Setup
@@ -31,25 +31,25 @@ Thank you for your interest in contributing to the n8n-nodes-algolia project! Th
    ```
 3. Install dependencies:
    ```bash
-   pnpm install
+   npm install
    ```
 
 ## Development Setup
 
 ### Available Scripts
 
-- `pnpm build` - Build the project for production
-- `pnpm dev` - Build and watch for changes during development
-- `pnpm lint` - Run ESLint to check code quality
-- `pnpm lintfix` - Automatically fix ESLint issues where possible
-- `pnpm format` - Format code using Prettier
+- `npm run build` - Build the project for production
+- `npm run dev` - Build and watch for changes during development
+- `npm run lint` - Run ESLint to check code quality
+- `npm run lintfix` - Automatically fix ESLint issues where possible
+- `npm run format` - Format code using Prettier
 
 ### Development Workflow
 
 1. **Start development mode**:
 
    ```bash
-   pnpm dev
+   npm run dev
    ```
 
    This will build the project and watch for changes.
