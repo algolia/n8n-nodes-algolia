@@ -1,4 +1,4 @@
-name: Ship.js
+name: Release new version
 on:
   pull_request:
     types:
@@ -28,19 +28,3 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
-
-  deploy:
-    name: Deploy to EC2
-    runs-on: ubuntu-latest
-    if: github.event_name == 'release' && github.event.action == 'published'
-    steps:
-      - name: SSH deploy
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USER }}
-          key: ${{ secrets.EC2_SSH_KEY }}
-          script: |
-            docker pull docker.n8n.io/n8nio/n8n:latest || true
-            docker exec n8n npm i n8n-nodes-algolia@latest --prefix /home/ubuntu || true
-            docker restart n8n

@@ -1,0 +1,44 @@
+name: Deploy on Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Use Node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: ".nvmrc"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Extract version from tag
+        run: |
+          VERSION="${{ github.event.release.tag_name }}"
+          VERSION="${VERSION#v}"
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
+      - name: Wait until npm has the new version
+        run: |
+          echo "Waiting for @algolia/n8n-nodes-algolia $VERSION on npm..."
+          for i in {1..30}; do
+            PUBLISHED=$(npm view @algolia/n8n-nodes-algolia version 2>/dev/null || true)
+            if [ "$PUBLISHED" = "$VERSION" ]; then
+              echo "Found $PUBLISHED on npm"; break;
+            fi
+            echo "Not yet ($PUBLISHED), retry $i/30"; sleep 10;
+          done
+          test "$PUBLISHED" = "$VERSION" || { echo "Timed out waiting for npm publish"; exit 1; }
+
+      - name: SSH deploy
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            docker pull docker.n8n.io/n8nio/n8n:latest || true
+            docker exec n8n npm i @algolia/n8n-nodes-algolia@${VERSION} --prefix /home/ubuntu || true
+            docker restart n8n
