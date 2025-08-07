@@ -49,7 +49,8 @@ jobs:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
+          envs: VERSION
           script: |
-            sudo docker pull docker.n8n.io/n8nio/n8n:latest || true
-            sudo docker exec n8n npm i @algolia/n8n-nodes-algolia@${VERSION} --prefix /home/ubuntu || true
+            sudo docker pull docker.n8n.io/n8nio/n8n:latest
+            sudo docker exec n8n npm i @algolia/n8n-nodes-algolia@$VERSION
             sudo docker restart n8n
