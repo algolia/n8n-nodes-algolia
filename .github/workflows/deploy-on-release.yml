@@ -21,9 +21,15 @@ jobs:
 
       - name: Extract version from tag
         run: |
-          VERSION="${{ github.event.release.tag_name }}"
+          if [ "${{ github.event_name }}" = "release" ]; then
+            VERSION="${{ github.event.release.tag_name }}"
+          else
+            # For manual triggers, get the latest tag
+            VERSION=$(git describe --tags --abbrev=0)
+          fi
           VERSION="${VERSION#v}"
           echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "Deploying version: $VERSION"
 
       - name: Wait until npm has the new version
         run: |
