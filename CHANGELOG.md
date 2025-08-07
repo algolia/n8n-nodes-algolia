@@ -1,3 +1,12 @@
+## [0.4.4](https://github.com/algolia/n8n-nodes-algolia/compare/v0.4.3...v0.4.4) (2025-08-07)
+
+
+### Bug Fixes
+
+* add other workflow for ec2 update ([e9b14f7](https://github.com/algolia/n8n-nodes-algolia/commit/e9b14f7957124f1713f59e9b2732447b9d1d3789))
+
+
+
 ## [0.4.3](https://github.com/algolia/n8n-nodes-algolia/compare/v0.4.2...v0.4.3) (2025-08-07)
 
 
