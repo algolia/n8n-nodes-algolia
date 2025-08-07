@@ -50,6 +50,6 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            docker pull docker.n8n.io/n8nio/n8n:latest || true
-            docker exec n8n npm i @algolia/n8n-nodes-algolia@${VERSION} --prefix /home/ubuntu || true
-            docker restart n8n
+            sudo docker pull docker.n8n.io/n8nio/n8n:latest || true
+            sudo docker exec n8n npm i @algolia/n8n-nodes-algolia@${VERSION} --prefix /home/ubuntu || true
+            sudo docker restart n8n
