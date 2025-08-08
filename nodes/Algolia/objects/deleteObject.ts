@@ -5,7 +5,7 @@ import { objectId } from '../shared/objectId.field';
 
 export const deleteObject = new Operation({
 	name: 'Delete Object',
-	action: 'Delete object',
+	action: 'Delete an object',
 	value: 'deleteObject',
 	description: 'Delete a single object from an index using its object ID',
 	routing: {
