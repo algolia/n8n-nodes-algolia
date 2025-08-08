@@ -52,7 +52,7 @@ Thank you for your interest in contributing to the n8n-nodes-algolia project! Th
 
    ```bash
    # In your n8n installation directory: ~/.n8n/custom/
-   npm link n8n-nodes-algolia
+   npm link @algolia/n8n-nodes-algolia
    ```
 
    See [Troubleshooting](https://docs.n8n.io/integrations/creating-nodes/test/run-node-locally/#troubleshooting) if there is no `/custom` directory in `~/.n8n`
