@@ -1,5 +1,6 @@
 import { Resource } from '@/helpers';
 
+import { clearIndex } from './clearIndex';
 import { listIndices } from './listIndices';
 import { searchIndex } from './searchIndex';
 
@@ -8,4 +9,5 @@ export const index = new Resource({
 	value: 'index',
 })
 	.addOperation(listIndices)
-	.addOperation(searchIndex);
+	.addOperation(searchIndex)
+	.addOperation(clearIndex);
