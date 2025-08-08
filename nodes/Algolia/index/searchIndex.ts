@@ -9,7 +9,7 @@ import { query } from '../shared/query.field';
 export const searchIndex = new Operation(
 	{
 		name: 'Search Index',
-		action: 'Search index',
+		action: 'Search an index',
 		value: 'searchIndex',
 		description: 'Returns objects in an index that match the query',
 		routing: {
