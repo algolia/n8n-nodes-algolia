@@ -4,7 +4,7 @@ import { indexName } from '../shared/indexName.field';
 
 export const clearIndex = new Operation({
 	name: 'Clear Index',
-	action: 'Clear index',
+	action: 'Clear an index',
 	value: 'clearIndex',
 	description: 'Clear all records from an index without affecting its settings, synonyms, or rules',
 	routing: {
@@ -14,5 +14,4 @@ export const clearIndex = new Operation({
 			json: true,
 		},
 	},
-})
-	.addField(indexName);
+}).addField(indexName);

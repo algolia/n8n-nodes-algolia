@@ -2,10 +2,7 @@
 	"node": "n8n-nodes-base.Algolia",
 	"nodeVersion": "1.0",
 	"codexVersion": "1.0",
-	"categories": [
-		"Data & Storage",
-		"Development"
-	],
+	"categories": ["Data & Storage", "Development", "Search"],
 	"resources": {
 		"credentialDocumentation": [
 			{
@@ -14,7 +11,7 @@
 		],
 		"primaryDocumentation": [
 			{
-			"url": "https://www.algolia.com/doc/rest-api/search/"
+				"url": "https://www.algolia.com/doc/rest-api/search/"
 			}
 		]
 	}

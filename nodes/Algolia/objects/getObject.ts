@@ -6,7 +6,7 @@ import { objectId } from '../shared/objectId.field';
 
 export const getObject = new Operation({
 	name: 'Get Object',
-	action: 'Get object',
+	action: 'Get an object',
 	value: 'getObject',
 	description: 'Retrieve a single object from an index using its object ID',
 	routing: {

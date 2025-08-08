@@ -5,7 +5,7 @@ import { objectId } from '../shared/objectId.field';
 
 export const deleteObject = new Operation({
 	name: 'Delete Object',
-	action: 'Delete object',
+	action: 'Delete an object',
 	value: 'deleteObject',
 	description: 'Delete a single object from an index using its object ID',
 	routing: {
@@ -14,5 +14,4 @@ export const deleteObject = new Operation({
 			url: '=/1/indexes/{{ $parameter.indexName }}/{{ $parameter.objectId }}',
 		},
 	},
-})
-	.addField(indexName, objectId);
+}).addField(indexName, objectId);

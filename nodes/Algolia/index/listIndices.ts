@@ -2,7 +2,7 @@ import { Operation } from '@/helpers';
 
 export const listIndices = new Operation({
 	name: 'List Indices',
-	action: 'List indices',
+	action: 'List all the indices',
 	value: 'listIndices',
 	description: 'List all indices',
 	routing: {
