@@ -26,7 +26,7 @@ Thank you for your interest in contributing to the n8n-nodes-algolia project! Th
 1. Fork the repository on GitHub
 2. Clone your fork locally:
    ```bash
-   git clone https://github.com/YOUR_USERNAME/n8n-nodes-algolia.git
+   git clone https://github.com/algolia/n8n-nodes-algolia.git
    cd n8n-nodes-algolia
    ```
 3. Install dependencies:
@@ -46,15 +46,7 @@ Thank you for your interest in contributing to the n8n-nodes-algolia project! Th
 
 ### Development Workflow
 
-1. **Start development mode**:
-
-   ```bash
-   npm run dev
-   ```
-
-   This will build the project and watch for changes.
-
-2. **Test in n8n**:
+1. **Test in n8n**:
 
    Link your local development version to n8n for testing:
 
@@ -64,6 +56,14 @@ Thank you for your interest in contributing to the n8n-nodes-algolia project! Th
    ```
 
    See [Troubleshooting](https://docs.n8n.io/integrations/creating-nodes/test/run-node-locally/#troubleshooting) if there is no `/custom` directory in `~/.n8n`
+
+2. **Start development mode**:
+
+   ```bash
+   npm run dev
+   ```
+
+   This will build the project and watch for changes.
 
 ## Code Standards
 
