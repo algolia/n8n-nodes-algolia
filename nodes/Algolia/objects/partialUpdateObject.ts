@@ -2,44 +2,12 @@ import { Operation } from '@/helpers';
 import type { INodeProperties } from 'n8n-workflow';
 
 import { indexName } from '../shared/indexName.field';
+import { jsonObject } from '../shared/jsonObject.field';
+import { objectDataSelector } from '../shared/objectData.selector.field';
 import { objectId } from '../shared/objectId.field';
 
-const partialObjectTypeSelector: INodeProperties = {
-	displayName: 'Update Data',
-	name: 'updateData',
-	type: 'options',
-	default: 'json',
-	options: [
-		{
-			name: 'From JSON',
-			value: 'json',
-		},
-		{
-			name: 'Using Fields Below',
-			value: 'keypair',
-		},
-	],
-};
-
-const partialJsonObject: INodeProperties = {
-	displayName: 'JSON',
-	name: 'json',
-	type: 'json',
-	default: '',
-	placeholder: `{
-"firstname": "Jane",
-"age": 30
-}`,
-	typeOptions: {
-		rows: 5,
-	},
-	displayOptions: {
-		show: {
-			updateData: ['json'],
-		},
-	},
-	description: 'JSON object containing the attributes to update',
-};
+const partialObjectTypeSelector = objectDataSelector('updateData');
+const partialJsonObject = jsonObject('updateData', 'JSON object containing the attributes to update');
 
 const partialFormObject: INodeProperties = {
 	displayName: 'Update Fields',
@@ -85,6 +53,13 @@ const createIfNotExists: INodeProperties = {
 	type: 'boolean',
 	default: true,
 	description: 'Whether to create the object if it does not exist',
+	routing: {
+		request: {
+			qs: {
+				createIfNotExists: '={{ $value }}',
+			},
+		},
+	},
 };
 
 export const partialUpdateObject = new Operation({
@@ -98,9 +73,6 @@ export const partialUpdateObject = new Operation({
 			url: '=/1/indexes/{{ $parameter.indexName }}/{{ $parameter.objectId }}/partial',
 			json: true,
 			body: '={{ $parameter.updateData === "keypair" ? $parameter.keypair.list.filter(attr => attr.name.trim() !== "").smartJoin("name", "value") : JSON.parse($parameter.json) }}',
-			qs: {
-				createIfNotExists: '={{ $parameter.createIfNotExists }}',
-			},
 		},
 	},
 })
