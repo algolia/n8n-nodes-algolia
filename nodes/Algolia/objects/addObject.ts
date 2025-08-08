@@ -13,9 +13,8 @@ export const addObject = new Operation({
 			method: 'POST',
 			url: '=/1/indexes/{{ $parameter.indexName }}',
 			json: true,
-			body: '={{ $parameter.object === "keypair" ? $parameter.keypair.list.smartJoin("name", "value") : JSON.parse($parameter.json) }}',
 		},
 	},
 })
 	.addField(indexName)
-	.addField(...object);
+	.addField(...object());

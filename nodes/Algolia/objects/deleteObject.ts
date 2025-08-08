@@ -14,5 +14,4 @@ export const deleteObject = new Operation({
 			url: '=/1/indexes/{{ $parameter.indexName }}/{{ $parameter.objectId }}',
 		},
 	},
-})
-	.addField(indexName, objectId);
+}).addField(indexName, objectId);

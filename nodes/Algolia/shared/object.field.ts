@@ -15,13 +15,19 @@ const objectTypeSelector: INodeProperties = {
 			value: 'keypair',
 		},
 	],
+	routing: {
+		request: {
+			body: '={{ $parameter.object === "keypair" ? $parameter.keypair.list.filter(attr => attr.name.trim() !== "").smartJoin("name", "value") : JSON.parse($parameter.json) }}',
+		},
+	},
 };
 
-const jsonObject: INodeProperties = {
+const jsonObject = (description = 'JSON object containing the data'): INodeProperties => ({
 	displayName: 'JSON',
 	name: 'json',
 	type: 'json',
 	default: '',
+	description,
 	placeholder: `{
 "firstname": "John",
 "lastname": "Doe",
@@ -35,13 +41,14 @@ const jsonObject: INodeProperties = {
 			object: ['json'],
 		},
 	},
-};
+});
 
-const formObject: INodeProperties = {
+const formObject = (description = 'Fields to add'): INodeProperties => ({
 	displayName: 'Object Fields',
 	name: 'keypair',
 	type: 'fixedCollection',
 	placeholder: 'Add Field',
+	description,
 	default: {},
 	typeOptions: {
 		multipleValues: true,
@@ -71,6 +78,10 @@ const formObject: INodeProperties = {
 			],
 		},
 	],
-};
+});
 
-export const object: INodeProperties[] = [objectTypeSelector, jsonObject, formObject];
+export const object = (jsonDescription?: string, formDescription?: string): INodeProperties[] => [
+	objectTypeSelector,
+	jsonObject(jsonDescription),
+	formObject(formDescription),
+];

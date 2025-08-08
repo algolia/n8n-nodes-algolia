@@ -14,5 +14,4 @@ export const clearIndex = new Operation({
 			json: true,
 		},
 	},
-})
-	.addField(indexName);
+}).addField(indexName);
