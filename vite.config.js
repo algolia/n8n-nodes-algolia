@@ -25,7 +25,7 @@ export default defineConfig({
 		target: 'esnext',
 		minify: false,
 		rollupOptions: {
-			external: ['n8n-workflow'],
+			external: ['n8n-workflow', '@algolia/n8n-openapi-node'],
 			output: {
 				chunkFileNames: `${pkg.name}.[hash].js`,
 			},
