@@ -53,7 +53,8 @@
     "tsc-alias": "^1.8.16",
     "typescript": "^5.8.2",
     "vite": "^7.0.6",
-    "vite-plugin-static-copy": "^3.1.1"
+    "vite-plugin-static-copy": "^3.1.1",
+    "vitest": "^3.2.4"
   },
   "peerDependencies": {
     "n8n-workflow": "^1.107.0"
