@@ -90,7 +90,7 @@ describe('Algolia', () => {
 		});
 	});
 
-	test('all API operations should have the right options', () => {
+	test('all API operations should have their properties', () => {
 		const generatedFields = properties.filter((property) => property.name !== 'operation');
 
 		Object.entries(doc.paths).forEach(([key, value]) => {
