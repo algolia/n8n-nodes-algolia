@@ -8,5 +8,3 @@ yarn.lock
 .vscode
 .env
 **/specs/*.json
-**/specs/*.ts
-!**/specs/index.ts
