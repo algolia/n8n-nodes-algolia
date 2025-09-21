@@ -28,7 +28,8 @@
     "lint": "eslint nodes credentials package.json",
     "lintfix": "eslint nodes credentials package.json --fix",
     "prepublishOnly": "npm run build && npm run lint -c .eslintrc.prepublish.js nodes credentials package.json",
-    "release": "shipjs prepare"
+    "release": "shipjs prepare",
+    "generate": "npx tsx nodes/Algolia/specs/index.ts"
   },
   "files": [
     "dist"
@@ -60,6 +61,7 @@
     "n8n-workflow": "^1.107.0"
   },
   "dependencies": {
+    "@algolia/n8n-openapi-node": "^1.1.0",
     "openapi-types": "^12.1.3"
   }
 }
