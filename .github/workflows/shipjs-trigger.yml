@@ -18,8 +18,9 @@ jobs:
           ref: main
       - uses: actions/setup-node@v3
         with:
-          node-version-file: ".nvmrc"
-          registry-url: "https://registry.npmjs.org"
+          node-version-file: '.nvmrc'
+          registry-url: 'https://registry.npmjs.org'
+          cache: 'npm'
       - run: npm install
       - run: |
           git config --global user.email "github-actions[bot]@users.noreply.github.com"

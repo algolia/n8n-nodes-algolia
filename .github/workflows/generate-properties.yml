@@ -1,0 +1,79 @@
+name: Generate Properties on Specs Update
+
+on:
+  push:
+    paths:
+      - 'nodes/Algolia/specs/*.ts'
+  pull_request:
+    paths:
+      - 'nodes/Algolia/specs/*.ts'
+  workflow_dispatch:
+
+jobs:
+  generate-properties:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+          registry-url: 'https://registry.npmjs.org'
+          cache: 'npm'
+
+      - run: npm ci
+        env:
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+
+      - name: Generate properties
+        run: npm run generate-properties
+
+      - name: Generate specs index
+        run: npm run generate-specs-index
+
+      - name: Format code
+        run: npx prettier --write .
+
+      - name: Check for changes
+        id: check-changes
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "changes=true" >> $GITHUB_OUTPUT
+          else
+            echo "changes=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Set up Git user
+        if: steps.check-changes.outputs.changes == 'true'
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+      - name: Configure Git remote
+        if: steps.check-changes.outputs.changes == 'true'
+        run: |
+          git remote set-url origin https://github.com/${{ github.repository }}.git
+
+      - name: Get current branch name
+        if: steps.check-changes.outputs.changes == 'true'
+        id: get_branch
+        run: |
+          if [[ "${GITHUB_HEAD_REF}" != "" ]]; then
+            echo "branch=${GITHUB_HEAD_REF}" >> $GITHUB_OUTPUT
+          else
+            echo "branch=${GITHUB_REF#refs/heads/}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit changes
+        if: steps.check-changes.outputs.changes == 'true'
+        run: |
+          git add .
+          git commit -m "chore(nodes): auto-generate properties from updated specs"
+
+      - name: Push changes
+        if: steps.check-changes.outputs.changes == 'true'
+        run: git push origin HEAD:${{ steps.get_branch.outputs.branch }}

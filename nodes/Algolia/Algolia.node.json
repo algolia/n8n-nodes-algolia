@@ -1,18 +1,18 @@
 {
-	"node": "n8n-nodes-base.Algolia",
-	"nodeVersion": "1.0",
-	"codexVersion": "1.0",
-	"categories": ["Data & Storage", "Development", "Search"],
-	"resources": {
-		"credentialDocumentation": [
-			{
-				"url": "https://www.algolia.com/doc/guides/security/api-keys/"
-			}
-		],
-		"primaryDocumentation": [
-			{
-				"url": "https://www.algolia.com/doc/rest-api/search/"
-			}
-		]
-	}
+  "node": "n8n-nodes-base.Algolia",
+  "nodeVersion": "1.0",
+  "codexVersion": "1.0",
+  "categories": ["Data & Storage", "Development", "Search"],
+  "resources": {
+    "credentialDocumentation": [
+      {
+        "url": "https://www.algolia.com/doc/guides/security/api-keys/"
+      }
+    ],
+    "primaryDocumentation": [
+      {
+        "url": "https://www.algolia.com/doc/rest-api/search/"
+      }
+    ]
+  }
 }
