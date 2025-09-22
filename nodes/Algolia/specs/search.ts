@@ -1,6 +1,6 @@
 import { INodeProperties } from 'n8n-workflow';
 
-  const properties: INodeProperties[] = [
+const properties: INodeProperties[] = [
   {
     "displayName": "Resource",
     "name": "resource",
@@ -23228,5 +23228,4 @@ import { INodeProperties } from 'n8n-workflow';
   }
 ];
 
-  export default properties;
-  
+export default properties;

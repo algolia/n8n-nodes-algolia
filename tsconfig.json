@@ -34,6 +34,9 @@
 		"credentials/**/*",
 		"nodes/**/*",
 		"package.json",
-		"helpers/**/*"
+		"helpers/**/*",
+		"scripts/nodes/overrides",
+		"scripts/nodes/index.ts",
+		"scripts/generate-specs-index.ts"
 	],
 }

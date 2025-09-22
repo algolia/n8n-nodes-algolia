@@ -1,0 +1,50 @@
+name: Generate Properties on Specs Update
+
+on:
+  push:
+    paths:
+      - 'nodes/Algolia/specs/*.ts'
+  pull_request:
+    paths:
+      - 'nodes/Algolia/specs/*.ts'
+  workflow_dispatch:
+
+jobs:
+  generate-properties:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: ".nvmrc"
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate properties
+        run: npm run generate-properties
+
+      - name: Generate specs index
+        run: npm run generate-specs-index
+
+      - name: Check for changes
+        id: check-changes
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "changes=true" >> $GITHUB_OUTPUT
+          else
+            echo "changes=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit changes
+        if: steps.check-changes.outputs.changes == 'true'
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          git add nodes/Algolia/specs/*.ts
+          git commit -m "chore(nodes): auto-generate properties from updated specs"
+          git push

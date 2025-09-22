@@ -7,4 +7,3 @@ npm-debug.log*
 yarn.lock
 .vscode
 .env
-**/specs/*.json
