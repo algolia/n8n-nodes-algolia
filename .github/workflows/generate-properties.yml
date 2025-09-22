@@ -53,6 +53,11 @@ jobs:
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
 
+      - name: Configure Git remote
+        if: steps.check-changes.outputs.changes == 'true'
+        run: |
+          git remote set-url origin https://github.com/${{ github.repository }}.git
+
       - name: Get current branch name
         if: steps.check-changes.outputs.changes == 'true'
         id: get_branch
@@ -71,4 +76,4 @@ jobs:
 
       - name: Push changes
         if: steps.check-changes.outputs.changes == 'true'
-        run: git push origin ${{ steps.get_branch.outputs.branch }}
+        run: git push origin HEAD:${{ steps.get_branch.outputs.branch }}
