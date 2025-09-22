@@ -1,69 +1,69 @@
 {
-	"name": "@algolia/n8n-nodes-algolia",
-	"version": "0.4.4",
-	"description": "Algolia nodes for n8n",
-	"keywords": [
-		"n8n-community-node-package",
-		"algolia",
-		"n8n"
-	],
-	"license": "MIT",
-	"homepage": "https://github.com/algolia/n8n-nodes-algolia",
-	"author": {
-		"name": "Algolia",
-		"email": "support@algolia.com"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/algolia/n8n-nodes-algolia.git"
-	},
-	"engines": {
-		"node": ">=20.15"
-	},
-	"main": "index.js",
-	"scripts": {
-		"build": "vite build",
-		"dev": "vite build --watch",
-		"format": "prettier nodes credentials --write",
-		"lint": "eslint nodes credentials package.json",
-		"lintfix": "eslint nodes credentials package.json --fix",
-		"prepublishOnly": "npm run build && npm run lint -c .eslintrc.prepublish.js nodes credentials package.json",
-		"release": "shipjs prepare",
-		"generate-properties": "npx tsx scripts/nodes/index.ts",
-		"generate-specs-index": "npx tsx scripts/generate-specs-index.ts"
-	},
-	"files": [
-		"dist"
-	],
-	"n8n": {
-		"n8nNodesApiVersion": 1,
-		"credentials": [
-			"dist/credentials/AlgoliaApi.credentials.js"
-		],
-		"nodes": [
-			"dist/nodes/Algolia/Algolia.node.js"
-		]
-	},
-	"devDependencies": {
-		"@typescript-eslint/parser": "~8.32.0",
-		"concurrently": "^9.2.0",
-		"eslint": "^8.57.0",
-		"eslint-plugin-n8n-nodes-base": "^1.16.3",
-		"prettier": "^3.5.3",
-		"shelljs": "^0.10.0",
-		"shipjs": "^0.27.0",
-		"tsc-alias": "^1.8.16",
-		"tsx": "^4.7.0",
-		"typescript": "^5.8.2",
-		"vite": "^7.0.6",
-		"vite-plugin-static-copy": "^3.1.1",
-		"vitest": "^3.2.4"
-	},
-	"peerDependencies": {
-		"n8n-workflow": "^1.107.0"
-	},
-	"dependencies": {
-		"@algolia/n8n-openapi-node": "^1.1.1",
-		"openapi-types": "^12.1.3"
-	}
+  "name": "@algolia/n8n-nodes-algolia",
+  "version": "0.4.4",
+  "description": "Algolia nodes for n8n",
+  "keywords": [
+    "n8n-community-node-package",
+    "algolia",
+    "n8n"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/algolia/n8n-nodes-algolia",
+  "author": {
+    "name": "Algolia",
+    "email": "support@algolia.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/algolia/n8n-nodes-algolia.git"
+  },
+  "engines": {
+    "node": ">=20.15"
+  },
+  "main": "index.js",
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite build --watch",
+    "format": "prettier nodes credentials --write",
+    "lint": "eslint nodes credentials package.json",
+    "lintfix": "eslint nodes credentials package.json --fix",
+    "prepublishOnly": "npm run build && npm run lint -c .eslintrc.prepublish.js nodes credentials package.json",
+    "release": "shipjs prepare",
+    "generate-properties": "npx tsx scripts/nodes/index.ts",
+    "generate-specs-index": "npx tsx scripts/generate-specs-index.ts"
+  },
+  "files": [
+    "dist"
+  ],
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "credentials": [
+      "dist/credentials/AlgoliaApi.credentials.js"
+    ],
+    "nodes": [
+      "dist/nodes/Algolia/Algolia.node.js"
+    ]
+  },
+  "devDependencies": {
+    "@typescript-eslint/parser": "~8.32.0",
+    "concurrently": "^9.2.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-n8n-nodes-base": "^1.16.3",
+    "prettier": "^3.5.3",
+    "shelljs": "^0.10.0",
+    "shipjs": "^0.27.0",
+    "tsc-alias": "^1.8.16",
+    "tsx": "^4.7.0",
+    "typescript": "^5.8.2",
+    "vite": "^7.0.6",
+    "vite-plugin-static-copy": "^3.1.1",
+    "vitest": "^3.2.4"
+  },
+  "peerDependencies": {
+    "n8n-workflow": "^1.107.0"
+  },
+  "dependencies": {
+    "@algolia/n8n-openapi-node": "^1.1.1",
+    "openapi-types": "^12.1.3"
+  }
 }
