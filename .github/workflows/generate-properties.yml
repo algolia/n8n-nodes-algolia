@@ -45,11 +45,32 @@ jobs:
             echo "changes=false" >> $GITHUB_OUTPUT
           fi
 
+      - name: Set up Git user
+        if: steps.check-changes.outputs.changes == 'true'
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+      - name: Get current branch name
+        if: steps.check-changes.outputs.changes == 'true'
+        id: get_branch
+        run: |
+          if [[ "${GITHUB_HEAD_REF}" != "" ]]; then
+            echo "branch=${GITHUB_HEAD_REF}" >> $GITHUB_OUTPUT
+          else
+            echo "branch=${GITHUB_REF#refs/heads/}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Checkout current branch
+        if: steps.check-changes.outputs.changes == 'true'
+        run: git checkout ${{ steps.get_branch.outputs.branch }}
+
       - name: Commit changes
         if: steps.check-changes.outputs.changes == 'true'
         run: |
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git config --global user.name "github-actions[bot]"
-          git add nodes/Algolia/specs/*.ts
+          git add .
           git commit -m "chore(nodes): auto-generate properties from updated specs"
-          git push
+
+      - name: Push changes
+        if: steps.check-changes.outputs.changes == 'true'
+        run: git push origin ${{ steps.get_branch.outputs.branch }}
