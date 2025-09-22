@@ -5,9 +5,9 @@ import { listIndices } from './listIndices';
 import { searchIndex } from './searchIndex';
 
 export const index = new Resource({
-	name: 'Index',
-	value: 'index',
+  name: 'Index',
+  value: 'index',
 })
-	.addOperation(listIndices)
-	.addOperation(searchIndex)
-	.addOperation(clearIndex);
+  .addOperation(listIndices)
+  .addOperation(searchIndex)
+  .addOperation(clearIndex);
