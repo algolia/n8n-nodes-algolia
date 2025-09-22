@@ -20,11 +20,6 @@ module.exports = {
 	useTabs: false,
 
 	/**
-	 * https://prettier.io/docs/en/options.html#tab-width
-	 */
-	tabWidth: 2,
-
-	/**
 	 * https://prettier.io/docs/en/options.html#arrow-function-parentheses
 	 */
 	arrowParens: 'always',
