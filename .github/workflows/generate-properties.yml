@@ -33,6 +33,9 @@ jobs:
       - name: Generate specs index
         run: npm run generate-specs-index
 
+      - name: Format code
+        run: npx prettier --write .
+
       - name: Check for changes
         id: check-changes
         run: |
