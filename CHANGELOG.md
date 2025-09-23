@@ -1,3 +1,12 @@
+## [0.5.1](https://github.com/algolia/n8n-nodes-algolia/compare/v0.4.4...v0.5.1) (2025-09-23)
+
+
+### Bug Fixes
+
+* update workflow ([db4381c](https://github.com/algolia/n8n-nodes-algolia/commit/db4381c1058b5fd1b4ea34d492d9154a75230480))
+
+
+
 # [0.5.0](https://github.com/algolia/n8n-nodes-algolia/compare/v0.4.4...v0.5.0) (2025-09-23)
 
 
