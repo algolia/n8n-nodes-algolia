@@ -1,3 +1,12 @@
+## [0.5.2](https://github.com/algolia/n8n-nodes-algolia/compare/v0.4.4...v0.5.2) (2025-09-23)
+
+
+### Bug Fixes
+
+* eslint config ([efc6a05](https://github.com/algolia/n8n-nodes-algolia/commit/efc6a05d1b5ac5610473cff833ee7fe0920d23c6))
+
+
+
 ## [0.5.1](https://github.com/algolia/n8n-nodes-algolia/compare/v0.4.4...v0.5.1) (2025-09-23)
 
 
