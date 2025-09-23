@@ -18,7 +18,13 @@ module.exports = {
     extraFileExtensions: ['.json'],
   },
 
-  ignorePatterns: ['.eslintrc.js', '**/*.js', '**/node_modules/**', '**/dist/**'],
+  ignorePatterns: [
+    '.eslintrc.js',
+    '**/*.js',
+    '**/node_modules/**',
+    '**/dist/**',
+    'nodes/Algolia/specs/**',
+  ],
 
   overrides: [
     {
