@@ -1,5 +1,6 @@
 import { generateN8NNodes } from '@algolia/n8n-openapi-node';
 import fs from 'fs/promises';
+import { IDisplayOptions } from 'n8n-workflow';
 import path from 'path';
 import { indexName } from './overrides/indexName';
 import { attachPostReceive, simplifyFields } from './overrides/simplify';
@@ -22,7 +23,7 @@ const generateProperties = async (): Promise<void> => {
 
       try {
         const properties = await generateN8NNodes(filePath);
-        const operationsToSimplify: any[] = [];
+        const operationsToSimplify: Array<{ displayOptions: IDisplayOptions; value: string }> = [];
         const overriddenProperties = properties.map((property) => {
           if (property.name === 'indexName_string') {
             return indexName(property);

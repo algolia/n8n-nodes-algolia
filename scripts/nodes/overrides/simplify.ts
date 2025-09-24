@@ -1,10 +1,12 @@
-import { INodeProperties, INodePropertyOptions } from 'n8n-workflow';
+import { IDisplayOptions, INodeProperties, INodePropertyOptions } from 'n8n-workflow';
 
-const simplifyFields = (operationsToSimplify: any[]): INodeProperties => {
+const simplifyFields = (
+  operationsToSimplify: Array<{ displayOptions: IDisplayOptions; value: string }>,
+): INodeProperties => {
   const resourceShow = new Set(
     operationsToSimplify
       .map((operation) => operation.displayOptions.show)
-      .flatMap((show) => Object.values(show))
+      .flatMap((show) => Object.values(show ?? {}))
       .flat() as string[],
   );
 
