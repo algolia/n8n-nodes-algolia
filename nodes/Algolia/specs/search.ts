@@ -1005,6 +1005,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
+        property: undefined,
         value: '={{ undefined }}',
       },
     },
@@ -1457,6 +1458,7 @@ const properties: INodeProperties[] = [
     displayName: 'Facet Filters',
     name: 'facetFilters_json',
     default: '[]',
+    description: undefined,
     required: false,
     displayOptions: {
       show: {
@@ -1521,6 +1523,7 @@ const properties: INodeProperties[] = [
     displayName: 'Optional Filters',
     name: 'optionalFilters_json',
     default: '[]',
+    description: undefined,
     required: false,
     displayOptions: {
       show: {
@@ -1585,6 +1588,7 @@ const properties: INodeProperties[] = [
     displayName: 'Numeric Filters',
     name: 'numericFilters_json',
     default: '[]',
+    description: undefined,
     required: false,
     displayOptions: {
       show: {
@@ -1649,6 +1653,7 @@ const properties: INodeProperties[] = [
     displayName: 'Tag Filters',
     name: 'tagFilters_json',
     default: '[]',
+    description: undefined,
     required: false,
     displayOptions: {
       show: {
@@ -2026,6 +2031,7 @@ const properties: INodeProperties[] = [
     displayName: 'Around Precision',
     name: 'aroundPrecision_fixedCollection',
     default: '',
+    description: undefined,
     required: false,
     typeOptions: {
       multipleValues: true,
@@ -2151,6 +2157,7 @@ const properties: INodeProperties[] = [
     displayName: 'insideBoundingBox',
     name: 'insideBoundingBox_null',
     default: 'null',
+    description: undefined,
     required: false,
     disabledOptions: {
       show: {
@@ -3353,6 +3360,7 @@ const properties: INodeProperties[] = [
     displayName: 'eventSources',
     name: 'eventSources_null_semanticSearch',
     default: 'null',
+    description: undefined,
     required: false,
     disabledOptions: {
       show: {
@@ -3451,6 +3459,7 @@ const properties: INodeProperties[] = [
     displayName: 'optionalWords',
     name: 'optionalWords_null',
     default: 'null',
+    description: undefined,
     required: false,
     disabledOptions: {
       show: {
@@ -4091,6 +4100,7 @@ const properties: INodeProperties[] = [
     displayName: 'Re Ranking Apply Filter',
     name: 'reRankingApplyFilter_json',
     default: '[]',
+    description: undefined,
     required: false,
     displayOptions: {
       show: {
@@ -4123,6 +4133,7 @@ const properties: INodeProperties[] = [
     displayName: 'reRankingApplyFilter',
     name: 'reRankingApplyFilter_null',
     default: 'null',
+    description: undefined,
     required: false,
     disabledOptions: {
       show: {
@@ -4143,6 +4154,7 @@ const properties: INodeProperties[] = [
     displayName: 'Search Method Params',
     name: 'search_method_params_object',
     type: 'multiOptions',
+    description: undefined,
     required: true,
     default: [],
     options: [
@@ -4154,6 +4166,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
+        property: undefined,
         value: '={{ undefined }}',
       },
     },
@@ -4255,6 +4268,7 @@ const properties: INodeProperties[] = [
     displayName: 'Search For Facet Values Request',
     name: 'search_for_facet_values_request_object',
     type: 'multiOptions',
+    description: undefined,
     required: false,
     default: [],
     options: [
@@ -4274,6 +4288,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
+        property: undefined,
         value: '={{ undefined }}',
       },
     },
@@ -4415,6 +4430,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
+        property: undefined,
         value: '={{ undefined }}',
       },
     },
@@ -4452,6 +4468,7 @@ const properties: INodeProperties[] = [
     type: 'multiOptions',
     name: 'multiple_properties',
     displayName: 'Multiple properties',
+    description: undefined,
     required: false,
     default: [],
     options: [
@@ -4870,6 +4887,7 @@ const properties: INodeProperties[] = [
     displayName: 'Facet Filters',
     name: 'facetFilters_json',
     default: '[]',
+    description: undefined,
     required: false,
     displayOptions: {
       show: {
@@ -4934,6 +4952,7 @@ const properties: INodeProperties[] = [
     displayName: 'Optional Filters',
     name: 'optionalFilters_json',
     default: '[]',
+    description: undefined,
     required: false,
     displayOptions: {
       show: {
@@ -4998,6 +5017,7 @@ const properties: INodeProperties[] = [
     displayName: 'Numeric Filters',
     name: 'numericFilters_json',
     default: '[]',
+    description: undefined,
     required: false,
     displayOptions: {
       show: {
@@ -5062,6 +5082,7 @@ const properties: INodeProperties[] = [
     displayName: 'Tag Filters',
     name: 'tagFilters_json',
     default: '[]',
+    description: undefined,
     required: false,
     displayOptions: {
       show: {
@@ -5439,6 +5460,7 @@ const properties: INodeProperties[] = [
     displayName: 'Around Precision',
     name: 'aroundPrecision_fixedCollection',
     default: '',
+    description: undefined,
     required: false,
     typeOptions: {
       multipleValues: true,
@@ -5564,6 +5586,7 @@ const properties: INodeProperties[] = [
     displayName: 'insideBoundingBox',
     name: 'insideBoundingBox_null',
     default: 'null',
+    description: undefined,
     required: false,
     disabledOptions: {
       show: {
@@ -6766,6 +6789,7 @@ const properties: INodeProperties[] = [
     displayName: 'eventSources',
     name: 'eventSources_null_semanticSearch',
     default: 'null',
+    description: undefined,
     required: false,
     disabledOptions: {
       show: {
@@ -6864,6 +6888,7 @@ const properties: INodeProperties[] = [
     displayName: 'optionalWords',
     name: 'optionalWords_null',
     default: 'null',
+    description: undefined,
     required: false,
     disabledOptions: {
       show: {
@@ -7504,6 +7529,7 @@ const properties: INodeProperties[] = [
     displayName: 'Re Ranking Apply Filter',
     name: 'reRankingApplyFilter_json',
     default: '[]',
+    description: undefined,
     required: false,
     displayOptions: {
       show: {
@@ -7536,6 +7562,7 @@ const properties: INodeProperties[] = [
     displayName: 'reRankingApplyFilter',
     name: 'reRankingApplyFilter_null',
     default: 'null',
+    description: undefined,
     required: false,
     disabledOptions: {
       show: {
@@ -7720,6 +7747,7 @@ const properties: INodeProperties[] = [
     displayName: 'Attributes To Retrieve',
     name: 'attributesToRetrieve_json',
     default: '[]',
+    description: undefined,
     required: false,
     displayOptions: {
       show: {
@@ -7885,6 +7913,7 @@ const properties: INodeProperties[] = [
     displayName: 'Multiple properties',
     name: 'multiple_properties_object',
     type: 'multiOptions',
+    description: undefined,
     required: false,
     default: [],
     options: [
@@ -7924,6 +7953,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
+        property: undefined,
         value: '={{ undefined }}',
       },
     },
@@ -7970,6 +8000,7 @@ const properties: INodeProperties[] = [
     displayName: 'Facet Filters',
     name: 'facetFilters_json',
     default: '[]',
+    description: undefined,
     required: false,
     displayOptions: {
       show: {
@@ -8055,6 +8086,7 @@ const properties: INodeProperties[] = [
     displayName: 'Numeric Filters',
     name: 'numericFilters_json',
     default: '[]',
+    description: undefined,
     required: false,
     displayOptions: {
       show: {
@@ -8116,6 +8148,7 @@ const properties: INodeProperties[] = [
     displayName: 'Tag Filters',
     name: 'tagFilters_json',
     default: '[]',
+    description: undefined,
     required: false,
     displayOptions: {
       show: {
@@ -8292,6 +8325,7 @@ const properties: INodeProperties[] = [
     displayName: 'insideBoundingBox',
     name: 'insideBoundingBox_null',
     default: 'null',
+    description: undefined,
     required: false,
     disabledOptions: {
       show: {
@@ -8514,6 +8548,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
+        property: undefined,
         value: '={{ undefined }}',
       },
     },
@@ -8529,6 +8564,7 @@ const properties: INodeProperties[] = [
     displayName: 'Requests',
     name: 'requests_fixedCollection',
     default: '',
+    description: undefined,
     required: false,
     routing: {
       send: {
@@ -8561,6 +8597,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
+        property: undefined,
         value: '={{ undefined }}',
       },
     },
@@ -8576,6 +8613,7 @@ const properties: INodeProperties[] = [
     displayName: 'Requests',
     name: 'requests_fixedCollection',
     default: '',
+    description: undefined,
     required: false,
     routing: {
       send: {
@@ -8608,6 +8646,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
+        property: undefined,
         value: '={{ undefined }}',
       },
     },
@@ -8623,6 +8662,7 @@ const properties: INodeProperties[] = [
     displayName: 'Requests',
     name: 'requests_fixedCollection',
     default: '',
+    description: undefined,
     required: false,
     routing: {
       send: {
@@ -10318,6 +10358,7 @@ const properties: INodeProperties[] = [
     displayName: 'eventSources',
     name: 'eventSources_null_semanticSearch',
     default: 'null',
+    description: undefined,
     required: false,
     disabledOptions: {
       show: {
@@ -10412,6 +10453,7 @@ const properties: INodeProperties[] = [
     displayName: 'optionalWords',
     name: 'optionalWords_null',
     default: 'null',
+    description: undefined,
     required: false,
     disabledOptions: {
       show: {
@@ -11026,6 +11068,7 @@ const properties: INodeProperties[] = [
     displayName: 'Re Ranking Apply Filter',
     name: 'reRankingApplyFilter_json',
     default: '[]',
+    description: undefined,
     required: false,
     displayOptions: {
       show: {
@@ -11056,6 +11099,7 @@ const properties: INodeProperties[] = [
     displayName: 'reRankingApplyFilter',
     name: 'reRankingApplyFilter_null',
     default: 'null',
+    description: undefined,
     required: false,
     disabledOptions: {
       show: {
@@ -11238,6 +11282,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
+        property: undefined,
         value: '={{ undefined }}',
       },
     },
@@ -11609,6 +11654,7 @@ const properties: INodeProperties[] = [
     default: '',
     description: 'Matching synonyms.',
     required: false,
+    routing: undefined,
     displayOptions: {
       show: {
         resource: ['Synonyms'],
@@ -11715,6 +11761,7 @@ const properties: INodeProperties[] = [
     displayName: 'Search Synonyms Params',
     name: 'search_synonyms_params_object',
     type: 'multiOptions',
+    description: undefined,
     required: false,
     default: [],
     options: [
@@ -11738,6 +11785,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
+        property: undefined,
         value: '={{ undefined }}',
       },
     },
@@ -11922,6 +11970,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
+        property: undefined,
         value: '={{ undefined }}',
       },
     },
@@ -12190,6 +12239,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
+        property: undefined,
         value: '={{ undefined }}',
       },
     },
@@ -12573,6 +12623,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
+        property: undefined,
         value: '={{ undefined }}',
       },
     },
@@ -12670,6 +12721,7 @@ const properties: INodeProperties[] = [
     type: 'multiOptions',
     name: 'params_consequence',
     displayName: 'Params',
+    description: undefined,
     required: false,
     default: [],
     options: [
@@ -13055,6 +13107,7 @@ const properties: INodeProperties[] = [
     displayName: 'Facet Filters',
     name: 'facetFilters_json_params_consequence',
     default: '[]',
+    description: undefined,
     required: false,
     displayOptions: {
       show: {
@@ -13114,6 +13167,7 @@ const properties: INodeProperties[] = [
     displayName: 'Optional Filters',
     name: 'optionalFilters_json_params_consequence',
     default: '[]',
+    description: undefined,
     required: false,
     displayOptions: {
       show: {
@@ -13173,6 +13227,7 @@ const properties: INodeProperties[] = [
     displayName: 'Numeric Filters',
     name: 'numericFilters_json_params_consequence',
     default: '[]',
+    description: undefined,
     required: false,
     displayOptions: {
       show: {
@@ -13232,6 +13287,7 @@ const properties: INodeProperties[] = [
     displayName: 'Tag Filters',
     name: 'tagFilters_json_params_consequence',
     default: '[]',
+    description: undefined,
     required: false,
     displayOptions: {
       show: {
@@ -13546,6 +13602,7 @@ const properties: INodeProperties[] = [
     displayName: 'Around Precision',
     name: 'aroundPrecision_fixedCollection_params_consequence',
     default: '',
+    description: undefined,
     required: false,
     typeOptions: {
       multipleValues: true,
@@ -13660,6 +13717,7 @@ const properties: INodeProperties[] = [
     displayName: 'insideBoundingBox',
     name: 'insideBoundingBox_null_params_consequence',
     default: 'null',
+    description: undefined,
     required: false,
     disabledOptions: {
       show: {
@@ -14647,6 +14705,7 @@ const properties: INodeProperties[] = [
     displayName: 'eventSources',
     name: 'eventSources_null_semanticSearch_params_consequence',
     default: 'null',
+    description: undefined,
     required: false,
     disabledOptions: {
       show: {
@@ -14734,6 +14793,7 @@ const properties: INodeProperties[] = [
     displayName: 'optionalWords',
     name: 'optionalWords_null_params_consequence',
     default: 'null',
+    description: undefined,
     required: false,
     disabledOptions: {
       show: {
@@ -15299,6 +15359,7 @@ const properties: INodeProperties[] = [
     displayName: 'Re Ranking Apply Filter',
     name: 'reRankingApplyFilter_json_params_consequence',
     default: '[]',
+    description: undefined,
     required: false,
     displayOptions: {
       show: {
@@ -15333,6 +15394,7 @@ const properties: INodeProperties[] = [
     displayName: 'reRankingApplyFilter',
     name: 'reRankingApplyFilter_null_params_consequence',
     default: 'null',
+    description: undefined,
     required: false,
     disabledOptions: {
       show: {
@@ -15379,6 +15441,7 @@ const properties: INodeProperties[] = [
     displayName: 'Query',
     name: 'query_object_params_consequence',
     type: 'multiOptions',
+    description: undefined,
     required: false,
     default: [],
     options: [
@@ -15487,6 +15550,7 @@ const properties: INodeProperties[] = [
     displayName: 'Automatic Facet Filters',
     name: 'automaticFacetFilters_fixedCollection_params_consequence',
     default: '',
+    description: undefined,
     required: false,
     typeOptions: {
       multipleValues: true,
@@ -15541,6 +15605,7 @@ const properties: INodeProperties[] = [
     displayName: 'Automatic Facet Filters',
     name: 'automaticFacetFilters_json_params_consequence',
     default: '[]',
+    description: undefined,
     required: false,
     displayOptions: {
       show: {
@@ -15583,6 +15648,7 @@ const properties: INodeProperties[] = [
     displayName: 'Automatic Optional Facet Filters',
     name: 'automaticOptionalFacetFilters_fixedCollection_params_consequence',
     default: '',
+    description: undefined,
     required: false,
     typeOptions: {
       multipleValues: true,
@@ -15637,6 +15703,7 @@ const properties: INodeProperties[] = [
     displayName: 'Automatic Optional Facet Filters',
     name: 'automaticOptionalFacetFilters_json_params_consequence',
     default: '[]',
+    description: undefined,
     required: false,
     displayOptions: {
       show: {
@@ -16150,6 +16217,7 @@ const properties: INodeProperties[] = [
     default: '',
     description: 'Rules to add or replace.',
     required: false,
+    routing: undefined,
     displayOptions: {
       show: {
         resource: ['Rules'],
@@ -16288,6 +16356,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
+        property: undefined,
         value: '={{ undefined }}',
       },
     },
@@ -16490,6 +16559,7 @@ const properties: INodeProperties[] = [
     displayName: 'enabled',
     name: 'enabled_null',
     default: 'null',
+    description: undefined,
     required: false,
     disabledOptions: {
       show: {
@@ -16552,6 +16622,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
+        property: undefined,
         value: '={{ undefined }}',
       },
     },
@@ -16662,6 +16733,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
+        property: undefined,
         value: '={{ undefined }}',
       },
     },
@@ -17057,6 +17129,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
+        property: undefined,
         value: '={{ undefined }}',
       },
     },
@@ -17161,6 +17234,7 @@ const properties: INodeProperties[] = [
     displayName: 'plurals',
     name: 'plurals_null_disableStandardEntries',
     default: 'null',
+    description: undefined,
     required: false,
     disabledOptions: {
       show: {
@@ -17233,6 +17307,7 @@ const properties: INodeProperties[] = [
     displayName: 'stopwords',
     name: 'stopwords_null_disableStandardEntries',
     default: 'null',
+    description: undefined,
     required: false,
     disabledOptions: {
       show: {
@@ -17305,6 +17380,7 @@ const properties: INodeProperties[] = [
     displayName: 'compounds',
     name: 'compounds_null_disableStandardEntries',
     default: 'null',
+    description: undefined,
     required: false,
     disabledOptions: {
       show: {
@@ -17326,7 +17402,7 @@ const properties: INodeProperties[] = [
     placeholder: 'user1',
     description: 'Unique identifier of the user who makes the search request.',
     typeOptions: {
-      pattern: '^[a-zA-Z0-9 \\-*.]+$',
+      pattern: '^[a-zA-Z0-9 \-*.]+$',
     },
     required: true,
     displayName: 'X-Algolia-User-ID',
@@ -17355,6 +17431,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
+        property: undefined,
         value: '={{ undefined }}',
       },
     },
@@ -17439,6 +17516,7 @@ const properties: INodeProperties[] = [
     displayName: 'page',
     name: 'page_null',
     default: 'null',
+    description: undefined,
     required: false,
     disabledOptions: {
       show: {
@@ -17471,7 +17549,7 @@ const properties: INodeProperties[] = [
     placeholder: 'user1',
     description: 'Unique identifier of the user who makes the search request.',
     typeOptions: {
-      pattern: '^[a-zA-Z0-9 \\-*.]+$',
+      pattern: '^[a-zA-Z0-9 \-*.]+$',
     },
     required: true,
     displayName: 'X-Algolia-User-ID',
@@ -17504,6 +17582,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
+        property: undefined,
         value: '={{ undefined }}',
       },
     },
@@ -17564,7 +17643,7 @@ const properties: INodeProperties[] = [
     placeholder: 'user1',
     description: 'Unique identifier of the user who makes the search request.',
     typeOptions: {
-      pattern: '^[a-zA-Z0-9 \\-*.]+$',
+      pattern: '^[a-zA-Z0-9 \-*.]+$',
     },
     required: true,
     displayName: 'User ID',
@@ -17582,7 +17661,7 @@ const properties: INodeProperties[] = [
     placeholder: 'user1',
     description: 'Unique identifier of the user who makes the search request.',
     typeOptions: {
-      pattern: '^[a-zA-Z0-9 \\-*.]+$',
+      pattern: '^[a-zA-Z0-9 \-*.]+$',
     },
     required: true,
     displayName: 'User ID',
@@ -17623,6 +17702,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
+        property: undefined,
         value: '={{ undefined }}',
       },
     },
@@ -17750,6 +17830,7 @@ const properties: INodeProperties[] = [
     default: '',
     description: 'Sources.',
     required: false,
+    routing: undefined,
     typeOptions: {
       multipleValues: true,
     },
@@ -17820,6 +17901,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
+        property: undefined,
         value: '={{ undefined }}',
       },
     },
@@ -17994,6 +18076,7 @@ const properties: INodeProperties[] = [
     displayName: 'indexName',
     name: 'indexName_null',
     default: 'null',
+    description: undefined,
     required: false,
     disabledOptions: {
       show: {
@@ -18153,6 +18236,7 @@ const properties: INodeProperties[] = [
     displayName: 'Operation Index Params',
     name: 'operation_index_params_object',
     type: 'multiOptions',
+    description: undefined,
     required: true,
     default: [],
     options: [
@@ -18172,6 +18256,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
+        property: undefined,
         value: '={{ undefined }}',
       },
     },
@@ -18312,6 +18397,7 @@ const properties: INodeProperties[] = [
     displayName: 'page',
     name: 'page_null',
     default: 'null',
+    description: undefined,
     required: false,
     disabledOptions: {
       show: {

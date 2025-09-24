@@ -1,7 +1,10 @@
 import { generateN8NNodes } from '@algolia/n8n-openapi-node';
 import fs from 'fs/promises';
+import { IDisplayOptions } from 'n8n-workflow';
 import path from 'path';
 import { indexName } from './overrides/indexName';
+import { attachPostReceive, simplifyFields } from './overrides/simplify';
+import { objectToJavaScript } from './utils';
 
 const generateProperties = async (): Promise<void> => {
   const specsPath = 'nodes/Algolia/specs/';
@@ -20,16 +23,32 @@ const generateProperties = async (): Promise<void> => {
 
       try {
         const properties = await generateN8NNodes(filePath);
+        const operationsToSimplify: Array<{ displayOptions: IDisplayOptions; value: string }> = [];
         const overriddenProperties = properties.map((property) => {
           if (property.name === 'indexName_string') {
             return indexName(property);
           }
+          if (property.name === 'operation') {
+            property.options?.forEach((option) => {
+              if ('inputSchema' in option && option.inputSchema?.simplifiedOutput) {
+                attachPostReceive(option);
+                operationsToSimplify.push({
+                  displayOptions: property.displayOptions,
+                  value: option.value,
+                });
+              }
+            });
+          }
           return property;
         });
 
+        if (operationsToSimplify.length > 0) {
+          overriddenProperties.push(simplifyFields(operationsToSimplify));
+        }
+
         const nodeContent = `import { INodeProperties } from 'n8n-workflow';
 
-const properties: INodeProperties[] = ${JSON.stringify(overriddenProperties, null, 2)};
+const properties: INodeProperties[] = ${objectToJavaScript(overriddenProperties)};
 
 export default properties;
 `;

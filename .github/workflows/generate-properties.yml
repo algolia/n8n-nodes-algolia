@@ -36,7 +36,7 @@ jobs:
         run: npm run generate-specs-index
 
       - name: Format code
-        run: npx prettier --write .
+        run: npx prettier --write nodes/Algolia/specs/
 
       - name: Check for changes
         id: check-changes
