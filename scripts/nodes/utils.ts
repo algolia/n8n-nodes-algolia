@@ -1,6 +1,4 @@
-const objectToJavaScript = (obj: any, indent = 0): string => {
-  const spaces = '  '.repeat(indent);
-
+const objectToJavaScript = (obj: any): string => {
   if (obj === null) return 'null';
   if (obj === undefined) return 'undefined';
   if (typeof obj === 'string') return `'${obj.replace(/'/g, "\\'").replace(/\n/g, '\\n')}'`;
@@ -9,10 +7,8 @@ const objectToJavaScript = (obj: any, indent = 0): string => {
 
   if (Array.isArray(obj)) {
     if (obj.length === 0) return '[]';
-    const items = obj
-      .map((item) => `${spaces}  ${objectToJavaScript(item, indent + 1)}`)
-      .join(',\n');
-    return `[\n${items}\n${spaces}]`;
+    const items = obj.map((item) => `${objectToJavaScript(item)}`).join(',');
+    return `[${items}]`;
   }
 
   if (typeof obj === 'object') {
@@ -20,11 +16,11 @@ const objectToJavaScript = (obj: any, indent = 0): string => {
     if (keys.length === 0) return '{}';
     const items = keys
       .map((key) => {
-        const value = objectToJavaScript(obj[key], indent + 1);
-        return `${spaces}  ${key}: ${value}`;
+        const value = objectToJavaScript(obj[key]);
+        return `${key}: ${value}`;
       })
-      .join(',\n');
-    return `{\n${items}\n${spaces}}`;
+      .join(',');
+    return `{${items}}`;
   }
 
   return String(obj);
