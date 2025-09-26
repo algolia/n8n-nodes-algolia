@@ -3,10 +3,10 @@ name: Generate Properties on Specs Update
 on:
   push:
     paths:
-      - 'nodes/Algolia/specs/*.ts'
+      - 'nodes/Algolia/specs/*.json'
   pull_request:
     paths:
-      - 'nodes/Algolia/specs/*.ts'
+      - 'nodes/Algolia/specs/*.json'
   workflow_dispatch:
 
 jobs:
@@ -34,6 +34,9 @@ jobs:
 
       - name: Generate specs index
         run: npm run generate-specs-index
+
+      - name: Generate readme operations
+        run: npm run generate-readme-operations
 
       - name: Format code
         run: npx prettier --write .
