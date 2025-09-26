@@ -30,7 +30,8 @@
     "prepublishOnly": "npm run build && npm run lint -c .eslintrc.prepublish.js nodes credentials package.json",
     "release": "shipjs prepare",
     "generate-properties": "npx tsx scripts/nodes/index.ts",
-    "generate-specs-index": "npx tsx scripts/generate-specs-index.ts"
+    "generate-specs-index": "npx tsx scripts/generate-specs-index.ts",
+    "generate-readme-operations": "npx tsx scripts/generate-readme-operations.ts"
   },
   "files": [
     "dist"
