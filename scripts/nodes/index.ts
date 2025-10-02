@@ -79,7 +79,7 @@ const processJsonFile = async (
     const outputPath = path.join(specsPath, `${fileName}.ts`);
     await fs.writeFile(outputPath, nodeContent);
   } catch (error) {
-    console.error(`Error processing file ${file}:`, error);
+    console.error('Error processing file:', error);
     throw error;
   }
 };

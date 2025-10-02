@@ -36,19 +36,20 @@ const attachPostReceive = (option: INodePropertyOptions) => {
 
   // Precompute the function string with the simplifiedOutput value
   const functionString = `async function (items) {
-    const simple = this.getNodeParameter('simplify', 0);
-    if (!simple) return items;
-    return items.map((item) => {
-      const json = item.json || {};
-      const simplified = new Map();
-      ${JSON.stringify(simplifiedOutput)}.forEach((f) => {
-        if (json[f] !== undefined) simplified.set(f, json[f]);
-      });
-      return { json: Object.fromEntries(simplified) };
-    });
-  }`;
+              const simple = this.getNodeParameter('simplify', 0);
+              if (!simple) return items;
+              return items.map((item) => {
+                const json = item.json || {};
+                const simplified = new Map();
+                ${JSON.stringify(simplifiedOutput)}.forEach((f) => {
+                  if (json[f] !== undefined) simplified.set(f, json[f]);
+                });
+                return { json: Object.fromEntries(simplified) };
+              });
+            }`;
 
   // Convert the string back to a function
+  // codacy-disable-next-line
   const postReceiveFunction = eval(`(${functionString})`);
 
   option.routing = {
