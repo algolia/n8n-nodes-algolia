@@ -49,7 +49,6 @@ const attachPostReceive = (option: INodePropertyOptions) => {
             }`;
 
   // Convert the string back to a function
-  // codacy-disable-next-line
   const postReceiveFunction = eval(`(${functionString})`);
 
   option.routing = {
