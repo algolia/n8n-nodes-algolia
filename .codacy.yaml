@@ -1,0 +1,18 @@
+---
+exclude_paths:
+  - 'scripts/nodes/overrides/simplify.ts'
+engines:
+  duplication:
+    enabled: true
+    exclude_paths:
+      - 'scripts/nodes/overrides/simplify.ts'
+  metrics:
+    enabled: true
+    exclude_paths:
+      - 'scripts/nodes/overrides/simplify.ts'
+  coverage:
+    enabled: true
+  security:
+    enabled: true
+    exclude_rules:
+      - 'Security/Eval'
