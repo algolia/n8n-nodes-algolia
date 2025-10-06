@@ -2,9 +2,9 @@ import { generateN8NNodes } from '@algolia/n8n-openapi-node';
 import fs from 'fs/promises';
 import { IDisplayOptions, INodeProperties } from 'n8n-workflow';
 import path from 'path';
-import { indexName } from './overrides/indexName';
-import { attachPostReceive, simplifyFields } from './overrides/simplify';
-import { objectToJavaScript } from './utils';
+import { indexName } from './nodes/overrides/indexName';
+import { attachPostReceive, simplifyFields } from './nodes/overrides/simplify';
+import { objectToJavaScript } from './nodes/utils';
 
 interface OperationToSimplify {
   displayOptions: IDisplayOptions;
@@ -17,7 +17,11 @@ const processOperation = (
   const simplifyOperations: OperationToSimplify[] = [];
 
   property.options?.forEach((option) => {
-    if ('inputSchema' in option && option.inputSchema?.simplifiedOutput && property.displayOptions) {
+    if (
+      'inputSchema' in option &&
+      option.inputSchema?.simplifiedOutput &&
+      property.displayOptions
+    ) {
       attachPostReceive(option);
       simplifyOperations.push({
         displayOptions: property.displayOptions,
@@ -35,9 +39,7 @@ const processOperation = (
   };
 };
 
-const processProperties = async (
-  properties: INodeProperties[],
-): Promise<INodeProperties[]> => {
+const processProperties = async (properties: INodeProperties[]): Promise<INodeProperties[]> => {
   const overriddenProperties: INodeProperties[] = [];
 
   for (const property of properties) {
@@ -58,17 +60,16 @@ const processProperties = async (
   return overriddenProperties;
 };
 
-const generateNodeContent = (properties: INodeProperties[]): string => `import { INodeProperties } from 'n8n-workflow';
+const generateNodeContent = (
+  properties: INodeProperties[],
+): string => `import { INodeProperties } from 'n8n-workflow';
 
 const properties: INodeProperties[] = ${objectToJavaScript(properties)};
 
 export default properties;
 `;
 
-const processJsonFile = async (
-  specsPath: string,
-  file: string,
-): Promise<void> => {
+const processJsonFile = async (specsPath: string, file: string): Promise<void> => {
   const fileName = path.parse(file).name;
   const filePath = path.join(specsPath, file);
 
@@ -95,9 +96,7 @@ const generateProperties = async (): Promise<void> => {
       return;
     }
 
-    await Promise.all(
-      jsonFiles.map((file) => processJsonFile(specsPath, file)),
-    );
+    await Promise.all(jsonFiles.map((file) => processJsonFile(specsPath, file)));
   } catch (error) {
     console.error('Error generating properties:', error);
     process.exit(1);

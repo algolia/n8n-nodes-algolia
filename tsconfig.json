@@ -4,7 +4,11 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "target": "es2019",
-    "lib": ["es2019", "es2020", "es2022.error"],
+    "lib": [
+      "es2019",
+      "es2020",
+      "es2022.error"
+    ],
     "removeComments": true,
     "useUnknownInCatchVariables": false,
     "forceConsistentCasingInFileNames": true,
@@ -21,7 +25,9 @@
     "skipLibCheck": true,
     "outDir": "./dist/",
     "paths": {
-      "@/*": ["./*"]
+      "@/*": [
+        "./*"
+      ]
     }
   },
   "include": [
@@ -29,8 +35,6 @@
     "nodes/**/*",
     "package.json",
     "helpers/**/*",
-    "scripts/nodes/overrides",
-    "scripts/nodes/index.ts",
-    "scripts/generate-specs-index.ts"
+    "scripts/**/*",
   ]
 }

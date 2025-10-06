@@ -1,6 +1,6 @@
 const objectToJavaScript = (obj: any, indent = 0): string => {
   const spacing = '  '.repeat(indent);
-  
+
   if (obj === null) return 'null';
   if (obj === undefined) return 'undefined';
   if (typeof obj === 'string') return `'${obj.replace(/'/g, "\\'").replace(/\n/g, '\\n')}'`;
@@ -9,7 +9,9 @@ const objectToJavaScript = (obj: any, indent = 0): string => {
 
   if (Array.isArray(obj)) {
     if (obj.length === 0) return '[]';
-    const items = obj.map((item) => `\n${spacing}  ${objectToJavaScript(item, indent + 1)}`).join(',');
+    const items = obj
+      .map((item) => `\n${spacing}  ${objectToJavaScript(item, indent + 1)}`)
+      .join(',');
     return `[${items}\n${spacing}]`;
   }
 
@@ -19,10 +21,10 @@ const objectToJavaScript = (obj: any, indent = 0): string => {
     const items = keys
       .map((key) => {
         const value = objectToJavaScript(obj[key], indent + 1);
-        return `\n${spacing}  ${key}: ${value}`;
+        return `\n${spacing}  "${key}": ${value}`;
       })
       .join(',');
-    return `{${items}\n${spacing}}`; 
+    return `{${items}\n${spacing}}`;
   }
 
   return String(obj);
