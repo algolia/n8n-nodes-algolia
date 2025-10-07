@@ -1,3 +1,20 @@
+# [0.6.0](https://github.com/algolia/n8n-nodes-algolia/compare/v0.5.2...v0.6.0) (2025-10-07)
+
+
+### Bug Fixes
+
+* **generate:** add double quote around key when parsing object ([#24](https://github.com/algolia/n8n-nodes-algolia/issues/24)) ([de30a84](https://github.com/algolia/n8n-nodes-algolia/commit/de30a840eaa31324b540dd18af9cbf34b3f4fa0b))
+
+
+### Features
+
+* **OpenAPI:** update parser version ([#25](https://github.com/algolia/n8n-nodes-algolia/issues/25)) ([fd152e2](https://github.com/algolia/n8n-nodes-algolia/commit/fd152e29fa49cbdfef17410ca9d8c392f26ac86d))
+* Return the most relevant parsed data when simplify is enabled ([#23](https://github.com/algolia/n8n-nodes-algolia/issues/23)) ([80da4ae](https://github.com/algolia/n8n-nodes-algolia/commit/80da4ae60104bed9ed6ad652f7f4bf6fca6a6ff4))
+* update OpenAPI specs ([#19](https://github.com/algolia/n8n-nodes-algolia/issues/19)) ([b5ef420](https://github.com/algolia/n8n-nodes-algolia/commit/b5ef420383fc0c8954855050056a988675c1b9b2))
+* update OpenAPI specs ([#21](https://github.com/algolia/n8n-nodes-algolia/issues/21)) ([14c2961](https://github.com/algolia/n8n-nodes-algolia/commit/14c2961d7083069495518b693035fd1a865e37c4))
+
+
+
 ## [0.5.2](https://github.com/algolia/n8n-nodes-algolia/compare/v0.4.4...v0.5.2) (2025-09-23)
 
 
