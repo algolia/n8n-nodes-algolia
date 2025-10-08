@@ -28,6 +28,6 @@ jobs:
 
       - name: Run shipjs prepare
         env:
-          GITHUB_TOKEN: ${{ secrets.ALGOLIA_BOT_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
         run: npx shipjs prepare --yes
