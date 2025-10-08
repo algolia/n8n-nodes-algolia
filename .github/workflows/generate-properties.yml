@@ -84,4 +84,5 @@ jobs:
         if: steps.check-changes.outputs.changes == 'true'
         run: git push origin HEAD:${{ steps.get_branch.outputs.branch }}
         env:
-          GITHUB_TOKEN: ${{ secrets.ALGOLIA_BOT_TOKEN != '' && secrets.ALGOLIA_BOT_TOKEN || secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.ALGOLIA_BOT_TOKEN }}
+          GH_TOKEN: ${{ secrets.ALGOLIA_BOT_TOKEN }}
