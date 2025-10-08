@@ -15,8 +15,8 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version-file: ".tool-versions"
-          registry-url: "https://registry.npmjs.org"
+          node-version-file: '.tool-versions'
+          registry-url: 'https://registry.npmjs.org'
 
       - name: Install dependencies
         run: npm ci
@@ -28,5 +28,6 @@ jobs:
 
       - name: Run shipjs prepare
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.ALGOLIA_BOT_TOKEN }}
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
         run: npx shipjs prepare --yes
