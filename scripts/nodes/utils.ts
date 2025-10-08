@@ -19,10 +19,13 @@ const objectToJavaScript = (obj: any, indent = 0): string => {
     const keys = Object.keys(obj);
     if (keys.length === 0) return '{}';
     const items = keys
-      .map((key) => {
+      .reduce((acc: string[], key) => {
         const value = objectToJavaScript(obj[key], indent + 1);
-        return `\n${spacing}  "${key}": ${value}`;
-      })
+        if (value === 'undefined') {
+          return acc;
+        }
+        return [...acc, `${spacing}  "${key}": ${value}`];
+      }, [])
       .join(',');
     return `{${items}\n${spacing}}`;
   }
