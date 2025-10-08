@@ -15,7 +15,6 @@ jobs:
     permissions:
       pull-requests: write
       contents: write
-      workflows: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -84,3 +83,5 @@ jobs:
       - name: Push changes
         if: steps.check-changes.outputs.changes == 'true'
         run: git push origin HEAD:${{ steps.get_branch.outputs.branch }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.ALGOLIA_BOT_TOKEN != '' && secrets.ALGOLIA_BOT_TOKEN || secrets.GITHUB_TOKEN }}
