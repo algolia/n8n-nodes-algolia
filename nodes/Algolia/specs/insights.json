@@ -11,10 +11,7 @@
       "variables": {
         "region": {
           "description": "The region where your Algolia application is hosted.",
-          "enum": [
-            "us",
-            "de"
-          ],
+          "enum": ["us", "de"],
           "default": "us"
         }
       }
@@ -218,14 +215,10 @@
     },
     "/1/events": {
       "post": {
-        "tags": [
-          "events"
-        ],
+        "tags": ["events"],
         "operationId": "pushEvents",
         "summary": "Send events",
-        "x-acl": [
-          "search"
-        ],
+        "x-acl": ["search"],
         "description": "Sends a list of events to the Insights API.\n\nYou can include up to 1,000 events in a single request,\nbut the request body must be smaller than 2&nbsp;MB.\n",
         "requestBody": {
           "required": true,
@@ -235,9 +228,7 @@
                 "title": "insightsEvents",
                 "type": "object",
                 "additionalProperties": false,
-                "required": [
-                  "events"
-                ],
+                "required": ["events"],
                 "properties": {
                   "events": {
                     "type": "array",
@@ -261,12 +252,8 @@
                         "index": "test-index",
                         "userToken": "anonymous-user-1",
                         "authenticatedUserToken": "user-1",
-                        "objectIDs": [
-                          "object-1"
-                        ],
-                        "positions": [
-                          1
-                        ],
+                        "objectIDs": ["object-1"],
+                        "positions": [1],
                         "queryID": "7dfe2ada7bca48bdd0629649df0bee07"
                       }
                     ]
@@ -282,9 +269,7 @@
                         "index": "test-index",
                         "userToken": "anonymous-user-1",
                         "authenticatedUserToken": "user-1",
-                        "objectIDs": [
-                          "article-1"
-                        ],
+                        "objectIDs": ["article-1"],
                         "queryID": "7dfe2ada7bca48bdd0629649df0bee07"
                       }
                     ]
@@ -301,9 +286,7 @@
                         "index": "test-index",
                         "userToken": "anonymous-user-1",
                         "authenticatedUserToken": "user-1",
-                        "objectIDs": [
-                          "product-1"
-                        ],
+                        "objectIDs": ["product-1"],
                         "objectData": [
                           {
                             "price": 50,
@@ -327,10 +310,7 @@
                         "index": "test-index",
                         "userToken": "anonymous-user-1",
                         "authenticatedUserToken": "user-1",
-                        "objectIDs": [
-                          "product-1",
-                          "product-2"
-                        ],
+                        "objectIDs": ["product-1", "product-2"],
                         "objectData": [
                           {
                             "price": 49.99,
@@ -361,9 +341,7 @@
                         "index": "test-index",
                         "userToken": "anonymous-user-1",
                         "authenticatedUserToken": "user-1",
-                        "objectIDs": [
-                          "object-1"
-                        ]
+                        "objectIDs": ["object-1"]
                       }
                     ]
                   }
@@ -378,9 +356,7 @@
                         "index": "test-index",
                         "userToken": "anonymous-user-1",
                         "authenticatedUserToken": "user-1",
-                        "objectIDs": [
-                          "object-1"
-                        ]
+                        "objectIDs": ["object-1"]
                       }
                     ]
                   }
@@ -396,9 +372,7 @@
                         "index": "test-index",
                         "userToken": "anonymous-user-1",
                         "authenticatedUserToken": "user-1",
-                        "objectIDs": [
-                          "product-1"
-                        ],
+                        "objectIDs": ["product-1"],
                         "objectData": [
                           {
                             "price": 19.99,
@@ -421,10 +395,7 @@
                         "index": "test-index",
                         "userToken": "anonymous-user-1",
                         "authenticatedUserToken": "user-1",
-                        "objectIDs": [
-                          "product-1",
-                          "product-2"
-                        ],
+                        "objectIDs": ["product-1", "product-2"],
                         "objectData": [
                           {
                             "price": 49.99,
@@ -451,9 +422,7 @@
                         "index": "test-index",
                         "userToken": "anonymous-user-1",
                         "authenticatedUserToken": "user-1",
-                        "filters": [
-                          "category:books"
-                        ]
+                        "filters": ["category:books"]
                       }
                     ]
                   }
@@ -468,9 +437,7 @@
                         "index": "test-index",
                         "userToken": "anonymous-user-1",
                         "authenticatedUserToken": "user-1",
-                        "filters": [
-                          "category:books"
-                        ]
+                        "filters": ["category:books"]
                       }
                     ]
                   }
@@ -485,9 +452,7 @@
                         "index": "test-index",
                         "userToken": "anonymous-user-1",
                         "authenticatedUserToken": "user-1",
-                        "objectIDs": [
-                          "object-1"
-                        ]
+                        "objectIDs": ["object-1"]
                       }
                     ]
                   }
@@ -502,9 +467,7 @@
                         "index": "test-index",
                         "userToken": "anonymous-user-1",
                         "authenticatedUserToken": "user-1",
-                        "filters": [
-                          "category:books"
-                        ]
+                        "filters": ["category:books"]
                       }
                     ]
                   }
@@ -796,15 +759,11 @@
     },
     "/1/usertokens/{userToken}": {
       "delete": {
-        "tags": [
-          "usertokens"
-        ],
+        "tags": ["usertokens"],
         "operationId": "deleteUserToken",
         "summary": "Delete user token",
         "description": "Deletes all events related to the specified user token from events metrics and analytics.\nThe deletion is asynchronous, and processed within 48 hours.\nTo delete a personalization user profile, see `Delete a user profile` in the Personalization API.\n",
-        "x-acl": [
-          "deleteObject"
-        ],
+        "x-acl": ["deleteObject"],
         "parameters": [
           {
             "name": "userToken",
@@ -858,9 +817,7 @@
       "get": {
         "x-helper": true,
         "x-asynchronous-helper": false,
-        "tags": [
-          "Api Key"
-        ],
+        "tags": ["Api Key"],
         "operationId": "setClientApiKey",
         "summary": "Switch the API key used to authenticate requests",
         "description": "Switch the API key used to authenticate requests.\n",
@@ -941,9 +898,7 @@
       },
       "ClickEvent": {
         "type": "string",
-        "enum": [
-          "click"
-        ]
+        "enum": ["click"]
       },
       "index": {
         "type": "string",
@@ -958,11 +913,7 @@
         },
         "minItems": 1,
         "maxItems": 20,
-        "example": [
-          "object-1",
-          "object-2",
-          "object-3"
-        ]
+        "example": ["object-1", "object-2", "object-3"]
       },
       "positions": {
         "type": "array",
@@ -973,11 +924,7 @@
         "minItems": 1,
         "maxItems": 20,
         "description": "Position of the clicked item the search results.\n\nYou must provide 1 `position` for each `objectID`.\n",
-        "example": [
-          1,
-          2,
-          5
-        ]
+        "example": [1, 2, 5]
       },
       "queryID": {
         "type": "string",
@@ -1052,23 +999,15 @@
           "queryID",
           "userToken"
         ],
-        "x-discriminator-fields": [
-          "positions",
-          "queryID",
-          "eventType"
-        ]
+        "x-discriminator-fields": ["positions", "queryID", "eventType"]
       },
       "ConversionEvent": {
         "type": "string",
-        "enum": [
-          "conversion"
-        ]
+        "enum": ["conversion"]
       },
       "AddToCartEvent": {
         "type": "string",
-        "enum": [
-          "addToCart"
-        ]
+        "enum": ["addToCart"]
       },
       "currency": {
         "type": "string",
@@ -1207,18 +1146,11 @@
           "objectIDs",
           "userToken"
         ],
-        "x-discriminator-fields": [
-          "eventType",
-          "eventSubtype",
-          "queryID",
-          "objectIDs"
-        ]
+        "x-discriminator-fields": ["eventType", "eventSubtype", "queryID", "objectIDs"]
       },
       "PurchaseEvent": {
         "type": "string",
-        "enum": [
-          "purchase"
-        ]
+        "enum": ["purchase"]
       },
       "PurchasedObjectIDsAfterSearch": {
         "type": "object",
@@ -1269,12 +1201,7 @@
           "userToken",
           "objectData"
         ],
-        "x-discriminator-fields": [
-          "eventType",
-          "eventSubtype",
-          "objectIDs",
-          "objectData"
-        ]
+        "x-discriminator-fields": ["eventType", "eventSubtype", "objectIDs", "objectData"]
       },
       "ConvertedObjectIDsAfterSearch": {
         "type": "object",
@@ -1307,18 +1234,8 @@
             "$ref": "#/components/schemas/timestamp"
           }
         },
-        "required": [
-          "eventName",
-          "eventType",
-          "index",
-          "objectIDs",
-          "queryID",
-          "userToken"
-        ],
-        "x-discriminator-fields": [
-          "queryID",
-          "eventType"
-        ]
+        "required": ["eventName", "eventType", "index", "objectIDs", "queryID", "userToken"],
+        "x-discriminator-fields": ["queryID", "eventType"]
       },
       "ClickedObjectIDs": {
         "type": "object",
@@ -1348,17 +1265,8 @@
             "$ref": "#/components/schemas/timestamp"
           }
         },
-        "required": [
-          "eventName",
-          "eventType",
-          "index",
-          "objectIDs",
-          "userToken"
-        ],
-        "x-discriminator-fields": [
-          "eventType",
-          "objectIDs"
-        ]
+        "required": ["eventName", "eventType", "index", "objectIDs", "userToken"],
+        "x-discriminator-fields": ["eventType", "objectIDs"]
       },
       "objectData": {
         "type": "object",
@@ -1424,19 +1332,8 @@
             "$ref": "#/components/schemas/value"
           }
         },
-        "required": [
-          "eventName",
-          "eventType",
-          "eventSubtype",
-          "index",
-          "objectIDs",
-          "userToken"
-        ],
-        "x-discriminator-fields": [
-          "eventType",
-          "eventSubtype",
-          "objectIDs"
-        ]
+        "required": ["eventName", "eventType", "eventSubtype", "index", "objectIDs", "userToken"],
+        "x-discriminator-fields": ["eventType", "eventSubtype", "objectIDs"]
       },
       "AddedToCartObjectIDs": {
         "type": "object",
@@ -1478,19 +1375,8 @@
             "$ref": "#/components/schemas/value"
           }
         },
-        "required": [
-          "eventName",
-          "eventType",
-          "eventSubtype",
-          "index",
-          "objectIDs",
-          "userToken"
-        ],
-        "x-discriminator-fields": [
-          "eventType",
-          "eventSubtype",
-          "objectIDs"
-        ]
+        "required": ["eventName", "eventType", "eventSubtype", "index", "objectIDs", "userToken"],
+        "x-discriminator-fields": ["eventType", "eventSubtype", "objectIDs"]
       },
       "ConvertedObjectIDs": {
         "type": "object",
@@ -1520,17 +1406,8 @@
             "$ref": "#/components/schemas/timestamp"
           }
         },
-        "required": [
-          "eventName",
-          "eventType",
-          "index",
-          "objectIDs",
-          "userToken"
-        ],
-        "x-discriminator-fields": [
-          "eventType",
-          "objectIDs"
-        ]
+        "required": ["eventName", "eventType", "index", "objectIDs", "userToken"],
+        "x-discriminator-fields": ["eventType", "objectIDs"]
       },
       "filters": {
         "type": "array",
@@ -1540,9 +1417,7 @@
         },
         "minItems": 1,
         "maxItems": 20,
-        "example": [
-          "brand:apple"
-        ]
+        "example": ["brand:apple"]
       },
       "ClickedFilters": {
         "type": "object",
@@ -1572,17 +1447,8 @@
             "$ref": "#/components/schemas/timestamp"
           }
         },
-        "required": [
-          "eventName",
-          "eventType",
-          "index",
-          "filters",
-          "userToken"
-        ],
-        "x-discriminator-fields": [
-          "eventType",
-          "filters"
-        ]
+        "required": ["eventName", "eventType", "index", "filters", "userToken"],
+        "x-discriminator-fields": ["eventType", "filters"]
       },
       "ConvertedFilters": {
         "type": "object",
@@ -1611,23 +1477,12 @@
             "$ref": "#/components/schemas/timestamp"
           }
         },
-        "required": [
-          "eventName",
-          "eventType",
-          "index",
-          "filters",
-          "userToken"
-        ],
-        "x-discriminator-fields": [
-          "eventType",
-          "filters"
-        ]
+        "required": ["eventName", "eventType", "index", "filters", "userToken"],
+        "x-discriminator-fields": ["eventType", "filters"]
       },
       "ViewEvent": {
         "type": "string",
-        "enum": [
-          "view"
-        ]
+        "enum": ["view"]
       },
       "ViewedObjectIDs": {
         "type": "object",
@@ -1657,17 +1512,8 @@
             "$ref": "#/components/schemas/timestamp"
           }
         },
-        "required": [
-          "eventName",
-          "eventType",
-          "index",
-          "objectIDs",
-          "userToken"
-        ],
-        "x-discriminator-fields": [
-          "eventType",
-          "objectIDs"
-        ]
+        "required": ["eventName", "eventType", "index", "objectIDs", "userToken"],
+        "x-discriminator-fields": ["eventType", "objectIDs"]
       },
       "ViewedFilters": {
         "type": "object",
@@ -1697,17 +1543,8 @@
             "$ref": "#/components/schemas/timestamp"
           }
         },
-        "required": [
-          "eventName",
-          "eventType",
-          "index",
-          "filters",
-          "userToken"
-        ],
-        "x-discriminator-fields": [
-          "eventType",
-          "filters"
-        ]
+        "required": ["eventName", "eventType", "index", "filters", "userToken"],
+        "x-discriminator-fields": ["eventType", "filters"]
       },
       "EventsItems": {
         "oneOf": [
@@ -1834,10 +1671,7 @@
   "x-tagGroups": [
     {
       "name": "General",
-      "tags": [
-        "events",
-        "usertokens"
-      ]
+      "tags": ["events", "usertokens"]
     }
   ]
 }
