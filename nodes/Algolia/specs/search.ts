@@ -2405,7 +2405,7 @@ const properties: INodeProperties[] = [
   {
     type: 'boolean',
     description:
-      'Whether to include a `queryID` attribute in the response\nThe query ID is a unique identifier for a search query and is required for tracking [click and conversion events](https://www.algolia.com/guides/sending-events/getting-started).\n',
+      'Whether to include a `queryID` attribute in the response\nThe query ID is a unique identifier for a search query and is required for tracking [click and conversion events](https://www.algolia.com/doc/guides/sending-events/getting-started).\n',
     routing: {
       send: {
         type: 'body',
@@ -5778,7 +5778,7 @@ const properties: INodeProperties[] = [
   {
     type: 'boolean',
     description:
-      'Whether to include a `queryID` attribute in the response\nThe query ID is a unique identifier for a search query and is required for tracking [click and conversion events](https://www.algolia.com/guides/sending-events/getting-started).\n',
+      'Whether to include a `queryID` attribute in the response\nThe query ID is a unique identifier for a search query and is required for tracking [click and conversion events](https://www.algolia.com/doc/guides/sending-events/getting-started).\n',
     routing: {
       send: {
         type: 'body',
@@ -13737,7 +13737,7 @@ const properties: INodeProperties[] = [
   {
     type: 'boolean',
     description:
-      'Whether to include a `queryID` attribute in the response\nThe query ID is a unique identifier for a search query and is required for tracking [click and conversion events](https://www.algolia.com/guides/sending-events/getting-started).\n',
+      'Whether to include a `queryID` attribute in the response\nThe query ID is a unique identifier for a search query and is required for tracking [click and conversion events](https://www.algolia.com/doc/guides/sending-events/getting-started).\n',
     displayName: 'Click Analytics',
     name: 'clickAnalytics_boolean_params_consequence',
     default: false,
@@ -15391,7 +15391,7 @@ const properties: INodeProperties[] = [
           {
             type: 'boolean',
             description:
-              'Whether the filter is disjunctive or conjunctive.\n\nIf true the filter has multiple matches, multiple occurences are combined with the logical `OR` operation.\nIf false, multiple occurences are combined with the logical `AND` operation.\n',
+              'Whether the filter is disjunctive or conjunctive.\n\nIf true the filter has multiple matches, multiple occurrences are combined with the logical `OR` operation.\nIf false, multiple occurrences are combined with the logical `AND` operation.\n',
             displayName: 'Disjunctive',
             name: 'disjunctive_boolean_automaticFacetFilters',
             default: false,
@@ -15486,7 +15486,7 @@ const properties: INodeProperties[] = [
           {
             type: 'boolean',
             description:
-              'Whether the filter is disjunctive or conjunctive.\n\nIf true the filter has multiple matches, multiple occurences are combined with the logical `OR` operation.\nIf false, multiple occurences are combined with the logical `AND` operation.\n',
+              'Whether the filter is disjunctive or conjunctive.\n\nIf true the filter has multiple matches, multiple occurrences are combined with the logical `OR` operation.\nIf false, multiple occurrences are combined with the logical `AND` operation.\n',
             displayName: 'Disjunctive',
             name: 'disjunctive_boolean_automaticOptionalFacetFilters',
             default: false,
