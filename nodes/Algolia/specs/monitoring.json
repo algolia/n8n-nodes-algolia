@@ -2,7 +2,7 @@
   "openapi": "3.0.2",
   "info": {
     "title": "Algolia Monitoring API",
-    "description": "The Monitoring API lets you check the status of your Algolia infrastructure.\n\n## Base URLs\n\nThe base URL for requests to the Monitoring API is:\n\n- `https://status.algolia.com`\n\n**All requests must use HTTPS.**\n\n## Availability and authentication\n\nAccess to the Infrastructure endpoints\nis available as part of the [Premium or Elevate plans](https://www.algolia.com/pricing).\n\nTo authenticate requests to the Infrastructure endpoints, add these headers:\n\n- `x-algolia-application-id`. Your Algolia application ID.\n- `x-algolia-api-key`. Your Monitoring API key.\n\nYou can find your application ID and API key in the [Algolia dashboard](https://dashboard.algolia.com/account).\n\nOther endpoints don't require authentication.\n\n## Response status and errors\n\nThe Monitoring API returns JSON responses.\nSince JSON doesn't guarantee any specific ordering, don't rely on the order of attributes in the API response.\n\nSuccessful responses return a `2xx` status. Client errors return a `4xx` status. Server errors are indicated by a `5xx` status.\nError responses have a `message` property with more information.\n\n## Version\n\nThe current version of the Monitoring API is version 1, as indicated by the `/1/` in each endpoint's URL.\n",
+    "description": "The Monitoring API lets you check the status of your Algolia infrastructure.\n\n## Base URLs\n\nThe base URL for requests to the Monitoring API is:\n\n- `https://status.algolia.com`\n\n**All requests must use HTTPS.**\n\n## Availability and authentication\n\nAccess to the Infrastructure endpoints\nis available as part of the [Premium or Elevate plans](https://www.algolia.com/pricing).\n\nTo authenticate requests to the Infrastructure endpoints, add these headers:\n\n- `x-algolia-application-id`. Your Algolia application ID.\n- `x-algolia-api-key`. Your Monitoring API key.\n\nYou can find your application ID and API key in the [Algolia dashboard](https://dashboard.algolia.com/account/api-keys).\n\nOther endpoints don't require authentication.\n\n## Response status and errors\n\nThe Monitoring API returns JSON responses.\nSince JSON doesn't guarantee any specific ordering, don't rely on the order of attributes in the API response.\n\nSuccessful responses return a `2xx` status. Client errors return a `4xx` status. Server errors are indicated by a `5xx` status.\nError responses have a `message` property with more information.\n\n## Version\n\nThe current version of the Monitoring API is version 1, as indicated by the `/1/` in each endpoint's URL.\n",
     "version": "1.0.0"
   },
   "servers": [
@@ -208,7 +208,9 @@
         "operationId": "getStatus",
         "summary": "Retrieve status of all clusters",
         "security": [],
-        "tags": ["status"],
+        "tags": [
+          "status"
+        ],
         "description": "Retrieves the status of all Algolia clusters and instances.",
         "responses": {
           "200": {
@@ -226,7 +228,9 @@
         "description": "Retrieves the status of selected clusters.",
         "operationId": "getClusterStatus",
         "x-mcp-tool": true,
-        "tags": ["status"],
+        "tags": [
+          "status"
+        ],
         "security": [],
         "parameters": [
           {
@@ -253,7 +257,9 @@
         "operationId": "getIncidents",
         "x-mcp-tool": true,
         "security": [],
-        "tags": ["incidents"],
+        "tags": [
+          "incidents"
+        ],
         "responses": {
           "200": {
             "$ref": "#/components/responses/IncidentsResponse"
@@ -269,7 +275,9 @@
         "summary": "Retrieve cluster incidents",
         "description": "Retrieves known incidents for the selected clusters.",
         "operationId": "getClusterIncidents",
-        "tags": ["incidents"],
+        "tags": [
+          "incidents"
+        ],
         "security": [],
         "parameters": [
           {
@@ -302,7 +310,9 @@
           }
         ],
         "description": "Retrieves the servers that belong to clusters.\n\nThe response depends on whether you authenticate your API request:\n\n- With authentication, the response lists the servers assigned to your\nAlgolia application's cluster.\n\n- Without authentication, the response lists the servers for all Algolia\nclusters.\n",
-        "tags": ["monitoring-tag"],
+        "tags": [
+          "monitoring-tag"
+        ],
         "responses": {
           "200": {
             "$ref": "#/components/responses/InventoryResponse"
@@ -319,7 +329,9 @@
         "description": "Retrieves the average latency for search requests for selected clusters.",
         "operationId": "getLatency",
         "security": [],
-        "tags": ["monitoring-tag"],
+        "tags": [
+          "monitoring-tag"
+        ],
         "parameters": [
           {
             "$ref": "#/components/parameters/Clusters"
@@ -341,7 +353,9 @@
         "description": "Retrieves average times for indexing operations for selected clusters.",
         "operationId": "getIndexingTime",
         "security": [],
-        "tags": ["monitoring-tag"],
+        "tags": [
+          "monitoring-tag"
+        ],
         "parameters": [
           {
             "$ref": "#/components/parameters/Clusters"
@@ -363,7 +377,9 @@
         "description": "Test whether clusters are reachable or not.",
         "operationId": "getReachability",
         "security": [],
-        "tags": ["monitoring-tag"],
+        "tags": [
+          "monitoring-tag"
+        ],
         "parameters": [
           {
             "$ref": "#/components/parameters/Clusters"
@@ -384,7 +400,9 @@
         "summary": "Retrieve metrics",
         "description": "Retrieves metrics related to your Algolia infrastructure, aggregated over a selected time window.\n\nAccess to this API is available as part of the [Premium or Elevate plans](https://www.algolia.com/pricing).\nYou must authenticate requests with the `x-algolia-application-id` and `x-algolia-api-key` headers (using the Monitoring API key).\n",
         "operationId": "getMetrics",
-        "tags": ["infrastructure"],
+        "tags": [
+          "infrastructure"
+        ],
         "parameters": [
           {
             "$ref": "#/components/parameters/MetricInPath"
@@ -407,7 +425,9 @@
       "get": {
         "x-helper": true,
         "x-asynchronous-helper": false,
-        "tags": ["Api Key"],
+        "tags": [
+          "Api Key"
+        ],
         "operationId": "setClientApiKey",
         "summary": "Switch the API key used to authenticate requests",
         "description": "Switch the API key used to authenticate requests.\n",
@@ -511,7 +531,12 @@
         "title": "status",
         "type": "string",
         "description": "Status of the cluster.",
-        "enum": ["operational", "degraded_performance", "partial_outage", "major_outage"]
+        "enum": [
+          "operational",
+          "degraded_performance",
+          "partial_outage",
+          "major_outage"
+        ]
       },
       "Timestamp": {
         "type": "integer",
@@ -575,12 +600,16 @@
       "ServerStatus": {
         "title": "status",
         "type": "string",
-        "enum": ["PRODUCTION"]
+        "enum": [
+          "PRODUCTION"
+        ]
       },
       "Type": {
         "title": "type",
         "type": "string",
-        "enum": ["cluster"]
+        "enum": [
+          "cluster"
+        ]
       },
       "Server": {
         "title": "server",
@@ -664,7 +693,13 @@
       },
       "Period": {
         "type": "string",
-        "enum": ["minute", "hour", "day", "week", "month"],
+        "enum": [
+          "minute",
+          "hour",
+          "day",
+          "week",
+          "month"
+        ],
         "example": "week"
       },
       "ProbesMetric": {
@@ -1217,7 +1252,12 @@
   "x-tagGroups": [
     {
       "name": "General",
-      "tags": ["status", "incidents", "infrastructure", "monitoring-tag"]
+      "tags": [
+        "status",
+        "incidents",
+        "infrastructure",
+        "monitoring-tag"
+      ]
     }
   ]
 }
