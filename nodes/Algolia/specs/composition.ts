@@ -1068,7 +1068,7 @@ const properties: INodeProperties[] = [
   {
     type: 'boolean',
     description:
-      'Whether to include a `queryID` attribute in the response\nThe query ID is a unique identifier for a search query and is required for tracking [click and conversion events](https://www.algolia.com/guides/sending-events/getting-started).\n',
+      'Whether to include a `queryID` attribute in the response\nThe query ID is a unique identifier for a search query and is required for tracking [click and conversion events](https://www.algolia.com/doc/guides/sending-events/getting-started).\n',
     displayName: 'Click Analytics',
     name: 'clickAnalytics_boolean_params',
     default: false,
@@ -2173,7 +2173,7 @@ const properties: INodeProperties[] = [
   {
     type: 'boolean',
     description:
-      'Whether to include a `queryID` attribute in the response\nThe query ID is a unique identifier for a search query and is required for tracking [click and conversion events](https://www.algolia.com/guides/sending-events/getting-started).\n',
+      'Whether to include a `queryID` attribute in the response\nThe query ID is a unique identifier for a search query and is required for tracking [click and conversion events](https://www.algolia.com/doc/guides/sending-events/getting-started).\n',
     displayName: 'Click Analytics',
     name: 'clickAnalytics_boolean_searchQuery_params',
     default: false,
