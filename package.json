@@ -44,10 +44,12 @@
     ]
   },
   "devDependencies": {
+    "@algolia/n8n-openapi-node": "^1.2.0",
     "@typescript-eslint/parser": "~8.32.0",
     "concurrently": "^9.2.0",
     "eslint": "^8.57.0",
     "eslint-plugin-n8n-nodes-base": "^1.16.3",
+    "openapi-types": "^12.1.3",
     "prettier": "^3.5.3",
     "shelljs": "^0.10.0",
     "tsc-alias": "^1.8.16",
@@ -59,9 +61,5 @@
   },
   "peerDependencies": {
     "n8n-workflow": "^1.107.0"
-  },
-  "dependencies": {
-    "@algolia/n8n-openapi-node": "^1.2.0",
-    "openapi-types": "^12.1.3"
   }
 }
