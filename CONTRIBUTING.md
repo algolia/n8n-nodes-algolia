@@ -51,7 +51,24 @@ Thank you for your interest in contributing to the n8n-nodes-algolia project! Th
    Link your local development version to n8n for testing:
 
    ```bash
+   # From the package directory
+   npm link
+
    # In your n8n installation directory: ~/.n8n/custom/
+   npm link @algolia/n8n-nodes-algolia
+   ```
+
+   **Note for asdf users**: If you're using asdf as your Node.js version manager, you need to manually create the global symlink first:
+
+   ```bash
+   # Get your npm prefix (asdf path)
+   npm config get prefix
+
+   # Create the global symlink (replace with your actual prefix path)
+   ln -sf /absolute/path/to/n8n-nodes-algolia $(npm config get prefix)/lib/node_modules/@algolia/n8n-nodes-algolia
+
+   # Then you can use npm link normally
+   cd ~/.n8n/custom
    npm link @algolia/n8n-nodes-algolia
    ```
 
