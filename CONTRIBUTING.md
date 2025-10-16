@@ -48,31 +48,27 @@ Thank you for your interest in contributing to the n8n-nodes-algolia project! Th
 
 1. **Test in n8n**:
 
-   Link your local development version to n8n for testing:
-
-   ```bash
-   # From the package directory
-   npm link
-
-   # In your n8n installation directory: ~/.n8n/custom/
-   npm link @algolia/n8n-nodes-algolia
-   ```
-
    **Note for asdf users**: If you're using asdf as your Node.js version manager, you need to manually create the global symlink first:
+   <details>
+   <summary>Create global symlink</summary>
 
    ```bash
    # Get your npm prefix (asdf path)
    npm config get prefix
 
    # Create the global symlink (replace with your actual prefix path)
-   ln -sf /absolute/path/to/n8n-nodes-algolia $(npm config get prefix)/lib/node_modules/@algolia/n8n-nodes-algolia
 
-   # Then you can use npm link normally
+   ln -sf /absolute/path/to/n8n-nodes-algolia $(npm config get prefix)/lib/node_modules/@algolia/n8n-nodes-algolia
+   ```
+
+   </details>
+
+   ```
    cd ~/.n8n/custom
    npm link @algolia/n8n-nodes-algolia
    ```
 
-   See [Troubleshooting](https://docs.n8n.io/integrations/creating-nodes/test/run-node-locally/#troubleshooting) if there is no `/custom` directory in `~/.n8n`
+   See [Troubleshooting](https://docs.n8n.io/integrations/creating-nodes/test/run-node-locally/#troubleshooting) if there is no `/custom` directory in `~/.n8n`.
 
 2. **Start development mode**:
 
@@ -80,7 +76,16 @@ Thank you for your interest in contributing to the n8n-nodes-algolia project! Th
    npm run dev
    ```
 
-   This will build the project and watch for changes.
+   This will start an n8n instance, build the project and watch for changes.
+
+   If this fails to start the n8n instance because the port is already used, do:
+
+   ```bash
+   lsof -i :5678
+
+   # Find the n8n process PID, usually name is "node" and kill it
+   kill -9 PID_OF_PROCESS
+   ```
 
 ## Code Standards
 
@@ -96,32 +101,22 @@ The project uses strict TypeScript configuration with the following key settings
 
 ```
 n8n-nodes-algolia/
-├── credentials/           # Authentication configurations
+├── credentials/                      # Authentication configurations
 │   └── AlgoliaApi.credentials.ts
-├── nodes/                 # Node implementations
+├── nodes/                            # Node implementations
 │   └── Algolia/
-│       ├── Algolia.node.ts       # Main node file
-│       ├── Algolia.node.json     # Node metadata
-│       ├── algolia.svg           # Node icon
-│       ├── index/               # Index operations
-│       ├── objects/             # Object operations
-│       └── shared/              # Shared field definitions
-├── helpers/               # Utility functions
-└── dist/                 # Built files (generated)
+│       └── specs/                    # Folder containing all the OpenAPI definitions
+│           ├── *.json                # OpenAPI definitions
+│           └── *.ts                  # n8n nodes definitions
+│       ├── Algolia.node.json         # Node metadata
+│       ├── algolia.svg               # Node icon
+│       ├── Algolia.node.ts           # Main node file
+│       ├── Algolia.node.json         # Node metadata
+│       └── algolia.svg               # Node icon
+├── scripts/                          # Utility and build scripts
+│   ├── generate-properties.ts        # Script to generate properties from OpenAPI
+│   ├── generate-readme-operations.ts # Script to update README with supported operations
+│   └── generate-specs-index.ts       # Script to generate an index for specs
+├── .github/                          # Github configuration files
+└── dist/                             # Built files (generated)
 ```
-
-### Adding New Operations
-
-1. **Create operation files** in the appropriate directory (`index/`, `objects/`, etc.)
-2. **Export from index.ts** in the operation directory
-3. **Add to main node** in `Algolia.node.ts`
-4. **Add shared fields** to `shared/` if reusable
-
-### Shared Fields
-
-Common field definitions are stored in `shared/` to promote reusability:
-
-- `indexName.field.ts` - Index name parameter
-- `query.field.ts` - Search query parameter
-- `object.field.ts` - Object data parameter
-- And more...
