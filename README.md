@@ -137,5 +137,5 @@ This node requires n8n version 1.0.0 or higher and Node.js 20.15 or higher.
 ## Resources
 
 - [n8n community nodes documentation](https://docs.n8n.io/integrations/#community-nodes)
-- [Algolia API documentation](https://www.algolia.com/doc/api-reference/)
+- [Algolia API documentation](https://www.algolia.com/doc/rest-api/search)
 - [Algolia dashboard](https://www.algolia.com/apps)
