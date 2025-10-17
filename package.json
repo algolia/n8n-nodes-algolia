@@ -64,7 +64,7 @@
     "n8n-workflow": "^1.107.0"
   },
   "dependencies": {
-    "@algolia/n8n-openapi-node": "^1.2.0",
+    "@algolia/n8n-openapi-node": "^1.3.0",
     "openapi-types": "^12.1.3"
   }
 }
