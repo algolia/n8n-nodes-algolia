@@ -35,7 +35,15 @@ export default defineConfig({
     viteStaticCopy({
       targets: [
         {
-          src: 'nodes/Algolia/*.{json,svg}',
+          src: 'nodes/Algolia/Algolia.node.json',
+          dest: '.',
+          rename(_, __, fullPath) {
+            const relativePathFromRoot = path.relative(process.cwd(), fullPath);
+            return relativePathFromRoot.split(path.sep).join('/');
+          },
+        },
+        {
+          src: 'algolia.svg',
           dest: '.',
           rename(_, __, fullPath) {
             const relativePathFromRoot = path.relative(process.cwd(), fullPath);
