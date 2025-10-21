@@ -2,7 +2,7 @@
 
 ### Bug Fixes
 
-- Regenerate nodes([#36](https://github.com/algolia/n8n-nodes-algolia/issues/36)) ([4b7cb4f](https://github.com/algolia/n8n-nodes-algolia/pull/36/commits/4b7cb4fb61daeb5b06e0d3e13cf5157440efd1ba))
+- Regenerate nodes ([#36](https://github.com/algolia/n8n-nodes-algolia/issues/36)) ([4b7cb4f](https://github.com/algolia/n8n-nodes-algolia/pull/36/commits/4b7cb4fb61daeb5b06e0d3e13cf5157440efd1ba))
 
 ## [0.8.0](https://github.com/algolia/n8n-nodes-algolia/compare/v0.7.0...v0.8.0) (2025-10-21)
 
