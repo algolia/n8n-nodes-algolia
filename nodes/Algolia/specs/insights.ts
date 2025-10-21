@@ -100,11 +100,11 @@ const properties: INodeProperties[] = [
     default: '[]',
     description:
       'Click and conversion events.\n\n**All** events must be valid, otherwise the API returns an error.\n',
-    required: false,
+    required: true,
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'events',
       },
     },
@@ -119,6 +119,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'test-user-1',
+    default: '',
     description:
       "Anonymous or pseudonymous user identifier.\n\nDon't use personally identifiable information in user tokens.\nFor more information, see [User token](https://www.algolia.com/doc/guides/sending-events/concepts/usertoken).\n",
     typeOptions: {
@@ -126,7 +127,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'User Token',
     name: 'userToken_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {

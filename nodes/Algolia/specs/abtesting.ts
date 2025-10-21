@@ -193,6 +193,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'Custom ranking sales rank test',
+    default: '',
     description: 'A/B test name.',
     routing: {
       send: {
@@ -203,7 +204,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Name',
     name: 'name_string',
-    default: '',
     displayOptions: {
       show: {
         add_abtests_request_object: ['name_string'],
@@ -211,6 +211,7 @@ const properties: INodeProperties[] = [
         operation: ['addABTests'],
       },
     },
+    required: true,
   },
   {
     type: 'json',
@@ -218,11 +219,11 @@ const properties: INodeProperties[] = [
     name: 'variants_json',
     default: '[]',
     description: 'A/B test variants.',
-    required: false,
+    required: true,
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'variants',
       },
     },
@@ -237,6 +238,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '2023-06-17T00:00:00Z',
+    default: '',
     description: 'End date and time of the A/B test, in RFC 3339 format.',
     routing: {
       send: {
@@ -247,7 +249,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'End At',
     name: 'endAt_string',
-    default: '',
     displayOptions: {
       show: {
         add_abtests_request_object: ['endAt_string'],
@@ -255,9 +256,11 @@ const properties: INodeProperties[] = [
         operation: ['addABTests'],
       },
     },
+    required: true,
   },
   {
     type: 'number',
+    default: '',
     typeOptions: {
       minValue: 0,
     },
@@ -270,7 +273,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Offset',
     name: 'offset_number',
-    default: 0,
     displayOptions: {
       show: {
         resource: ['abtest'],
@@ -299,6 +301,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -308,7 +311,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Index Prefix',
     name: 'indexPrefix_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['abtest'],
@@ -318,6 +320,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -327,7 +330,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Index Suffix',
     name: 'indexSuffix_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['abtest'],
@@ -338,10 +340,10 @@ const properties: INodeProperties[] = [
   {
     type: 'number',
     placeholder: '224',
+    default: '',
     description: 'Unique A/B test identifier.',
     displayName: 'Id',
     name: 'id_number',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -353,10 +355,10 @@ const properties: INodeProperties[] = [
   {
     type: 'number',
     placeholder: '224',
+    default: '',
     description: 'Unique A/B test identifier.',
     displayName: 'Id',
     name: 'id_number',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -368,10 +370,10 @@ const properties: INodeProperties[] = [
   {
     type: 'number',
     placeholder: '224',
+    default: '',
     description: 'Unique A/B test identifier.',
     displayName: 'Id',
     name: 'id_number',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -415,6 +417,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'Custom ranking sales rank test',
+    default: '',
     description: 'A/B test name.',
     routing: {
       send: {
@@ -425,7 +428,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Name',
     name: 'name_string',
-    default: '',
     displayOptions: {
       show: {
         schedule_abtests_request_object: ['name_string'],
@@ -433,6 +435,7 @@ const properties: INodeProperties[] = [
         operation: ['scheduleABTest'],
       },
     },
+    required: true,
   },
   {
     type: 'json',
@@ -440,11 +443,11 @@ const properties: INodeProperties[] = [
     name: 'variants_json',
     default: '[]',
     description: 'A/B test variants.',
-    required: false,
+    required: true,
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'variants',
       },
     },
@@ -459,6 +462,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '2023-06-15T15:06:44.400601Z',
+    default: '',
     description: 'Date and time when the A/B test is scheduled to start, in RFC 3339 format.',
     routing: {
       send: {
@@ -469,7 +473,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Scheduled At',
     name: 'scheduledAt_string',
-    default: '',
     displayOptions: {
       show: {
         schedule_abtests_request_object: ['scheduledAt_string'],
@@ -477,10 +480,12 @@ const properties: INodeProperties[] = [
         operation: ['scheduleABTest'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
     placeholder: '2023-06-17T00:00:00Z',
+    default: '',
     description: 'End date and time of the A/B test, in RFC 3339 format.',
     routing: {
       send: {
@@ -491,7 +496,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'End At',
     name: 'endAt_string',
-    default: '',
     displayOptions: {
       show: {
         schedule_abtests_request_object: ['endAt_string'],
@@ -499,6 +503,7 @@ const properties: INodeProperties[] = [
         operation: ['scheduleABTest'],
       },
     },
+    required: true,
   },
   {
     displayName: 'Estimate ABTest Request',
@@ -624,10 +629,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description: 'Whether to exclude empty searches when calculating A/B test results.',
     displayName: 'Exclude',
     name: 'exclude_boolean_emptySearch_configuration',
-    default: '',
     displayOptions: {
       show: {
         estimate_abtest_request_object: ['estimate_configuration_object'],
@@ -667,6 +672,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description:
       'Smallest difference in an observable metric between variants.\nFor example, to detect a 10% difference between variants, set this value to 0.1.\n',
     typeOptions: {
@@ -675,7 +681,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Size',
     name: 'size_number_minimumDetectableEffect_configuration',
-    default: '',
     displayOptions: {
       show: {
         estimate_abtest_request_object: ['estimate_configuration_object'],
@@ -685,9 +690,11 @@ const properties: INodeProperties[] = [
         operation: ['estimateABTest'],
       },
     },
+    required: true,
   },
   {
     type: 'options',
+    default: '',
     description: 'Metric for which you want to detect the smallest relative difference.',
     options: [
       {
@@ -709,7 +716,6 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Metric',
     name: 'metric_options_minimumDetectableEffect_configuration',
-    default: '',
     displayOptions: {
       show: {
         estimate_abtest_request_object: ['estimate_configuration_object'],
@@ -719,6 +725,7 @@ const properties: INodeProperties[] = [
         operation: ['estimateABTest'],
       },
     },
+    required: true,
   },
   {
     type: 'json',
@@ -726,11 +733,11 @@ const properties: INodeProperties[] = [
     name: 'variants_json',
     default: '[]',
     description: 'A/B test variants.',
-    required: false,
+    required: true,
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'variants',
       },
     },

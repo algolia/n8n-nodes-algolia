@@ -170,13 +170,13 @@ const properties: INodeProperties[] = [
     type: 'json',
     displayName: 'Indices',
     name: 'indices_json',
-    default: '',
+    default: '[]',
     description: undefined,
     required: true,
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'indices',
       },
     },
@@ -190,6 +190,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     description: 'The impact that personalization has on the re-ranking of search results.',
     options: [
       {
@@ -222,7 +223,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Personalization Re Ranking',
     name: 'personalizationReRanking_options',
-    default: '',
     displayOptions: {
       show: {
         configuration_parameters_object: ['personalizationReRanking_options'],
@@ -230,9 +230,11 @@ const properties: INodeProperties[] = [
         operation: ['putConfig'],
       },
     },
+    required: true,
   },
   {
     type: 'options',
+    default: '',
     description:
       'The type of user profiles to generate.\n\nBasic profiles are based on past behaviors, ensuring search results align with previous interests.\n',
     options: [
@@ -250,7 +252,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Profile Type',
     name: 'profileType_options',
-    default: '',
     displayOptions: {
       show: {
         configuration_parameters_object: ['profileType_options'],
@@ -258,13 +259,14 @@ const properties: INodeProperties[] = [
         operation: ['putConfig'],
       },
     },
+    required: true,
   },
   {
     displayName: 'Features',
     name: 'features_object',
     type: 'multiOptions',
     description: undefined,
-    required: false,
+    required: true,
     default: [],
     options: [
       {
@@ -312,10 +314,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description: 'Whether the realtime personalization feature is enabled.',
     displayName: 'Enabled',
     name: 'enabled_boolean_realtime_features',
-    default: '',
     displayOptions: {
       show: {
         configuration_parameters_object: ['features_object'],
@@ -329,6 +331,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '2024-06-27T08:27:26Z',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -338,7 +341,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Start Date',
     name: 'startDate_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['users'],
@@ -349,6 +351,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '2024-06-28T08:27:26Z',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -358,7 +361,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'End Date',
     name: 'endDate_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['users'],
@@ -376,7 +378,7 @@ const properties: INodeProperties[] = [
     routing: {
       request: {
         qs: {
-          indices: '={{ JSON.parse($value) }}',
+          indices: '={{ $value }}',
         },
       },
     },
@@ -397,7 +399,7 @@ const properties: INodeProperties[] = [
     routing: {
       request: {
         qs: {
-          affinity: '={{ JSON.parse($value) }}',
+          affinity: '={{ $value }}',
         },
       },
     },
@@ -433,6 +435,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -442,7 +445,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Next Page Token',
     name: 'nextPageToken_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['users'],
@@ -452,6 +454,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -461,7 +464,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Previous Page Token',
     name: 'previousPageToken_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['users'],
@@ -471,9 +473,9 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     displayName: 'User ID',
     name: 'userID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -484,9 +486,9 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     displayName: 'User ID',
     name: 'userID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -498,11 +500,11 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'test-user-123',
+    default: '',
     description:
       'Unique pseudonymous or anonymous user identifier.\n\nThis helps with analytics and click and conversion events.\nFor more information, see [user token](https://www.algolia.com/doc/guides/sending-events/concepts/usertoken).\n',
     displayName: 'User Token',
     name: 'userToken_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -514,11 +516,11 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'test-user-123',
+    default: '',
     description:
       'Unique pseudonymous or anonymous user identifier.\n\nThis helps with analytics and click and conversion events.\nFor more information, see [user token](https://www.algolia.com/doc/guides/sending-events/concepts/usertoken).\n',
     displayName: 'User Token',
     name: 'userToken_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {

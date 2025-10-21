@@ -101,11 +101,11 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'test-user-123',
+    default: '',
     description:
       'Unique pseudonymous or anonymous user identifier.\n\nThis helps with analytics and click and conversion events.\nFor more information, see [user token](https://www.algolia.com/doc/guides/sending-events/concepts/usertoken).\n',
     displayName: 'User Token',
     name: 'userToken_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -117,11 +117,11 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'test-user-123',
+    default: '',
     description:
       'Unique pseudonymous or anonymous user identifier.\n\nThis helps with analytics and click and conversion events.\nFor more information, see [user token](https://www.algolia.com/doc/guides/sending-events/concepts/usertoken).\n',
     displayName: 'User Token',
     name: 'userToken_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -144,7 +144,7 @@ const properties: INodeProperties[] = [
       },
       {
         name: 'Facets Scoring',
-        value: 'facetsScoring_fixedCollection',
+        value: 'facetsScoring_json',
       },
       {
         name: 'Personalization Impact',
@@ -162,14 +162,14 @@ const properties: INodeProperties[] = [
     type: 'json',
     displayName: 'Events Scoring',
     name: 'eventsScoring_json',
-    default: '',
+    default: '[]',
     description:
       'Scores associated with each event.\n\nThe higher the scores, the higher the impact of those events on the personalization of search results.\n',
-    required: false,
+    required: true,
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'eventsScoring',
       },
     },
@@ -182,49 +182,23 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    type: 'fixedCollection',
+    type: 'json',
     displayName: 'Facets Scoring',
-    name: 'facetsScoring_fixedCollection',
-    default: '',
+    name: 'facetsScoring_json',
+    default: '[]',
     description:
       'Scores associated with each facet.\n\nThe higher the scores, the higher the impact of those events on the personalization of search results.\n',
-    required: false,
-    typeOptions: {
-      multipleValues: true,
-    },
-    options: [
-      {
-        name: 'facetsScoring_fixedCollection_values',
-        displayName: 'Facets Scoring',
-        values: [
-          {
-            type: 'number',
-            description: 'Event score.',
-            displayName: 'Score',
-            name: 'score_number_facetsScoring',
-            default: '',
-          },
-          {
-            type: 'string',
-            description: 'Facet attribute name.',
-            displayName: 'Facet Name',
-            name: 'facetName_string_facetsScoring',
-            default: '',
-          },
-        ],
-      },
-    ],
+    required: true,
     routing: {
       send: {
         type: 'body',
-        value:
-          '={{ $parameter.values?.map(item => ({ score: typeof item.score_number_facetsScoring !== "undefined" ? item.score_number_facetsScoring : undefined, facetName: typeof item.facetName_string_facetsScoring !== "undefined" ? item.facetName_string_facetsScoring : undefined })) }}',
+        value: '={{ $value }}',
         property: 'facetsScoring',
       },
     },
     displayOptions: {
       show: {
-        personalization_strategy_params_object: ['facetsScoring_fixedCollection'],
+        personalization_strategy_params_object: ['facetsScoring_json'],
         resource: ['strategies'],
         operation: ['setPersonalizationStrategy'],
       },
@@ -232,6 +206,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description:
       'Impact of personalization on the search results.\n\nIf set to 0, personalization has no impact on the search results.\n',
     typeOptions: {
@@ -247,7 +222,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Personalization Impact',
     name: 'personalizationImpact_number',
-    default: '',
     displayOptions: {
       show: {
         personalization_strategy_params_object: ['personalizationImpact_number'],
@@ -255,6 +229,7 @@ const properties: INodeProperties[] = [
         operation: ['setPersonalizationStrategy'],
       },
     },
+    required: true,
   },
 ];
 

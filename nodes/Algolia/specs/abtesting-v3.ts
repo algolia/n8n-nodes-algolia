@@ -144,7 +144,7 @@ const properties: INodeProperties[] = [
       },
       {
         name: 'Metrics',
-        value: 'metrics_fixedCollection',
+        value: 'metrics_json',
       },
       {
         name: 'Configuration',
@@ -165,6 +165,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'Custom ranking sales rank test',
+    default: '',
     description: 'A/B test name.',
     routing: {
       send: {
@@ -175,7 +176,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Name',
     name: 'name_string',
-    default: '',
     displayOptions: {
       show: {
         add_abtests_request_object: ['name_string'],
@@ -183,6 +183,7 @@ const properties: INodeProperties[] = [
         operation: ['addABTests'],
       },
     },
+    required: true,
   },
   {
     type: 'json',
@@ -190,11 +191,11 @@ const properties: INodeProperties[] = [
     name: 'variants_json',
     default: '[]',
     description: 'A/B test variants.',
-    required: false,
+    required: true,
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'variants',
       },
     },
@@ -207,50 +208,23 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    type: 'fixedCollection',
+    type: 'json',
     displayName: 'Metrics',
-    name: 'metrics_fixedCollection',
-    default: '',
+    name: 'metrics_json',
+    default: '[]',
     description:
       'A/B test metrics involved in the test. Only these metrics will be considered when calculating results.',
-    required: false,
-    typeOptions: {
-      multipleValues: true,
-    },
-    options: [
-      {
-        name: 'metrics_fixedCollection_values',
-        displayName: 'Metrics',
-        values: [
-          {
-            type: 'string',
-            description: 'Name of the metric.',
-            displayName: 'Name',
-            name: 'name_string_metrics',
-            default: '',
-          },
-          {
-            type: 'string',
-            description:
-              'Dimension of the metric, for example, in case of a revenue metric it could be USD, EUR...',
-            displayName: 'Dimension',
-            name: 'dimension_string_metrics',
-            default: '',
-          },
-        ],
-      },
-    ],
+    required: true,
     routing: {
       send: {
         type: 'body',
-        value:
-          '={{ $parameter.values?.map(item => ({ name: typeof item.name_string_metrics !== "undefined" ? item.name_string_metrics : undefined, dimension: typeof item.dimension_string_metrics !== "undefined" ? item.dimension_string_metrics : undefined })) }}',
+        value: '={{ $value }}',
         property: 'metrics',
       },
     },
     displayOptions: {
       show: {
-        add_abtests_request_object: ['metrics_fixedCollection'],
+        add_abtests_request_object: ['metrics_json'],
         resource: ['abtest'],
         operation: ['addABTests'],
       },
@@ -270,7 +244,7 @@ const properties: INodeProperties[] = [
       },
       {
         name: 'Filters',
-        value: 'filters_fixedCollection_configuration',
+        value: 'filters_json_configuration',
       },
       {
         name: 'Error Correction',
@@ -282,7 +256,7 @@ const properties: INodeProperties[] = [
         type: 'body',
         property: 'configuration',
         value:
-          '={{ { "minimumDetectableEffect": { "size": typeof $parameter.size_number_minimumDetectableEffect_configuration !== "undefined" ? $parameter.size_number_minimumDetectableEffect_configuration : undefined, "metric": typeof $parameter.metric_options_minimumDetectableEffect_configuration !== "undefined" ? $parameter.metric_options_minimumDetectableEffect_configuration : undefined }, "filters": $parameter.filters_fixedCollection_configuration.filters_fixedCollection_values?.map(item => ({ domain: typeof item.domain_string_filters !== "undefined" ? item.domain_string_filters : undefined, name: typeof item.name_string_filters !== "undefined" ? item.name_string_filters : undefined, trackEffects: typeof item.trackEffects_boolean_filters !== "undefined" ? item.trackEffects_boolean_filters : undefined, includes: typeof item.includes_boolean_filters !== "undefined" ? item.includes_boolean_filters : undefined })), "errorCorrection": typeof $parameter.errorCorrection_options_configuration !== "undefined" ? $parameter.errorCorrection_options_configuration : undefined } }}',
+          '={{ { "minimumDetectableEffect": { "size": typeof $parameter.size_number_minimumDetectableEffect_configuration !== "undefined" ? $parameter.size_number_minimumDetectableEffect_configuration : undefined, "metric": typeof $parameter.metric_options_minimumDetectableEffect_configuration !== "undefined" ? $parameter.metric_options_minimumDetectableEffect_configuration : undefined }, "filters": typeof $parameter.filters_json_configuration !== "undefined" ? JSON.parse($parameter.filters_json_configuration) : undefined, "errorCorrection": typeof $parameter.errorCorrection_options_configuration !== "undefined" ? $parameter.errorCorrection_options_configuration : undefined } }}',
       },
     },
     displayOptions: {
@@ -322,6 +296,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description:
       'Smallest difference in an observable metric between variants.\nFor example, to detect a 10% difference between variants, set this value to 0.1.\n',
     typeOptions: {
@@ -330,7 +305,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Size',
     name: 'size_number_minimumDetectableEffect_configuration',
-    default: '',
     displayOptions: {
       show: {
         add_abtests_request_object: ['configuration_object'],
@@ -340,9 +314,11 @@ const properties: INodeProperties[] = [
         operation: ['addABTests'],
       },
     },
+    required: true,
   },
   {
     type: 'options',
+    default: '',
     description: 'Metric for which you want to detect the smallest relative difference.',
     options: [
       {
@@ -368,7 +344,6 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Metric',
     name: 'metric_options_minimumDetectableEffect_configuration',
-    default: '',
     displayOptions: {
       show: {
         add_abtests_request_object: ['configuration_object'],
@@ -378,59 +353,19 @@ const properties: INodeProperties[] = [
         operation: ['addABTests'],
       },
     },
+    required: true,
   },
   {
-    type: 'fixedCollection',
+    type: 'json',
     displayName: 'Filters',
-    name: 'filters_fixedCollection_configuration',
-    default: '',
+    name: 'filters_json_configuration',
+    default: '[]',
     description: 'List of metric filters applied to the test population.',
     required: false,
-    typeOptions: {
-      multipleValues: true,
-    },
-    options: [
-      {
-        name: 'filters_fixedCollection_values',
-        displayName: 'Filters',
-        values: [
-          {
-            type: 'string',
-            placeholder: 'abtesting',
-            description: 'Metric domain (for example `abtesting`, `personalization`).',
-            displayName: 'Domain',
-            name: 'domain_string_filters',
-            default: '',
-          },
-          {
-            type: 'string',
-            placeholder: 'isOutlier',
-            description: 'Public metric name.',
-            displayName: 'Name',
-            name: 'name_string_filters',
-            default: '',
-          },
-          {
-            type: 'boolean',
-            description: 'Whether the experiment should record the effects of this filter.',
-            displayName: 'Track Effects',
-            name: 'trackEffects_boolean_filters',
-            default: '',
-          },
-          {
-            type: 'boolean',
-            description: 'If true, keep items that match the filter; if false, exclude them.',
-            displayName: 'Includes',
-            name: 'includes_boolean_filters',
-            default: '',
-          },
-        ],
-      },
-    ],
     displayOptions: {
       show: {
         add_abtests_request_object: ['configuration_object'],
-        configuration_object: ['filters_fixedCollection_configuration'],
+        configuration_object: ['filters_json_configuration'],
         resource: ['abtest'],
         operation: ['addABTests'],
       },
@@ -438,6 +373,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     description: 'Multiple-testing correction method applied when evaluating metric significance.',
     options: [
       {
@@ -451,7 +387,6 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Error Correction',
     name: 'errorCorrection_options_configuration',
-    default: '',
     displayOptions: {
       show: {
         add_abtests_request_object: ['configuration_object'],
@@ -464,6 +399,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '2023-06-17T00:00:00Z',
+    default: '',
     description: 'End date and time of the A/B test, in RFC 3339 format.',
     routing: {
       send: {
@@ -474,7 +410,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'End At',
     name: 'endAt_string',
-    default: '',
     displayOptions: {
       show: {
         add_abtests_request_object: ['endAt_string'],
@@ -482,9 +417,11 @@ const properties: INodeProperties[] = [
         operation: ['addABTests'],
       },
     },
+    required: true,
   },
   {
     type: 'number',
+    default: '',
     typeOptions: {
       minValue: 0,
     },
@@ -497,7 +434,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Offset',
     name: 'offset_number',
-    default: 0,
     displayOptions: {
       show: {
         resource: ['abtest'],
@@ -526,6 +462,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -535,7 +472,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Index Prefix',
     name: 'indexPrefix_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['abtest'],
@@ -545,6 +481,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -554,7 +491,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Index Suffix',
     name: 'indexSuffix_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['abtest'],
@@ -565,6 +501,7 @@ const properties: INodeProperties[] = [
   {
     type: 'options',
     placeholder: 'desc',
+    default: '',
     description:
       "Sort order for A/B tests by start date.\nUse 'asc' for ascending or 'desc' for descending.\nActive A/B tests are always listed first.\n",
     options: [
@@ -586,7 +523,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Direction',
     name: 'direction_options',
-    default: '',
     displayOptions: {
       show: {
         resource: ['abtest'],
@@ -597,10 +533,10 @@ const properties: INodeProperties[] = [
   {
     type: 'number',
     placeholder: '224',
+    default: '',
     description: 'Unique A/B test identifier.',
     displayName: 'Id',
     name: 'id_number',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -612,10 +548,10 @@ const properties: INodeProperties[] = [
   {
     type: 'number',
     placeholder: '224',
+    default: '',
     description: 'Unique A/B test identifier.',
     displayName: 'Id',
     name: 'id_number',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -627,10 +563,10 @@ const properties: INodeProperties[] = [
   {
     type: 'number',
     placeholder: '224',
+    default: '',
     description: 'Unique A/B test identifier.',
     displayName: 'Id',
     name: 'id_number',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -657,7 +593,7 @@ const properties: INodeProperties[] = [
       },
       {
         name: 'Metrics',
-        value: 'metrics_fixedCollection',
+        value: 'metrics_json',
       },
       {
         name: 'Configuration',
@@ -682,6 +618,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'Custom ranking sales rank test',
+    default: '',
     description: 'A/B test name.',
     routing: {
       send: {
@@ -692,7 +629,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Name',
     name: 'name_string',
-    default: '',
     displayOptions: {
       show: {
         schedule_abtests_request_object: ['name_string'],
@@ -700,6 +636,7 @@ const properties: INodeProperties[] = [
         operation: ['scheduleABTest'],
       },
     },
+    required: true,
   },
   {
     type: 'json',
@@ -707,11 +644,11 @@ const properties: INodeProperties[] = [
     name: 'variants_json',
     default: '[]',
     description: 'A/B test variants.',
-    required: false,
+    required: true,
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'variants',
       },
     },
@@ -724,50 +661,23 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    type: 'fixedCollection',
+    type: 'json',
     displayName: 'Metrics',
-    name: 'metrics_fixedCollection',
-    default: '',
+    name: 'metrics_json',
+    default: '[]',
     description:
       'A/B test metrics involved in the test. Only these metrics will be considered when calculating results.',
-    required: false,
-    typeOptions: {
-      multipleValues: true,
-    },
-    options: [
-      {
-        name: 'metrics_fixedCollection_values',
-        displayName: 'Metrics',
-        values: [
-          {
-            type: 'string',
-            description: 'Name of the metric.',
-            displayName: 'Name',
-            name: 'name_string_metrics',
-            default: '',
-          },
-          {
-            type: 'string',
-            description:
-              'Dimension of the metric, for example, in case of a revenue metric it could be USD, EUR...',
-            displayName: 'Dimension',
-            name: 'dimension_string_metrics',
-            default: '',
-          },
-        ],
-      },
-    ],
+    required: true,
     routing: {
       send: {
         type: 'body',
-        value:
-          '={{ $parameter.values?.map(item => ({ name: typeof item.name_string_metrics !== "undefined" ? item.name_string_metrics : undefined, dimension: typeof item.dimension_string_metrics !== "undefined" ? item.dimension_string_metrics : undefined })) }}',
+        value: '={{ $value }}',
         property: 'metrics',
       },
     },
     displayOptions: {
       show: {
-        schedule_abtests_request_object: ['metrics_fixedCollection'],
+        schedule_abtests_request_object: ['metrics_json'],
         resource: ['abtest'],
         operation: ['scheduleABTest'],
       },
@@ -787,7 +697,7 @@ const properties: INodeProperties[] = [
       },
       {
         name: 'Filters',
-        value: 'filters_fixedCollection_configuration',
+        value: 'filters_json_configuration',
       },
       {
         name: 'Error Correction',
@@ -799,7 +709,7 @@ const properties: INodeProperties[] = [
         type: 'body',
         property: 'configuration',
         value:
-          '={{ { "minimumDetectableEffect": { "size": typeof $parameter.size_number_minimumDetectableEffect_configuration !== "undefined" ? $parameter.size_number_minimumDetectableEffect_configuration : undefined, "metric": typeof $parameter.metric_options_minimumDetectableEffect_configuration !== "undefined" ? $parameter.metric_options_minimumDetectableEffect_configuration : undefined }, "filters": $parameter.filters_fixedCollection_configuration.filters_fixedCollection_values?.map(item => ({ domain: typeof item.domain_string_filters !== "undefined" ? item.domain_string_filters : undefined, name: typeof item.name_string_filters !== "undefined" ? item.name_string_filters : undefined, trackEffects: typeof item.trackEffects_boolean_filters !== "undefined" ? item.trackEffects_boolean_filters : undefined, includes: typeof item.includes_boolean_filters !== "undefined" ? item.includes_boolean_filters : undefined })), "errorCorrection": typeof $parameter.errorCorrection_options_configuration !== "undefined" ? $parameter.errorCorrection_options_configuration : undefined } }}',
+          '={{ { "minimumDetectableEffect": { "size": typeof $parameter.size_number_minimumDetectableEffect_configuration !== "undefined" ? $parameter.size_number_minimumDetectableEffect_configuration : undefined, "metric": typeof $parameter.metric_options_minimumDetectableEffect_configuration !== "undefined" ? $parameter.metric_options_minimumDetectableEffect_configuration : undefined }, "filters": typeof $parameter.filters_json_configuration !== "undefined" ? JSON.parse($parameter.filters_json_configuration) : undefined, "errorCorrection": typeof $parameter.errorCorrection_options_configuration !== "undefined" ? $parameter.errorCorrection_options_configuration : undefined } }}',
       },
     },
     displayOptions: {
@@ -839,6 +749,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description:
       'Smallest difference in an observable metric between variants.\nFor example, to detect a 10% difference between variants, set this value to 0.1.\n',
     typeOptions: {
@@ -847,7 +758,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Size',
     name: 'size_number_minimumDetectableEffect_configuration',
-    default: '',
     displayOptions: {
       show: {
         schedule_abtests_request_object: ['configuration_object'],
@@ -857,9 +767,11 @@ const properties: INodeProperties[] = [
         operation: ['scheduleABTest'],
       },
     },
+    required: true,
   },
   {
     type: 'options',
+    default: '',
     description: 'Metric for which you want to detect the smallest relative difference.',
     options: [
       {
@@ -885,7 +797,6 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Metric',
     name: 'metric_options_minimumDetectableEffect_configuration',
-    default: '',
     displayOptions: {
       show: {
         schedule_abtests_request_object: ['configuration_object'],
@@ -895,59 +806,19 @@ const properties: INodeProperties[] = [
         operation: ['scheduleABTest'],
       },
     },
+    required: true,
   },
   {
-    type: 'fixedCollection',
+    type: 'json',
     displayName: 'Filters',
-    name: 'filters_fixedCollection_configuration',
-    default: '',
+    name: 'filters_json_configuration',
+    default: '[]',
     description: 'List of metric filters applied to the test population.',
     required: false,
-    typeOptions: {
-      multipleValues: true,
-    },
-    options: [
-      {
-        name: 'filters_fixedCollection_values',
-        displayName: 'Filters',
-        values: [
-          {
-            type: 'string',
-            placeholder: 'abtesting',
-            description: 'Metric domain (for example `abtesting`, `personalization`).',
-            displayName: 'Domain',
-            name: 'domain_string_filters',
-            default: '',
-          },
-          {
-            type: 'string',
-            placeholder: 'isOutlier',
-            description: 'Public metric name.',
-            displayName: 'Name',
-            name: 'name_string_filters',
-            default: '',
-          },
-          {
-            type: 'boolean',
-            description: 'Whether the experiment should record the effects of this filter.',
-            displayName: 'Track Effects',
-            name: 'trackEffects_boolean_filters',
-            default: '',
-          },
-          {
-            type: 'boolean',
-            description: 'If true, keep items that match the filter; if false, exclude them.',
-            displayName: 'Includes',
-            name: 'includes_boolean_filters',
-            default: '',
-          },
-        ],
-      },
-    ],
     displayOptions: {
       show: {
         schedule_abtests_request_object: ['configuration_object'],
-        configuration_object: ['filters_fixedCollection_configuration'],
+        configuration_object: ['filters_json_configuration'],
         resource: ['abtest'],
         operation: ['scheduleABTest'],
       },
@@ -955,6 +826,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     description: 'Multiple-testing correction method applied when evaluating metric significance.',
     options: [
       {
@@ -968,7 +840,6 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Error Correction',
     name: 'errorCorrection_options_configuration',
-    default: '',
     displayOptions: {
       show: {
         schedule_abtests_request_object: ['configuration_object'],
@@ -981,6 +852,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '2023-06-15T15:06:44.400601Z',
+    default: '',
     description: 'Date and time when the A/B test is scheduled to start, in RFC 3339 format.',
     routing: {
       send: {
@@ -991,7 +863,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Scheduled At',
     name: 'scheduledAt_string',
-    default: '',
     displayOptions: {
       show: {
         schedule_abtests_request_object: ['scheduledAt_string'],
@@ -999,10 +870,12 @@ const properties: INodeProperties[] = [
         operation: ['scheduleABTest'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
     placeholder: '2023-06-17T00:00:00Z',
+    default: '',
     description: 'End date and time of the A/B test, in RFC 3339 format.',
     routing: {
       send: {
@@ -1013,7 +886,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'End At',
     name: 'endAt_string',
-    default: '',
     displayOptions: {
       show: {
         schedule_abtests_request_object: ['endAt_string'],
@@ -1021,6 +893,7 @@ const properties: INodeProperties[] = [
         operation: ['scheduleABTest'],
       },
     },
+    required: true,
   },
   {
     displayName: 'Estimate ABTest Request',
@@ -1057,7 +930,7 @@ const properties: INodeProperties[] = [
     options: [
       {
         name: 'Filters',
-        value: 'filters_fixedCollection_configuration',
+        value: 'filters_json_configuration',
       },
       {
         name: 'Minimum Detectable Effect',
@@ -1069,7 +942,7 @@ const properties: INodeProperties[] = [
         type: 'body',
         property: 'configuration',
         value:
-          '={{ { "filters": $parameter.filters_fixedCollection_configuration.filters_fixedCollection_values?.map(item => ({ domain: typeof item.domain_string_filters !== "undefined" ? item.domain_string_filters : undefined, name: typeof item.name_string_filters !== "undefined" ? item.name_string_filters : undefined, trackEffects: typeof item.trackEffects_boolean_filters !== "undefined" ? item.trackEffects_boolean_filters : undefined, includes: typeof item.includes_boolean_filters !== "undefined" ? item.includes_boolean_filters : undefined })), "minimumDetectableEffect": { "size": typeof $parameter.size_number_minimumDetectableEffect_configuration !== "undefined" ? $parameter.size_number_minimumDetectableEffect_configuration : undefined, "metric": typeof $parameter.metric_options_minimumDetectableEffect_configuration !== "undefined" ? $parameter.metric_options_minimumDetectableEffect_configuration : undefined } } }}',
+          '={{ { "filters": typeof $parameter.filters_json_configuration !== "undefined" ? JSON.parse($parameter.filters_json_configuration) : undefined, "minimumDetectableEffect": { "size": typeof $parameter.size_number_minimumDetectableEffect_configuration !== "undefined" ? $parameter.size_number_minimumDetectableEffect_configuration : undefined, "metric": typeof $parameter.metric_options_minimumDetectableEffect_configuration !== "undefined" ? $parameter.metric_options_minimumDetectableEffect_configuration : undefined } } }}',
       },
     },
     displayOptions: {
@@ -1081,57 +954,16 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    type: 'fixedCollection',
+    type: 'json',
     displayName: 'Filters',
-    name: 'filters_fixedCollection_configuration',
-    default: '',
+    name: 'filters_json_configuration',
+    default: '[]',
     description: 'List of metric filters applied to the test population.',
     required: false,
-    typeOptions: {
-      multipleValues: true,
-    },
-    options: [
-      {
-        name: 'filters_fixedCollection_values',
-        displayName: 'Filters',
-        values: [
-          {
-            type: 'string',
-            placeholder: 'abtesting',
-            description: 'Metric domain (for example `abtesting`, `personalization`).',
-            displayName: 'Domain',
-            name: 'domain_string_filters',
-            default: '',
-          },
-          {
-            type: 'string',
-            placeholder: 'isOutlier',
-            description: 'Public metric name.',
-            displayName: 'Name',
-            name: 'name_string_filters',
-            default: '',
-          },
-          {
-            type: 'boolean',
-            description: 'Whether the experiment should record the effects of this filter.',
-            displayName: 'Track Effects',
-            name: 'trackEffects_boolean_filters',
-            default: '',
-          },
-          {
-            type: 'boolean',
-            description: 'If true, keep items that match the filter; if false, exclude them.',
-            displayName: 'Includes',
-            name: 'includes_boolean_filters',
-            default: '',
-          },
-        ],
-      },
-    ],
     displayOptions: {
       show: {
         estimate_abtest_request_object: ['estimate_configuration_object'],
-        estimate_configuration_object: ['filters_fixedCollection_configuration'],
+        estimate_configuration_object: ['filters_json_configuration'],
         resource: ['abtest'],
         operation: ['estimateABTest'],
       },
@@ -1166,6 +998,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description:
       'Smallest difference in an observable metric between variants.\nFor example, to detect a 10% difference between variants, set this value to 0.1.\n',
     typeOptions: {
@@ -1174,7 +1007,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Size',
     name: 'size_number_minimumDetectableEffect_configuration',
-    default: '',
     displayOptions: {
       show: {
         estimate_abtest_request_object: ['estimate_configuration_object'],
@@ -1184,9 +1016,11 @@ const properties: INodeProperties[] = [
         operation: ['estimateABTest'],
       },
     },
+    required: true,
   },
   {
     type: 'options',
+    default: '',
     description: 'Metric for which you want to detect the smallest relative difference.',
     options: [
       {
@@ -1212,7 +1046,6 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Metric',
     name: 'metric_options_minimumDetectableEffect_configuration',
-    default: '',
     displayOptions: {
       show: {
         estimate_abtest_request_object: ['estimate_configuration_object'],
@@ -1222,6 +1055,7 @@ const properties: INodeProperties[] = [
         operation: ['estimateABTest'],
       },
     },
+    required: true,
   },
   {
     type: 'json',
@@ -1229,11 +1063,11 @@ const properties: INodeProperties[] = [
     name: 'variants_json',
     default: '[]',
     description: 'A/B test variants.',
-    required: false,
+    required: true,
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'variants',
       },
     },
@@ -1248,10 +1082,10 @@ const properties: INodeProperties[] = [
   {
     type: 'number',
     placeholder: '224',
+    default: '',
     description: 'Unique A/B test identifier.',
     displayName: 'Id',
     name: 'id_number',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -1263,6 +1097,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '2022-09-19',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -1272,7 +1107,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Start Date',
     name: 'startDate_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['abtest'],
@@ -1283,6 +1117,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '2023-01-21',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -1292,7 +1127,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'End Date',
     name: 'endDate_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['abtest'],
@@ -1310,7 +1144,7 @@ const properties: INodeProperties[] = [
     routing: {
       request: {
         qs: {
-          metric: '={{ JSON.parse($value) }}',
+          metric: '={{ $value }}',
         },
       },
     },

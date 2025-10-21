@@ -199,9 +199,9 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'c1-de,c2-de,c3-de',
+    default: '',
     displayName: 'Clusters',
     name: 'clusters_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -213,9 +213,9 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'c1-de,c2-de,c3-de',
+    default: '',
     displayName: 'Clusters',
     name: 'clusters_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -227,9 +227,9 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'c1-de,c2-de,c3-de',
+    default: '',
     displayName: 'Clusters',
     name: 'clusters_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -241,9 +241,9 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'c1-de,c2-de,c3-de',
+    default: '',
     displayName: 'Clusters',
     name: 'clusters_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -255,9 +255,9 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'c1-de,c2-de,c3-de',
+    default: '',
     displayName: 'Clusters',
     name: 'clusters_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -269,6 +269,7 @@ const properties: INodeProperties[] = [
   {
     type: 'options',
     placeholder: '*',
+    default: '',
     options: [
       {
         name: 'avg_build_time',
@@ -297,7 +298,6 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Metric',
     name: 'metric_options',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -309,6 +309,7 @@ const properties: INodeProperties[] = [
   {
     type: 'options',
     placeholder: 'week',
+    default: '',
     options: [
       {
         name: 'minute',
@@ -333,7 +334,6 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Period',
     name: 'period_options',
-    default: '',
     required: true,
     displayOptions: {
       show: {

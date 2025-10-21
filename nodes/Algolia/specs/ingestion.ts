@@ -1001,9 +1001,9 @@ const properties: INodeProperties[] = [
   {
     type: 'options',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     displayName: 'Index Name',
     name: 'indexName_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -1041,6 +1041,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     routing: {
       request: {
         qs: {
@@ -1050,7 +1051,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Watch',
     name: 'watch_boolean',
-    default: '',
     displayOptions: {
       show: {
         resource: ['tasks'],
@@ -1060,6 +1060,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -1069,7 +1070,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Reference Index Name',
     name: 'referenceIndexName_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['tasks'],
@@ -1091,7 +1091,7 @@ const properties: INodeProperties[] = [
       },
       {
         name: 'Records',
-        value: 'records_fixedCollection',
+        value: 'records_json',
       },
     ],
     displayOptions: {
@@ -1103,6 +1103,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     description:
       'Which indexing operation to perform:\n\n- `addObject`: adds records to an index.\n   Equivalent to the "Add a new record (with auto-generated object ID)" operation.\n- `updateObject`: adds or replaces records in an index.\n   Equivalent to the "Add or replace a record" operation.\n- `partialUpdateObject`: adds or updates attributes within records.\n   Equivalent to the "Add or update attributes" operation with the `createIfNoExists` parameter set to true.\n   (If a record with the specified `objectID` doesn\'t exist in the specified index, this action creates adds the record to the index)\n- `partialUpdateObjectNoCreate`: same as `partialUpdateObject`, but with `createIfNoExists` set to false.\n   (A record isn\'t added to the index if its `objectID` doesn\'t exist)\n- `deleteObject`: delete records from an index.\n  Equivalent to the "Delete a record" operation.\n- `delete`. Delete an index. Equivalent to the "Delete an index" operation.\n- `clear`: delete all records from an index. Equivalent to the "Delete all records from an index operation".\n',
     options: [
@@ -1144,7 +1145,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Action',
     name: 'action_options',
-    default: '',
     displayOptions: {
       show: {
         push_task_payload_object: ['action_options'],
@@ -1152,44 +1152,25 @@ const properties: INodeProperties[] = [
         operation: ['push'],
       },
     },
+    required: true,
   },
   {
-    type: 'fixedCollection',
+    type: 'json',
     displayName: 'Records',
-    name: 'records_fixedCollection',
-    default: '',
+    name: 'records_json',
+    default: '[]',
     description: undefined,
-    required: false,
-    typeOptions: {
-      multipleValues: true,
-    },
-    options: [
-      {
-        name: 'records_fixedCollection_values',
-        displayName: 'Records',
-        values: [
-          {
-            type: 'string',
-            placeholder: 'test-record-123',
-            description: 'Unique record identifier.',
-            displayName: 'Object ID',
-            name: 'objectID_string_records',
-            default: '',
-          },
-        ],
-      },
-    ],
+    required: true,
     routing: {
       send: {
         type: 'body',
-        value:
-          '={{ $parameter.values?.map(item => ({ objectID: typeof item.objectID_string_records !== "undefined" ? item.objectID_string_records : undefined })) }}',
+        value: '={{ $value }}',
         property: 'records',
       },
     },
     displayOptions: {
       show: {
-        push_task_payload_object: ['records_fixedCollection'],
+        push_task_payload_object: ['records_json'],
         resource: ['tasks'],
         operation: ['push'],
       },
@@ -1221,6 +1202,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description: 'Page of the API response to retrieve.',
     typeOptions: {
       minValue: 1,
@@ -1234,7 +1216,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Page',
     name: 'page_number',
-    default: '',
     displayOptions: {
       show: {
         resource: ['authentications'],
@@ -1252,7 +1233,7 @@ const properties: INodeProperties[] = [
     routing: {
       request: {
         qs: {
-          type: '={{ JSON.parse($value) }}',
+          type: '={{ $value }}',
         },
       },
     },
@@ -1273,7 +1254,7 @@ const properties: INodeProperties[] = [
     routing: {
       request: {
         qs: {
-          platform: '={{ JSON.parse($value) }}',
+          platform: '={{ $value }}',
         },
       },
     },
@@ -1390,6 +1371,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     description:
       'Type of authentication. This determines the type of credentials required in the `input` object.',
     options: [
@@ -1431,7 +1413,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Type',
     name: 'type_options',
-    default: '',
     displayOptions: {
       show: {
         authentication_create_object: ['type_options'],
@@ -1439,9 +1420,11 @@ const properties: INodeProperties[] = [
         operation: ['createAuthentication'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
+    default: '',
     description: 'Descriptive name for the resource.',
     routing: {
       send: {
@@ -1452,7 +1435,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Name',
     name: 'name_string',
-    default: '',
     displayOptions: {
       show: {
         authentication_create_object: ['name_string'],
@@ -1460,6 +1442,7 @@ const properties: INodeProperties[] = [
         operation: ['createAuthentication'],
       },
     },
+    required: true,
   },
   {
     type: 'options',
@@ -1494,6 +1477,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     description:
       'Name of an ecommerce platform with which to authenticate.\nThis determines which authentication type you can select.\n',
     options: [
@@ -1512,7 +1496,6 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Platform (String)',
     name: 'platform_options',
-    default: '',
     displayOptions: {
       show: {
         authentication_create_object: ['platform'],
@@ -1583,7 +1566,7 @@ const properties: INodeProperties[] = [
         type: 'body',
         property: 'input',
         value:
-          '={{ typeof $parameter.auth_google_service_account_object !== "undefined" ? { "clientEmail": typeof $parameter.clientEmail_string_input !== "undefined" ? $parameter.clientEmail_string_input : undefined, "privateKey": typeof $parameter.privateKey_string_input !== "undefined" ? $parameter.privateKey_string_input : undefined } : typeof $parameter.clientEmail_string_input !== "undefined" ? $parameter.clientEmail_string_input : typeof $parameter.privateKey_string_input !== "undefined" ? $parameter.privateKey_string_input : typeof $parameter.auth_basic_object !== "undefined" ? { "username": typeof $parameter.username_string_input !== "undefined" ? $parameter.username_string_input : undefined, "password": typeof $parameter.password_string_input !== "undefined" ? $parameter.password_string_input : undefined } : typeof $parameter.username_string_input !== "undefined" ? $parameter.username_string_input : typeof $parameter.password_string_input !== "undefined" ? $parameter.password_string_input : typeof $parameter.auth_a_pikey_object !== "undefined" ? { "key": typeof $parameter.key_string_input !== "undefined" ? $parameter.key_string_input : undefined } : typeof $parameter.key_string_input !== "undefined" ? $parameter.key_string_input : typeof $parameter.auth_o_auth_object !== "undefined" ? { "url": typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : undefined, "client_id": typeof $parameter.client_id_string_input !== "undefined" ? $parameter.client_id_string_input : undefined, "client_secret": typeof $parameter.client_secret_string_input !== "undefined" ? $parameter.client_secret_string_input : undefined, "scope": typeof $parameter.scope_string_input !== "undefined" ? $parameter.scope_string_input : undefined } : typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : typeof $parameter.client_id_string_input !== "undefined" ? $parameter.client_id_string_input : typeof $parameter.client_secret_string_input !== "undefined" ? $parameter.client_secret_string_input : typeof $parameter.scope_string_input !== "undefined" ? $parameter.scope_string_input : typeof $parameter.auth_algolia_object !== "undefined" ? { "appID": typeof $parameter.appID_string_input !== "undefined" ? $parameter.appID_string_input : undefined, "apiKey": typeof $parameter.apiKey_string_input !== "undefined" ? $parameter.apiKey_string_input : undefined } : typeof $parameter.appID_string_input !== "undefined" ? $parameter.appID_string_input : typeof $parameter.apiKey_string_input !== "undefined" ? $parameter.apiKey_string_input : typeof $parameter.auth_algolia_insights_object !== "undefined" ? { "appID": typeof $parameter.appID_string_input !== "undefined" ? $parameter.appID_string_input : undefined, "apiKey": typeof $parameter.apiKey_string_input !== "undefined" ? $parameter.apiKey_string_input : undefined } : typeof $parameter.appID_string_input !== "undefined" ? $parameter.appID_string_input : typeof $parameter.apiKey_string_input !== "undefined" ? $parameter.apiKey_string_input : typeof $parameter.input_string !== "undefined" ? $parameter.input_string : undefined }}',
+          '={{ typeof $parameter.auth_google_service_account_object !== "undefined" ? { "clientEmail": typeof $parameter.clientEmail_string_input !== "undefined" ? $parameter.clientEmail_string_input : undefined, "privateKey": typeof $parameter.privateKey_string_input !== "undefined" ? $parameter.privateKey_string_input : undefined } : typeof $parameter.clientEmail_string_input !== "undefined" ? $parameter.clientEmail_string_input : typeof $parameter.privateKey_string_input !== "undefined" ? $parameter.privateKey_string_input : typeof $parameter.auth_basic_object !== "undefined" ? { "username": typeof $parameter.username_string_input !== "undefined" ? $parameter.username_string_input : undefined, "password": typeof $parameter.password_string_input !== "undefined" ? $parameter.password_string_input : undefined } : typeof $parameter.username_string_input !== "undefined" ? $parameter.username_string_input : typeof $parameter.password_string_input !== "undefined" ? $parameter.password_string_input : typeof $parameter.auth_apikey_object !== "undefined" ? { "key": typeof $parameter.key_string_input !== "undefined" ? $parameter.key_string_input : undefined } : typeof $parameter.key_string_input !== "undefined" ? $parameter.key_string_input : typeof $parameter.auth_oauth_object !== "undefined" ? { "url": typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : undefined, "client_id": typeof $parameter.client_id_string_input !== "undefined" ? $parameter.client_id_string_input : undefined, "client_secret": typeof $parameter.client_secret_string_input !== "undefined" ? $parameter.client_secret_string_input : undefined, "scope": typeof $parameter.scope_string_input !== "undefined" ? $parameter.scope_string_input : undefined } : typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : typeof $parameter.client_id_string_input !== "undefined" ? $parameter.client_id_string_input : typeof $parameter.client_secret_string_input !== "undefined" ? $parameter.client_secret_string_input : typeof $parameter.scope_string_input !== "undefined" ? $parameter.scope_string_input : typeof $parameter.auth_algolia_object !== "undefined" ? { "appID": typeof $parameter.appID_string_input !== "undefined" ? $parameter.appID_string_input : undefined, "apiKey": typeof $parameter.apiKey_string_input !== "undefined" ? $parameter.apiKey_string_input : undefined } : typeof $parameter.appID_string_input !== "undefined" ? $parameter.appID_string_input : typeof $parameter.apiKey_string_input !== "undefined" ? $parameter.apiKey_string_input : typeof $parameter.auth_algolia_insights_object !== "undefined" ? { "appID": typeof $parameter.appID_string_input !== "undefined" ? $parameter.appID_string_input : undefined, "apiKey": typeof $parameter.apiKey_string_input !== "undefined" ? $parameter.apiKey_string_input : undefined } : typeof $parameter.appID_string_input !== "undefined" ? $parameter.appID_string_input : typeof $parameter.apiKey_string_input !== "undefined" ? $parameter.apiKey_string_input : typeof $parameter.auth_secrets_object !== "undefined" ? JSON.parse($parameter.auth_secrets_object) : undefined }}',
       },
     },
     displayOptions: {
@@ -1593,6 +1576,7 @@ const properties: INodeProperties[] = [
         operation: ['createAuthentication'],
       },
     },
+    required: true,
   },
   {
     displayName: 'Auth Google Service Account',
@@ -1623,10 +1607,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'service-account-name@project-id.iam.gserviceaccount.com',
+    default: '',
     description: 'Email address of the Google service account.',
     displayName: 'Client Email',
     name: 'clientEmail_string_input',
-    default: '',
     displayOptions: {
       show: {
         authentication_create_object: ['input'],
@@ -1636,14 +1620,15 @@ const properties: INodeProperties[] = [
         operation: ['createAuthentication'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
+    default: '',
     description:
       'Private key of the Google service account. This field is `null` in the API response.',
     displayName: 'Private Key',
     name: 'privateKey_string_input',
-    default: '',
     displayOptions: {
       show: {
         authentication_create_object: ['input'],
@@ -1653,6 +1638,7 @@ const properties: INodeProperties[] = [
         operation: ['createAuthentication'],
       },
     },
+    required: true,
   },
   {
     displayName: 'Auth Basic',
@@ -1682,10 +1668,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Username.',
     displayName: 'Username',
     name: 'username_string_input',
-    default: '',
     displayOptions: {
       show: {
         authentication_create_object: ['input'],
@@ -1695,13 +1681,14 @@ const properties: INodeProperties[] = [
         operation: ['createAuthentication'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
+    default: '',
     description: 'Password. This field is `null` in the API response.',
     displayName: 'Password',
     name: 'password_string_input',
-    default: '',
     displayOptions: {
       show: {
         authentication_create_object: ['input'],
@@ -1711,10 +1698,11 @@ const properties: INodeProperties[] = [
         operation: ['createAuthentication'],
       },
     },
+    required: true,
   },
   {
-    displayName: 'Auth A PIKey',
-    name: 'auth_a_pikey_object',
+    displayName: 'Auth APIKey',
+    name: 'auth_apikey_object',
     type: 'multiOptions',
     description: 'Credentials for authenticating with an API key.',
     required: true,
@@ -1736,23 +1724,24 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'API key. This field is `null` in the API response.',
     displayName: 'Key',
     name: 'key_string_input',
-    default: '',
     displayOptions: {
       show: {
         authentication_create_object: ['input'],
-        auth_a_pikey_object: ['key_string_input'],
+        auth_apikey_object: ['key_string_input'],
         input: ['auth_apikey'],
         resource: ['authentications'],
         operation: ['createAuthentication'],
       },
     },
+    required: true,
   },
   {
-    displayName: 'Auth O Auth',
-    name: 'auth_o_auth_object',
+    displayName: 'Auth OAuth',
+    name: 'auth_oauth_object',
     type: 'multiOptions',
     description: 'Credentials for authenticating with OAuth 2.0.',
     required: true,
@@ -1786,62 +1775,65 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'URL for the OAuth endpoint.',
     displayName: 'Url',
     name: 'url_string_input',
-    default: '',
     displayOptions: {
       show: {
         authentication_create_object: ['input'],
-        auth_o_auth_object: ['url_string_input'],
+        auth_oauth_object: ['url_string_input'],
         input: ['auth_oauth'],
         resource: ['authentications'],
         operation: ['createAuthentication'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
+    default: '',
     description: 'Client ID.',
     displayName: 'Client Id',
     name: 'client_id_string_input',
-    default: '',
     displayOptions: {
       show: {
         authentication_create_object: ['input'],
-        auth_o_auth_object: ['client_id_string_input'],
+        auth_oauth_object: ['client_id_string_input'],
         input: ['auth_oauth'],
         resource: ['authentications'],
         operation: ['createAuthentication'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
+    default: '',
     description: 'Client secret. This field is `null` in the API response.',
     displayName: 'Client Secret',
     name: 'client_secret_string_input',
-    default: '',
     displayOptions: {
       show: {
         authentication_create_object: ['input'],
-        auth_o_auth_object: ['client_secret_string_input'],
+        auth_oauth_object: ['client_secret_string_input'],
         input: ['auth_oauth'],
         resource: ['authentications'],
         operation: ['createAuthentication'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
+    default: '',
     description: 'OAuth scope.',
     displayName: 'Scope',
     name: 'scope_string_input',
-    default: '',
     displayOptions: {
       show: {
         authentication_create_object: ['input'],
-        auth_o_auth_object: ['scope_string_input'],
+        auth_oauth_object: ['scope_string_input'],
         input: ['auth_oauth'],
         resource: ['authentications'],
         operation: ['createAuthentication'],
@@ -1876,10 +1868,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Algolia application ID.',
     displayName: 'App ID',
     name: 'appID_string_input',
-    default: '',
     displayOptions: {
       show: {
         authentication_create_object: ['input'],
@@ -1889,14 +1881,15 @@ const properties: INodeProperties[] = [
         operation: ['createAuthentication'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
+    default: '',
     description:
       'Algolia API key with the ACL: `addObject`, `deleteObject`, `settings`, `editSettings`, `listIndexes`, `deleteIndex`.\nThis field is `null` in the API response.\n',
     displayName: 'Api Key',
     name: 'apiKey_string_input',
-    default: '',
     displayOptions: {
       show: {
         authentication_create_object: ['input'],
@@ -1906,6 +1899,7 @@ const properties: INodeProperties[] = [
         operation: ['createAuthentication'],
       },
     },
+    required: true,
   },
   {
     displayName: 'Auth Algolia Insights',
@@ -1935,10 +1929,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Algolia application ID.',
     displayName: 'App ID',
     name: 'appID_string_input',
-    default: '',
     displayOptions: {
       show: {
         authentication_create_object: ['input'],
@@ -1948,14 +1942,15 @@ const properties: INodeProperties[] = [
         operation: ['createAuthentication'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
+    default: '',
     description:
       'Algolia API key with the ACL: `search`.\nThis field is `null` in the API response.\n',
     displayName: 'Api Key',
     name: 'apiKey_string_input',
-    default: '',
     displayOptions: {
       show: {
         authentication_create_object: ['input'],
@@ -1965,23 +1960,15 @@ const properties: INodeProperties[] = [
         operation: ['createAuthentication'],
       },
     },
+    required: true,
   },
   {
-    type: 'fixedCollection',
-    displayName: 'Input (Auth Secrets)',
-    name: 'input_string',
-    default: '',
+    type: 'json',
+    displayName: 'Auth Secrets',
+    name: 'auth_secrets_object',
     description: 'A key:value authentication for your transformations.',
-    typeOptions: {
-      multipleValues: true,
-    },
-    options: [
-      {
-        name: 'input_string',
-        displayName: 'Input',
-        values: [],
-      },
-    ],
+    required: false,
+    default: '{}',
     displayOptions: {
       show: {
         authentication_create_object: ['input'],
@@ -2017,11 +2004,11 @@ const properties: INodeProperties[] = [
     name: 'authenticationIDs_json',
     default: '[]',
     description: undefined,
-    required: false,
+    required: true,
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'authenticationIDs',
       },
     },
@@ -2036,10 +2023,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '6c02aeb1-775e-418e-870b-1faccd4b2c0f',
+    default: '',
     description: 'Universally unique identifier (UUID) of an authentication resource.',
     displayName: 'Authentication ID',
     name: 'authenticationID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -2051,10 +2038,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '6c02aeb1-775e-418e-870b-1faccd4b2c0f',
+    default: '',
     description: 'Universally unique identifier (UUID) of an authentication resource.',
     displayName: 'Authentication ID',
     name: 'authenticationID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -2097,6 +2084,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     description:
       'Type of authentication. This determines the type of credentials required in the `input` object.',
     options: [
@@ -2138,7 +2126,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Type',
     name: 'type_options',
-    default: '',
     displayOptions: {
       show: {
         authentication_update_object: ['type_options'],
@@ -2149,6 +2136,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Descriptive name for the resource.',
     routing: {
       send: {
@@ -2159,7 +2147,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Name',
     name: 'name_string',
-    default: '',
     displayOptions: {
       show: {
         authentication_update_object: ['name_string'],
@@ -2201,6 +2188,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     description:
       'Name of an ecommerce platform with which to authenticate.\nThis determines which authentication type you can select.\n',
     options: [
@@ -2219,7 +2207,6 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Platform (String)',
     name: 'platform_options',
-    default: '',
     displayOptions: {
       show: {
         authentication_update_object: ['platform'],
@@ -2290,7 +2277,7 @@ const properties: INodeProperties[] = [
         type: 'body',
         property: 'input',
         value:
-          '={{ typeof $parameter.auth_google_service_account_partial_object !== "undefined" ? { "clientEmail": typeof $parameter.clientEmail_string_input !== "undefined" ? $parameter.clientEmail_string_input : undefined, "privateKey": typeof $parameter.privateKey_string_input !== "undefined" ? $parameter.privateKey_string_input : undefined } : typeof $parameter.clientEmail_string_input !== "undefined" ? $parameter.clientEmail_string_input : typeof $parameter.privateKey_string_input !== "undefined" ? $parameter.privateKey_string_input : typeof $parameter.auth_basic_partial_object !== "undefined" ? { "username": typeof $parameter.username_string_input !== "undefined" ? $parameter.username_string_input : undefined, "password": typeof $parameter.password_string_input !== "undefined" ? $parameter.password_string_input : undefined } : typeof $parameter.username_string_input !== "undefined" ? $parameter.username_string_input : typeof $parameter.password_string_input !== "undefined" ? $parameter.password_string_input : typeof $parameter.auth_a_pikey_partial_object !== "undefined" ? { "key": typeof $parameter.key_string_input !== "undefined" ? $parameter.key_string_input : undefined } : typeof $parameter.key_string_input !== "undefined" ? $parameter.key_string_input : typeof $parameter.auth_o_auth_partial_object !== "undefined" ? { "url": typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : undefined, "client_id": typeof $parameter.client_id_string_input !== "undefined" ? $parameter.client_id_string_input : undefined, "client_secret": typeof $parameter.client_secret_string_input !== "undefined" ? $parameter.client_secret_string_input : undefined, "scope": typeof $parameter.scope_string_input !== "undefined" ? $parameter.scope_string_input : undefined } : typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : typeof $parameter.client_id_string_input !== "undefined" ? $parameter.client_id_string_input : typeof $parameter.client_secret_string_input !== "undefined" ? $parameter.client_secret_string_input : typeof $parameter.scope_string_input !== "undefined" ? $parameter.scope_string_input : typeof $parameter.auth_algolia_partial_object !== "undefined" ? { "appID": typeof $parameter.appID_string_input !== "undefined" ? $parameter.appID_string_input : undefined, "apiKey": typeof $parameter.apiKey_string_input !== "undefined" ? $parameter.apiKey_string_input : undefined } : typeof $parameter.appID_string_input !== "undefined" ? $parameter.appID_string_input : typeof $parameter.apiKey_string_input !== "undefined" ? $parameter.apiKey_string_input : typeof $parameter.auth_algolia_insights_partial_object !== "undefined" ? { "appID": typeof $parameter.appID_string_input !== "undefined" ? $parameter.appID_string_input : undefined, "apiKey": typeof $parameter.apiKey_string_input !== "undefined" ? $parameter.apiKey_string_input : undefined } : typeof $parameter.appID_string_input !== "undefined" ? $parameter.appID_string_input : typeof $parameter.apiKey_string_input !== "undefined" ? $parameter.apiKey_string_input : typeof $parameter.input_string !== "undefined" ? $parameter.input_string : undefined }}',
+          '={{ typeof $parameter.auth_google_service_account_partial_object !== "undefined" ? { "clientEmail": typeof $parameter.clientEmail_string_input !== "undefined" ? $parameter.clientEmail_string_input : undefined, "privateKey": typeof $parameter.privateKey_string_input !== "undefined" ? $parameter.privateKey_string_input : undefined } : typeof $parameter.clientEmail_string_input !== "undefined" ? $parameter.clientEmail_string_input : typeof $parameter.privateKey_string_input !== "undefined" ? $parameter.privateKey_string_input : typeof $parameter.auth_basic_partial_object !== "undefined" ? { "username": typeof $parameter.username_string_input !== "undefined" ? $parameter.username_string_input : undefined, "password": typeof $parameter.password_string_input !== "undefined" ? $parameter.password_string_input : undefined } : typeof $parameter.username_string_input !== "undefined" ? $parameter.username_string_input : typeof $parameter.password_string_input !== "undefined" ? $parameter.password_string_input : typeof $parameter.auth_apikey_partial_object !== "undefined" ? { "key": typeof $parameter.key_string_input !== "undefined" ? $parameter.key_string_input : undefined } : typeof $parameter.key_string_input !== "undefined" ? $parameter.key_string_input : typeof $parameter.auth_oauth_partial_object !== "undefined" ? { "url": typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : undefined, "client_id": typeof $parameter.client_id_string_input !== "undefined" ? $parameter.client_id_string_input : undefined, "client_secret": typeof $parameter.client_secret_string_input !== "undefined" ? $parameter.client_secret_string_input : undefined, "scope": typeof $parameter.scope_string_input !== "undefined" ? $parameter.scope_string_input : undefined } : typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : typeof $parameter.client_id_string_input !== "undefined" ? $parameter.client_id_string_input : typeof $parameter.client_secret_string_input !== "undefined" ? $parameter.client_secret_string_input : typeof $parameter.scope_string_input !== "undefined" ? $parameter.scope_string_input : typeof $parameter.auth_algolia_partial_object !== "undefined" ? { "appID": typeof $parameter.appID_string_input !== "undefined" ? $parameter.appID_string_input : undefined, "apiKey": typeof $parameter.apiKey_string_input !== "undefined" ? $parameter.apiKey_string_input : undefined } : typeof $parameter.appID_string_input !== "undefined" ? $parameter.appID_string_input : typeof $parameter.apiKey_string_input !== "undefined" ? $parameter.apiKey_string_input : typeof $parameter.auth_algolia_insights_partial_object !== "undefined" ? { "appID": typeof $parameter.appID_string_input !== "undefined" ? $parameter.appID_string_input : undefined, "apiKey": typeof $parameter.apiKey_string_input !== "undefined" ? $parameter.apiKey_string_input : undefined } : typeof $parameter.appID_string_input !== "undefined" ? $parameter.appID_string_input : typeof $parameter.apiKey_string_input !== "undefined" ? $parameter.apiKey_string_input : typeof $parameter.auth_secrets_object !== "undefined" ? JSON.parse($parameter.auth_secrets_object) : undefined }}',
       },
     },
     displayOptions: {
@@ -2330,10 +2317,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'service-account-name@project-id.iam.gserviceaccount.com',
+    default: '',
     description: 'Email address of the Google service account.',
     displayName: 'Client Email',
     name: 'clientEmail_string_input',
-    default: '',
     displayOptions: {
       show: {
         authentication_update_object: ['input'],
@@ -2346,11 +2333,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description:
       'Private key of the Google service account. This field is `null` in the API response.',
     displayName: 'Private Key',
     name: 'privateKey_string_input',
-    default: '',
     displayOptions: {
       show: {
         authentication_update_object: ['input'],
@@ -2389,10 +2376,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Username.',
     displayName: 'Username',
     name: 'username_string_input',
-    default: '',
     displayOptions: {
       show: {
         authentication_update_object: ['input'],
@@ -2405,10 +2392,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Password. This field is `null` in the API response.',
     displayName: 'Password',
     name: 'password_string_input',
-    default: '',
     displayOptions: {
       show: {
         authentication_update_object: ['input'],
@@ -2420,8 +2407,8 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    displayName: 'Auth A PIKey Partial',
-    name: 'auth_a_pikey_partial_object',
+    displayName: 'Auth APIKey Partial',
+    name: 'auth_apikey_partial_object',
     type: 'multiOptions',
     description: 'Credentials for authenticating with an API key.',
     required: false,
@@ -2443,14 +2430,14 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'API key. This field is `null` in the API response.',
     displayName: 'Key',
     name: 'key_string_input',
-    default: '',
     displayOptions: {
       show: {
         authentication_update_object: ['input'],
-        auth_a_pikey_partial_object: ['key_string_input'],
+        auth_apikey_partial_object: ['key_string_input'],
         input: ['auth_apikey_partial'],
         resource: ['authentications'],
         operation: ['updateAuthentication'],
@@ -2458,8 +2445,8 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    displayName: 'Auth O Auth Partial',
-    name: 'auth_o_auth_partial_object',
+    displayName: 'Auth OAuth Partial',
+    name: 'auth_oauth_partial_object',
     type: 'multiOptions',
     description: 'Credentials for authenticating with OAuth 2.0.',
     required: false,
@@ -2493,14 +2480,14 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'URL for the OAuth endpoint.',
     displayName: 'Url',
     name: 'url_string_input',
-    default: '',
     displayOptions: {
       show: {
         authentication_update_object: ['input'],
-        auth_o_auth_partial_object: ['url_string_input'],
+        auth_oauth_partial_object: ['url_string_input'],
         input: ['auth_oauth_partial'],
         resource: ['authentications'],
         operation: ['updateAuthentication'],
@@ -2509,14 +2496,14 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Client ID.',
     displayName: 'Client Id',
     name: 'client_id_string_input',
-    default: '',
     displayOptions: {
       show: {
         authentication_update_object: ['input'],
-        auth_o_auth_partial_object: ['client_id_string_input'],
+        auth_oauth_partial_object: ['client_id_string_input'],
         input: ['auth_oauth_partial'],
         resource: ['authentications'],
         operation: ['updateAuthentication'],
@@ -2525,14 +2512,14 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Client secret. This field is `null` in the API response.',
     displayName: 'Client Secret',
     name: 'client_secret_string_input',
-    default: '',
     displayOptions: {
       show: {
         authentication_update_object: ['input'],
-        auth_o_auth_partial_object: ['client_secret_string_input'],
+        auth_oauth_partial_object: ['client_secret_string_input'],
         input: ['auth_oauth_partial'],
         resource: ['authentications'],
         operation: ['updateAuthentication'],
@@ -2541,14 +2528,14 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'OAuth scope.',
     displayName: 'Scope',
     name: 'scope_string_input',
-    default: '',
     displayOptions: {
       show: {
         authentication_update_object: ['input'],
-        auth_o_auth_partial_object: ['scope_string_input'],
+        auth_oauth_partial_object: ['scope_string_input'],
         input: ['auth_oauth_partial'],
         resource: ['authentications'],
         operation: ['updateAuthentication'],
@@ -2583,10 +2570,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Algolia application ID.',
     displayName: 'App ID',
     name: 'appID_string_input',
-    default: '',
     displayOptions: {
       show: {
         authentication_update_object: ['input'],
@@ -2599,11 +2586,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description:
       'Algolia API key with the ACL: `addObject`, `deleteObject`, `settings`, `editSettings`, `listIndexes`, `deleteIndex`.\nThis field is `null` in the API response.\n',
     displayName: 'Api Key',
     name: 'apiKey_string_input',
-    default: '',
     displayOptions: {
       show: {
         authentication_update_object: ['input'],
@@ -2642,10 +2629,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Algolia application ID.',
     displayName: 'App ID',
     name: 'appID_string_input',
-    default: '',
     displayOptions: {
       show: {
         authentication_update_object: ['input'],
@@ -2658,11 +2645,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description:
       'Algolia API key with the ACL: `search`.\nThis field is `null` in the API response.\n',
     displayName: 'Api Key',
     name: 'apiKey_string_input',
-    default: '',
     displayOptions: {
       show: {
         authentication_update_object: ['input'],
@@ -2674,21 +2661,12 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    type: 'fixedCollection',
-    displayName: 'Input (Auth Secrets)',
-    name: 'input_string',
-    default: '',
+    type: 'json',
+    displayName: 'Auth Secrets',
+    name: 'auth_secrets_object',
     description: 'A key:value authentication for your transformations.',
-    typeOptions: {
-      multipleValues: true,
-    },
-    options: [
-      {
-        name: 'input_string',
-        displayName: 'Input',
-        values: [],
-      },
-    ],
+    required: false,
+    default: '{}',
     displayOptions: {
       show: {
         authentication_update_object: ['input'],
@@ -2701,10 +2679,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '6c02aeb1-775e-418e-870b-1faccd4b2c0f',
+    default: '',
     description: 'Universally unique identifier (UUID) of an authentication resource.',
     displayName: 'Authentication ID',
     name: 'authenticationID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -2739,6 +2717,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description: 'Page of the API response to retrieve.',
     typeOptions: {
       minValue: 1,
@@ -2752,7 +2731,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Page',
     name: 'page_number',
-    default: '',
     displayOptions: {
       show: {
         resource: ['destinations'],
@@ -2770,7 +2748,7 @@ const properties: INodeProperties[] = [
     routing: {
       request: {
         qs: {
-          type: '={{ JSON.parse($value) }}',
+          type: '={{ $value }}',
         },
       },
     },
@@ -2791,7 +2769,7 @@ const properties: INodeProperties[] = [
     routing: {
       request: {
         qs: {
-          authenticationID: '={{ JSON.parse($value) }}',
+          authenticationID: '={{ $value }}',
         },
       },
     },
@@ -2805,6 +2783,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '6c02aeb1-775e-418e-870b-1faccd4b2c0f',
+    default: '',
     description: 'Universally unique identifier (UUID) of a transformation.',
     routing: {
       request: {
@@ -2815,7 +2794,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Transformation ID',
     name: 'transformationID_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['destinations'],
@@ -2929,6 +2907,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     description:
       'Destination type.\n\n- `search`.\n  Data is stored in an Algolia index.\n\n- `insights`.\n  Data is recorded as user events in the Insights API.\n',
     options: [
@@ -2950,7 +2929,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Type',
     name: 'type_options',
-    default: '',
     displayOptions: {
       show: {
         destination_create_object: ['type_options'],
@@ -2958,9 +2936,11 @@ const properties: INodeProperties[] = [
         operation: ['createDestination'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
+    default: '',
     description: 'Descriptive name for the resource.',
     routing: {
       send: {
@@ -2971,7 +2951,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Name',
     name: 'name_string',
-    default: '',
     displayOptions: {
       show: {
         destination_create_object: ['name_string'],
@@ -2979,6 +2958,7 @@ const properties: INodeProperties[] = [
         operation: ['createDestination'],
       },
     },
+    required: true,
   },
   {
     displayName: 'Destination Input',
@@ -3019,10 +2999,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Algolia index name (case-sensitive).',
     displayName: 'Index Name',
     name: 'indexName_string_input',
-    default: '',
     displayOptions: {
       show: {
         destination_create_object: ['destination_input_object'],
@@ -3031,9 +3011,11 @@ const properties: INodeProperties[] = [
         operation: ['createDestination'],
       },
     },
+    required: true,
   },
   {
     type: 'options',
+    default: '',
     description: 'Record type for ecommerce sources.',
     options: [
       {
@@ -3051,7 +3033,6 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Record Type',
     name: 'recordType_options_input',
-    default: '',
     displayOptions: {
       show: {
         destination_create_object: ['destination_input_object'],
@@ -3081,6 +3062,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '6c02aeb1-775e-418e-870b-1faccd4b2c0f',
+    default: '',
     description: 'Universally unique identifier (UUID) of an authentication resource.',
     routing: {
       send: {
@@ -3091,7 +3073,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Authentication ID',
     name: 'authenticationID_string',
-    default: '',
     displayOptions: {
       show: {
         destination_create_object: ['authenticationID_string'],
@@ -3110,7 +3091,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'transformationIDs',
       },
     },
@@ -3148,11 +3129,11 @@ const properties: INodeProperties[] = [
     name: 'destinationIDs_json',
     default: '[]',
     description: undefined,
-    required: false,
+    required: true,
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'destinationIDs',
       },
     },
@@ -3167,10 +3148,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '6c02aeb1-775e-418e-870b-1faccd4b2c0f',
+    default: '',
     description: 'Universally unique identifier (UUID) of a destination resource.',
     displayName: 'Destination ID',
     name: 'destinationID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -3182,10 +3163,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '6c02aeb1-775e-418e-870b-1faccd4b2c0f',
+    default: '',
     description: 'Universally unique identifier (UUID) of a destination resource.',
     displayName: 'Destination ID',
     name: 'destinationID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -3232,6 +3213,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     description:
       'Destination type.\n\n- `search`.\n  Data is stored in an Algolia index.\n\n- `insights`.\n  Data is recorded as user events in the Insights API.\n',
     options: [
@@ -3253,7 +3235,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Type',
     name: 'type_options',
-    default: '',
     displayOptions: {
       show: {
         destination_update_object: ['type_options'],
@@ -3264,6 +3245,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Descriptive name for the resource.',
     routing: {
       send: {
@@ -3274,7 +3256,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Name',
     name: 'name_string',
-    default: '',
     displayOptions: {
       show: {
         destination_update_object: ['name_string'],
@@ -3322,10 +3303,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Algolia index name (case-sensitive).',
     displayName: 'Index Name',
     name: 'indexName_string_input',
-    default: '',
     displayOptions: {
       show: {
         destination_update_object: ['destination_input_object'],
@@ -3334,9 +3315,11 @@ const properties: INodeProperties[] = [
         operation: ['updateDestination'],
       },
     },
+    required: true,
   },
   {
     type: 'options',
+    default: '',
     description: 'Record type for ecommerce sources.',
     options: [
       {
@@ -3354,7 +3337,6 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Record Type',
     name: 'recordType_options_input',
-    default: '',
     displayOptions: {
       show: {
         destination_update_object: ['destination_input_object'],
@@ -3384,6 +3366,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '6c02aeb1-775e-418e-870b-1faccd4b2c0f',
+    default: '',
     description: 'Universally unique identifier (UUID) of an authentication resource.',
     routing: {
       send: {
@@ -3394,7 +3377,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Authentication ID',
     name: 'authenticationID_string',
-    default: '',
     displayOptions: {
       show: {
         destination_update_object: ['authenticationID_string'],
@@ -3413,7 +3395,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'transformationIDs',
       },
     },
@@ -3428,10 +3410,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '6c02aeb1-775e-418e-870b-1faccd4b2c0f',
+    default: '',
     description: 'Universally unique identifier (UUID) of a destination resource.',
     displayName: 'Destination ID',
     name: 'destinationID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -3466,6 +3448,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description: 'Page of the API response to retrieve.',
     typeOptions: {
       minValue: 1,
@@ -3479,7 +3462,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Page',
     name: 'page_number',
-    default: '',
     displayOptions: {
       show: {
         resource: ['sources'],
@@ -3497,7 +3479,7 @@ const properties: INodeProperties[] = [
     routing: {
       request: {
         qs: {
-          type: '={{ JSON.parse($value) }}',
+          type: '={{ $value }}',
         },
       },
     },
@@ -3518,7 +3500,7 @@ const properties: INodeProperties[] = [
     routing: {
       request: {
         qs: {
-          authenticationID: '={{ JSON.parse($value) }}',
+          authenticationID: '={{ $value }}',
         },
       },
     },
@@ -3631,6 +3613,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     options: [
       {
         name: 'bigcommerce',
@@ -3678,7 +3661,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Type',
     name: 'type_options',
-    default: '',
     displayOptions: {
       show: {
         source_create_object: ['type_options'],
@@ -3686,9 +3668,11 @@ const properties: INodeProperties[] = [
         operation: ['createSource'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
+    default: '',
     description: 'Descriptive name of the source.',
     routing: {
       send: {
@@ -3699,7 +3683,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Name',
     name: 'name_string',
-    default: '',
     displayOptions: {
       show: {
         source_create_object: ['name_string'],
@@ -3707,6 +3690,7 @@ const properties: INodeProperties[] = [
         operation: ['createSource'],
       },
     },
+    required: true,
   },
   {
     type: 'options',
@@ -3752,7 +3736,7 @@ const properties: INodeProperties[] = [
         type: 'body',
         property: 'input',
         value:
-          '={{ typeof $parameter.source_commercetools_object !== "undefined" ? { "storeKeys": typeof $parameter.storeKeys_json_input !== "undefined" ? JSON.parse($parameter.storeKeys_json_input) : undefined, "locales": typeof $parameter.locales_json_input !== "undefined" ? JSON.parse($parameter.locales_json_input) : undefined, "url": typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : undefined, "projectKey": typeof $parameter.projectKey_string_input !== "undefined" ? $parameter.projectKey_string_input : undefined, "fallbackIsInStockValue": typeof $parameter.fallbackIsInStockValue_boolean_input !== "undefined" ? $parameter.fallbackIsInStockValue_boolean_input : undefined, "productQueryPredicate": typeof $parameter.productQueryPredicate_string_input !== "undefined" ? $parameter.productQueryPredicate_string_input : undefined, "customFields": { "inventory": typeof $parameter.inventory_json_customFields_input !== "undefined" ? JSON.parse($parameter.inventory_json_customFields_input) : typeof $parameter.inventory_null_customFields_input !== "undefined" ? JSON.parse($parameter.inventory_null_customFields_input) : undefined, "price": typeof $parameter.price_json_customFields_input !== "undefined" ? JSON.parse($parameter.price_json_customFields_input) : typeof $parameter.price_null_customFields_input !== "undefined" ? JSON.parse($parameter.price_null_customFields_input) : undefined, "category": typeof $parameter.category_json_customFields_input !== "undefined" ? JSON.parse($parameter.category_json_customFields_input) : typeof $parameter.category_null_customFields_input !== "undefined" ? JSON.parse($parameter.category_null_customFields_input) : undefined } } : typeof $parameter.storeKeys_json_input !== "undefined" ? JSON.parse($parameter.storeKeys_json_input) : typeof $parameter.locales_json_input !== "undefined" ? JSON.parse($parameter.locales_json_input) : typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : typeof $parameter.projectKey_string_input !== "undefined" ? $parameter.projectKey_string_input : typeof $parameter.fallbackIsInStockValue_boolean_input !== "undefined" ? $parameter.fallbackIsInStockValue_boolean_input : typeof $parameter.productQueryPredicate_string_input !== "undefined" ? $parameter.productQueryPredicate_string_input : typeof $parameter.commercetools_custom_fields_object_input !== "undefined" ? $parameter.commercetools_custom_fields_object_input : typeof $parameter.inventory_customFields_input !== "undefined" ? $parameter.inventory_customFields_input : typeof $parameter.inventory_json_customFields_input !== "undefined" ? JSON.parse($parameter.inventory_json_customFields_input) : typeof $parameter.inventory_null_customFields_input !== "undefined" ? JSON.parse($parameter.inventory_null_customFields_input) : typeof $parameter.price_customFields_input !== "undefined" ? $parameter.price_customFields_input : typeof $parameter.price_json_customFields_input !== "undefined" ? JSON.parse($parameter.price_json_customFields_input) : typeof $parameter.price_null_customFields_input !== "undefined" ? JSON.parse($parameter.price_null_customFields_input) : typeof $parameter.category_customFields_input !== "undefined" ? $parameter.category_customFields_input : typeof $parameter.category_json_customFields_input !== "undefined" ? JSON.parse($parameter.category_json_customFields_input) : typeof $parameter.category_null_customFields_input !== "undefined" ? JSON.parse($parameter.category_null_customFields_input) : typeof $parameter.source_big_commerce_object !== "undefined" ? { "storeHash": typeof $parameter.storeHash_string_input !== "undefined" ? $parameter.storeHash_string_input : undefined, "channel": { "id": typeof $parameter.id_number_channel_input !== "undefined" ? $parameter.id_number_channel_input : undefined, "currencies": typeof $parameter.currencies_json_channel_input !== "undefined" ? JSON.parse($parameter.currencies_json_channel_input) : undefined }, "customFields": typeof $parameter.customFields_json_input !== "undefined" ? JSON.parse($parameter.customFields_json_input) : undefined, "productMetafields": $parameter.productMetafields_fixedCollection_input.productMetafields_fixedCollection_values?.map(item => ({ namespace: typeof item.namespace_string_productMetafields !== "undefined" ? item.namespace_string_productMetafields : undefined, key: typeof item.key_string_productMetafields !== "undefined" ? item.key_string_productMetafields : undefined })), "variantMetafields": $parameter.variantMetafields_fixedCollection_input.variantMetafields_fixedCollection_values?.map(item => ({ namespace: typeof item.namespace_string_variantMetafields !== "undefined" ? item.namespace_string_variantMetafields : undefined, key: typeof item.key_string_variantMetafields !== "undefined" ? item.key_string_variantMetafields : undefined })) } : typeof $parameter.storeHash_string_input !== "undefined" ? $parameter.storeHash_string_input : typeof $parameter.big_commerce_channel_object_input !== "undefined" ? $parameter.big_commerce_channel_object_input : typeof $parameter.id_number_channel_input !== "undefined" ? $parameter.id_number_channel_input : typeof $parameter.currencies_json_channel_input !== "undefined" ? JSON.parse($parameter.currencies_json_channel_input) : typeof $parameter.customFields_json_input !== "undefined" ? JSON.parse($parameter.customFields_json_input) : typeof $parameter.productMetafields_fixedCollection_input !== "undefined" ? $parameter.productMetafields_fixedCollection_input : typeof $parameter.variantMetafields_fixedCollection_input !== "undefined" ? $parameter.variantMetafields_fixedCollection_input : typeof $parameter.source_j_son_object !== "undefined" ? { "url": typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : undefined, "uniqueIDColumn": typeof $parameter.uniqueIDColumn_string_input !== "undefined" ? $parameter.uniqueIDColumn_string_input : undefined, "method": typeof $parameter.method_options_input !== "undefined" ? $parameter.method_options_input : undefined } : typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : typeof $parameter.uniqueIDColumn_string_input !== "undefined" ? $parameter.uniqueIDColumn_string_input : typeof $parameter.method_options_input !== "undefined" ? $parameter.method_options_input : typeof $parameter.source_c_sv_object !== "undefined" ? { "url": typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : undefined, "uniqueIDColumn": typeof $parameter.uniqueIDColumn_string_input !== "undefined" ? $parameter.uniqueIDColumn_string_input : undefined, "mapping": typeof $parameter.mapping_options_input !== "undefined" ? $parameter.mapping_options_input : undefined, "method": typeof $parameter.method_options_input !== "undefined" ? $parameter.method_options_input : undefined, "delimiter": typeof $parameter.delimiter_string_input !== "undefined" ? $parameter.delimiter_string_input : undefined } : typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : typeof $parameter.uniqueIDColumn_string_input !== "undefined" ? $parameter.uniqueIDColumn_string_input : typeof $parameter.mapping_options_input !== "undefined" ? $parameter.mapping_options_input : typeof $parameter.method_options_input !== "undefined" ? $parameter.method_options_input : typeof $parameter.delimiter_string_input !== "undefined" ? $parameter.delimiter_string_input : typeof $parameter.source_big_query_object !== "undefined" ? { "projectID": typeof $parameter.projectID_string_input !== "undefined" ? $parameter.projectID_string_input : undefined, "datasetID": typeof $parameter.datasetID_string_input !== "undefined" ? $parameter.datasetID_string_input : undefined, "dataType": typeof $parameter.dataType_options_input !== "undefined" ? $parameter.dataType_options_input : undefined, "table": typeof $parameter.table_string_input !== "undefined" ? $parameter.table_string_input : undefined, "tablePrefix": typeof $parameter.tablePrefix_string_input !== "undefined" ? $parameter.tablePrefix_string_input : undefined, "customSQLRequest": typeof $parameter.customSQLRequest_string_input !== "undefined" ? $parameter.customSQLRequest_string_input : undefined, "uniqueIDColumn": typeof $parameter.uniqueIDColumn_string_input !== "undefined" ? $parameter.uniqueIDColumn_string_input : undefined } : typeof $parameter.projectID_string_input !== "undefined" ? $parameter.projectID_string_input : typeof $parameter.datasetID_string_input !== "undefined" ? $parameter.datasetID_string_input : typeof $parameter.dataType_options_input !== "undefined" ? $parameter.dataType_options_input : typeof $parameter.table_string_input !== "undefined" ? $parameter.table_string_input : typeof $parameter.tablePrefix_string_input !== "undefined" ? $parameter.tablePrefix_string_input : typeof $parameter.customSQLRequest_string_input !== "undefined" ? $parameter.customSQLRequest_string_input : typeof $parameter.uniqueIDColumn_string_input !== "undefined" ? $parameter.uniqueIDColumn_string_input : typeof $parameter.source_g_a4big_query_export_object !== "undefined" ? { "projectID": typeof $parameter.projectID_string_input !== "undefined" ? $parameter.projectID_string_input : undefined, "datasetID": typeof $parameter.datasetID_string_input !== "undefined" ? $parameter.datasetID_string_input : undefined, "tablePrefix": typeof $parameter.tablePrefix_string_input !== "undefined" ? $parameter.tablePrefix_string_input : undefined } : typeof $parameter.projectID_string_input !== "undefined" ? $parameter.projectID_string_input : typeof $parameter.datasetID_string_input !== "undefined" ? $parameter.datasetID_string_input : typeof $parameter.tablePrefix_string_input !== "undefined" ? $parameter.tablePrefix_string_input : typeof $parameter.source_docker_object !== "undefined" ? { "image": typeof $parameter.image_string_input !== "undefined" ? $parameter.image_string_input : undefined } : typeof $parameter.image_string_input !== "undefined" ? $parameter.image_string_input : typeof $parameter.source_update_shopify_object !== "undefined" ? $parameter.source_update_shopify_object : typeof $parameter.shopURL_string_input !== "undefined" ? $parameter.shopURL_string_input : undefined }}',
+          '={{ typeof $parameter.source_commercetools_object !== "undefined" ? { "storeKeys": typeof $parameter.storeKeys_json_input !== "undefined" ? JSON.parse($parameter.storeKeys_json_input) : undefined, "locales": typeof $parameter.locales_json_input !== "undefined" ? JSON.parse($parameter.locales_json_input) : undefined, "url": typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : undefined, "projectKey": typeof $parameter.projectKey_string_input !== "undefined" ? $parameter.projectKey_string_input : undefined, "fallbackIsInStockValue": typeof $parameter.fallbackIsInStockValue_boolean_input !== "undefined" ? $parameter.fallbackIsInStockValue_boolean_input : undefined, "productQueryPredicate": typeof $parameter.productQueryPredicate_string_input !== "undefined" ? $parameter.productQueryPredicate_string_input : undefined, "customFields": { "inventory": typeof $parameter.inventory_json_customFields_input !== "undefined" ? JSON.parse($parameter.inventory_json_customFields_input) : typeof $parameter.inventory_null_customFields_input !== "undefined" ? JSON.parse($parameter.inventory_null_customFields_input) : undefined, "price": typeof $parameter.price_json_customFields_input !== "undefined" ? JSON.parse($parameter.price_json_customFields_input) : typeof $parameter.price_null_customFields_input !== "undefined" ? JSON.parse($parameter.price_null_customFields_input) : undefined, "category": typeof $parameter.category_json_customFields_input !== "undefined" ? JSON.parse($parameter.category_json_customFields_input) : typeof $parameter.category_null_customFields_input !== "undefined" ? JSON.parse($parameter.category_null_customFields_input) : undefined } } : typeof $parameter.storeKeys_json_input !== "undefined" ? JSON.parse($parameter.storeKeys_json_input) : typeof $parameter.locales_json_input !== "undefined" ? JSON.parse($parameter.locales_json_input) : typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : typeof $parameter.projectKey_string_input !== "undefined" ? $parameter.projectKey_string_input : typeof $parameter.fallbackIsInStockValue_boolean_input !== "undefined" ? $parameter.fallbackIsInStockValue_boolean_input : typeof $parameter.productQueryPredicate_string_input !== "undefined" ? $parameter.productQueryPredicate_string_input : typeof $parameter.commercetools_custom_fields_object_input !== "undefined" ? $parameter.commercetools_custom_fields_object_input : typeof $parameter.inventory_customFields_input !== "undefined" ? $parameter.inventory_customFields_input : typeof $parameter.inventory_json_customFields_input !== "undefined" ? JSON.parse($parameter.inventory_json_customFields_input) : typeof $parameter.inventory_null_customFields_input !== "undefined" ? JSON.parse($parameter.inventory_null_customFields_input) : typeof $parameter.price_customFields_input !== "undefined" ? $parameter.price_customFields_input : typeof $parameter.price_json_customFields_input !== "undefined" ? JSON.parse($parameter.price_json_customFields_input) : typeof $parameter.price_null_customFields_input !== "undefined" ? JSON.parse($parameter.price_null_customFields_input) : typeof $parameter.category_customFields_input !== "undefined" ? $parameter.category_customFields_input : typeof $parameter.category_json_customFields_input !== "undefined" ? JSON.parse($parameter.category_json_customFields_input) : typeof $parameter.category_null_customFields_input !== "undefined" ? JSON.parse($parameter.category_null_customFields_input) : typeof $parameter.source_big_commerce_object !== "undefined" ? { "storeHash": typeof $parameter.storeHash_string_input !== "undefined" ? $parameter.storeHash_string_input : undefined, "channel": { "id": typeof $parameter.id_number_channel_input !== "undefined" ? $parameter.id_number_channel_input : undefined, "currencies": typeof $parameter.currencies_json_channel_input !== "undefined" ? JSON.parse($parameter.currencies_json_channel_input) : undefined }, "customFields": typeof $parameter.customFields_json_input !== "undefined" ? JSON.parse($parameter.customFields_json_input) : undefined, "productMetafields": typeof $parameter.productMetafields_json_input !== "undefined" ? JSON.parse($parameter.productMetafields_json_input) : undefined, "variantMetafields": typeof $parameter.variantMetafields_json_input !== "undefined" ? JSON.parse($parameter.variantMetafields_json_input) : undefined } : typeof $parameter.storeHash_string_input !== "undefined" ? $parameter.storeHash_string_input : typeof $parameter.big_commerce_channel_object_input !== "undefined" ? $parameter.big_commerce_channel_object_input : typeof $parameter.id_number_channel_input !== "undefined" ? $parameter.id_number_channel_input : typeof $parameter.currencies_json_channel_input !== "undefined" ? JSON.parse($parameter.currencies_json_channel_input) : typeof $parameter.customFields_json_input !== "undefined" ? JSON.parse($parameter.customFields_json_input) : typeof $parameter.productMetafields_json_input !== "undefined" ? JSON.parse($parameter.productMetafields_json_input) : typeof $parameter.variantMetafields_json_input !== "undefined" ? JSON.parse($parameter.variantMetafields_json_input) : typeof $parameter.source_json_object !== "undefined" ? { "url": typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : undefined, "uniqueIDColumn": typeof $parameter.uniqueIDColumn_string_input !== "undefined" ? $parameter.uniqueIDColumn_string_input : undefined, "method": typeof $parameter.method_options_input !== "undefined" ? $parameter.method_options_input : undefined } : typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : typeof $parameter.uniqueIDColumn_string_input !== "undefined" ? $parameter.uniqueIDColumn_string_input : typeof $parameter.method_options_input !== "undefined" ? $parameter.method_options_input : typeof $parameter.source_csv_object !== "undefined" ? { "url": typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : undefined, "uniqueIDColumn": typeof $parameter.uniqueIDColumn_string_input !== "undefined" ? $parameter.uniqueIDColumn_string_input : undefined, "mapping": typeof $parameter.mapping_object_input !== "undefined" ? JSON.parse($parameter.mapping_object_input) : undefined, "method": typeof $parameter.method_options_input !== "undefined" ? $parameter.method_options_input : undefined, "delimiter": typeof $parameter.delimiter_string_input !== "undefined" ? $parameter.delimiter_string_input : undefined } : typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : typeof $parameter.uniqueIDColumn_string_input !== "undefined" ? $parameter.uniqueIDColumn_string_input : typeof $parameter.mapping_object_input !== "undefined" ? JSON.parse($parameter.mapping_object_input) : typeof $parameter.method_options_input !== "undefined" ? $parameter.method_options_input : typeof $parameter.delimiter_string_input !== "undefined" ? $parameter.delimiter_string_input : typeof $parameter.source_big_query_object !== "undefined" ? { "projectID": typeof $parameter.projectID_string_input !== "undefined" ? $parameter.projectID_string_input : undefined, "datasetID": typeof $parameter.datasetID_string_input !== "undefined" ? $parameter.datasetID_string_input : undefined, "dataType": typeof $parameter.dataType_options_input !== "undefined" ? $parameter.dataType_options_input : undefined, "table": typeof $parameter.table_string_input !== "undefined" ? $parameter.table_string_input : undefined, "tablePrefix": typeof $parameter.tablePrefix_string_input !== "undefined" ? $parameter.tablePrefix_string_input : undefined, "customSQLRequest": typeof $parameter.customSQLRequest_string_input !== "undefined" ? $parameter.customSQLRequest_string_input : undefined, "uniqueIDColumn": typeof $parameter.uniqueIDColumn_string_input !== "undefined" ? $parameter.uniqueIDColumn_string_input : undefined } : typeof $parameter.projectID_string_input !== "undefined" ? $parameter.projectID_string_input : typeof $parameter.datasetID_string_input !== "undefined" ? $parameter.datasetID_string_input : typeof $parameter.dataType_options_input !== "undefined" ? $parameter.dataType_options_input : typeof $parameter.table_string_input !== "undefined" ? $parameter.table_string_input : typeof $parameter.tablePrefix_string_input !== "undefined" ? $parameter.tablePrefix_string_input : typeof $parameter.customSQLRequest_string_input !== "undefined" ? $parameter.customSQLRequest_string_input : typeof $parameter.uniqueIDColumn_string_input !== "undefined" ? $parameter.uniqueIDColumn_string_input : typeof $parameter.source_ga4big_query_export_object !== "undefined" ? { "projectID": typeof $parameter.projectID_string_input !== "undefined" ? $parameter.projectID_string_input : undefined, "datasetID": typeof $parameter.datasetID_string_input !== "undefined" ? $parameter.datasetID_string_input : undefined, "tablePrefix": typeof $parameter.tablePrefix_string_input !== "undefined" ? $parameter.tablePrefix_string_input : undefined } : typeof $parameter.projectID_string_input !== "undefined" ? $parameter.projectID_string_input : typeof $parameter.datasetID_string_input !== "undefined" ? $parameter.datasetID_string_input : typeof $parameter.tablePrefix_string_input !== "undefined" ? $parameter.tablePrefix_string_input : typeof $parameter.source_docker_object !== "undefined" ? { "image": typeof $parameter.image_string_input !== "undefined" ? $parameter.image_string_input : undefined, "configuration": typeof $parameter.configuration_object_input !== "undefined" ? JSON.parse($parameter.configuration_object_input) : undefined } : typeof $parameter.image_string_input !== "undefined" ? $parameter.image_string_input : typeof $parameter.configuration_object_input !== "undefined" ? JSON.parse($parameter.configuration_object_input) : typeof $parameter.source_shopify !== "undefined" ? $parameter.source_shopify : typeof $parameter.feature_flags_object_input !== "undefined" ? JSON.parse($parameter.feature_flags_object_input) : typeof $parameter.shopURL_string_input !== "undefined" ? $parameter.shopURL_string_input : undefined }}',
       },
     },
     displayOptions: {
@@ -3845,9 +3829,9 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     displayName: 'Url',
     name: 'url_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_create_object: ['input'],
@@ -3857,12 +3841,13 @@ const properties: INodeProperties[] = [
         operation: ['createSource'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
+    default: '',
     displayName: 'Project Key',
     name: 'projectKey_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_create_object: ['input'],
@@ -3872,6 +3857,7 @@ const properties: INodeProperties[] = [
         operation: ['createSource'],
       },
     },
+    required: true,
   },
   {
     type: 'boolean',
@@ -3892,11 +3878,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description:
       'Predicate to filter out specific products when indexing. For more information, see [Query Predicate](https://docs.commercetools.com/api/predicates/query).\n',
     displayName: 'Product Query Predicate',
     name: 'productQueryPredicate_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_create_object: ['input'],
@@ -4168,11 +4154,11 @@ const properties: INodeProperties[] = [
       },
       {
         name: 'Product Metafields',
-        value: 'productMetafields_fixedCollection_input',
+        value: 'productMetafields_json_input',
       },
       {
         name: 'Variant Metafields',
-        value: 'variantMetafields_fixedCollection_input',
+        value: 'variantMetafields_json_input',
       },
     ],
     displayOptions: {
@@ -4186,10 +4172,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Store hash identifying your BigCommerce store.',
     displayName: 'Store Hash',
     name: 'storeHash_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_create_object: ['input'],
@@ -4199,6 +4185,7 @@ const properties: INodeProperties[] = [
         operation: ['createSource'],
       },
     },
+    required: true,
   },
   {
     displayName: 'Big Commerce Channel',
@@ -4229,10 +4216,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description: 'ID of the BigCommerce channel.',
     displayName: 'Id',
     name: 'id_number_channel_input',
-    default: '',
     displayOptions: {
       show: {
         source_create_object: ['input'],
@@ -4243,6 +4230,7 @@ const properties: INodeProperties[] = [
         operation: ['createSource'],
       },
     },
+    required: true,
   },
   {
     type: 'json',
@@ -4280,41 +4268,16 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    type: 'fixedCollection',
+    type: 'json',
     displayName: 'Product Metafields',
-    name: 'productMetafields_fixedCollection_input',
-    default: '',
+    name: 'productMetafields_json_input',
+    default: '[]',
     description: undefined,
     required: false,
-    typeOptions: {
-      multipleValues: true,
-    },
-    options: [
-      {
-        name: 'productMetafields_fixedCollection_values',
-        displayName: 'Product Metafields',
-        values: [
-          {
-            type: 'string',
-            description: 'Namespace of the metafield.',
-            displayName: 'Namespace',
-            name: 'namespace_string_productMetafields',
-            default: '',
-          },
-          {
-            type: 'string',
-            description: 'Key identifier of the metafield.',
-            displayName: 'Key',
-            name: 'key_string_productMetafields',
-            default: '',
-          },
-        ],
-      },
-    ],
     displayOptions: {
       show: {
         source_create_object: ['input'],
-        source_big_commerce_object: ['productMetafields_fixedCollection_input'],
+        source_big_commerce_object: ['productMetafields_json_input'],
         input: ['source_big_commerce'],
         resource: ['sources'],
         operation: ['createSource'],
@@ -4322,41 +4285,16 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    type: 'fixedCollection',
+    type: 'json',
     displayName: 'Variant Metafields',
-    name: 'variantMetafields_fixedCollection_input',
-    default: '',
+    name: 'variantMetafields_json_input',
+    default: '[]',
     description: undefined,
     required: false,
-    typeOptions: {
-      multipleValues: true,
-    },
-    options: [
-      {
-        name: 'variantMetafields_fixedCollection_values',
-        displayName: 'Variant Metafields',
-        values: [
-          {
-            type: 'string',
-            description: 'Namespace of the metafield.',
-            displayName: 'Namespace',
-            name: 'namespace_string_variantMetafields',
-            default: '',
-          },
-          {
-            type: 'string',
-            description: 'Key identifier of the metafield.',
-            displayName: 'Key',
-            name: 'key_string_variantMetafields',
-            default: '',
-          },
-        ],
-      },
-    ],
     displayOptions: {
       show: {
         source_create_object: ['input'],
-        source_big_commerce_object: ['variantMetafields_fixedCollection_input'],
+        source_big_commerce_object: ['variantMetafields_json_input'],
         input: ['source_big_commerce'],
         resource: ['sources'],
         operation: ['createSource'],
@@ -4364,8 +4302,8 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    displayName: 'Source J SON',
-    name: 'source_j_son_object',
+    displayName: 'Source JSON',
+    name: 'source_json_object',
     type: 'multiOptions',
     description: undefined,
     required: true,
@@ -4395,31 +4333,32 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'URL of the file.',
     displayName: 'Url',
     name: 'url_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_create_object: ['input'],
-        source_j_son_object: ['url_string_input'],
+        source_json_object: ['url_string_input'],
         input: ['source_json'],
         resource: ['sources'],
         operation: ['createSource'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
+    default: '',
     description:
       'Name of a column that contains a unique ID which will be used as `objectID` in Algolia.',
     displayName: 'Unique IDColumn',
     name: 'uniqueIDColumn_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_create_object: ['input'],
-        source_j_son_object: ['uniqueIDColumn_string_input'],
+        source_json_object: ['uniqueIDColumn_string_input'],
         input: ['source_json'],
         resource: ['sources'],
         operation: ['createSource'],
@@ -4428,6 +4367,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     description: 'HTTP method to be used for retrieving your data.',
     options: [
       {
@@ -4441,11 +4381,10 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Method',
     name: 'method_options_input',
-    default: '',
     displayOptions: {
       show: {
         source_create_object: ['input'],
-        source_j_son_object: ['method_options_input'],
+        source_json_object: ['method_options_input'],
         input: ['source_json'],
         resource: ['sources'],
         operation: ['createSource'],
@@ -4453,8 +4392,8 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    displayName: 'Source C SV',
-    name: 'source_c_sv_object',
+    displayName: 'Source CSV',
+    name: 'source_csv_object',
     type: 'multiOptions',
     description: undefined,
     required: true,
@@ -4470,7 +4409,7 @@ const properties: INodeProperties[] = [
       },
       {
         name: 'Mapping',
-        value: 'mapping_options_input',
+        value: 'mapping_object_input',
       },
       {
         name: 'Method',
@@ -4492,31 +4431,32 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'URL of the file.',
     displayName: 'Url',
     name: 'url_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_create_object: ['input'],
-        source_c_sv_object: ['url_string_input'],
+        source_csv_object: ['url_string_input'],
         input: ['source_csv'],
         resource: ['sources'],
         operation: ['createSource'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
+    default: '',
     description:
       'Name of a column that contains a unique ID which will be used as `objectID` in Algolia.',
     displayName: 'Unique IDColumn',
     name: 'uniqueIDColumn_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_create_object: ['input'],
-        source_c_sv_object: ['uniqueIDColumn_string_input'],
+        source_csv_object: ['uniqueIDColumn_string_input'],
         input: ['source_csv'],
         resource: ['sources'],
         operation: ['createSource'],
@@ -4524,25 +4464,16 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    type: 'fixedCollection',
-    options: [
-      {
-        name: 'mapping_options',
-        displayName: 'Mapping',
-        values: [],
-      },
-    ],
+    type: 'json',
     displayName: 'Mapping',
-    name: 'mapping_options_input',
-    default: '',
+    name: 'mapping_object_input',
     description: 'Key-value pairs of column names and their expected types.\n',
-    typeOptions: {
-      multipleValues: true,
-    },
+    required: false,
+    default: '{}',
     displayOptions: {
       show: {
         source_create_object: ['input'],
-        source_c_sv_object: ['mapping_options_input'],
+        source_csv_object: ['mapping_object_input'],
         input: ['source_csv'],
         resource: ['sources'],
         operation: ['createSource'],
@@ -4551,6 +4482,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     description: 'HTTP method to be used for retrieving your data.',
     options: [
       {
@@ -4564,11 +4496,10 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Method',
     name: 'method_options_input',
-    default: '',
     displayOptions: {
       show: {
         source_create_object: ['input'],
-        source_c_sv_object: ['method_options_input'],
+        source_csv_object: ['method_options_input'],
         input: ['source_csv'],
         resource: ['sources'],
         operation: ['createSource'],
@@ -4585,7 +4516,7 @@ const properties: INodeProperties[] = [
     displayOptions: {
       show: {
         source_create_object: ['input'],
-        source_c_sv_object: ['delimiter_string_input'],
+        source_csv_object: ['delimiter_string_input'],
         input: ['source_csv'],
         resource: ['sources'],
         operation: ['createSource'],
@@ -4640,10 +4571,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Project ID of the BigQuery source.',
     displayName: 'Project ID',
     name: 'projectID_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_create_object: ['input'],
@@ -4653,13 +4584,14 @@ const properties: INodeProperties[] = [
         operation: ['createSource'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
+    default: '',
     description: 'Dataset ID of the BigQuery source.',
     displayName: 'Dataset ID',
     name: 'datasetID_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_create_object: ['input'],
@@ -4669,9 +4601,11 @@ const properties: INodeProperties[] = [
         operation: ['createSource'],
       },
     },
+    required: true,
   },
   {
     type: 'options',
+    default: '',
     options: [
       {
         name: 'ga4',
@@ -4684,7 +4618,6 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Data Type',
     name: 'dataType_options_input',
-    default: '',
     displayOptions: {
       show: {
         source_create_object: ['input'],
@@ -4697,10 +4630,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Table name for the BigQuery export.',
     displayName: 'Table',
     name: 'table_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_create_object: ['input'],
@@ -4713,10 +4646,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Table prefix for a Google Analytics 4 data export to BigQuery.',
     displayName: 'Table Prefix',
     name: 'tablePrefix_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_create_object: ['input'],
@@ -4729,10 +4662,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Custom SQL request to extract data from the BigQuery table.',
     displayName: 'Custom SQLRequest',
     name: 'customSQLRequest_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_create_object: ['input'],
@@ -4745,11 +4678,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description:
       'Name of a column that contains a unique ID which will be used as `objectID` in Algolia.',
     displayName: 'Unique IDColumn',
     name: 'uniqueIDColumn_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_create_object: ['input'],
@@ -4761,8 +4694,8 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    displayName: 'Source G A4Big Query Export',
-    name: 'source_g_a4big_query_export_object',
+    displayName: 'Source GA4Big Query Export',
+    name: 'source_ga4big_query_export_object',
     type: 'multiOptions',
     description: undefined,
     required: true,
@@ -4792,52 +4725,55 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'GCP project ID that the BigQuery export writes to.',
     displayName: 'Project ID',
     name: 'projectID_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_create_object: ['input'],
-        source_g_a4big_query_export_object: ['projectID_string_input'],
+        source_ga4big_query_export_object: ['projectID_string_input'],
         input: ['source_ga4big_query_export'],
         resource: ['sources'],
         operation: ['createSource'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
+    default: '',
     description: 'BigQuery dataset ID that the BigQuery export writes to.',
     displayName: 'Dataset ID',
     name: 'datasetID_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_create_object: ['input'],
-        source_g_a4big_query_export_object: ['datasetID_string_input'],
+        source_ga4big_query_export_object: ['datasetID_string_input'],
         input: ['source_ga4big_query_export'],
         resource: ['sources'],
         operation: ['createSource'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
     placeholder: 'events_intraday_',
+    default: '',
     description: 'Prefix of the tables that the BigQuery Export writes to.',
     displayName: 'Table Prefix',
     name: 'tablePrefix_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_create_object: ['input'],
-        source_g_a4big_query_export_object: ['tablePrefix_string_input'],
+        source_ga4big_query_export_object: ['tablePrefix_string_input'],
         input: ['source_ga4big_query_export'],
         resource: ['sources'],
         operation: ['createSource'],
       },
     },
+    required: true,
   },
   {
     displayName: 'Source Docker',
@@ -4850,6 +4786,10 @@ const properties: INodeProperties[] = [
       {
         name: 'Image',
         value: 'image_string_input',
+      },
+      {
+        name: 'Configuration',
+        value: 'configuration_object_input',
       },
     ],
     displayOptions: {
@@ -4864,10 +4804,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'zendesk',
+    default: '',
     description: 'Name of the connector.',
     displayName: 'Image',
     name: 'image_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_create_object: ['input'],
@@ -4877,15 +4817,41 @@ const properties: INodeProperties[] = [
         operation: ['createSource'],
       },
     },
+    required: true,
   },
   {
-    displayName: 'Source Update Shopify',
-    name: 'source_update_shopify_object',
+    type: 'json',
+    displayName: 'Configuration',
+    name: 'configuration_object_input',
+    description: 'Configuration of the spec.',
+    required: true,
+    default: '{}',
+    displayOptions: {
+      show: {
+        source_create_object: ['input'],
+        source_docker_object: ['configuration_object_input'],
+        input: ['source_docker'],
+        resource: ['sources'],
+        operation: ['createSource'],
+      },
+    },
+  },
+  {
     type: 'multiOptions',
+    name: 'source_shopify',
+    displayName: 'Source Shopify',
     description: undefined,
-    required: false,
     default: [],
-    options: [],
+    options: [
+      {
+        name: 'Feature Flags',
+        value: 'feature_flags_object_input',
+      },
+      {
+        name: 'Shop URL',
+        value: 'shopurl_string_input',
+      },
+    ],
     displayOptions: {
       show: {
         source_create_object: ['input'],
@@ -4896,11 +4862,28 @@ const properties: INodeProperties[] = [
     },
   },
   {
+    type: 'json',
+    displayName: 'Feature Flags',
+    name: 'feature_flags_object_input',
+    description: 'Feature flags for the Shopify source.',
+    required: false,
+    default: '{}',
+    displayOptions: {
+      show: {
+        source_create_object: ['input'],
+        source_shopify: ['feature_flags_object_input'],
+        input: ['source_shopify'],
+        resource: ['sources'],
+        operation: ['createSource'],
+      },
+    },
+  },
+  {
     type: 'string',
+    default: '',
     description: 'URL of the Shopify store.',
     displayName: 'Shop URL',
     name: 'shopURL_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_create_object: ['input'],
@@ -4910,10 +4893,12 @@ const properties: INodeProperties[] = [
         operation: ['createSource'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
     placeholder: '6c02aeb1-775e-418e-870b-1faccd4b2c0f',
+    default: '',
     description: 'Universally unique identifier (UUID) of an authentication resource.',
     routing: {
       send: {
@@ -4924,7 +4909,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Authentication ID',
     name: 'authenticationID_string',
-    default: '',
     displayOptions: {
       show: {
         source_create_object: ['authenticationID_string'],
@@ -4967,6 +4951,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     options: [
       {
         name: 'bigcommerce',
@@ -5014,7 +4999,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Type',
     name: 'type_options',
-    default: '',
     displayOptions: {
       show: {
         source_create_object: ['type_options'],
@@ -5022,9 +5006,11 @@ const properties: INodeProperties[] = [
         operation: ['validateSource'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
+    default: '',
     description: 'Descriptive name of the source.',
     routing: {
       send: {
@@ -5035,7 +5021,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Name',
     name: 'name_string',
-    default: '',
     displayOptions: {
       show: {
         source_create_object: ['name_string'],
@@ -5043,6 +5028,7 @@ const properties: INodeProperties[] = [
         operation: ['validateSource'],
       },
     },
+    required: true,
   },
   {
     type: 'options',
@@ -5088,7 +5074,7 @@ const properties: INodeProperties[] = [
         type: 'body',
         property: 'input',
         value:
-          '={{ typeof $parameter.source_commercetools_object !== "undefined" ? { "storeKeys": typeof $parameter.storeKeys_json_input !== "undefined" ? JSON.parse($parameter.storeKeys_json_input) : undefined, "locales": typeof $parameter.locales_json_input !== "undefined" ? JSON.parse($parameter.locales_json_input) : undefined, "url": typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : undefined, "projectKey": typeof $parameter.projectKey_string_input !== "undefined" ? $parameter.projectKey_string_input : undefined, "fallbackIsInStockValue": typeof $parameter.fallbackIsInStockValue_boolean_input !== "undefined" ? $parameter.fallbackIsInStockValue_boolean_input : undefined, "productQueryPredicate": typeof $parameter.productQueryPredicate_string_input !== "undefined" ? $parameter.productQueryPredicate_string_input : undefined, "customFields": { "inventory": typeof $parameter.inventory_json_customFields_input !== "undefined" ? JSON.parse($parameter.inventory_json_customFields_input) : typeof $parameter.inventory_null_customFields_input !== "undefined" ? JSON.parse($parameter.inventory_null_customFields_input) : undefined, "price": typeof $parameter.price_json_customFields_input !== "undefined" ? JSON.parse($parameter.price_json_customFields_input) : typeof $parameter.price_null_customFields_input !== "undefined" ? JSON.parse($parameter.price_null_customFields_input) : undefined, "category": typeof $parameter.category_json_customFields_input !== "undefined" ? JSON.parse($parameter.category_json_customFields_input) : typeof $parameter.category_null_customFields_input !== "undefined" ? JSON.parse($parameter.category_null_customFields_input) : undefined } } : typeof $parameter.storeKeys_json_input !== "undefined" ? JSON.parse($parameter.storeKeys_json_input) : typeof $parameter.locales_json_input !== "undefined" ? JSON.parse($parameter.locales_json_input) : typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : typeof $parameter.projectKey_string_input !== "undefined" ? $parameter.projectKey_string_input : typeof $parameter.fallbackIsInStockValue_boolean_input !== "undefined" ? $parameter.fallbackIsInStockValue_boolean_input : typeof $parameter.productQueryPredicate_string_input !== "undefined" ? $parameter.productQueryPredicate_string_input : typeof $parameter.commercetools_custom_fields_object_input !== "undefined" ? $parameter.commercetools_custom_fields_object_input : typeof $parameter.inventory_customFields_input !== "undefined" ? $parameter.inventory_customFields_input : typeof $parameter.inventory_json_customFields_input !== "undefined" ? JSON.parse($parameter.inventory_json_customFields_input) : typeof $parameter.inventory_null_customFields_input !== "undefined" ? JSON.parse($parameter.inventory_null_customFields_input) : typeof $parameter.price_customFields_input !== "undefined" ? $parameter.price_customFields_input : typeof $parameter.price_json_customFields_input !== "undefined" ? JSON.parse($parameter.price_json_customFields_input) : typeof $parameter.price_null_customFields_input !== "undefined" ? JSON.parse($parameter.price_null_customFields_input) : typeof $parameter.category_customFields_input !== "undefined" ? $parameter.category_customFields_input : typeof $parameter.category_json_customFields_input !== "undefined" ? JSON.parse($parameter.category_json_customFields_input) : typeof $parameter.category_null_customFields_input !== "undefined" ? JSON.parse($parameter.category_null_customFields_input) : typeof $parameter.source_big_commerce_object !== "undefined" ? { "storeHash": typeof $parameter.storeHash_string_input !== "undefined" ? $parameter.storeHash_string_input : undefined, "channel": { "id": typeof $parameter.id_number_channel_input !== "undefined" ? $parameter.id_number_channel_input : undefined, "currencies": typeof $parameter.currencies_json_channel_input !== "undefined" ? JSON.parse($parameter.currencies_json_channel_input) : undefined }, "customFields": typeof $parameter.customFields_json_input !== "undefined" ? JSON.parse($parameter.customFields_json_input) : undefined, "productMetafields": $parameter.productMetafields_fixedCollection_input.productMetafields_fixedCollection_values?.map(item => ({ namespace: typeof item.namespace_string_productMetafields !== "undefined" ? item.namespace_string_productMetafields : undefined, key: typeof item.key_string_productMetafields !== "undefined" ? item.key_string_productMetafields : undefined })), "variantMetafields": $parameter.variantMetafields_fixedCollection_input.variantMetafields_fixedCollection_values?.map(item => ({ namespace: typeof item.namespace_string_variantMetafields !== "undefined" ? item.namespace_string_variantMetafields : undefined, key: typeof item.key_string_variantMetafields !== "undefined" ? item.key_string_variantMetafields : undefined })) } : typeof $parameter.storeHash_string_input !== "undefined" ? $parameter.storeHash_string_input : typeof $parameter.big_commerce_channel_object_input !== "undefined" ? $parameter.big_commerce_channel_object_input : typeof $parameter.id_number_channel_input !== "undefined" ? $parameter.id_number_channel_input : typeof $parameter.currencies_json_channel_input !== "undefined" ? JSON.parse($parameter.currencies_json_channel_input) : typeof $parameter.customFields_json_input !== "undefined" ? JSON.parse($parameter.customFields_json_input) : typeof $parameter.productMetafields_fixedCollection_input !== "undefined" ? $parameter.productMetafields_fixedCollection_input : typeof $parameter.variantMetafields_fixedCollection_input !== "undefined" ? $parameter.variantMetafields_fixedCollection_input : typeof $parameter.source_j_son_object !== "undefined" ? { "url": typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : undefined, "uniqueIDColumn": typeof $parameter.uniqueIDColumn_string_input !== "undefined" ? $parameter.uniqueIDColumn_string_input : undefined, "method": typeof $parameter.method_options_input !== "undefined" ? $parameter.method_options_input : undefined } : typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : typeof $parameter.uniqueIDColumn_string_input !== "undefined" ? $parameter.uniqueIDColumn_string_input : typeof $parameter.method_options_input !== "undefined" ? $parameter.method_options_input : typeof $parameter.source_c_sv_object !== "undefined" ? { "url": typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : undefined, "uniqueIDColumn": typeof $parameter.uniqueIDColumn_string_input !== "undefined" ? $parameter.uniqueIDColumn_string_input : undefined, "mapping": typeof $parameter.mapping_options_input !== "undefined" ? $parameter.mapping_options_input : undefined, "method": typeof $parameter.method_options_input !== "undefined" ? $parameter.method_options_input : undefined, "delimiter": typeof $parameter.delimiter_string_input !== "undefined" ? $parameter.delimiter_string_input : undefined } : typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : typeof $parameter.uniqueIDColumn_string_input !== "undefined" ? $parameter.uniqueIDColumn_string_input : typeof $parameter.mapping_options_input !== "undefined" ? $parameter.mapping_options_input : typeof $parameter.method_options_input !== "undefined" ? $parameter.method_options_input : typeof $parameter.delimiter_string_input !== "undefined" ? $parameter.delimiter_string_input : typeof $parameter.source_big_query_object !== "undefined" ? { "projectID": typeof $parameter.projectID_string_input !== "undefined" ? $parameter.projectID_string_input : undefined, "datasetID": typeof $parameter.datasetID_string_input !== "undefined" ? $parameter.datasetID_string_input : undefined, "dataType": typeof $parameter.dataType_options_input !== "undefined" ? $parameter.dataType_options_input : undefined, "table": typeof $parameter.table_string_input !== "undefined" ? $parameter.table_string_input : undefined, "tablePrefix": typeof $parameter.tablePrefix_string_input !== "undefined" ? $parameter.tablePrefix_string_input : undefined, "customSQLRequest": typeof $parameter.customSQLRequest_string_input !== "undefined" ? $parameter.customSQLRequest_string_input : undefined, "uniqueIDColumn": typeof $parameter.uniqueIDColumn_string_input !== "undefined" ? $parameter.uniqueIDColumn_string_input : undefined } : typeof $parameter.projectID_string_input !== "undefined" ? $parameter.projectID_string_input : typeof $parameter.datasetID_string_input !== "undefined" ? $parameter.datasetID_string_input : typeof $parameter.dataType_options_input !== "undefined" ? $parameter.dataType_options_input : typeof $parameter.table_string_input !== "undefined" ? $parameter.table_string_input : typeof $parameter.tablePrefix_string_input !== "undefined" ? $parameter.tablePrefix_string_input : typeof $parameter.customSQLRequest_string_input !== "undefined" ? $parameter.customSQLRequest_string_input : typeof $parameter.uniqueIDColumn_string_input !== "undefined" ? $parameter.uniqueIDColumn_string_input : typeof $parameter.source_g_a4big_query_export_object !== "undefined" ? { "projectID": typeof $parameter.projectID_string_input !== "undefined" ? $parameter.projectID_string_input : undefined, "datasetID": typeof $parameter.datasetID_string_input !== "undefined" ? $parameter.datasetID_string_input : undefined, "tablePrefix": typeof $parameter.tablePrefix_string_input !== "undefined" ? $parameter.tablePrefix_string_input : undefined } : typeof $parameter.projectID_string_input !== "undefined" ? $parameter.projectID_string_input : typeof $parameter.datasetID_string_input !== "undefined" ? $parameter.datasetID_string_input : typeof $parameter.tablePrefix_string_input !== "undefined" ? $parameter.tablePrefix_string_input : typeof $parameter.source_docker_object !== "undefined" ? { "image": typeof $parameter.image_string_input !== "undefined" ? $parameter.image_string_input : undefined } : typeof $parameter.image_string_input !== "undefined" ? $parameter.image_string_input : typeof $parameter.source_update_shopify_object !== "undefined" ? $parameter.source_update_shopify_object : typeof $parameter.shopURL_string_input !== "undefined" ? $parameter.shopURL_string_input : undefined }}',
+          '={{ typeof $parameter.source_commercetools_object !== "undefined" ? { "storeKeys": typeof $parameter.storeKeys_json_input !== "undefined" ? JSON.parse($parameter.storeKeys_json_input) : undefined, "locales": typeof $parameter.locales_json_input !== "undefined" ? JSON.parse($parameter.locales_json_input) : undefined, "url": typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : undefined, "projectKey": typeof $parameter.projectKey_string_input !== "undefined" ? $parameter.projectKey_string_input : undefined, "fallbackIsInStockValue": typeof $parameter.fallbackIsInStockValue_boolean_input !== "undefined" ? $parameter.fallbackIsInStockValue_boolean_input : undefined, "productQueryPredicate": typeof $parameter.productQueryPredicate_string_input !== "undefined" ? $parameter.productQueryPredicate_string_input : undefined, "customFields": { "inventory": typeof $parameter.inventory_json_customFields_input !== "undefined" ? JSON.parse($parameter.inventory_json_customFields_input) : typeof $parameter.inventory_null_customFields_input !== "undefined" ? JSON.parse($parameter.inventory_null_customFields_input) : undefined, "price": typeof $parameter.price_json_customFields_input !== "undefined" ? JSON.parse($parameter.price_json_customFields_input) : typeof $parameter.price_null_customFields_input !== "undefined" ? JSON.parse($parameter.price_null_customFields_input) : undefined, "category": typeof $parameter.category_json_customFields_input !== "undefined" ? JSON.parse($parameter.category_json_customFields_input) : typeof $parameter.category_null_customFields_input !== "undefined" ? JSON.parse($parameter.category_null_customFields_input) : undefined } } : typeof $parameter.storeKeys_json_input !== "undefined" ? JSON.parse($parameter.storeKeys_json_input) : typeof $parameter.locales_json_input !== "undefined" ? JSON.parse($parameter.locales_json_input) : typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : typeof $parameter.projectKey_string_input !== "undefined" ? $parameter.projectKey_string_input : typeof $parameter.fallbackIsInStockValue_boolean_input !== "undefined" ? $parameter.fallbackIsInStockValue_boolean_input : typeof $parameter.productQueryPredicate_string_input !== "undefined" ? $parameter.productQueryPredicate_string_input : typeof $parameter.commercetools_custom_fields_object_input !== "undefined" ? $parameter.commercetools_custom_fields_object_input : typeof $parameter.inventory_customFields_input !== "undefined" ? $parameter.inventory_customFields_input : typeof $parameter.inventory_json_customFields_input !== "undefined" ? JSON.parse($parameter.inventory_json_customFields_input) : typeof $parameter.inventory_null_customFields_input !== "undefined" ? JSON.parse($parameter.inventory_null_customFields_input) : typeof $parameter.price_customFields_input !== "undefined" ? $parameter.price_customFields_input : typeof $parameter.price_json_customFields_input !== "undefined" ? JSON.parse($parameter.price_json_customFields_input) : typeof $parameter.price_null_customFields_input !== "undefined" ? JSON.parse($parameter.price_null_customFields_input) : typeof $parameter.category_customFields_input !== "undefined" ? $parameter.category_customFields_input : typeof $parameter.category_json_customFields_input !== "undefined" ? JSON.parse($parameter.category_json_customFields_input) : typeof $parameter.category_null_customFields_input !== "undefined" ? JSON.parse($parameter.category_null_customFields_input) : typeof $parameter.source_big_commerce_object !== "undefined" ? { "storeHash": typeof $parameter.storeHash_string_input !== "undefined" ? $parameter.storeHash_string_input : undefined, "channel": { "id": typeof $parameter.id_number_channel_input !== "undefined" ? $parameter.id_number_channel_input : undefined, "currencies": typeof $parameter.currencies_json_channel_input !== "undefined" ? JSON.parse($parameter.currencies_json_channel_input) : undefined }, "customFields": typeof $parameter.customFields_json_input !== "undefined" ? JSON.parse($parameter.customFields_json_input) : undefined, "productMetafields": typeof $parameter.productMetafields_json_input !== "undefined" ? JSON.parse($parameter.productMetafields_json_input) : undefined, "variantMetafields": typeof $parameter.variantMetafields_json_input !== "undefined" ? JSON.parse($parameter.variantMetafields_json_input) : undefined } : typeof $parameter.storeHash_string_input !== "undefined" ? $parameter.storeHash_string_input : typeof $parameter.big_commerce_channel_object_input !== "undefined" ? $parameter.big_commerce_channel_object_input : typeof $parameter.id_number_channel_input !== "undefined" ? $parameter.id_number_channel_input : typeof $parameter.currencies_json_channel_input !== "undefined" ? JSON.parse($parameter.currencies_json_channel_input) : typeof $parameter.customFields_json_input !== "undefined" ? JSON.parse($parameter.customFields_json_input) : typeof $parameter.productMetafields_json_input !== "undefined" ? JSON.parse($parameter.productMetafields_json_input) : typeof $parameter.variantMetafields_json_input !== "undefined" ? JSON.parse($parameter.variantMetafields_json_input) : typeof $parameter.source_json_object !== "undefined" ? { "url": typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : undefined, "uniqueIDColumn": typeof $parameter.uniqueIDColumn_string_input !== "undefined" ? $parameter.uniqueIDColumn_string_input : undefined, "method": typeof $parameter.method_options_input !== "undefined" ? $parameter.method_options_input : undefined } : typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : typeof $parameter.uniqueIDColumn_string_input !== "undefined" ? $parameter.uniqueIDColumn_string_input : typeof $parameter.method_options_input !== "undefined" ? $parameter.method_options_input : typeof $parameter.source_csv_object !== "undefined" ? { "url": typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : undefined, "uniqueIDColumn": typeof $parameter.uniqueIDColumn_string_input !== "undefined" ? $parameter.uniqueIDColumn_string_input : undefined, "mapping": typeof $parameter.mapping_object_input !== "undefined" ? JSON.parse($parameter.mapping_object_input) : undefined, "method": typeof $parameter.method_options_input !== "undefined" ? $parameter.method_options_input : undefined, "delimiter": typeof $parameter.delimiter_string_input !== "undefined" ? $parameter.delimiter_string_input : undefined } : typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : typeof $parameter.uniqueIDColumn_string_input !== "undefined" ? $parameter.uniqueIDColumn_string_input : typeof $parameter.mapping_object_input !== "undefined" ? JSON.parse($parameter.mapping_object_input) : typeof $parameter.method_options_input !== "undefined" ? $parameter.method_options_input : typeof $parameter.delimiter_string_input !== "undefined" ? $parameter.delimiter_string_input : typeof $parameter.source_big_query_object !== "undefined" ? { "projectID": typeof $parameter.projectID_string_input !== "undefined" ? $parameter.projectID_string_input : undefined, "datasetID": typeof $parameter.datasetID_string_input !== "undefined" ? $parameter.datasetID_string_input : undefined, "dataType": typeof $parameter.dataType_options_input !== "undefined" ? $parameter.dataType_options_input : undefined, "table": typeof $parameter.table_string_input !== "undefined" ? $parameter.table_string_input : undefined, "tablePrefix": typeof $parameter.tablePrefix_string_input !== "undefined" ? $parameter.tablePrefix_string_input : undefined, "customSQLRequest": typeof $parameter.customSQLRequest_string_input !== "undefined" ? $parameter.customSQLRequest_string_input : undefined, "uniqueIDColumn": typeof $parameter.uniqueIDColumn_string_input !== "undefined" ? $parameter.uniqueIDColumn_string_input : undefined } : typeof $parameter.projectID_string_input !== "undefined" ? $parameter.projectID_string_input : typeof $parameter.datasetID_string_input !== "undefined" ? $parameter.datasetID_string_input : typeof $parameter.dataType_options_input !== "undefined" ? $parameter.dataType_options_input : typeof $parameter.table_string_input !== "undefined" ? $parameter.table_string_input : typeof $parameter.tablePrefix_string_input !== "undefined" ? $parameter.tablePrefix_string_input : typeof $parameter.customSQLRequest_string_input !== "undefined" ? $parameter.customSQLRequest_string_input : typeof $parameter.uniqueIDColumn_string_input !== "undefined" ? $parameter.uniqueIDColumn_string_input : typeof $parameter.source_ga4big_query_export_object !== "undefined" ? { "projectID": typeof $parameter.projectID_string_input !== "undefined" ? $parameter.projectID_string_input : undefined, "datasetID": typeof $parameter.datasetID_string_input !== "undefined" ? $parameter.datasetID_string_input : undefined, "tablePrefix": typeof $parameter.tablePrefix_string_input !== "undefined" ? $parameter.tablePrefix_string_input : undefined } : typeof $parameter.projectID_string_input !== "undefined" ? $parameter.projectID_string_input : typeof $parameter.datasetID_string_input !== "undefined" ? $parameter.datasetID_string_input : typeof $parameter.tablePrefix_string_input !== "undefined" ? $parameter.tablePrefix_string_input : typeof $parameter.source_docker_object !== "undefined" ? { "image": typeof $parameter.image_string_input !== "undefined" ? $parameter.image_string_input : undefined, "configuration": typeof $parameter.configuration_object_input !== "undefined" ? JSON.parse($parameter.configuration_object_input) : undefined } : typeof $parameter.image_string_input !== "undefined" ? $parameter.image_string_input : typeof $parameter.configuration_object_input !== "undefined" ? JSON.parse($parameter.configuration_object_input) : typeof $parameter.source_shopify !== "undefined" ? $parameter.source_shopify : typeof $parameter.feature_flags_object_input !== "undefined" ? JSON.parse($parameter.feature_flags_object_input) : typeof $parameter.shopURL_string_input !== "undefined" ? $parameter.shopURL_string_input : undefined }}',
       },
     },
     displayOptions: {
@@ -5181,9 +5167,9 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     displayName: 'Url',
     name: 'url_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_create_object: ['input'],
@@ -5193,12 +5179,13 @@ const properties: INodeProperties[] = [
         operation: ['validateSource'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
+    default: '',
     displayName: 'Project Key',
     name: 'projectKey_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_create_object: ['input'],
@@ -5208,6 +5195,7 @@ const properties: INodeProperties[] = [
         operation: ['validateSource'],
       },
     },
+    required: true,
   },
   {
     type: 'boolean',
@@ -5228,11 +5216,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description:
       'Predicate to filter out specific products when indexing. For more information, see [Query Predicate](https://docs.commercetools.com/api/predicates/query).\n',
     displayName: 'Product Query Predicate',
     name: 'productQueryPredicate_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_create_object: ['input'],
@@ -5504,11 +5492,11 @@ const properties: INodeProperties[] = [
       },
       {
         name: 'Product Metafields',
-        value: 'productMetafields_fixedCollection_input',
+        value: 'productMetafields_json_input',
       },
       {
         name: 'Variant Metafields',
-        value: 'variantMetafields_fixedCollection_input',
+        value: 'variantMetafields_json_input',
       },
     ],
     displayOptions: {
@@ -5522,10 +5510,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Store hash identifying your BigCommerce store.',
     displayName: 'Store Hash',
     name: 'storeHash_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_create_object: ['input'],
@@ -5535,6 +5523,7 @@ const properties: INodeProperties[] = [
         operation: ['validateSource'],
       },
     },
+    required: true,
   },
   {
     displayName: 'Big Commerce Channel',
@@ -5565,10 +5554,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description: 'ID of the BigCommerce channel.',
     displayName: 'Id',
     name: 'id_number_channel_input',
-    default: '',
     displayOptions: {
       show: {
         source_create_object: ['input'],
@@ -5579,6 +5568,7 @@ const properties: INodeProperties[] = [
         operation: ['validateSource'],
       },
     },
+    required: true,
   },
   {
     type: 'json',
@@ -5616,41 +5606,16 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    type: 'fixedCollection',
+    type: 'json',
     displayName: 'Product Metafields',
-    name: 'productMetafields_fixedCollection_input',
-    default: '',
+    name: 'productMetafields_json_input',
+    default: '[]',
     description: undefined,
     required: false,
-    typeOptions: {
-      multipleValues: true,
-    },
-    options: [
-      {
-        name: 'productMetafields_fixedCollection_values',
-        displayName: 'Product Metafields',
-        values: [
-          {
-            type: 'string',
-            description: 'Namespace of the metafield.',
-            displayName: 'Namespace',
-            name: 'namespace_string_productMetafields',
-            default: '',
-          },
-          {
-            type: 'string',
-            description: 'Key identifier of the metafield.',
-            displayName: 'Key',
-            name: 'key_string_productMetafields',
-            default: '',
-          },
-        ],
-      },
-    ],
     displayOptions: {
       show: {
         source_create_object: ['input'],
-        source_big_commerce_object: ['productMetafields_fixedCollection_input'],
+        source_big_commerce_object: ['productMetafields_json_input'],
         input: ['source_big_commerce'],
         resource: ['sources'],
         operation: ['validateSource'],
@@ -5658,41 +5623,16 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    type: 'fixedCollection',
+    type: 'json',
     displayName: 'Variant Metafields',
-    name: 'variantMetafields_fixedCollection_input',
-    default: '',
+    name: 'variantMetafields_json_input',
+    default: '[]',
     description: undefined,
     required: false,
-    typeOptions: {
-      multipleValues: true,
-    },
-    options: [
-      {
-        name: 'variantMetafields_fixedCollection_values',
-        displayName: 'Variant Metafields',
-        values: [
-          {
-            type: 'string',
-            description: 'Namespace of the metafield.',
-            displayName: 'Namespace',
-            name: 'namespace_string_variantMetafields',
-            default: '',
-          },
-          {
-            type: 'string',
-            description: 'Key identifier of the metafield.',
-            displayName: 'Key',
-            name: 'key_string_variantMetafields',
-            default: '',
-          },
-        ],
-      },
-    ],
     displayOptions: {
       show: {
         source_create_object: ['input'],
-        source_big_commerce_object: ['variantMetafields_fixedCollection_input'],
+        source_big_commerce_object: ['variantMetafields_json_input'],
         input: ['source_big_commerce'],
         resource: ['sources'],
         operation: ['validateSource'],
@@ -5700,8 +5640,8 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    displayName: 'Source J SON',
-    name: 'source_j_son_object',
+    displayName: 'Source JSON',
+    name: 'source_json_object',
     type: 'multiOptions',
     description: undefined,
     required: true,
@@ -5731,31 +5671,32 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'URL of the file.',
     displayName: 'Url',
     name: 'url_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_create_object: ['input'],
-        source_j_son_object: ['url_string_input'],
+        source_json_object: ['url_string_input'],
         input: ['source_json'],
         resource: ['sources'],
         operation: ['validateSource'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
+    default: '',
     description:
       'Name of a column that contains a unique ID which will be used as `objectID` in Algolia.',
     displayName: 'Unique IDColumn',
     name: 'uniqueIDColumn_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_create_object: ['input'],
-        source_j_son_object: ['uniqueIDColumn_string_input'],
+        source_json_object: ['uniqueIDColumn_string_input'],
         input: ['source_json'],
         resource: ['sources'],
         operation: ['validateSource'],
@@ -5764,6 +5705,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     description: 'HTTP method to be used for retrieving your data.',
     options: [
       {
@@ -5777,11 +5719,10 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Method',
     name: 'method_options_input',
-    default: '',
     displayOptions: {
       show: {
         source_create_object: ['input'],
-        source_j_son_object: ['method_options_input'],
+        source_json_object: ['method_options_input'],
         input: ['source_json'],
         resource: ['sources'],
         operation: ['validateSource'],
@@ -5789,8 +5730,8 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    displayName: 'Source C SV',
-    name: 'source_c_sv_object',
+    displayName: 'Source CSV',
+    name: 'source_csv_object',
     type: 'multiOptions',
     description: undefined,
     required: true,
@@ -5806,7 +5747,7 @@ const properties: INodeProperties[] = [
       },
       {
         name: 'Mapping',
-        value: 'mapping_options_input',
+        value: 'mapping_object_input',
       },
       {
         name: 'Method',
@@ -5828,31 +5769,32 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'URL of the file.',
     displayName: 'Url',
     name: 'url_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_create_object: ['input'],
-        source_c_sv_object: ['url_string_input'],
+        source_csv_object: ['url_string_input'],
         input: ['source_csv'],
         resource: ['sources'],
         operation: ['validateSource'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
+    default: '',
     description:
       'Name of a column that contains a unique ID which will be used as `objectID` in Algolia.',
     displayName: 'Unique IDColumn',
     name: 'uniqueIDColumn_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_create_object: ['input'],
-        source_c_sv_object: ['uniqueIDColumn_string_input'],
+        source_csv_object: ['uniqueIDColumn_string_input'],
         input: ['source_csv'],
         resource: ['sources'],
         operation: ['validateSource'],
@@ -5860,25 +5802,16 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    type: 'fixedCollection',
-    options: [
-      {
-        name: 'mapping_options',
-        displayName: 'Mapping',
-        values: [],
-      },
-    ],
+    type: 'json',
     displayName: 'Mapping',
-    name: 'mapping_options_input',
-    default: '',
+    name: 'mapping_object_input',
     description: 'Key-value pairs of column names and their expected types.\n',
-    typeOptions: {
-      multipleValues: true,
-    },
+    required: false,
+    default: '{}',
     displayOptions: {
       show: {
         source_create_object: ['input'],
-        source_c_sv_object: ['mapping_options_input'],
+        source_csv_object: ['mapping_object_input'],
         input: ['source_csv'],
         resource: ['sources'],
         operation: ['validateSource'],
@@ -5887,6 +5820,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     description: 'HTTP method to be used for retrieving your data.',
     options: [
       {
@@ -5900,11 +5834,10 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Method',
     name: 'method_options_input',
-    default: '',
     displayOptions: {
       show: {
         source_create_object: ['input'],
-        source_c_sv_object: ['method_options_input'],
+        source_csv_object: ['method_options_input'],
         input: ['source_csv'],
         resource: ['sources'],
         operation: ['validateSource'],
@@ -5921,7 +5854,7 @@ const properties: INodeProperties[] = [
     displayOptions: {
       show: {
         source_create_object: ['input'],
-        source_c_sv_object: ['delimiter_string_input'],
+        source_csv_object: ['delimiter_string_input'],
         input: ['source_csv'],
         resource: ['sources'],
         operation: ['validateSource'],
@@ -5976,10 +5909,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Project ID of the BigQuery source.',
     displayName: 'Project ID',
     name: 'projectID_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_create_object: ['input'],
@@ -5989,13 +5922,14 @@ const properties: INodeProperties[] = [
         operation: ['validateSource'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
+    default: '',
     description: 'Dataset ID of the BigQuery source.',
     displayName: 'Dataset ID',
     name: 'datasetID_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_create_object: ['input'],
@@ -6005,9 +5939,11 @@ const properties: INodeProperties[] = [
         operation: ['validateSource'],
       },
     },
+    required: true,
   },
   {
     type: 'options',
+    default: '',
     options: [
       {
         name: 'ga4',
@@ -6020,7 +5956,6 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Data Type',
     name: 'dataType_options_input',
-    default: '',
     displayOptions: {
       show: {
         source_create_object: ['input'],
@@ -6033,10 +5968,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Table name for the BigQuery export.',
     displayName: 'Table',
     name: 'table_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_create_object: ['input'],
@@ -6049,10 +5984,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Table prefix for a Google Analytics 4 data export to BigQuery.',
     displayName: 'Table Prefix',
     name: 'tablePrefix_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_create_object: ['input'],
@@ -6065,10 +6000,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Custom SQL request to extract data from the BigQuery table.',
     displayName: 'Custom SQLRequest',
     name: 'customSQLRequest_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_create_object: ['input'],
@@ -6081,11 +6016,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description:
       'Name of a column that contains a unique ID which will be used as `objectID` in Algolia.',
     displayName: 'Unique IDColumn',
     name: 'uniqueIDColumn_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_create_object: ['input'],
@@ -6097,8 +6032,8 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    displayName: 'Source G A4Big Query Export',
-    name: 'source_g_a4big_query_export_object',
+    displayName: 'Source GA4Big Query Export',
+    name: 'source_ga4big_query_export_object',
     type: 'multiOptions',
     description: undefined,
     required: true,
@@ -6128,52 +6063,55 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'GCP project ID that the BigQuery export writes to.',
     displayName: 'Project ID',
     name: 'projectID_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_create_object: ['input'],
-        source_g_a4big_query_export_object: ['projectID_string_input'],
+        source_ga4big_query_export_object: ['projectID_string_input'],
         input: ['source_ga4big_query_export'],
         resource: ['sources'],
         operation: ['validateSource'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
+    default: '',
     description: 'BigQuery dataset ID that the BigQuery export writes to.',
     displayName: 'Dataset ID',
     name: 'datasetID_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_create_object: ['input'],
-        source_g_a4big_query_export_object: ['datasetID_string_input'],
+        source_ga4big_query_export_object: ['datasetID_string_input'],
         input: ['source_ga4big_query_export'],
         resource: ['sources'],
         operation: ['validateSource'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
     placeholder: 'events_intraday_',
+    default: '',
     description: 'Prefix of the tables that the BigQuery Export writes to.',
     displayName: 'Table Prefix',
     name: 'tablePrefix_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_create_object: ['input'],
-        source_g_a4big_query_export_object: ['tablePrefix_string_input'],
+        source_ga4big_query_export_object: ['tablePrefix_string_input'],
         input: ['source_ga4big_query_export'],
         resource: ['sources'],
         operation: ['validateSource'],
       },
     },
+    required: true,
   },
   {
     displayName: 'Source Docker',
@@ -6186,6 +6124,10 @@ const properties: INodeProperties[] = [
       {
         name: 'Image',
         value: 'image_string_input',
+      },
+      {
+        name: 'Configuration',
+        value: 'configuration_object_input',
       },
     ],
     displayOptions: {
@@ -6200,10 +6142,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'zendesk',
+    default: '',
     description: 'Name of the connector.',
     displayName: 'Image',
     name: 'image_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_create_object: ['input'],
@@ -6213,15 +6155,41 @@ const properties: INodeProperties[] = [
         operation: ['validateSource'],
       },
     },
+    required: true,
   },
   {
-    displayName: 'Source Update Shopify',
-    name: 'source_update_shopify_object',
+    type: 'json',
+    displayName: 'Configuration',
+    name: 'configuration_object_input',
+    description: 'Configuration of the spec.',
+    required: true,
+    default: '{}',
+    displayOptions: {
+      show: {
+        source_create_object: ['input'],
+        source_docker_object: ['configuration_object_input'],
+        input: ['source_docker'],
+        resource: ['sources'],
+        operation: ['validateSource'],
+      },
+    },
+  },
+  {
     type: 'multiOptions',
+    name: 'source_shopify',
+    displayName: 'Source Shopify',
     description: undefined,
-    required: false,
     default: [],
-    options: [],
+    options: [
+      {
+        name: 'Feature Flags',
+        value: 'feature_flags_object_input',
+      },
+      {
+        name: 'Shop URL',
+        value: 'shopurl_string_input',
+      },
+    ],
     displayOptions: {
       show: {
         source_create_object: ['input'],
@@ -6232,11 +6200,28 @@ const properties: INodeProperties[] = [
     },
   },
   {
+    type: 'json',
+    displayName: 'Feature Flags',
+    name: 'feature_flags_object_input',
+    description: 'Feature flags for the Shopify source.',
+    required: false,
+    default: '{}',
+    displayOptions: {
+      show: {
+        source_create_object: ['input'],
+        source_shopify: ['feature_flags_object_input'],
+        input: ['source_shopify'],
+        resource: ['sources'],
+        operation: ['validateSource'],
+      },
+    },
+  },
+  {
     type: 'string',
+    default: '',
     description: 'URL of the Shopify store.',
     displayName: 'Shop URL',
     name: 'shopURL_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_create_object: ['input'],
@@ -6246,10 +6231,12 @@ const properties: INodeProperties[] = [
         operation: ['validateSource'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
     placeholder: '6c02aeb1-775e-418e-870b-1faccd4b2c0f',
+    default: '',
     description: 'Universally unique identifier (UUID) of an authentication resource.',
     routing: {
       send: {
@@ -6260,7 +6247,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Authentication ID',
     name: 'authenticationID_string',
-    default: '',
     displayOptions: {
       show: {
         source_create_object: ['authenticationID_string'],
@@ -6295,11 +6281,11 @@ const properties: INodeProperties[] = [
     name: 'sourceIDs_json',
     default: '[]',
     description: undefined,
-    required: false,
+    required: true,
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'sourceIDs',
       },
     },
@@ -6314,10 +6300,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '6c02aeb1-775e-418e-870b-1faccd4b2c0f',
+    default: '',
     description: 'Universally uniqud identifier (UUID) of a source.',
     displayName: 'Source ID',
     name: 'sourceID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -6329,10 +6315,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '6c02aeb1-775e-418e-870b-1faccd4b2c0f',
+    default: '',
     description: 'Universally uniqud identifier (UUID) of a source.',
     displayName: 'Source ID',
     name: 'sourceID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -6371,6 +6357,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Descriptive name of the source.',
     routing: {
       send: {
@@ -6381,7 +6368,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Name',
     name: 'name_string',
-    default: '',
     displayOptions: {
       show: {
         source_update_object: ['name_string'],
@@ -6430,7 +6416,7 @@ const properties: INodeProperties[] = [
         type: 'body',
         property: 'input',
         value:
-          '={{ typeof $parameter.source_update_commercetools_object !== "undefined" ? { "storeKeys": typeof $parameter.storeKeys_json_input !== "undefined" ? JSON.parse($parameter.storeKeys_json_input) : undefined, "locales": typeof $parameter.locales_json_input !== "undefined" ? JSON.parse($parameter.locales_json_input) : undefined, "url": typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : undefined, "fallbackIsInStockValue": typeof $parameter.fallbackIsInStockValue_boolean_input !== "undefined" ? $parameter.fallbackIsInStockValue_boolean_input : undefined, "productQueryPredicate": typeof $parameter.productQueryPredicate_string_input !== "undefined" ? $parameter.productQueryPredicate_string_input : undefined, "customFields": { "inventory": typeof $parameter.inventory_json_customFields_input !== "undefined" ? JSON.parse($parameter.inventory_json_customFields_input) : typeof $parameter.inventory_null_customFields_input !== "undefined" ? JSON.parse($parameter.inventory_null_customFields_input) : undefined, "price": typeof $parameter.price_json_customFields_input !== "undefined" ? JSON.parse($parameter.price_json_customFields_input) : typeof $parameter.price_null_customFields_input !== "undefined" ? JSON.parse($parameter.price_null_customFields_input) : undefined, "category": typeof $parameter.category_json_customFields_input !== "undefined" ? JSON.parse($parameter.category_json_customFields_input) : typeof $parameter.category_null_customFields_input !== "undefined" ? JSON.parse($parameter.category_null_customFields_input) : undefined } } : typeof $parameter.storeKeys_json_input !== "undefined" ? JSON.parse($parameter.storeKeys_json_input) : typeof $parameter.locales_json_input !== "undefined" ? JSON.parse($parameter.locales_json_input) : typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : typeof $parameter.fallbackIsInStockValue_boolean_input !== "undefined" ? $parameter.fallbackIsInStockValue_boolean_input : typeof $parameter.productQueryPredicate_string_input !== "undefined" ? $parameter.productQueryPredicate_string_input : typeof $parameter.commercetools_custom_fields_object_input !== "undefined" ? $parameter.commercetools_custom_fields_object_input : typeof $parameter.inventory_customFields_input !== "undefined" ? $parameter.inventory_customFields_input : typeof $parameter.inventory_json_customFields_input !== "undefined" ? JSON.parse($parameter.inventory_json_customFields_input) : typeof $parameter.inventory_null_customFields_input !== "undefined" ? JSON.parse($parameter.inventory_null_customFields_input) : typeof $parameter.price_customFields_input !== "undefined" ? $parameter.price_customFields_input : typeof $parameter.price_json_customFields_input !== "undefined" ? JSON.parse($parameter.price_json_customFields_input) : typeof $parameter.price_null_customFields_input !== "undefined" ? JSON.parse($parameter.price_null_customFields_input) : typeof $parameter.category_customFields_input !== "undefined" ? $parameter.category_customFields_input : typeof $parameter.category_json_customFields_input !== "undefined" ? JSON.parse($parameter.category_json_customFields_input) : typeof $parameter.category_null_customFields_input !== "undefined" ? JSON.parse($parameter.category_null_customFields_input) : typeof $parameter.source_j_son_object !== "undefined" ? { "url": typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : undefined, "uniqueIDColumn": typeof $parameter.uniqueIDColumn_string_input !== "undefined" ? $parameter.uniqueIDColumn_string_input : undefined, "method": typeof $parameter.method_options_input !== "undefined" ? $parameter.method_options_input : undefined } : typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : typeof $parameter.uniqueIDColumn_string_input !== "undefined" ? $parameter.uniqueIDColumn_string_input : typeof $parameter.method_options_input !== "undefined" ? $parameter.method_options_input : typeof $parameter.source_c_sv_object !== "undefined" ? { "url": typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : undefined, "uniqueIDColumn": typeof $parameter.uniqueIDColumn_string_input !== "undefined" ? $parameter.uniqueIDColumn_string_input : undefined, "mapping": typeof $parameter.mapping_options_input !== "undefined" ? $parameter.mapping_options_input : undefined, "method": typeof $parameter.method_options_input !== "undefined" ? $parameter.method_options_input : undefined, "delimiter": typeof $parameter.delimiter_string_input !== "undefined" ? $parameter.delimiter_string_input : undefined } : typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : typeof $parameter.uniqueIDColumn_string_input !== "undefined" ? $parameter.uniqueIDColumn_string_input : typeof $parameter.mapping_options_input !== "undefined" ? $parameter.mapping_options_input : typeof $parameter.method_options_input !== "undefined" ? $parameter.method_options_input : typeof $parameter.delimiter_string_input !== "undefined" ? $parameter.delimiter_string_input : typeof $parameter.source_big_query_object !== "undefined" ? { "projectID": typeof $parameter.projectID_string_input !== "undefined" ? $parameter.projectID_string_input : undefined, "datasetID": typeof $parameter.datasetID_string_input !== "undefined" ? $parameter.datasetID_string_input : undefined, "dataType": typeof $parameter.dataType_options_input !== "undefined" ? $parameter.dataType_options_input : undefined, "table": typeof $parameter.table_string_input !== "undefined" ? $parameter.table_string_input : undefined, "tablePrefix": typeof $parameter.tablePrefix_string_input !== "undefined" ? $parameter.tablePrefix_string_input : undefined, "customSQLRequest": typeof $parameter.customSQLRequest_string_input !== "undefined" ? $parameter.customSQLRequest_string_input : undefined, "uniqueIDColumn": typeof $parameter.uniqueIDColumn_string_input !== "undefined" ? $parameter.uniqueIDColumn_string_input : undefined } : typeof $parameter.projectID_string_input !== "undefined" ? $parameter.projectID_string_input : typeof $parameter.datasetID_string_input !== "undefined" ? $parameter.datasetID_string_input : typeof $parameter.dataType_options_input !== "undefined" ? $parameter.dataType_options_input : typeof $parameter.table_string_input !== "undefined" ? $parameter.table_string_input : typeof $parameter.tablePrefix_string_input !== "undefined" ? $parameter.tablePrefix_string_input : typeof $parameter.customSQLRequest_string_input !== "undefined" ? $parameter.customSQLRequest_string_input : typeof $parameter.uniqueIDColumn_string_input !== "undefined" ? $parameter.uniqueIDColumn_string_input : typeof $parameter.source_g_a4big_query_export_object !== "undefined" ? { "projectID": typeof $parameter.projectID_string_input !== "undefined" ? $parameter.projectID_string_input : undefined, "datasetID": typeof $parameter.datasetID_string_input !== "undefined" ? $parameter.datasetID_string_input : undefined, "tablePrefix": typeof $parameter.tablePrefix_string_input !== "undefined" ? $parameter.tablePrefix_string_input : undefined } : typeof $parameter.projectID_string_input !== "undefined" ? $parameter.projectID_string_input : typeof $parameter.datasetID_string_input !== "undefined" ? $parameter.datasetID_string_input : typeof $parameter.tablePrefix_string_input !== "undefined" ? $parameter.tablePrefix_string_input : typeof $parameter.source_update_docker_object !== "undefined" ? $parameter.source_update_docker_object : typeof $parameter.source_update_shopify_object !== "undefined" ? $parameter.source_update_shopify_object : undefined }}',
+          '={{ typeof $parameter.source_update_commercetools_object !== "undefined" ? { "storeKeys": typeof $parameter.storeKeys_json_input !== "undefined" ? JSON.parse($parameter.storeKeys_json_input) : undefined, "locales": typeof $parameter.locales_json_input !== "undefined" ? JSON.parse($parameter.locales_json_input) : undefined, "url": typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : undefined, "fallbackIsInStockValue": typeof $parameter.fallbackIsInStockValue_boolean_input !== "undefined" ? $parameter.fallbackIsInStockValue_boolean_input : undefined, "productQueryPredicate": typeof $parameter.productQueryPredicate_string_input !== "undefined" ? $parameter.productQueryPredicate_string_input : undefined, "customFields": { "inventory": typeof $parameter.inventory_json_customFields_input !== "undefined" ? JSON.parse($parameter.inventory_json_customFields_input) : typeof $parameter.inventory_null_customFields_input !== "undefined" ? JSON.parse($parameter.inventory_null_customFields_input) : undefined, "price": typeof $parameter.price_json_customFields_input !== "undefined" ? JSON.parse($parameter.price_json_customFields_input) : typeof $parameter.price_null_customFields_input !== "undefined" ? JSON.parse($parameter.price_null_customFields_input) : undefined, "category": typeof $parameter.category_json_customFields_input !== "undefined" ? JSON.parse($parameter.category_json_customFields_input) : typeof $parameter.category_null_customFields_input !== "undefined" ? JSON.parse($parameter.category_null_customFields_input) : undefined } } : typeof $parameter.storeKeys_json_input !== "undefined" ? JSON.parse($parameter.storeKeys_json_input) : typeof $parameter.locales_json_input !== "undefined" ? JSON.parse($parameter.locales_json_input) : typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : typeof $parameter.fallbackIsInStockValue_boolean_input !== "undefined" ? $parameter.fallbackIsInStockValue_boolean_input : typeof $parameter.productQueryPredicate_string_input !== "undefined" ? $parameter.productQueryPredicate_string_input : typeof $parameter.commercetools_custom_fields_object_input !== "undefined" ? $parameter.commercetools_custom_fields_object_input : typeof $parameter.inventory_customFields_input !== "undefined" ? $parameter.inventory_customFields_input : typeof $parameter.inventory_json_customFields_input !== "undefined" ? JSON.parse($parameter.inventory_json_customFields_input) : typeof $parameter.inventory_null_customFields_input !== "undefined" ? JSON.parse($parameter.inventory_null_customFields_input) : typeof $parameter.price_customFields_input !== "undefined" ? $parameter.price_customFields_input : typeof $parameter.price_json_customFields_input !== "undefined" ? JSON.parse($parameter.price_json_customFields_input) : typeof $parameter.price_null_customFields_input !== "undefined" ? JSON.parse($parameter.price_null_customFields_input) : typeof $parameter.category_customFields_input !== "undefined" ? $parameter.category_customFields_input : typeof $parameter.category_json_customFields_input !== "undefined" ? JSON.parse($parameter.category_json_customFields_input) : typeof $parameter.category_null_customFields_input !== "undefined" ? JSON.parse($parameter.category_null_customFields_input) : typeof $parameter.source_json_object !== "undefined" ? { "url": typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : undefined, "uniqueIDColumn": typeof $parameter.uniqueIDColumn_string_input !== "undefined" ? $parameter.uniqueIDColumn_string_input : undefined, "method": typeof $parameter.method_options_input !== "undefined" ? $parameter.method_options_input : undefined } : typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : typeof $parameter.uniqueIDColumn_string_input !== "undefined" ? $parameter.uniqueIDColumn_string_input : typeof $parameter.method_options_input !== "undefined" ? $parameter.method_options_input : typeof $parameter.source_csv_object !== "undefined" ? { "url": typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : undefined, "uniqueIDColumn": typeof $parameter.uniqueIDColumn_string_input !== "undefined" ? $parameter.uniqueIDColumn_string_input : undefined, "mapping": typeof $parameter.mapping_object_input !== "undefined" ? JSON.parse($parameter.mapping_object_input) : undefined, "method": typeof $parameter.method_options_input !== "undefined" ? $parameter.method_options_input : undefined, "delimiter": typeof $parameter.delimiter_string_input !== "undefined" ? $parameter.delimiter_string_input : undefined } : typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : typeof $parameter.uniqueIDColumn_string_input !== "undefined" ? $parameter.uniqueIDColumn_string_input : typeof $parameter.mapping_object_input !== "undefined" ? JSON.parse($parameter.mapping_object_input) : typeof $parameter.method_options_input !== "undefined" ? $parameter.method_options_input : typeof $parameter.delimiter_string_input !== "undefined" ? $parameter.delimiter_string_input : typeof $parameter.source_big_query_object !== "undefined" ? { "projectID": typeof $parameter.projectID_string_input !== "undefined" ? $parameter.projectID_string_input : undefined, "datasetID": typeof $parameter.datasetID_string_input !== "undefined" ? $parameter.datasetID_string_input : undefined, "dataType": typeof $parameter.dataType_options_input !== "undefined" ? $parameter.dataType_options_input : undefined, "table": typeof $parameter.table_string_input !== "undefined" ? $parameter.table_string_input : undefined, "tablePrefix": typeof $parameter.tablePrefix_string_input !== "undefined" ? $parameter.tablePrefix_string_input : undefined, "customSQLRequest": typeof $parameter.customSQLRequest_string_input !== "undefined" ? $parameter.customSQLRequest_string_input : undefined, "uniqueIDColumn": typeof $parameter.uniqueIDColumn_string_input !== "undefined" ? $parameter.uniqueIDColumn_string_input : undefined } : typeof $parameter.projectID_string_input !== "undefined" ? $parameter.projectID_string_input : typeof $parameter.datasetID_string_input !== "undefined" ? $parameter.datasetID_string_input : typeof $parameter.dataType_options_input !== "undefined" ? $parameter.dataType_options_input : typeof $parameter.table_string_input !== "undefined" ? $parameter.table_string_input : typeof $parameter.tablePrefix_string_input !== "undefined" ? $parameter.tablePrefix_string_input : typeof $parameter.customSQLRequest_string_input !== "undefined" ? $parameter.customSQLRequest_string_input : typeof $parameter.uniqueIDColumn_string_input !== "undefined" ? $parameter.uniqueIDColumn_string_input : typeof $parameter.source_ga4big_query_export_object !== "undefined" ? { "projectID": typeof $parameter.projectID_string_input !== "undefined" ? $parameter.projectID_string_input : undefined, "datasetID": typeof $parameter.datasetID_string_input !== "undefined" ? $parameter.datasetID_string_input : undefined, "tablePrefix": typeof $parameter.tablePrefix_string_input !== "undefined" ? $parameter.tablePrefix_string_input : undefined } : typeof $parameter.projectID_string_input !== "undefined" ? $parameter.projectID_string_input : typeof $parameter.datasetID_string_input !== "undefined" ? $parameter.datasetID_string_input : typeof $parameter.tablePrefix_string_input !== "undefined" ? $parameter.tablePrefix_string_input : typeof $parameter.source_update_docker_object !== "undefined" ? { "configuration": typeof $parameter.configuration_object_input !== "undefined" ? JSON.parse($parameter.configuration_object_input) : undefined } : typeof $parameter.configuration_object_input !== "undefined" ? JSON.parse($parameter.configuration_object_input) : typeof $parameter.source_update_shopify_object !== "undefined" ? { "featureFlags": typeof $parameter.feature_flags_object_input !== "undefined" ? JSON.parse($parameter.feature_flags_object_input) : undefined } : typeof $parameter.feature_flags_object_input !== "undefined" ? JSON.parse($parameter.feature_flags_object_input) : undefined }}',
       },
     },
     displayOptions: {
@@ -6519,9 +6505,9 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     displayName: 'Url',
     name: 'url_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_update_object: ['input'],
@@ -6534,11 +6520,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       "Whether a fallback value is stored in the Algolia record if there's no inventory information about the product.\n",
     displayName: 'Fallback Is In Stock Value',
     name: 'fallbackIsInStockValue_boolean_input',
-    default: '',
     displayOptions: {
       show: {
         source_update_object: ['input'],
@@ -6551,11 +6537,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description:
       'Predicate to filter out specific products when indexing. For more information, see [Query Predicate](https://docs.commercetools.com/api/predicates/query).\n',
     displayName: 'Product Query Predicate',
     name: 'productQueryPredicate_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_update_object: ['input'],
@@ -6806,8 +6792,8 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    displayName: 'Source J SON',
-    name: 'source_j_son_object',
+    displayName: 'Source JSON',
+    name: 'source_json_object',
     type: 'multiOptions',
     description: undefined,
     required: true,
@@ -6837,31 +6823,32 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'URL of the file.',
     displayName: 'Url',
     name: 'url_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_update_object: ['input'],
-        source_j_son_object: ['url_string_input'],
+        source_json_object: ['url_string_input'],
         input: ['source_json'],
         resource: ['sources'],
         operation: ['updateSource'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
+    default: '',
     description:
       'Name of a column that contains a unique ID which will be used as `objectID` in Algolia.',
     displayName: 'Unique IDColumn',
     name: 'uniqueIDColumn_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_update_object: ['input'],
-        source_j_son_object: ['uniqueIDColumn_string_input'],
+        source_json_object: ['uniqueIDColumn_string_input'],
         input: ['source_json'],
         resource: ['sources'],
         operation: ['updateSource'],
@@ -6870,6 +6857,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     description: 'HTTP method to be used for retrieving your data.',
     options: [
       {
@@ -6883,11 +6871,10 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Method',
     name: 'method_options_input',
-    default: '',
     displayOptions: {
       show: {
         source_update_object: ['input'],
-        source_j_son_object: ['method_options_input'],
+        source_json_object: ['method_options_input'],
         input: ['source_json'],
         resource: ['sources'],
         operation: ['updateSource'],
@@ -6895,8 +6882,8 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    displayName: 'Source C SV',
-    name: 'source_c_sv_object',
+    displayName: 'Source CSV',
+    name: 'source_csv_object',
     type: 'multiOptions',
     description: undefined,
     required: true,
@@ -6912,7 +6899,7 @@ const properties: INodeProperties[] = [
       },
       {
         name: 'Mapping',
-        value: 'mapping_options_input',
+        value: 'mapping_object_input',
       },
       {
         name: 'Method',
@@ -6934,31 +6921,32 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'URL of the file.',
     displayName: 'Url',
     name: 'url_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_update_object: ['input'],
-        source_c_sv_object: ['url_string_input'],
+        source_csv_object: ['url_string_input'],
         input: ['source_csv'],
         resource: ['sources'],
         operation: ['updateSource'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
+    default: '',
     description:
       'Name of a column that contains a unique ID which will be used as `objectID` in Algolia.',
     displayName: 'Unique IDColumn',
     name: 'uniqueIDColumn_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_update_object: ['input'],
-        source_c_sv_object: ['uniqueIDColumn_string_input'],
+        source_csv_object: ['uniqueIDColumn_string_input'],
         input: ['source_csv'],
         resource: ['sources'],
         operation: ['updateSource'],
@@ -6966,25 +6954,16 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    type: 'fixedCollection',
-    options: [
-      {
-        name: 'mapping_options',
-        displayName: 'Mapping',
-        values: [],
-      },
-    ],
+    type: 'json',
     displayName: 'Mapping',
-    name: 'mapping_options_input',
-    default: '',
+    name: 'mapping_object_input',
     description: 'Key-value pairs of column names and their expected types.\n',
-    typeOptions: {
-      multipleValues: true,
-    },
+    required: false,
+    default: '{}',
     displayOptions: {
       show: {
         source_update_object: ['input'],
-        source_c_sv_object: ['mapping_options_input'],
+        source_csv_object: ['mapping_object_input'],
         input: ['source_csv'],
         resource: ['sources'],
         operation: ['updateSource'],
@@ -6993,6 +6972,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     description: 'HTTP method to be used for retrieving your data.',
     options: [
       {
@@ -7006,11 +6986,10 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Method',
     name: 'method_options_input',
-    default: '',
     displayOptions: {
       show: {
         source_update_object: ['input'],
-        source_c_sv_object: ['method_options_input'],
+        source_csv_object: ['method_options_input'],
         input: ['source_csv'],
         resource: ['sources'],
         operation: ['updateSource'],
@@ -7027,7 +7006,7 @@ const properties: INodeProperties[] = [
     displayOptions: {
       show: {
         source_update_object: ['input'],
-        source_c_sv_object: ['delimiter_string_input'],
+        source_csv_object: ['delimiter_string_input'],
         input: ['source_csv'],
         resource: ['sources'],
         operation: ['updateSource'],
@@ -7082,10 +7061,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Project ID of the BigQuery source.',
     displayName: 'Project ID',
     name: 'projectID_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_update_object: ['input'],
@@ -7095,13 +7074,14 @@ const properties: INodeProperties[] = [
         operation: ['updateSource'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
+    default: '',
     description: 'Dataset ID of the BigQuery source.',
     displayName: 'Dataset ID',
     name: 'datasetID_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_update_object: ['input'],
@@ -7111,9 +7091,11 @@ const properties: INodeProperties[] = [
         operation: ['updateSource'],
       },
     },
+    required: true,
   },
   {
     type: 'options',
+    default: '',
     options: [
       {
         name: 'ga4',
@@ -7126,7 +7108,6 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Data Type',
     name: 'dataType_options_input',
-    default: '',
     displayOptions: {
       show: {
         source_update_object: ['input'],
@@ -7139,10 +7120,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Table name for the BigQuery export.',
     displayName: 'Table',
     name: 'table_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_update_object: ['input'],
@@ -7155,10 +7136,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Table prefix for a Google Analytics 4 data export to BigQuery.',
     displayName: 'Table Prefix',
     name: 'tablePrefix_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_update_object: ['input'],
@@ -7171,10 +7152,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Custom SQL request to extract data from the BigQuery table.',
     displayName: 'Custom SQLRequest',
     name: 'customSQLRequest_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_update_object: ['input'],
@@ -7187,11 +7168,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description:
       'Name of a column that contains a unique ID which will be used as `objectID` in Algolia.',
     displayName: 'Unique IDColumn',
     name: 'uniqueIDColumn_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_update_object: ['input'],
@@ -7203,8 +7184,8 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    displayName: 'Source G A4Big Query Export',
-    name: 'source_g_a4big_query_export_object',
+    displayName: 'Source GA4Big Query Export',
+    name: 'source_ga4big_query_export_object',
     type: 'multiOptions',
     description: undefined,
     required: true,
@@ -7234,52 +7215,55 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'GCP project ID that the BigQuery export writes to.',
     displayName: 'Project ID',
     name: 'projectID_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_update_object: ['input'],
-        source_g_a4big_query_export_object: ['projectID_string_input'],
+        source_ga4big_query_export_object: ['projectID_string_input'],
         input: ['source_ga4big_query_export'],
         resource: ['sources'],
         operation: ['updateSource'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
+    default: '',
     description: 'BigQuery dataset ID that the BigQuery export writes to.',
     displayName: 'Dataset ID',
     name: 'datasetID_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_update_object: ['input'],
-        source_g_a4big_query_export_object: ['datasetID_string_input'],
+        source_ga4big_query_export_object: ['datasetID_string_input'],
         input: ['source_ga4big_query_export'],
         resource: ['sources'],
         operation: ['updateSource'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
     placeholder: 'events_intraday_',
+    default: '',
     description: 'Prefix of the tables that the BigQuery Export writes to.',
     displayName: 'Table Prefix',
     name: 'tablePrefix_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_update_object: ['input'],
-        source_g_a4big_query_export_object: ['tablePrefix_string_input'],
+        source_ga4big_query_export_object: ['tablePrefix_string_input'],
         input: ['source_ga4big_query_export'],
         resource: ['sources'],
         operation: ['updateSource'],
       },
     },
+    required: true,
   },
   {
     displayName: 'Source Update Docker',
@@ -7288,10 +7272,32 @@ const properties: INodeProperties[] = [
     description: undefined,
     required: true,
     default: [],
-    options: [],
+    options: [
+      {
+        name: 'Configuration',
+        value: 'configuration_object_input',
+      },
+    ],
     displayOptions: {
       show: {
         source_update_object: ['input'],
+        input: ['source_update_docker'],
+        resource: ['sources'],
+        operation: ['updateSource'],
+      },
+    },
+  },
+  {
+    type: 'json',
+    displayName: 'Configuration',
+    name: 'configuration_object_input',
+    description: 'Configuration of the spec.',
+    required: true,
+    default: '{}',
+    displayOptions: {
+      show: {
+        source_update_object: ['input'],
+        source_update_docker_object: ['configuration_object_input'],
         input: ['source_update_docker'],
         resource: ['sources'],
         operation: ['updateSource'],
@@ -7305,7 +7311,12 @@ const properties: INodeProperties[] = [
     description: undefined,
     required: false,
     default: [],
-    options: [],
+    options: [
+      {
+        name: 'Feature Flags',
+        value: 'feature_flags_object_input',
+      },
+    ],
     displayOptions: {
       show: {
         source_update_object: ['input'],
@@ -7316,8 +7327,26 @@ const properties: INodeProperties[] = [
     },
   },
   {
+    type: 'json',
+    displayName: 'Feature Flags',
+    name: 'feature_flags_object_input',
+    description: 'Feature flags for the Shopify source.',
+    required: false,
+    default: '{}',
+    displayOptions: {
+      show: {
+        source_update_object: ['input'],
+        source_update_shopify_object: ['feature_flags_object_input'],
+        input: ['source_update_shopify'],
+        resource: ['sources'],
+        operation: ['updateSource'],
+      },
+    },
+  },
+  {
     type: 'string',
     placeholder: '6c02aeb1-775e-418e-870b-1faccd4b2c0f',
+    default: '',
     description: 'Universally unique identifier (UUID) of an authentication resource.',
     routing: {
       send: {
@@ -7328,7 +7357,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Authentication ID',
     name: 'authenticationID_string',
-    default: '',
     displayOptions: {
       show: {
         source_update_object: ['authenticationID_string'],
@@ -7340,10 +7368,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '6c02aeb1-775e-418e-870b-1faccd4b2c0f',
+    default: '',
     description: 'Universally uniqud identifier (UUID) of a source.',
     displayName: 'Source ID',
     name: 'sourceID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -7355,10 +7383,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '6c02aeb1-775e-418e-870b-1faccd4b2c0f',
+    default: '',
     description: 'Universally uniqud identifier (UUID) of a source.',
     displayName: 'Source ID',
     name: 'sourceID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -7397,6 +7425,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Descriptive name of the source.',
     routing: {
       send: {
@@ -7407,7 +7436,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Name',
     name: 'name_string',
-    default: '',
     displayOptions: {
       show: {
         source_update_object: ['name_string'],
@@ -7456,7 +7484,7 @@ const properties: INodeProperties[] = [
         type: 'body',
         property: 'input',
         value:
-          '={{ typeof $parameter.source_update_commercetools_object !== "undefined" ? { "storeKeys": typeof $parameter.storeKeys_json_input !== "undefined" ? JSON.parse($parameter.storeKeys_json_input) : undefined, "locales": typeof $parameter.locales_json_input !== "undefined" ? JSON.parse($parameter.locales_json_input) : undefined, "url": typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : undefined, "fallbackIsInStockValue": typeof $parameter.fallbackIsInStockValue_boolean_input !== "undefined" ? $parameter.fallbackIsInStockValue_boolean_input : undefined, "productQueryPredicate": typeof $parameter.productQueryPredicate_string_input !== "undefined" ? $parameter.productQueryPredicate_string_input : undefined, "customFields": { "inventory": typeof $parameter.inventory_json_customFields_input !== "undefined" ? JSON.parse($parameter.inventory_json_customFields_input) : typeof $parameter.inventory_null_customFields_input !== "undefined" ? JSON.parse($parameter.inventory_null_customFields_input) : undefined, "price": typeof $parameter.price_json_customFields_input !== "undefined" ? JSON.parse($parameter.price_json_customFields_input) : typeof $parameter.price_null_customFields_input !== "undefined" ? JSON.parse($parameter.price_null_customFields_input) : undefined, "category": typeof $parameter.category_json_customFields_input !== "undefined" ? JSON.parse($parameter.category_json_customFields_input) : typeof $parameter.category_null_customFields_input !== "undefined" ? JSON.parse($parameter.category_null_customFields_input) : undefined } } : typeof $parameter.storeKeys_json_input !== "undefined" ? JSON.parse($parameter.storeKeys_json_input) : typeof $parameter.locales_json_input !== "undefined" ? JSON.parse($parameter.locales_json_input) : typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : typeof $parameter.fallbackIsInStockValue_boolean_input !== "undefined" ? $parameter.fallbackIsInStockValue_boolean_input : typeof $parameter.productQueryPredicate_string_input !== "undefined" ? $parameter.productQueryPredicate_string_input : typeof $parameter.commercetools_custom_fields_object_input !== "undefined" ? $parameter.commercetools_custom_fields_object_input : typeof $parameter.inventory_customFields_input !== "undefined" ? $parameter.inventory_customFields_input : typeof $parameter.inventory_json_customFields_input !== "undefined" ? JSON.parse($parameter.inventory_json_customFields_input) : typeof $parameter.inventory_null_customFields_input !== "undefined" ? JSON.parse($parameter.inventory_null_customFields_input) : typeof $parameter.price_customFields_input !== "undefined" ? $parameter.price_customFields_input : typeof $parameter.price_json_customFields_input !== "undefined" ? JSON.parse($parameter.price_json_customFields_input) : typeof $parameter.price_null_customFields_input !== "undefined" ? JSON.parse($parameter.price_null_customFields_input) : typeof $parameter.category_customFields_input !== "undefined" ? $parameter.category_customFields_input : typeof $parameter.category_json_customFields_input !== "undefined" ? JSON.parse($parameter.category_json_customFields_input) : typeof $parameter.category_null_customFields_input !== "undefined" ? JSON.parse($parameter.category_null_customFields_input) : typeof $parameter.source_j_son_object !== "undefined" ? { "url": typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : undefined, "uniqueIDColumn": typeof $parameter.uniqueIDColumn_string_input !== "undefined" ? $parameter.uniqueIDColumn_string_input : undefined, "method": typeof $parameter.method_options_input !== "undefined" ? $parameter.method_options_input : undefined } : typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : typeof $parameter.uniqueIDColumn_string_input !== "undefined" ? $parameter.uniqueIDColumn_string_input : typeof $parameter.method_options_input !== "undefined" ? $parameter.method_options_input : typeof $parameter.source_c_sv_object !== "undefined" ? { "url": typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : undefined, "uniqueIDColumn": typeof $parameter.uniqueIDColumn_string_input !== "undefined" ? $parameter.uniqueIDColumn_string_input : undefined, "mapping": typeof $parameter.mapping_options_input !== "undefined" ? $parameter.mapping_options_input : undefined, "method": typeof $parameter.method_options_input !== "undefined" ? $parameter.method_options_input : undefined, "delimiter": typeof $parameter.delimiter_string_input !== "undefined" ? $parameter.delimiter_string_input : undefined } : typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : typeof $parameter.uniqueIDColumn_string_input !== "undefined" ? $parameter.uniqueIDColumn_string_input : typeof $parameter.mapping_options_input !== "undefined" ? $parameter.mapping_options_input : typeof $parameter.method_options_input !== "undefined" ? $parameter.method_options_input : typeof $parameter.delimiter_string_input !== "undefined" ? $parameter.delimiter_string_input : typeof $parameter.source_big_query_object !== "undefined" ? { "projectID": typeof $parameter.projectID_string_input !== "undefined" ? $parameter.projectID_string_input : undefined, "datasetID": typeof $parameter.datasetID_string_input !== "undefined" ? $parameter.datasetID_string_input : undefined, "dataType": typeof $parameter.dataType_options_input !== "undefined" ? $parameter.dataType_options_input : undefined, "table": typeof $parameter.table_string_input !== "undefined" ? $parameter.table_string_input : undefined, "tablePrefix": typeof $parameter.tablePrefix_string_input !== "undefined" ? $parameter.tablePrefix_string_input : undefined, "customSQLRequest": typeof $parameter.customSQLRequest_string_input !== "undefined" ? $parameter.customSQLRequest_string_input : undefined, "uniqueIDColumn": typeof $parameter.uniqueIDColumn_string_input !== "undefined" ? $parameter.uniqueIDColumn_string_input : undefined } : typeof $parameter.projectID_string_input !== "undefined" ? $parameter.projectID_string_input : typeof $parameter.datasetID_string_input !== "undefined" ? $parameter.datasetID_string_input : typeof $parameter.dataType_options_input !== "undefined" ? $parameter.dataType_options_input : typeof $parameter.table_string_input !== "undefined" ? $parameter.table_string_input : typeof $parameter.tablePrefix_string_input !== "undefined" ? $parameter.tablePrefix_string_input : typeof $parameter.customSQLRequest_string_input !== "undefined" ? $parameter.customSQLRequest_string_input : typeof $parameter.uniqueIDColumn_string_input !== "undefined" ? $parameter.uniqueIDColumn_string_input : typeof $parameter.source_g_a4big_query_export_object !== "undefined" ? { "projectID": typeof $parameter.projectID_string_input !== "undefined" ? $parameter.projectID_string_input : undefined, "datasetID": typeof $parameter.datasetID_string_input !== "undefined" ? $parameter.datasetID_string_input : undefined, "tablePrefix": typeof $parameter.tablePrefix_string_input !== "undefined" ? $parameter.tablePrefix_string_input : undefined } : typeof $parameter.projectID_string_input !== "undefined" ? $parameter.projectID_string_input : typeof $parameter.datasetID_string_input !== "undefined" ? $parameter.datasetID_string_input : typeof $parameter.tablePrefix_string_input !== "undefined" ? $parameter.tablePrefix_string_input : typeof $parameter.source_update_docker_object !== "undefined" ? $parameter.source_update_docker_object : typeof $parameter.source_update_shopify_object !== "undefined" ? $parameter.source_update_shopify_object : undefined }}',
+          '={{ typeof $parameter.source_update_commercetools_object !== "undefined" ? { "storeKeys": typeof $parameter.storeKeys_json_input !== "undefined" ? JSON.parse($parameter.storeKeys_json_input) : undefined, "locales": typeof $parameter.locales_json_input !== "undefined" ? JSON.parse($parameter.locales_json_input) : undefined, "url": typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : undefined, "fallbackIsInStockValue": typeof $parameter.fallbackIsInStockValue_boolean_input !== "undefined" ? $parameter.fallbackIsInStockValue_boolean_input : undefined, "productQueryPredicate": typeof $parameter.productQueryPredicate_string_input !== "undefined" ? $parameter.productQueryPredicate_string_input : undefined, "customFields": { "inventory": typeof $parameter.inventory_json_customFields_input !== "undefined" ? JSON.parse($parameter.inventory_json_customFields_input) : typeof $parameter.inventory_null_customFields_input !== "undefined" ? JSON.parse($parameter.inventory_null_customFields_input) : undefined, "price": typeof $parameter.price_json_customFields_input !== "undefined" ? JSON.parse($parameter.price_json_customFields_input) : typeof $parameter.price_null_customFields_input !== "undefined" ? JSON.parse($parameter.price_null_customFields_input) : undefined, "category": typeof $parameter.category_json_customFields_input !== "undefined" ? JSON.parse($parameter.category_json_customFields_input) : typeof $parameter.category_null_customFields_input !== "undefined" ? JSON.parse($parameter.category_null_customFields_input) : undefined } } : typeof $parameter.storeKeys_json_input !== "undefined" ? JSON.parse($parameter.storeKeys_json_input) : typeof $parameter.locales_json_input !== "undefined" ? JSON.parse($parameter.locales_json_input) : typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : typeof $parameter.fallbackIsInStockValue_boolean_input !== "undefined" ? $parameter.fallbackIsInStockValue_boolean_input : typeof $parameter.productQueryPredicate_string_input !== "undefined" ? $parameter.productQueryPredicate_string_input : typeof $parameter.commercetools_custom_fields_object_input !== "undefined" ? $parameter.commercetools_custom_fields_object_input : typeof $parameter.inventory_customFields_input !== "undefined" ? $parameter.inventory_customFields_input : typeof $parameter.inventory_json_customFields_input !== "undefined" ? JSON.parse($parameter.inventory_json_customFields_input) : typeof $parameter.inventory_null_customFields_input !== "undefined" ? JSON.parse($parameter.inventory_null_customFields_input) : typeof $parameter.price_customFields_input !== "undefined" ? $parameter.price_customFields_input : typeof $parameter.price_json_customFields_input !== "undefined" ? JSON.parse($parameter.price_json_customFields_input) : typeof $parameter.price_null_customFields_input !== "undefined" ? JSON.parse($parameter.price_null_customFields_input) : typeof $parameter.category_customFields_input !== "undefined" ? $parameter.category_customFields_input : typeof $parameter.category_json_customFields_input !== "undefined" ? JSON.parse($parameter.category_json_customFields_input) : typeof $parameter.category_null_customFields_input !== "undefined" ? JSON.parse($parameter.category_null_customFields_input) : typeof $parameter.source_json_object !== "undefined" ? { "url": typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : undefined, "uniqueIDColumn": typeof $parameter.uniqueIDColumn_string_input !== "undefined" ? $parameter.uniqueIDColumn_string_input : undefined, "method": typeof $parameter.method_options_input !== "undefined" ? $parameter.method_options_input : undefined } : typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : typeof $parameter.uniqueIDColumn_string_input !== "undefined" ? $parameter.uniqueIDColumn_string_input : typeof $parameter.method_options_input !== "undefined" ? $parameter.method_options_input : typeof $parameter.source_csv_object !== "undefined" ? { "url": typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : undefined, "uniqueIDColumn": typeof $parameter.uniqueIDColumn_string_input !== "undefined" ? $parameter.uniqueIDColumn_string_input : undefined, "mapping": typeof $parameter.mapping_object_input !== "undefined" ? JSON.parse($parameter.mapping_object_input) : undefined, "method": typeof $parameter.method_options_input !== "undefined" ? $parameter.method_options_input : undefined, "delimiter": typeof $parameter.delimiter_string_input !== "undefined" ? $parameter.delimiter_string_input : undefined } : typeof $parameter.url_string_input !== "undefined" ? $parameter.url_string_input : typeof $parameter.uniqueIDColumn_string_input !== "undefined" ? $parameter.uniqueIDColumn_string_input : typeof $parameter.mapping_object_input !== "undefined" ? JSON.parse($parameter.mapping_object_input) : typeof $parameter.method_options_input !== "undefined" ? $parameter.method_options_input : typeof $parameter.delimiter_string_input !== "undefined" ? $parameter.delimiter_string_input : typeof $parameter.source_big_query_object !== "undefined" ? { "projectID": typeof $parameter.projectID_string_input !== "undefined" ? $parameter.projectID_string_input : undefined, "datasetID": typeof $parameter.datasetID_string_input !== "undefined" ? $parameter.datasetID_string_input : undefined, "dataType": typeof $parameter.dataType_options_input !== "undefined" ? $parameter.dataType_options_input : undefined, "table": typeof $parameter.table_string_input !== "undefined" ? $parameter.table_string_input : undefined, "tablePrefix": typeof $parameter.tablePrefix_string_input !== "undefined" ? $parameter.tablePrefix_string_input : undefined, "customSQLRequest": typeof $parameter.customSQLRequest_string_input !== "undefined" ? $parameter.customSQLRequest_string_input : undefined, "uniqueIDColumn": typeof $parameter.uniqueIDColumn_string_input !== "undefined" ? $parameter.uniqueIDColumn_string_input : undefined } : typeof $parameter.projectID_string_input !== "undefined" ? $parameter.projectID_string_input : typeof $parameter.datasetID_string_input !== "undefined" ? $parameter.datasetID_string_input : typeof $parameter.dataType_options_input !== "undefined" ? $parameter.dataType_options_input : typeof $parameter.table_string_input !== "undefined" ? $parameter.table_string_input : typeof $parameter.tablePrefix_string_input !== "undefined" ? $parameter.tablePrefix_string_input : typeof $parameter.customSQLRequest_string_input !== "undefined" ? $parameter.customSQLRequest_string_input : typeof $parameter.uniqueIDColumn_string_input !== "undefined" ? $parameter.uniqueIDColumn_string_input : typeof $parameter.source_ga4big_query_export_object !== "undefined" ? { "projectID": typeof $parameter.projectID_string_input !== "undefined" ? $parameter.projectID_string_input : undefined, "datasetID": typeof $parameter.datasetID_string_input !== "undefined" ? $parameter.datasetID_string_input : undefined, "tablePrefix": typeof $parameter.tablePrefix_string_input !== "undefined" ? $parameter.tablePrefix_string_input : undefined } : typeof $parameter.projectID_string_input !== "undefined" ? $parameter.projectID_string_input : typeof $parameter.datasetID_string_input !== "undefined" ? $parameter.datasetID_string_input : typeof $parameter.tablePrefix_string_input !== "undefined" ? $parameter.tablePrefix_string_input : typeof $parameter.source_update_docker_object !== "undefined" ? { "configuration": typeof $parameter.configuration_object_input !== "undefined" ? JSON.parse($parameter.configuration_object_input) : undefined } : typeof $parameter.configuration_object_input !== "undefined" ? JSON.parse($parameter.configuration_object_input) : typeof $parameter.source_update_shopify_object !== "undefined" ? { "featureFlags": typeof $parameter.feature_flags_object_input !== "undefined" ? JSON.parse($parameter.feature_flags_object_input) : undefined } : typeof $parameter.feature_flags_object_input !== "undefined" ? JSON.parse($parameter.feature_flags_object_input) : undefined }}',
       },
     },
     displayOptions: {
@@ -7545,9 +7573,9 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     displayName: 'Url',
     name: 'url_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_update_object: ['input'],
@@ -7560,11 +7588,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       "Whether a fallback value is stored in the Algolia record if there's no inventory information about the product.\n",
     displayName: 'Fallback Is In Stock Value',
     name: 'fallbackIsInStockValue_boolean_input',
-    default: '',
     displayOptions: {
       show: {
         source_update_object: ['input'],
@@ -7577,11 +7605,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description:
       'Predicate to filter out specific products when indexing. For more information, see [Query Predicate](https://docs.commercetools.com/api/predicates/query).\n',
     displayName: 'Product Query Predicate',
     name: 'productQueryPredicate_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_update_object: ['input'],
@@ -7832,8 +7860,8 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    displayName: 'Source J SON',
-    name: 'source_j_son_object',
+    displayName: 'Source JSON',
+    name: 'source_json_object',
     type: 'multiOptions',
     description: undefined,
     required: true,
@@ -7863,31 +7891,32 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'URL of the file.',
     displayName: 'Url',
     name: 'url_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_update_object: ['input'],
-        source_j_son_object: ['url_string_input'],
+        source_json_object: ['url_string_input'],
         input: ['source_json'],
         resource: ['sources'],
         operation: ['validateSourceBeforeUpdate'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
+    default: '',
     description:
       'Name of a column that contains a unique ID which will be used as `objectID` in Algolia.',
     displayName: 'Unique IDColumn',
     name: 'uniqueIDColumn_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_update_object: ['input'],
-        source_j_son_object: ['uniqueIDColumn_string_input'],
+        source_json_object: ['uniqueIDColumn_string_input'],
         input: ['source_json'],
         resource: ['sources'],
         operation: ['validateSourceBeforeUpdate'],
@@ -7896,6 +7925,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     description: 'HTTP method to be used for retrieving your data.',
     options: [
       {
@@ -7909,11 +7939,10 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Method',
     name: 'method_options_input',
-    default: '',
     displayOptions: {
       show: {
         source_update_object: ['input'],
-        source_j_son_object: ['method_options_input'],
+        source_json_object: ['method_options_input'],
         input: ['source_json'],
         resource: ['sources'],
         operation: ['validateSourceBeforeUpdate'],
@@ -7921,8 +7950,8 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    displayName: 'Source C SV',
-    name: 'source_c_sv_object',
+    displayName: 'Source CSV',
+    name: 'source_csv_object',
     type: 'multiOptions',
     description: undefined,
     required: true,
@@ -7938,7 +7967,7 @@ const properties: INodeProperties[] = [
       },
       {
         name: 'Mapping',
-        value: 'mapping_options_input',
+        value: 'mapping_object_input',
       },
       {
         name: 'Method',
@@ -7960,31 +7989,32 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'URL of the file.',
     displayName: 'Url',
     name: 'url_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_update_object: ['input'],
-        source_c_sv_object: ['url_string_input'],
+        source_csv_object: ['url_string_input'],
         input: ['source_csv'],
         resource: ['sources'],
         operation: ['validateSourceBeforeUpdate'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
+    default: '',
     description:
       'Name of a column that contains a unique ID which will be used as `objectID` in Algolia.',
     displayName: 'Unique IDColumn',
     name: 'uniqueIDColumn_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_update_object: ['input'],
-        source_c_sv_object: ['uniqueIDColumn_string_input'],
+        source_csv_object: ['uniqueIDColumn_string_input'],
         input: ['source_csv'],
         resource: ['sources'],
         operation: ['validateSourceBeforeUpdate'],
@@ -7992,25 +8022,16 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    type: 'fixedCollection',
-    options: [
-      {
-        name: 'mapping_options',
-        displayName: 'Mapping',
-        values: [],
-      },
-    ],
+    type: 'json',
     displayName: 'Mapping',
-    name: 'mapping_options_input',
-    default: '',
+    name: 'mapping_object_input',
     description: 'Key-value pairs of column names and their expected types.\n',
-    typeOptions: {
-      multipleValues: true,
-    },
+    required: false,
+    default: '{}',
     displayOptions: {
       show: {
         source_update_object: ['input'],
-        source_c_sv_object: ['mapping_options_input'],
+        source_csv_object: ['mapping_object_input'],
         input: ['source_csv'],
         resource: ['sources'],
         operation: ['validateSourceBeforeUpdate'],
@@ -8019,6 +8040,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     description: 'HTTP method to be used for retrieving your data.',
     options: [
       {
@@ -8032,11 +8054,10 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Method',
     name: 'method_options_input',
-    default: '',
     displayOptions: {
       show: {
         source_update_object: ['input'],
-        source_c_sv_object: ['method_options_input'],
+        source_csv_object: ['method_options_input'],
         input: ['source_csv'],
         resource: ['sources'],
         operation: ['validateSourceBeforeUpdate'],
@@ -8053,7 +8074,7 @@ const properties: INodeProperties[] = [
     displayOptions: {
       show: {
         source_update_object: ['input'],
-        source_c_sv_object: ['delimiter_string_input'],
+        source_csv_object: ['delimiter_string_input'],
         input: ['source_csv'],
         resource: ['sources'],
         operation: ['validateSourceBeforeUpdate'],
@@ -8108,10 +8129,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Project ID of the BigQuery source.',
     displayName: 'Project ID',
     name: 'projectID_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_update_object: ['input'],
@@ -8121,13 +8142,14 @@ const properties: INodeProperties[] = [
         operation: ['validateSourceBeforeUpdate'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
+    default: '',
     description: 'Dataset ID of the BigQuery source.',
     displayName: 'Dataset ID',
     name: 'datasetID_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_update_object: ['input'],
@@ -8137,9 +8159,11 @@ const properties: INodeProperties[] = [
         operation: ['validateSourceBeforeUpdate'],
       },
     },
+    required: true,
   },
   {
     type: 'options',
+    default: '',
     options: [
       {
         name: 'ga4',
@@ -8152,7 +8176,6 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Data Type',
     name: 'dataType_options_input',
-    default: '',
     displayOptions: {
       show: {
         source_update_object: ['input'],
@@ -8165,10 +8188,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Table name for the BigQuery export.',
     displayName: 'Table',
     name: 'table_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_update_object: ['input'],
@@ -8181,10 +8204,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Table prefix for a Google Analytics 4 data export to BigQuery.',
     displayName: 'Table Prefix',
     name: 'tablePrefix_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_update_object: ['input'],
@@ -8197,10 +8220,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Custom SQL request to extract data from the BigQuery table.',
     displayName: 'Custom SQLRequest',
     name: 'customSQLRequest_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_update_object: ['input'],
@@ -8213,11 +8236,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description:
       'Name of a column that contains a unique ID which will be used as `objectID` in Algolia.',
     displayName: 'Unique IDColumn',
     name: 'uniqueIDColumn_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_update_object: ['input'],
@@ -8229,8 +8252,8 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    displayName: 'Source G A4Big Query Export',
-    name: 'source_g_a4big_query_export_object',
+    displayName: 'Source GA4Big Query Export',
+    name: 'source_ga4big_query_export_object',
     type: 'multiOptions',
     description: undefined,
     required: true,
@@ -8260,52 +8283,55 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'GCP project ID that the BigQuery export writes to.',
     displayName: 'Project ID',
     name: 'projectID_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_update_object: ['input'],
-        source_g_a4big_query_export_object: ['projectID_string_input'],
+        source_ga4big_query_export_object: ['projectID_string_input'],
         input: ['source_ga4big_query_export'],
         resource: ['sources'],
         operation: ['validateSourceBeforeUpdate'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
+    default: '',
     description: 'BigQuery dataset ID that the BigQuery export writes to.',
     displayName: 'Dataset ID',
     name: 'datasetID_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_update_object: ['input'],
-        source_g_a4big_query_export_object: ['datasetID_string_input'],
+        source_ga4big_query_export_object: ['datasetID_string_input'],
         input: ['source_ga4big_query_export'],
         resource: ['sources'],
         operation: ['validateSourceBeforeUpdate'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
     placeholder: 'events_intraday_',
+    default: '',
     description: 'Prefix of the tables that the BigQuery Export writes to.',
     displayName: 'Table Prefix',
     name: 'tablePrefix_string_input',
-    default: '',
     displayOptions: {
       show: {
         source_update_object: ['input'],
-        source_g_a4big_query_export_object: ['tablePrefix_string_input'],
+        source_ga4big_query_export_object: ['tablePrefix_string_input'],
         input: ['source_ga4big_query_export'],
         resource: ['sources'],
         operation: ['validateSourceBeforeUpdate'],
       },
     },
+    required: true,
   },
   {
     displayName: 'Source Update Docker',
@@ -8314,10 +8340,32 @@ const properties: INodeProperties[] = [
     description: undefined,
     required: true,
     default: [],
-    options: [],
+    options: [
+      {
+        name: 'Configuration',
+        value: 'configuration_object_input',
+      },
+    ],
     displayOptions: {
       show: {
         source_update_object: ['input'],
+        input: ['source_update_docker'],
+        resource: ['sources'],
+        operation: ['validateSourceBeforeUpdate'],
+      },
+    },
+  },
+  {
+    type: 'json',
+    displayName: 'Configuration',
+    name: 'configuration_object_input',
+    description: 'Configuration of the spec.',
+    required: true,
+    default: '{}',
+    displayOptions: {
+      show: {
+        source_update_object: ['input'],
+        source_update_docker_object: ['configuration_object_input'],
         input: ['source_update_docker'],
         resource: ['sources'],
         operation: ['validateSourceBeforeUpdate'],
@@ -8331,7 +8379,12 @@ const properties: INodeProperties[] = [
     description: undefined,
     required: false,
     default: [],
-    options: [],
+    options: [
+      {
+        name: 'Feature Flags',
+        value: 'feature_flags_object_input',
+      },
+    ],
     displayOptions: {
       show: {
         source_update_object: ['input'],
@@ -8342,8 +8395,26 @@ const properties: INodeProperties[] = [
     },
   },
   {
+    type: 'json',
+    displayName: 'Feature Flags',
+    name: 'feature_flags_object_input',
+    description: 'Feature flags for the Shopify source.',
+    required: false,
+    default: '{}',
+    displayOptions: {
+      show: {
+        source_update_object: ['input'],
+        source_update_shopify_object: ['feature_flags_object_input'],
+        input: ['source_update_shopify'],
+        resource: ['sources'],
+        operation: ['validateSourceBeforeUpdate'],
+      },
+    },
+  },
+  {
     type: 'string',
     placeholder: '6c02aeb1-775e-418e-870b-1faccd4b2c0f',
+    default: '',
     description: 'Universally unique identifier (UUID) of an authentication resource.',
     routing: {
       send: {
@@ -8354,7 +8425,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Authentication ID',
     name: 'authenticationID_string',
-    default: '',
     displayOptions: {
       show: {
         source_update_object: ['authenticationID_string'],
@@ -8366,10 +8436,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '6c02aeb1-775e-418e-870b-1faccd4b2c0f',
+    default: '',
     description: 'Universally uniqud identifier (UUID) of a source.',
     displayName: 'Source ID',
     name: 'sourceID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -8381,10 +8451,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '6c02aeb1-775e-418e-870b-1faccd4b2c0f',
+    default: '',
     description: 'Universally uniqud identifier (UUID) of a source.',
     displayName: 'Source ID',
     name: 'sourceID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -8417,6 +8487,10 @@ const properties: INodeProperties[] = [
         name: 'Entity Type',
         value: 'entityType_options',
       },
+      {
+        name: 'Run Metadata',
+        value: 'run_metadata_object',
+      },
     ],
     displayOptions: {
       show: {
@@ -8435,7 +8509,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'indexToInclude',
       },
     },
@@ -8457,7 +8531,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'indexToExclude',
       },
     },
@@ -8479,7 +8553,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'entityIDs',
       },
     },
@@ -8493,6 +8567,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     description: 'Type of entity to update.',
     options: [
       {
@@ -8513,10 +8588,31 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Entity Type',
     name: 'entityType_options',
-    default: '',
     displayOptions: {
       show: {
         run_source_payload_object: ['entityType_options'],
+        resource: ['sources'],
+        operation: ['runSource'],
+      },
+    },
+  },
+  {
+    type: 'json',
+    displayName: 'Run Metadata',
+    name: 'run_metadata_object',
+    description: 'Additional information that will be passed to the created runs.',
+    required: false,
+    default: '{}',
+    routing: {
+      send: {
+        type: 'body',
+        property: 'runMetadata',
+        value: '={{ $value }}',
+      },
+    },
+    displayOptions: {
+      show: {
+        run_source_payload_object: ['run_metadata_object'],
         resource: ['sources'],
         operation: ['runSource'],
       },
@@ -8548,6 +8644,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description: 'Page of the API response to retrieve.',
     typeOptions: {
       minValue: 1,
@@ -8561,7 +8658,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Page',
     name: 'page_number',
-    default: '',
     displayOptions: {
       show: {
         resource: ['tasks'],
@@ -8579,7 +8675,7 @@ const properties: INodeProperties[] = [
     routing: {
       request: {
         qs: {
-          action: '={{ JSON.parse($value) }}',
+          action: '={{ $value }}',
         },
       },
     },
@@ -8592,6 +8688,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     routing: {
       request: {
         qs: {
@@ -8601,7 +8698,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Enabled',
     name: 'enabled_boolean',
-    default: '',
     displayOptions: {
       show: {
         resource: ['tasks'],
@@ -8619,7 +8715,7 @@ const properties: INodeProperties[] = [
     routing: {
       request: {
         qs: {
-          sourceID: '={{ JSON.parse($value) }}',
+          sourceID: '={{ $value }}',
         },
       },
     },
@@ -8640,7 +8736,7 @@ const properties: INodeProperties[] = [
     routing: {
       request: {
         qs: {
-          sourceType: '={{ JSON.parse($value) }}',
+          sourceType: '={{ $value }}',
         },
       },
     },
@@ -8661,7 +8757,7 @@ const properties: INodeProperties[] = [
     routing: {
       request: {
         qs: {
-          destinationID: '={{ JSON.parse($value) }}',
+          destinationID: '={{ $value }}',
         },
       },
     },
@@ -8682,7 +8778,7 @@ const properties: INodeProperties[] = [
     routing: {
       request: {
         qs: {
-          triggerType: '={{ JSON.parse($value) }}',
+          triggerType: '={{ $value }}',
         },
       },
     },
@@ -8695,6 +8791,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     routing: {
       request: {
         qs: {
@@ -8704,7 +8801,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'With Email Notifications',
     name: 'withEmailNotifications_boolean',
-    default: '',
     displayOptions: {
       show: {
         resource: ['tasks'],
@@ -8847,6 +8943,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '6c02aeb1-775e-418e-870b-1faccd4b2c0f',
+    default: '',
     description: 'Universally uniqud identifier (UUID) of a source.',
     routing: {
       send: {
@@ -8857,7 +8954,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Source ID',
     name: 'sourceID_string',
-    default: '',
     displayOptions: {
       show: {
         task_create_object: ['sourceID_string'],
@@ -8865,10 +8961,12 @@ const properties: INodeProperties[] = [
         operation: ['createTask'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
     placeholder: '6c02aeb1-775e-418e-870b-1faccd4b2c0f',
+    default: '',
     description: 'Universally unique identifier (UUID) of a destination resource.',
     routing: {
       send: {
@@ -8879,7 +8977,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Destination ID',
     name: 'destinationID_string',
-    default: '',
     displayOptions: {
       show: {
         task_create_object: ['destinationID_string'],
@@ -8887,9 +8984,11 @@ const properties: INodeProperties[] = [
         operation: ['createTask'],
       },
     },
+    required: true,
   },
   {
     type: 'options',
+    default: '',
     description: 'Action to perform on the Algolia index.',
     options: [
       {
@@ -8922,7 +9021,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Action',
     name: 'action_options',
-    default: '',
     displayOptions: {
       show: {
         task_create_object: ['action_options'],
@@ -8930,9 +9028,11 @@ const properties: INodeProperties[] = [
         operation: ['createTask'],
       },
     },
+    required: true,
   },
   {
     type: 'options',
+    default: '',
     description: 'Action to perform on the Algolia index.',
     options: [
       {
@@ -8965,7 +9065,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Subscription Action',
     name: 'subscriptionAction_options',
-    default: '',
     displayOptions: {
       show: {
         task_create_object: ['subscriptionAction_options'],
@@ -8977,6 +9076,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '* * 1 * *',
+    default: '',
     description: "Cron expression for the task's schedule.",
     routing: {
       send: {
@@ -8987,7 +9087,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Cron',
     name: 'cron_string',
-    default: '',
     displayOptions: {
       show: {
         task_create_object: ['cron_string'],
@@ -8998,6 +9097,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description: 'Whether the task is enabled.',
     routing: {
       send: {
@@ -9008,7 +9108,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Enabled',
     name: 'enabled_boolean',
-    default: '',
     displayOptions: {
       show: {
         task_create_object: ['enabled_boolean'],
@@ -9019,6 +9118,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description: 'Maximum accepted percentage of failures for a task run to finish successfully.',
     typeOptions: {
       minValue: 0,
@@ -9033,7 +9133,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Failure Threshold',
     name: 'failureThreshold_number',
-    default: '',
     displayOptions: {
       show: {
         task_create_object: ['failureThreshold_number'],
@@ -9066,7 +9165,7 @@ const properties: INodeProperties[] = [
         type: 'body',
         property: 'input',
         value:
-          '={{ typeof $parameter.streaming_input_object !== "undefined" ? { "mapping": { "format": typeof $parameter.format_options_mapping_input !== "undefined" ? $parameter.format_options_mapping_input : undefined, "actions": typeof $parameter.actions_json_mapping_input !== "undefined" ? JSON.parse($parameter.actions_json_mapping_input) : undefined } } : typeof $parameter.mapping_input_object_input !== "undefined" ? $parameter.mapping_input_object_input : typeof $parameter.format_options_mapping_input !== "undefined" ? $parameter.format_options_mapping_input : typeof $parameter.actions_json_mapping_input !== "undefined" ? JSON.parse($parameter.actions_json_mapping_input) : typeof $parameter.docker_streams_input_object !== "undefined" ? { "streams": typeof $parameter.streams_json_input !== "undefined" ? JSON.parse($parameter.streams_json_input) : undefined } : typeof $parameter.streams_json_input !== "undefined" ? JSON.parse($parameter.streams_json_input) : typeof $parameter.shopify_input_object !== "undefined" ? { "metafields": $parameter.metafields_fixedCollection_input.metafields_fixedCollection_values?.map(item => ({ namespace: typeof item.namespace_string_metafields !== "undefined" ? item.namespace_string_metafields : undefined, key: typeof item.key_string_metafields !== "undefined" ? item.key_string_metafields : undefined, value: typeof item.value_string_metafields !== "undefined" ? item.value_string_metafields : undefined })), "market": { "countries": typeof $parameter.countries_json_market_input !== "undefined" ? JSON.parse($parameter.countries_json_market_input) : undefined, "currencies": typeof $parameter.currencies_json_market_input !== "undefined" ? JSON.parse($parameter.currencies_json_market_input) : undefined, "locales": typeof $parameter.locales_json_market_input !== "undefined" ? JSON.parse($parameter.locales_json_market_input) : undefined } } : typeof $parameter.metafields_fixedCollection_input !== "undefined" ? $parameter.metafields_fixedCollection_input : typeof $parameter.shopify_market_object_input !== "undefined" ? $parameter.shopify_market_object_input : typeof $parameter.countries_json_market_input !== "undefined" ? JSON.parse($parameter.countries_json_market_input) : typeof $parameter.currencies_json_market_input !== "undefined" ? JSON.parse($parameter.currencies_json_market_input) : typeof $parameter.locales_json_market_input !== "undefined" ? JSON.parse($parameter.locales_json_market_input) : undefined }}',
+          '={{ typeof $parameter.streaming_input_object !== "undefined" ? { "mapping": { "format": typeof $parameter.format_options_mapping_input !== "undefined" ? $parameter.format_options_mapping_input : undefined, "actions": typeof $parameter.actions_json_mapping_input !== "undefined" ? JSON.parse($parameter.actions_json_mapping_input) : undefined } } : typeof $parameter.mapping_input_object_input !== "undefined" ? $parameter.mapping_input_object_input : typeof $parameter.format_options_mapping_input !== "undefined" ? $parameter.format_options_mapping_input : typeof $parameter.actions_json_mapping_input !== "undefined" ? JSON.parse($parameter.actions_json_mapping_input) : typeof $parameter.docker_streams_input_object !== "undefined" ? { "streams": typeof $parameter.streams_json_input !== "undefined" ? JSON.parse($parameter.streams_json_input) : undefined } : typeof $parameter.streams_json_input !== "undefined" ? JSON.parse($parameter.streams_json_input) : typeof $parameter.shopify_input_object !== "undefined" ? { "metafields": typeof $parameter.metafields_json_input !== "undefined" ? JSON.parse($parameter.metafields_json_input) : undefined, "market": { "countries": typeof $parameter.countries_json_market_input !== "undefined" ? JSON.parse($parameter.countries_json_market_input) : undefined, "currencies": typeof $parameter.currencies_json_market_input !== "undefined" ? JSON.parse($parameter.currencies_json_market_input) : undefined, "locales": typeof $parameter.locales_json_market_input !== "undefined" ? JSON.parse($parameter.locales_json_market_input) : undefined } } : typeof $parameter.metafields_json_input !== "undefined" ? JSON.parse($parameter.metafields_json_input) : typeof $parameter.shopify_market_object_input !== "undefined" ? $parameter.shopify_market_object_input : typeof $parameter.countries_json_market_input !== "undefined" ? JSON.parse($parameter.countries_json_market_input) : typeof $parameter.currencies_json_market_input !== "undefined" ? JSON.parse($parameter.currencies_json_market_input) : typeof $parameter.locales_json_market_input !== "undefined" ? JSON.parse($parameter.locales_json_market_input) : undefined }}',
       },
     },
     displayOptions: {
@@ -9129,6 +9228,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     description: 'Mapping format schema.',
     options: [
       {
@@ -9138,7 +9238,6 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Format',
     name: 'format_options_mapping_input',
-    default: '',
     displayOptions: {
       show: {
         task_create_object: ['input'],
@@ -9149,14 +9248,15 @@ const properties: INodeProperties[] = [
         operation: ['createTask'],
       },
     },
+    required: true,
   },
   {
     type: 'json',
     displayName: 'Actions',
     name: 'actions_json_mapping_input',
-    default: '',
+    default: '[]',
     description: undefined,
-    required: false,
+    required: true,
     displayOptions: {
       show: {
         task_create_object: ['input'],
@@ -9194,9 +9294,9 @@ const properties: INodeProperties[] = [
     type: 'json',
     displayName: 'Streams',
     name: 'streams_json_input',
-    default: '',
+    default: '[]',
     description: undefined,
-    required: false,
+    required: true,
     displayOptions: {
       show: {
         task_create_object: ['input'],
@@ -9218,7 +9318,7 @@ const properties: INodeProperties[] = [
     options: [
       {
         name: 'Metafields',
-        value: 'metafields_fixedCollection_input',
+        value: 'metafields_json_input',
       },
       {
         name: 'Shopify Market',
@@ -9235,45 +9335,16 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    type: 'fixedCollection',
+    type: 'json',
     displayName: 'Metafields',
-    name: 'metafields_fixedCollection_input',
-    default: '',
+    name: 'metafields_json_input',
+    default: '[]',
     description: undefined,
-    required: false,
-    typeOptions: {
-      multipleValues: true,
-    },
-    options: [
-      {
-        name: 'metafields_fixedCollection_values',
-        displayName: 'Metafields',
-        values: [
-          {
-            type: 'string',
-            displayName: 'Namespace',
-            name: 'namespace_string_metafields',
-            default: '',
-          },
-          {
-            type: 'string',
-            displayName: 'Key',
-            name: 'key_string_metafields',
-            default: '',
-          },
-          {
-            type: 'string',
-            displayName: 'Value',
-            name: 'value_string_metafields',
-            default: '',
-          },
-        ],
-      },
-    ],
+    required: true,
     displayOptions: {
       show: {
         task_create_object: ['input'],
-        shopify_input_object: ['metafields_fixedCollection_input'],
+        shopify_input_object: ['metafields_json_input'],
         input: ['shopify_input'],
         resource: ['tasks'],
         operation: ['createTask'],
@@ -9317,7 +9388,7 @@ const properties: INodeProperties[] = [
     name: 'countries_json_market_input',
     default: '[]',
     description: undefined,
-    required: false,
+    required: true,
     displayOptions: {
       show: {
         task_create_object: ['input'],
@@ -9335,7 +9406,7 @@ const properties: INodeProperties[] = [
     name: 'currencies_json_market_input',
     default: '[]',
     description: undefined,
-    required: false,
+    required: true,
     displayOptions: {
       show: {
         task_create_object: ['input'],
@@ -9353,7 +9424,7 @@ const properties: INodeProperties[] = [
     name: 'locales_json_market_input',
     default: '[]',
     description: undefined,
-    required: false,
+    required: true,
     displayOptions: {
       show: {
         task_create_object: ['input'],
@@ -9367,6 +9438,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Date of the last cursor in RFC 3339 format.',
     routing: {
       send: {
@@ -9377,7 +9449,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Cursor',
     name: 'cursor_string',
-    default: '',
     displayOptions: {
       show: {
         task_create_object: ['cursor_string'],
@@ -9420,7 +9491,7 @@ const properties: INodeProperties[] = [
     name: 'email_notifications_object_notifications',
     type: 'multiOptions',
     description: undefined,
-    required: false,
+    required: true,
     default: [],
     options: [
       {
@@ -9439,11 +9510,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       "Whether to send email notifications, note that this doesn't prevent the task from being blocked.",
     displayName: 'Enabled',
     name: 'enabled_boolean_email_notifications',
-    default: '',
     displayOptions: {
       show: {
         task_create_object: ['notifications_object'],
@@ -9485,6 +9556,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description:
       'The number of critical failures in a row before blocking the task and sending a notification.',
     typeOptions: {
@@ -9493,7 +9565,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Critical Threshold',
     name: 'criticalThreshold_number_policies',
-    default: '',
     displayOptions: {
       show: {
         task_create_object: ['policies_object'],
@@ -9529,11 +9600,11 @@ const properties: INodeProperties[] = [
     name: 'taskIDs_json',
     default: '[]',
     description: undefined,
-    required: false,
+    required: true,
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'taskIDs',
       },
     },
@@ -9548,10 +9619,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '6c02aeb1-775e-418e-870b-1faccd4b2c0f',
+    default: '',
     description: 'Universally unique identifier (UUID) of a task.',
     displayName: 'Task ID',
     name: 'taskID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -9563,10 +9634,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '6c02aeb1-775e-418e-870b-1faccd4b2c0f',
+    default: '',
     description: 'Universally unique identifier (UUID) of a task.',
     displayName: 'Task ID',
     name: 'taskID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -9634,6 +9705,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '6c02aeb1-775e-418e-870b-1faccd4b2c0f',
+    default: '',
     description: 'Universally unique identifier (UUID) of a destination resource.',
     routing: {
       send: {
@@ -9644,7 +9716,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Destination ID',
     name: 'destinationID_string',
-    default: '',
     displayOptions: {
       show: {
         task_replace_object: ['destinationID_string'],
@@ -9652,9 +9723,11 @@ const properties: INodeProperties[] = [
         operation: ['replaceTask'],
       },
     },
+    required: true,
   },
   {
     type: 'options',
+    default: '',
     description: 'Action to perform on the Algolia index.',
     options: [
       {
@@ -9687,7 +9760,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Action',
     name: 'action_options',
-    default: '',
     displayOptions: {
       show: {
         task_replace_object: ['action_options'],
@@ -9695,9 +9767,11 @@ const properties: INodeProperties[] = [
         operation: ['replaceTask'],
       },
     },
+    required: true,
   },
   {
     type: 'options',
+    default: '',
     description: 'Action to perform on the Algolia index.',
     options: [
       {
@@ -9730,7 +9804,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Subscription Action',
     name: 'subscriptionAction_options',
-    default: '',
     displayOptions: {
       show: {
         task_replace_object: ['subscriptionAction_options'],
@@ -9742,6 +9815,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '* * 1 * *',
+    default: '',
     description: "Cron expression for the task's schedule.",
     routing: {
       send: {
@@ -9752,7 +9826,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Cron',
     name: 'cron_string',
-    default: '',
     displayOptions: {
       show: {
         task_replace_object: ['cron_string'],
@@ -9763,6 +9836,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description: 'Whether the task is enabled.',
     routing: {
       send: {
@@ -9773,7 +9847,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Enabled',
     name: 'enabled_boolean',
-    default: '',
     displayOptions: {
       show: {
         task_replace_object: ['enabled_boolean'],
@@ -9784,6 +9857,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description: 'Maximum accepted percentage of failures for a task run to finish successfully.',
     typeOptions: {
       minValue: 0,
@@ -9798,7 +9872,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Failure Threshold',
     name: 'failureThreshold_number',
-    default: '',
     displayOptions: {
       show: {
         task_replace_object: ['failureThreshold_number'],
@@ -9831,7 +9904,7 @@ const properties: INodeProperties[] = [
         type: 'body',
         property: 'input',
         value:
-          '={{ typeof $parameter.streaming_input_object !== "undefined" ? { "mapping": { "format": typeof $parameter.format_options_mapping_input !== "undefined" ? $parameter.format_options_mapping_input : undefined, "actions": typeof $parameter.actions_json_mapping_input !== "undefined" ? JSON.parse($parameter.actions_json_mapping_input) : undefined } } : typeof $parameter.mapping_input_object_input !== "undefined" ? $parameter.mapping_input_object_input : typeof $parameter.format_options_mapping_input !== "undefined" ? $parameter.format_options_mapping_input : typeof $parameter.actions_json_mapping_input !== "undefined" ? JSON.parse($parameter.actions_json_mapping_input) : typeof $parameter.docker_streams_input_object !== "undefined" ? { "streams": typeof $parameter.streams_json_input !== "undefined" ? JSON.parse($parameter.streams_json_input) : undefined } : typeof $parameter.streams_json_input !== "undefined" ? JSON.parse($parameter.streams_json_input) : typeof $parameter.shopify_input_object !== "undefined" ? { "metafields": $parameter.metafields_fixedCollection_input.metafields_fixedCollection_values?.map(item => ({ namespace: typeof item.namespace_string_metafields !== "undefined" ? item.namespace_string_metafields : undefined, key: typeof item.key_string_metafields !== "undefined" ? item.key_string_metafields : undefined, value: typeof item.value_string_metafields !== "undefined" ? item.value_string_metafields : undefined })), "market": { "countries": typeof $parameter.countries_json_market_input !== "undefined" ? JSON.parse($parameter.countries_json_market_input) : undefined, "currencies": typeof $parameter.currencies_json_market_input !== "undefined" ? JSON.parse($parameter.currencies_json_market_input) : undefined, "locales": typeof $parameter.locales_json_market_input !== "undefined" ? JSON.parse($parameter.locales_json_market_input) : undefined } } : typeof $parameter.metafields_fixedCollection_input !== "undefined" ? $parameter.metafields_fixedCollection_input : typeof $parameter.shopify_market_object_input !== "undefined" ? $parameter.shopify_market_object_input : typeof $parameter.countries_json_market_input !== "undefined" ? JSON.parse($parameter.countries_json_market_input) : typeof $parameter.currencies_json_market_input !== "undefined" ? JSON.parse($parameter.currencies_json_market_input) : typeof $parameter.locales_json_market_input !== "undefined" ? JSON.parse($parameter.locales_json_market_input) : undefined }}',
+          '={{ typeof $parameter.streaming_input_object !== "undefined" ? { "mapping": { "format": typeof $parameter.format_options_mapping_input !== "undefined" ? $parameter.format_options_mapping_input : undefined, "actions": typeof $parameter.actions_json_mapping_input !== "undefined" ? JSON.parse($parameter.actions_json_mapping_input) : undefined } } : typeof $parameter.mapping_input_object_input !== "undefined" ? $parameter.mapping_input_object_input : typeof $parameter.format_options_mapping_input !== "undefined" ? $parameter.format_options_mapping_input : typeof $parameter.actions_json_mapping_input !== "undefined" ? JSON.parse($parameter.actions_json_mapping_input) : typeof $parameter.docker_streams_input_object !== "undefined" ? { "streams": typeof $parameter.streams_json_input !== "undefined" ? JSON.parse($parameter.streams_json_input) : undefined } : typeof $parameter.streams_json_input !== "undefined" ? JSON.parse($parameter.streams_json_input) : typeof $parameter.shopify_input_object !== "undefined" ? { "metafields": typeof $parameter.metafields_json_input !== "undefined" ? JSON.parse($parameter.metafields_json_input) : undefined, "market": { "countries": typeof $parameter.countries_json_market_input !== "undefined" ? JSON.parse($parameter.countries_json_market_input) : undefined, "currencies": typeof $parameter.currencies_json_market_input !== "undefined" ? JSON.parse($parameter.currencies_json_market_input) : undefined, "locales": typeof $parameter.locales_json_market_input !== "undefined" ? JSON.parse($parameter.locales_json_market_input) : undefined } } : typeof $parameter.metafields_json_input !== "undefined" ? JSON.parse($parameter.metafields_json_input) : typeof $parameter.shopify_market_object_input !== "undefined" ? $parameter.shopify_market_object_input : typeof $parameter.countries_json_market_input !== "undefined" ? JSON.parse($parameter.countries_json_market_input) : typeof $parameter.currencies_json_market_input !== "undefined" ? JSON.parse($parameter.currencies_json_market_input) : typeof $parameter.locales_json_market_input !== "undefined" ? JSON.parse($parameter.locales_json_market_input) : undefined }}',
       },
     },
     displayOptions: {
@@ -9894,6 +9967,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     description: 'Mapping format schema.',
     options: [
       {
@@ -9903,7 +9977,6 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Format',
     name: 'format_options_mapping_input',
-    default: '',
     displayOptions: {
       show: {
         task_replace_object: ['input'],
@@ -9914,14 +9987,15 @@ const properties: INodeProperties[] = [
         operation: ['replaceTask'],
       },
     },
+    required: true,
   },
   {
     type: 'json',
     displayName: 'Actions',
     name: 'actions_json_mapping_input',
-    default: '',
+    default: '[]',
     description: undefined,
-    required: false,
+    required: true,
     displayOptions: {
       show: {
         task_replace_object: ['input'],
@@ -9959,9 +10033,9 @@ const properties: INodeProperties[] = [
     type: 'json',
     displayName: 'Streams',
     name: 'streams_json_input',
-    default: '',
+    default: '[]',
     description: undefined,
-    required: false,
+    required: true,
     displayOptions: {
       show: {
         task_replace_object: ['input'],
@@ -9983,7 +10057,7 @@ const properties: INodeProperties[] = [
     options: [
       {
         name: 'Metafields',
-        value: 'metafields_fixedCollection_input',
+        value: 'metafields_json_input',
       },
       {
         name: 'Shopify Market',
@@ -10000,45 +10074,16 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    type: 'fixedCollection',
+    type: 'json',
     displayName: 'Metafields',
-    name: 'metafields_fixedCollection_input',
-    default: '',
+    name: 'metafields_json_input',
+    default: '[]',
     description: undefined,
-    required: false,
-    typeOptions: {
-      multipleValues: true,
-    },
-    options: [
-      {
-        name: 'metafields_fixedCollection_values',
-        displayName: 'Metafields',
-        values: [
-          {
-            type: 'string',
-            displayName: 'Namespace',
-            name: 'namespace_string_metafields',
-            default: '',
-          },
-          {
-            type: 'string',
-            displayName: 'Key',
-            name: 'key_string_metafields',
-            default: '',
-          },
-          {
-            type: 'string',
-            displayName: 'Value',
-            name: 'value_string_metafields',
-            default: '',
-          },
-        ],
-      },
-    ],
+    required: true,
     displayOptions: {
       show: {
         task_replace_object: ['input'],
-        shopify_input_object: ['metafields_fixedCollection_input'],
+        shopify_input_object: ['metafields_json_input'],
         input: ['shopify_input'],
         resource: ['tasks'],
         operation: ['replaceTask'],
@@ -10082,7 +10127,7 @@ const properties: INodeProperties[] = [
     name: 'countries_json_market_input',
     default: '[]',
     description: undefined,
-    required: false,
+    required: true,
     displayOptions: {
       show: {
         task_replace_object: ['input'],
@@ -10100,7 +10145,7 @@ const properties: INodeProperties[] = [
     name: 'currencies_json_market_input',
     default: '[]',
     description: undefined,
-    required: false,
+    required: true,
     displayOptions: {
       show: {
         task_replace_object: ['input'],
@@ -10118,7 +10163,7 @@ const properties: INodeProperties[] = [
     name: 'locales_json_market_input',
     default: '[]',
     description: undefined,
-    required: false,
+    required: true,
     displayOptions: {
       show: {
         task_replace_object: ['input'],
@@ -10132,6 +10177,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Date of the last cursor in RFC 3339 format.',
     routing: {
       send: {
@@ -10142,7 +10188,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Cursor',
     name: 'cursor_string',
-    default: '',
     displayOptions: {
       show: {
         task_replace_object: ['cursor_string'],
@@ -10185,7 +10230,7 @@ const properties: INodeProperties[] = [
     name: 'email_notifications_object_notifications',
     type: 'multiOptions',
     description: undefined,
-    required: false,
+    required: true,
     default: [],
     options: [
       {
@@ -10204,11 +10249,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       "Whether to send email notifications, note that this doesn't prevent the task from being blocked.",
     displayName: 'Enabled',
     name: 'enabled_boolean_email_notifications',
-    default: '',
     displayOptions: {
       show: {
         task_replace_object: ['notifications_object'],
@@ -10250,6 +10295,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description:
       'The number of critical failures in a row before blocking the task and sending a notification.',
     typeOptions: {
@@ -10258,7 +10304,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Critical Threshold',
     name: 'criticalThreshold_number_policies',
-    default: '',
     displayOptions: {
       show: {
         task_replace_object: ['policies_object'],
@@ -10271,10 +10316,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '6c02aeb1-775e-418e-870b-1faccd4b2c0f',
+    default: '',
     description: 'Universally unique identifier (UUID) of a task.',
     displayName: 'Task ID',
     name: 'taskID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -10334,6 +10379,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '6c02aeb1-775e-418e-870b-1faccd4b2c0f',
+    default: '',
     description: 'Universally unique identifier (UUID) of a destination resource.',
     routing: {
       send: {
@@ -10344,7 +10390,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Destination ID',
     name: 'destinationID_string',
-    default: '',
     displayOptions: {
       show: {
         task_update_object: ['destinationID_string'],
@@ -10356,6 +10401,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '* * 1 * *',
+    default: '',
     description: "Cron expression for the task's schedule.",
     routing: {
       send: {
@@ -10366,7 +10412,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Cron',
     name: 'cron_string',
-    default: '',
     displayOptions: {
       show: {
         task_update_object: ['cron_string'],
@@ -10399,7 +10444,7 @@ const properties: INodeProperties[] = [
         type: 'body',
         property: 'input',
         value:
-          '={{ typeof $parameter.streaming_input_object !== "undefined" ? { "mapping": { "format": typeof $parameter.format_options_mapping_input !== "undefined" ? $parameter.format_options_mapping_input : undefined, "actions": typeof $parameter.actions_json_mapping_input !== "undefined" ? JSON.parse($parameter.actions_json_mapping_input) : undefined } } : typeof $parameter.mapping_input_object_input !== "undefined" ? $parameter.mapping_input_object_input : typeof $parameter.format_options_mapping_input !== "undefined" ? $parameter.format_options_mapping_input : typeof $parameter.actions_json_mapping_input !== "undefined" ? JSON.parse($parameter.actions_json_mapping_input) : typeof $parameter.docker_streams_input_object !== "undefined" ? { "streams": typeof $parameter.streams_json_input !== "undefined" ? JSON.parse($parameter.streams_json_input) : undefined } : typeof $parameter.streams_json_input !== "undefined" ? JSON.parse($parameter.streams_json_input) : typeof $parameter.shopify_input_object !== "undefined" ? { "metafields": $parameter.metafields_fixedCollection_input.metafields_fixedCollection_values?.map(item => ({ namespace: typeof item.namespace_string_metafields !== "undefined" ? item.namespace_string_metafields : undefined, key: typeof item.key_string_metafields !== "undefined" ? item.key_string_metafields : undefined, value: typeof item.value_string_metafields !== "undefined" ? item.value_string_metafields : undefined })), "market": { "countries": typeof $parameter.countries_json_market_input !== "undefined" ? JSON.parse($parameter.countries_json_market_input) : undefined, "currencies": typeof $parameter.currencies_json_market_input !== "undefined" ? JSON.parse($parameter.currencies_json_market_input) : undefined, "locales": typeof $parameter.locales_json_market_input !== "undefined" ? JSON.parse($parameter.locales_json_market_input) : undefined } } : typeof $parameter.metafields_fixedCollection_input !== "undefined" ? $parameter.metafields_fixedCollection_input : typeof $parameter.shopify_market_object_input !== "undefined" ? $parameter.shopify_market_object_input : typeof $parameter.countries_json_market_input !== "undefined" ? JSON.parse($parameter.countries_json_market_input) : typeof $parameter.currencies_json_market_input !== "undefined" ? JSON.parse($parameter.currencies_json_market_input) : typeof $parameter.locales_json_market_input !== "undefined" ? JSON.parse($parameter.locales_json_market_input) : undefined }}',
+          '={{ typeof $parameter.streaming_input_object !== "undefined" ? { "mapping": { "format": typeof $parameter.format_options_mapping_input !== "undefined" ? $parameter.format_options_mapping_input : undefined, "actions": typeof $parameter.actions_json_mapping_input !== "undefined" ? JSON.parse($parameter.actions_json_mapping_input) : undefined } } : typeof $parameter.mapping_input_object_input !== "undefined" ? $parameter.mapping_input_object_input : typeof $parameter.format_options_mapping_input !== "undefined" ? $parameter.format_options_mapping_input : typeof $parameter.actions_json_mapping_input !== "undefined" ? JSON.parse($parameter.actions_json_mapping_input) : typeof $parameter.docker_streams_input_object !== "undefined" ? { "streams": typeof $parameter.streams_json_input !== "undefined" ? JSON.parse($parameter.streams_json_input) : undefined } : typeof $parameter.streams_json_input !== "undefined" ? JSON.parse($parameter.streams_json_input) : typeof $parameter.shopify_input_object !== "undefined" ? { "metafields": typeof $parameter.metafields_json_input !== "undefined" ? JSON.parse($parameter.metafields_json_input) : undefined, "market": { "countries": typeof $parameter.countries_json_market_input !== "undefined" ? JSON.parse($parameter.countries_json_market_input) : undefined, "currencies": typeof $parameter.currencies_json_market_input !== "undefined" ? JSON.parse($parameter.currencies_json_market_input) : undefined, "locales": typeof $parameter.locales_json_market_input !== "undefined" ? JSON.parse($parameter.locales_json_market_input) : undefined } } : typeof $parameter.metafields_json_input !== "undefined" ? JSON.parse($parameter.metafields_json_input) : typeof $parameter.shopify_market_object_input !== "undefined" ? $parameter.shopify_market_object_input : typeof $parameter.countries_json_market_input !== "undefined" ? JSON.parse($parameter.countries_json_market_input) : typeof $parameter.currencies_json_market_input !== "undefined" ? JSON.parse($parameter.currencies_json_market_input) : typeof $parameter.locales_json_market_input !== "undefined" ? JSON.parse($parameter.locales_json_market_input) : undefined }}',
       },
     },
     displayOptions: {
@@ -10462,6 +10507,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     description: 'Mapping format schema.',
     options: [
       {
@@ -10471,7 +10517,6 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Format',
     name: 'format_options_mapping_input',
-    default: '',
     displayOptions: {
       show: {
         task_update_object: ['input'],
@@ -10482,14 +10527,15 @@ const properties: INodeProperties[] = [
         operation: ['updateTask'],
       },
     },
+    required: true,
   },
   {
     type: 'json',
     displayName: 'Actions',
     name: 'actions_json_mapping_input',
-    default: '',
+    default: '[]',
     description: undefined,
-    required: false,
+    required: true,
     displayOptions: {
       show: {
         task_update_object: ['input'],
@@ -10527,9 +10573,9 @@ const properties: INodeProperties[] = [
     type: 'json',
     displayName: 'Streams',
     name: 'streams_json_input',
-    default: '',
+    default: '[]',
     description: undefined,
-    required: false,
+    required: true,
     displayOptions: {
       show: {
         task_update_object: ['input'],
@@ -10551,7 +10597,7 @@ const properties: INodeProperties[] = [
     options: [
       {
         name: 'Metafields',
-        value: 'metafields_fixedCollection_input',
+        value: 'metafields_json_input',
       },
       {
         name: 'Shopify Market',
@@ -10568,45 +10614,16 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    type: 'fixedCollection',
+    type: 'json',
     displayName: 'Metafields',
-    name: 'metafields_fixedCollection_input',
-    default: '',
+    name: 'metafields_json_input',
+    default: '[]',
     description: undefined,
-    required: false,
-    typeOptions: {
-      multipleValues: true,
-    },
-    options: [
-      {
-        name: 'metafields_fixedCollection_values',
-        displayName: 'Metafields',
-        values: [
-          {
-            type: 'string',
-            displayName: 'Namespace',
-            name: 'namespace_string_metafields',
-            default: '',
-          },
-          {
-            type: 'string',
-            displayName: 'Key',
-            name: 'key_string_metafields',
-            default: '',
-          },
-          {
-            type: 'string',
-            displayName: 'Value',
-            name: 'value_string_metafields',
-            default: '',
-          },
-        ],
-      },
-    ],
+    required: true,
     displayOptions: {
       show: {
         task_update_object: ['input'],
-        shopify_input_object: ['metafields_fixedCollection_input'],
+        shopify_input_object: ['metafields_json_input'],
         input: ['shopify_input'],
         resource: ['tasks'],
         operation: ['updateTask'],
@@ -10650,7 +10667,7 @@ const properties: INodeProperties[] = [
     name: 'countries_json_market_input',
     default: '[]',
     description: undefined,
-    required: false,
+    required: true,
     displayOptions: {
       show: {
         task_update_object: ['input'],
@@ -10668,7 +10685,7 @@ const properties: INodeProperties[] = [
     name: 'currencies_json_market_input',
     default: '[]',
     description: undefined,
-    required: false,
+    required: true,
     displayOptions: {
       show: {
         task_update_object: ['input'],
@@ -10686,7 +10703,7 @@ const properties: INodeProperties[] = [
     name: 'locales_json_market_input',
     default: '[]',
     description: undefined,
-    required: false,
+    required: true,
     displayOptions: {
       show: {
         task_update_object: ['input'],
@@ -10700,6 +10717,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description: 'Whether the task is enabled.',
     routing: {
       send: {
@@ -10710,7 +10728,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Enabled',
     name: 'enabled_boolean',
-    default: '',
     displayOptions: {
       show: {
         task_update_object: ['enabled_boolean'],
@@ -10721,6 +10738,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     description: 'Action to perform on the Algolia index.',
     options: [
       {
@@ -10753,7 +10771,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Subscription Action',
     name: 'subscriptionAction_options',
-    default: '',
     displayOptions: {
       show: {
         task_update_object: ['subscriptionAction_options'],
@@ -10764,6 +10781,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description: 'Maximum accepted percentage of failures for a task run to finish successfully.',
     typeOptions: {
       minValue: 0,
@@ -10778,7 +10796,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Failure Threshold',
     name: 'failureThreshold_number',
-    default: '',
     displayOptions: {
       show: {
         task_update_object: ['failureThreshold_number'],
@@ -10821,7 +10838,7 @@ const properties: INodeProperties[] = [
     name: 'email_notifications_object_notifications',
     type: 'multiOptions',
     description: undefined,
-    required: false,
+    required: true,
     default: [],
     options: [
       {
@@ -10840,11 +10857,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       "Whether to send email notifications, note that this doesn't prevent the task from being blocked.",
     displayName: 'Enabled',
     name: 'enabled_boolean_email_notifications',
-    default: '',
     displayOptions: {
       show: {
         task_update_object: ['notifications_object'],
@@ -10886,6 +10903,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description:
       'The number of critical failures in a row before blocking the task and sending a notification.',
     typeOptions: {
@@ -10894,7 +10912,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Critical Threshold',
     name: 'criticalThreshold_number_policies',
-    default: '',
     displayOptions: {
       show: {
         task_update_object: ['policies_object'],
@@ -10907,10 +10924,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '6c02aeb1-775e-418e-870b-1faccd4b2c0f',
+    default: '',
     description: 'Universally unique identifier (UUID) of a task.',
     displayName: 'Task ID',
     name: 'taskID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -10922,10 +10939,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '6c02aeb1-775e-418e-870b-1faccd4b2c0f',
+    default: '',
     description: 'Universally unique identifier (UUID) of a task.',
     displayName: 'Task ID',
     name: 'taskID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -10941,7 +10958,12 @@ const properties: INodeProperties[] = [
     description: undefined,
     required: false,
     default: [],
-    options: [],
+    options: [
+      {
+        name: 'Run Metadata',
+        value: 'run_metadata_object',
+      },
+    ],
     displayOptions: {
       show: {
         resource: ['tasks'],
@@ -10950,12 +10972,34 @@ const properties: INodeProperties[] = [
     },
   },
   {
+    type: 'json',
+    displayName: 'Run Metadata',
+    name: 'run_metadata_object',
+    description: 'Additional information that will be passed to the created run.',
+    required: false,
+    default: '{}',
+    routing: {
+      send: {
+        type: 'body',
+        property: 'runMetadata',
+        value: '={{ $value }}',
+      },
+    },
+    displayOptions: {
+      show: {
+        run_task_payload_object: ['run_metadata_object'],
+        resource: ['tasks'],
+        operation: ['runTask'],
+      },
+    },
+  },
+  {
     type: 'string',
     placeholder: '6c02aeb1-775e-418e-870b-1faccd4b2c0f',
+    default: '',
     description: 'Universally unique identifier (UUID) of a task.',
     displayName: 'Task ID',
     name: 'taskID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -10966,6 +11010,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     routing: {
       request: {
         qs: {
@@ -10975,7 +11020,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Watch',
     name: 'watch_boolean',
-    default: '',
     displayOptions: {
       show: {
         resource: ['tasks'],
@@ -10997,7 +11041,7 @@ const properties: INodeProperties[] = [
       },
       {
         name: 'Records',
-        value: 'records_fixedCollection',
+        value: 'records_json',
       },
     ],
     displayOptions: {
@@ -11009,6 +11053,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     description:
       'Which indexing operation to perform:\n\n- `addObject`: adds records to an index.\n   Equivalent to the "Add a new record (with auto-generated object ID)" operation.\n- `updateObject`: adds or replaces records in an index.\n   Equivalent to the "Add or replace a record" operation.\n- `partialUpdateObject`: adds or updates attributes within records.\n   Equivalent to the "Add or update attributes" operation with the `createIfNoExists` parameter set to true.\n   (If a record with the specified `objectID` doesn\'t exist in the specified index, this action creates adds the record to the index)\n- `partialUpdateObjectNoCreate`: same as `partialUpdateObject`, but with `createIfNoExists` set to false.\n   (A record isn\'t added to the index if its `objectID` doesn\'t exist)\n- `deleteObject`: delete records from an index.\n  Equivalent to the "Delete a record" operation.\n- `delete`. Delete an index. Equivalent to the "Delete an index" operation.\n- `clear`: delete all records from an index. Equivalent to the "Delete all records from an index operation".\n',
     options: [
@@ -11050,7 +11095,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Action',
     name: 'action_options',
-    default: '',
     displayOptions: {
       show: {
         push_task_payload_object: ['action_options'],
@@ -11058,44 +11102,25 @@ const properties: INodeProperties[] = [
         operation: ['pushTask'],
       },
     },
+    required: true,
   },
   {
-    type: 'fixedCollection',
+    type: 'json',
     displayName: 'Records',
-    name: 'records_fixedCollection',
-    default: '',
+    name: 'records_json',
+    default: '[]',
     description: undefined,
-    required: false,
-    typeOptions: {
-      multipleValues: true,
-    },
-    options: [
-      {
-        name: 'records_fixedCollection_values',
-        displayName: 'Records',
-        values: [
-          {
-            type: 'string',
-            placeholder: 'test-record-123',
-            description: 'Unique record identifier.',
-            displayName: 'Object ID',
-            name: 'objectID_string_records',
-            default: '',
-          },
-        ],
-      },
-    ],
+    required: true,
     routing: {
       send: {
         type: 'body',
-        value:
-          '={{ $parameter.values?.map(item => ({ objectID: typeof item.objectID_string_records !== "undefined" ? item.objectID_string_records : undefined })) }}',
+        value: '={{ $value }}',
         property: 'records',
       },
     },
     displayOptions: {
       show: {
-        push_task_payload_object: ['records_fixedCollection'],
+        push_task_payload_object: ['records_json'],
         resource: ['tasks'],
         operation: ['pushTask'],
       },
@@ -11104,10 +11129,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '6c02aeb1-775e-418e-870b-1faccd4b2c0f',
+    default: '',
     description: 'Universally unique identifier (UUID) of a task.',
     displayName: 'Task ID',
     name: 'taskID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -11119,10 +11144,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '6c02aeb1-775e-418e-870b-1faccd4b2c0f',
+    default: '',
     description: 'Universally unique identifier (UUID) of a task.',
     displayName: 'Task ID',
     name: 'taskID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -11157,6 +11182,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description: 'Page of the API response to retrieve.',
     typeOptions: {
       minValue: 1,
@@ -11170,7 +11196,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Page',
     name: 'page_number',
-    default: '',
     displayOptions: {
       show: {
         resource: ['tasks'],
@@ -11188,7 +11213,7 @@ const properties: INodeProperties[] = [
     routing: {
       request: {
         qs: {
-          action: '={{ JSON.parse($value) }}',
+          action: '={{ $value }}',
         },
       },
     },
@@ -11201,6 +11226,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     routing: {
       request: {
         qs: {
@@ -11210,7 +11236,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Enabled',
     name: 'enabled_boolean',
-    default: '',
     displayOptions: {
       show: {
         resource: ['tasks'],
@@ -11228,7 +11253,7 @@ const properties: INodeProperties[] = [
     routing: {
       request: {
         qs: {
-          sourceID: '={{ JSON.parse($value) }}',
+          sourceID: '={{ $value }}',
         },
       },
     },
@@ -11249,7 +11274,7 @@ const properties: INodeProperties[] = [
     routing: {
       request: {
         qs: {
-          destinationID: '={{ JSON.parse($value) }}',
+          destinationID: '={{ $value }}',
         },
       },
     },
@@ -11270,7 +11295,7 @@ const properties: INodeProperties[] = [
     routing: {
       request: {
         qs: {
-          triggerType: '={{ JSON.parse($value) }}',
+          triggerType: '={{ $value }}',
         },
       },
     },
@@ -11405,6 +11430,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '6c02aeb1-775e-418e-870b-1faccd4b2c0f',
+    default: '',
     description: 'Universally uniqud identifier (UUID) of a source.',
     routing: {
       send: {
@@ -11415,7 +11441,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Source ID',
     name: 'sourceID_string',
-    default: '',
     displayOptions: {
       show: {
         task_create_v1_object: ['sourceID_string'],
@@ -11423,10 +11448,12 @@ const properties: INodeProperties[] = [
         operation: ['createTaskV1'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
     placeholder: '6c02aeb1-775e-418e-870b-1faccd4b2c0f',
+    default: '',
     description: 'Universally unique identifier (UUID) of a destination resource.',
     routing: {
       send: {
@@ -11437,7 +11464,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Destination ID',
     name: 'destinationID_string',
-    default: '',
     displayOptions: {
       show: {
         task_create_v1_object: ['destinationID_string'],
@@ -11445,6 +11471,7 @@ const properties: INodeProperties[] = [
         operation: ['createTaskV1'],
       },
     },
+    required: true,
   },
   {
     type: 'options',
@@ -11484,6 +11511,7 @@ const properties: INodeProperties[] = [
         operation: ['createTaskV1'],
       },
     },
+    required: true,
   },
   {
     displayName: 'On Demand Trigger Input',
@@ -11509,6 +11537,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     description: 'Task is run manually, with the `/run` endpoint.',
     options: [
       {
@@ -11518,7 +11547,6 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Type',
     name: 'type_options_trigger',
-    default: '',
     displayOptions: {
       show: {
         task_create_v1_object: ['trigger'],
@@ -11528,6 +11556,7 @@ const properties: INodeProperties[] = [
         operation: ['createTaskV1'],
       },
     },
+    required: true,
   },
   {
     displayName: 'Schedule Trigger Input',
@@ -11557,6 +11586,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     description: 'Task runs on a schedule.',
     options: [
       {
@@ -11566,7 +11596,6 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Type',
     name: 'type_options_trigger',
-    default: '',
     displayOptions: {
       show: {
         task_create_v1_object: ['trigger'],
@@ -11576,14 +11605,15 @@ const properties: INodeProperties[] = [
         operation: ['createTaskV1'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
     placeholder: '* * 1 * *',
+    default: '',
     description: "Cron expression for the task's schedule.",
     displayName: 'Cron',
     name: 'cron_string_trigger',
-    default: '',
     displayOptions: {
       show: {
         task_create_v1_object: ['trigger'],
@@ -11593,6 +11623,7 @@ const properties: INodeProperties[] = [
         operation: ['createTaskV1'],
       },
     },
+    required: true,
   },
   {
     displayName: 'Subscription Trigger',
@@ -11618,6 +11649,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     description: 'Task runs after receiving subscribed event.',
     options: [
       {
@@ -11627,7 +11659,6 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Type',
     name: 'type_options_trigger',
-    default: '',
     displayOptions: {
       show: {
         task_create_v1_object: ['trigger'],
@@ -11637,6 +11668,7 @@ const properties: INodeProperties[] = [
         operation: ['createTaskV1'],
       },
     },
+    required: true,
   },
   {
     displayName: 'Streaming Trigger',
@@ -11662,6 +11694,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     description: 'Task runs continuously.',
     options: [
       {
@@ -11671,7 +11704,6 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Type',
     name: 'type_options_trigger',
-    default: '',
     displayOptions: {
       show: {
         task_create_v1_object: ['trigger'],
@@ -11681,9 +11713,11 @@ const properties: INodeProperties[] = [
         operation: ['createTaskV1'],
       },
     },
+    required: true,
   },
   {
     type: 'options',
+    default: '',
     description: 'Action to perform on the Algolia index.',
     options: [
       {
@@ -11716,7 +11750,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Action',
     name: 'action_options',
-    default: '',
     displayOptions: {
       show: {
         task_create_v1_object: ['action_options'],
@@ -11724,9 +11757,11 @@ const properties: INodeProperties[] = [
         operation: ['createTaskV1'],
       },
     },
+    required: true,
   },
   {
     type: 'boolean',
+    default: false,
     description: 'Whether the task is enabled.',
     routing: {
       send: {
@@ -11737,7 +11772,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Enabled',
     name: 'enabled_boolean',
-    default: '',
     displayOptions: {
       show: {
         task_create_v1_object: ['enabled_boolean'],
@@ -11748,6 +11782,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description: 'Maximum accepted percentage of failures for a task run to finish successfully.',
     typeOptions: {
       minValue: 0,
@@ -11762,7 +11797,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Failure Threshold',
     name: 'failureThreshold_number',
-    default: '',
     displayOptions: {
       show: {
         task_create_v1_object: ['failureThreshold_number'],
@@ -11795,7 +11829,7 @@ const properties: INodeProperties[] = [
         type: 'body',
         property: 'input',
         value:
-          '={{ typeof $parameter.streaming_input_object !== "undefined" ? { "mapping": { "format": typeof $parameter.format_options_mapping_input !== "undefined" ? $parameter.format_options_mapping_input : undefined, "actions": typeof $parameter.actions_json_mapping_input !== "undefined" ? JSON.parse($parameter.actions_json_mapping_input) : undefined } } : typeof $parameter.mapping_input_object_input !== "undefined" ? $parameter.mapping_input_object_input : typeof $parameter.format_options_mapping_input !== "undefined" ? $parameter.format_options_mapping_input : typeof $parameter.actions_json_mapping_input !== "undefined" ? JSON.parse($parameter.actions_json_mapping_input) : typeof $parameter.docker_streams_input_object !== "undefined" ? { "streams": typeof $parameter.streams_json_input !== "undefined" ? JSON.parse($parameter.streams_json_input) : undefined } : typeof $parameter.streams_json_input !== "undefined" ? JSON.parse($parameter.streams_json_input) : typeof $parameter.shopify_input_object !== "undefined" ? { "metafields": $parameter.metafields_fixedCollection_input.metafields_fixedCollection_values?.map(item => ({ namespace: typeof item.namespace_string_metafields !== "undefined" ? item.namespace_string_metafields : undefined, key: typeof item.key_string_metafields !== "undefined" ? item.key_string_metafields : undefined, value: typeof item.value_string_metafields !== "undefined" ? item.value_string_metafields : undefined })), "market": { "countries": typeof $parameter.countries_json_market_input !== "undefined" ? JSON.parse($parameter.countries_json_market_input) : undefined, "currencies": typeof $parameter.currencies_json_market_input !== "undefined" ? JSON.parse($parameter.currencies_json_market_input) : undefined, "locales": typeof $parameter.locales_json_market_input !== "undefined" ? JSON.parse($parameter.locales_json_market_input) : undefined } } : typeof $parameter.metafields_fixedCollection_input !== "undefined" ? $parameter.metafields_fixedCollection_input : typeof $parameter.shopify_market_object_input !== "undefined" ? $parameter.shopify_market_object_input : typeof $parameter.countries_json_market_input !== "undefined" ? JSON.parse($parameter.countries_json_market_input) : typeof $parameter.currencies_json_market_input !== "undefined" ? JSON.parse($parameter.currencies_json_market_input) : typeof $parameter.locales_json_market_input !== "undefined" ? JSON.parse($parameter.locales_json_market_input) : undefined }}',
+          '={{ typeof $parameter.streaming_input_object !== "undefined" ? { "mapping": { "format": typeof $parameter.format_options_mapping_input !== "undefined" ? $parameter.format_options_mapping_input : undefined, "actions": typeof $parameter.actions_json_mapping_input !== "undefined" ? JSON.parse($parameter.actions_json_mapping_input) : undefined } } : typeof $parameter.mapping_input_object_input !== "undefined" ? $parameter.mapping_input_object_input : typeof $parameter.format_options_mapping_input !== "undefined" ? $parameter.format_options_mapping_input : typeof $parameter.actions_json_mapping_input !== "undefined" ? JSON.parse($parameter.actions_json_mapping_input) : typeof $parameter.docker_streams_input_object !== "undefined" ? { "streams": typeof $parameter.streams_json_input !== "undefined" ? JSON.parse($parameter.streams_json_input) : undefined } : typeof $parameter.streams_json_input !== "undefined" ? JSON.parse($parameter.streams_json_input) : typeof $parameter.shopify_input_object !== "undefined" ? { "metafields": typeof $parameter.metafields_json_input !== "undefined" ? JSON.parse($parameter.metafields_json_input) : undefined, "market": { "countries": typeof $parameter.countries_json_market_input !== "undefined" ? JSON.parse($parameter.countries_json_market_input) : undefined, "currencies": typeof $parameter.currencies_json_market_input !== "undefined" ? JSON.parse($parameter.currencies_json_market_input) : undefined, "locales": typeof $parameter.locales_json_market_input !== "undefined" ? JSON.parse($parameter.locales_json_market_input) : undefined } } : typeof $parameter.metafields_json_input !== "undefined" ? JSON.parse($parameter.metafields_json_input) : typeof $parameter.shopify_market_object_input !== "undefined" ? $parameter.shopify_market_object_input : typeof $parameter.countries_json_market_input !== "undefined" ? JSON.parse($parameter.countries_json_market_input) : typeof $parameter.currencies_json_market_input !== "undefined" ? JSON.parse($parameter.currencies_json_market_input) : typeof $parameter.locales_json_market_input !== "undefined" ? JSON.parse($parameter.locales_json_market_input) : undefined }}',
       },
     },
     displayOptions: {
@@ -11858,6 +11892,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     description: 'Mapping format schema.',
     options: [
       {
@@ -11867,7 +11902,6 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Format',
     name: 'format_options_mapping_input',
-    default: '',
     displayOptions: {
       show: {
         task_create_v1_object: ['input'],
@@ -11878,14 +11912,15 @@ const properties: INodeProperties[] = [
         operation: ['createTaskV1'],
       },
     },
+    required: true,
   },
   {
     type: 'json',
     displayName: 'Actions',
     name: 'actions_json_mapping_input',
-    default: '',
+    default: '[]',
     description: undefined,
-    required: false,
+    required: true,
     displayOptions: {
       show: {
         task_create_v1_object: ['input'],
@@ -11923,9 +11958,9 @@ const properties: INodeProperties[] = [
     type: 'json',
     displayName: 'Streams',
     name: 'streams_json_input',
-    default: '',
+    default: '[]',
     description: undefined,
-    required: false,
+    required: true,
     displayOptions: {
       show: {
         task_create_v1_object: ['input'],
@@ -11947,7 +11982,7 @@ const properties: INodeProperties[] = [
     options: [
       {
         name: 'Metafields',
-        value: 'metafields_fixedCollection_input',
+        value: 'metafields_json_input',
       },
       {
         name: 'Shopify Market',
@@ -11964,45 +11999,16 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    type: 'fixedCollection',
+    type: 'json',
     displayName: 'Metafields',
-    name: 'metafields_fixedCollection_input',
-    default: '',
+    name: 'metafields_json_input',
+    default: '[]',
     description: undefined,
-    required: false,
-    typeOptions: {
-      multipleValues: true,
-    },
-    options: [
-      {
-        name: 'metafields_fixedCollection_values',
-        displayName: 'Metafields',
-        values: [
-          {
-            type: 'string',
-            displayName: 'Namespace',
-            name: 'namespace_string_metafields',
-            default: '',
-          },
-          {
-            type: 'string',
-            displayName: 'Key',
-            name: 'key_string_metafields',
-            default: '',
-          },
-          {
-            type: 'string',
-            displayName: 'Value',
-            name: 'value_string_metafields',
-            default: '',
-          },
-        ],
-      },
-    ],
+    required: true,
     displayOptions: {
       show: {
         task_create_v1_object: ['input'],
-        shopify_input_object: ['metafields_fixedCollection_input'],
+        shopify_input_object: ['metafields_json_input'],
         input: ['shopify_input'],
         resource: ['tasks'],
         operation: ['createTaskV1'],
@@ -12046,7 +12052,7 @@ const properties: INodeProperties[] = [
     name: 'countries_json_market_input',
     default: '[]',
     description: undefined,
-    required: false,
+    required: true,
     displayOptions: {
       show: {
         task_create_v1_object: ['input'],
@@ -12064,7 +12070,7 @@ const properties: INodeProperties[] = [
     name: 'currencies_json_market_input',
     default: '[]',
     description: undefined,
-    required: false,
+    required: true,
     displayOptions: {
       show: {
         task_create_v1_object: ['input'],
@@ -12082,7 +12088,7 @@ const properties: INodeProperties[] = [
     name: 'locales_json_market_input',
     default: '[]',
     description: undefined,
-    required: false,
+    required: true,
     displayOptions: {
       show: {
         task_create_v1_object: ['input'],
@@ -12096,6 +12102,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Date of the last cursor in RFC 3339 format.',
     routing: {
       send: {
@@ -12106,7 +12113,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Cursor',
     name: 'cursor_string',
-    default: '',
     displayOptions: {
       show: {
         task_create_v1_object: ['cursor_string'],
@@ -12141,11 +12147,11 @@ const properties: INodeProperties[] = [
     name: 'taskIDs_json',
     default: '[]',
     description: undefined,
-    required: false,
+    required: true,
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'taskIDs',
       },
     },
@@ -12160,10 +12166,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '6c02aeb1-775e-418e-870b-1faccd4b2c0f',
+    default: '',
     description: 'Universally unique identifier (UUID) of a task.',
     displayName: 'Task ID',
     name: 'taskID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -12175,10 +12181,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '6c02aeb1-775e-418e-870b-1faccd4b2c0f',
+    default: '',
     description: 'Universally unique identifier (UUID) of a task.',
     displayName: 'Task ID',
     name: 'taskID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -12227,6 +12233,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '6c02aeb1-775e-418e-870b-1faccd4b2c0f',
+    default: '',
     description: 'Universally unique identifier (UUID) of a destination resource.',
     routing: {
       send: {
@@ -12237,7 +12244,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Destination ID',
     name: 'destinationID_string',
-    default: '',
     displayOptions: {
       show: {
         task_update_v1_object: ['destinationID_string'],
@@ -12278,10 +12284,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '* * 1 * *',
+    default: '',
     description: "Cron expression for the task's schedule.",
     displayName: 'Cron',
     name: 'cron_string_trigger',
-    default: '',
     displayOptions: {
       show: {
         task_update_v1_object: ['trigger_update_input_object'],
@@ -12290,6 +12296,7 @@ const properties: INodeProperties[] = [
         operation: ['updateTaskV1'],
       },
     },
+    required: true,
   },
   {
     type: 'options',
@@ -12315,7 +12322,7 @@ const properties: INodeProperties[] = [
         type: 'body',
         property: 'input',
         value:
-          '={{ typeof $parameter.streaming_input_object !== "undefined" ? { "mapping": { "format": typeof $parameter.format_options_mapping_input !== "undefined" ? $parameter.format_options_mapping_input : undefined, "actions": typeof $parameter.actions_json_mapping_input !== "undefined" ? JSON.parse($parameter.actions_json_mapping_input) : undefined } } : typeof $parameter.mapping_input_object_input !== "undefined" ? $parameter.mapping_input_object_input : typeof $parameter.format_options_mapping_input !== "undefined" ? $parameter.format_options_mapping_input : typeof $parameter.actions_json_mapping_input !== "undefined" ? JSON.parse($parameter.actions_json_mapping_input) : typeof $parameter.docker_streams_input_object !== "undefined" ? { "streams": typeof $parameter.streams_json_input !== "undefined" ? JSON.parse($parameter.streams_json_input) : undefined } : typeof $parameter.streams_json_input !== "undefined" ? JSON.parse($parameter.streams_json_input) : typeof $parameter.shopify_input_object !== "undefined" ? { "metafields": $parameter.metafields_fixedCollection_input.metafields_fixedCollection_values?.map(item => ({ namespace: typeof item.namespace_string_metafields !== "undefined" ? item.namespace_string_metafields : undefined, key: typeof item.key_string_metafields !== "undefined" ? item.key_string_metafields : undefined, value: typeof item.value_string_metafields !== "undefined" ? item.value_string_metafields : undefined })), "market": { "countries": typeof $parameter.countries_json_market_input !== "undefined" ? JSON.parse($parameter.countries_json_market_input) : undefined, "currencies": typeof $parameter.currencies_json_market_input !== "undefined" ? JSON.parse($parameter.currencies_json_market_input) : undefined, "locales": typeof $parameter.locales_json_market_input !== "undefined" ? JSON.parse($parameter.locales_json_market_input) : undefined } } : typeof $parameter.metafields_fixedCollection_input !== "undefined" ? $parameter.metafields_fixedCollection_input : typeof $parameter.shopify_market_object_input !== "undefined" ? $parameter.shopify_market_object_input : typeof $parameter.countries_json_market_input !== "undefined" ? JSON.parse($parameter.countries_json_market_input) : typeof $parameter.currencies_json_market_input !== "undefined" ? JSON.parse($parameter.currencies_json_market_input) : typeof $parameter.locales_json_market_input !== "undefined" ? JSON.parse($parameter.locales_json_market_input) : undefined }}',
+          '={{ typeof $parameter.streaming_input_object !== "undefined" ? { "mapping": { "format": typeof $parameter.format_options_mapping_input !== "undefined" ? $parameter.format_options_mapping_input : undefined, "actions": typeof $parameter.actions_json_mapping_input !== "undefined" ? JSON.parse($parameter.actions_json_mapping_input) : undefined } } : typeof $parameter.mapping_input_object_input !== "undefined" ? $parameter.mapping_input_object_input : typeof $parameter.format_options_mapping_input !== "undefined" ? $parameter.format_options_mapping_input : typeof $parameter.actions_json_mapping_input !== "undefined" ? JSON.parse($parameter.actions_json_mapping_input) : typeof $parameter.docker_streams_input_object !== "undefined" ? { "streams": typeof $parameter.streams_json_input !== "undefined" ? JSON.parse($parameter.streams_json_input) : undefined } : typeof $parameter.streams_json_input !== "undefined" ? JSON.parse($parameter.streams_json_input) : typeof $parameter.shopify_input_object !== "undefined" ? { "metafields": typeof $parameter.metafields_json_input !== "undefined" ? JSON.parse($parameter.metafields_json_input) : undefined, "market": { "countries": typeof $parameter.countries_json_market_input !== "undefined" ? JSON.parse($parameter.countries_json_market_input) : undefined, "currencies": typeof $parameter.currencies_json_market_input !== "undefined" ? JSON.parse($parameter.currencies_json_market_input) : undefined, "locales": typeof $parameter.locales_json_market_input !== "undefined" ? JSON.parse($parameter.locales_json_market_input) : undefined } } : typeof $parameter.metafields_json_input !== "undefined" ? JSON.parse($parameter.metafields_json_input) : typeof $parameter.shopify_market_object_input !== "undefined" ? $parameter.shopify_market_object_input : typeof $parameter.countries_json_market_input !== "undefined" ? JSON.parse($parameter.countries_json_market_input) : typeof $parameter.currencies_json_market_input !== "undefined" ? JSON.parse($parameter.currencies_json_market_input) : typeof $parameter.locales_json_market_input !== "undefined" ? JSON.parse($parameter.locales_json_market_input) : undefined }}',
       },
     },
     displayOptions: {
@@ -12378,6 +12385,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     description: 'Mapping format schema.',
     options: [
       {
@@ -12387,7 +12395,6 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Format',
     name: 'format_options_mapping_input',
-    default: '',
     displayOptions: {
       show: {
         task_update_v1_object: ['input'],
@@ -12398,14 +12405,15 @@ const properties: INodeProperties[] = [
         operation: ['updateTaskV1'],
       },
     },
+    required: true,
   },
   {
     type: 'json',
     displayName: 'Actions',
     name: 'actions_json_mapping_input',
-    default: '',
+    default: '[]',
     description: undefined,
-    required: false,
+    required: true,
     displayOptions: {
       show: {
         task_update_v1_object: ['input'],
@@ -12443,9 +12451,9 @@ const properties: INodeProperties[] = [
     type: 'json',
     displayName: 'Streams',
     name: 'streams_json_input',
-    default: '',
+    default: '[]',
     description: undefined,
-    required: false,
+    required: true,
     displayOptions: {
       show: {
         task_update_v1_object: ['input'],
@@ -12467,7 +12475,7 @@ const properties: INodeProperties[] = [
     options: [
       {
         name: 'Metafields',
-        value: 'metafields_fixedCollection_input',
+        value: 'metafields_json_input',
       },
       {
         name: 'Shopify Market',
@@ -12484,45 +12492,16 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    type: 'fixedCollection',
+    type: 'json',
     displayName: 'Metafields',
-    name: 'metafields_fixedCollection_input',
-    default: '',
+    name: 'metafields_json_input',
+    default: '[]',
     description: undefined,
-    required: false,
-    typeOptions: {
-      multipleValues: true,
-    },
-    options: [
-      {
-        name: 'metafields_fixedCollection_values',
-        displayName: 'Metafields',
-        values: [
-          {
-            type: 'string',
-            displayName: 'Namespace',
-            name: 'namespace_string_metafields',
-            default: '',
-          },
-          {
-            type: 'string',
-            displayName: 'Key',
-            name: 'key_string_metafields',
-            default: '',
-          },
-          {
-            type: 'string',
-            displayName: 'Value',
-            name: 'value_string_metafields',
-            default: '',
-          },
-        ],
-      },
-    ],
+    required: true,
     displayOptions: {
       show: {
         task_update_v1_object: ['input'],
-        shopify_input_object: ['metafields_fixedCollection_input'],
+        shopify_input_object: ['metafields_json_input'],
         input: ['shopify_input'],
         resource: ['tasks'],
         operation: ['updateTaskV1'],
@@ -12566,7 +12545,7 @@ const properties: INodeProperties[] = [
     name: 'countries_json_market_input',
     default: '[]',
     description: undefined,
-    required: false,
+    required: true,
     displayOptions: {
       show: {
         task_update_v1_object: ['input'],
@@ -12584,7 +12563,7 @@ const properties: INodeProperties[] = [
     name: 'currencies_json_market_input',
     default: '[]',
     description: undefined,
-    required: false,
+    required: true,
     displayOptions: {
       show: {
         task_update_v1_object: ['input'],
@@ -12602,7 +12581,7 @@ const properties: INodeProperties[] = [
     name: 'locales_json_market_input',
     default: '[]',
     description: undefined,
-    required: false,
+    required: true,
     displayOptions: {
       show: {
         task_update_v1_object: ['input'],
@@ -12616,6 +12595,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description: 'Whether the task is enabled.',
     routing: {
       send: {
@@ -12626,7 +12606,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Enabled',
     name: 'enabled_boolean',
-    default: '',
     displayOptions: {
       show: {
         task_update_v1_object: ['enabled_boolean'],
@@ -12637,6 +12616,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description: 'Maximum accepted percentage of failures for a task run to finish successfully.',
     typeOptions: {
       minValue: 0,
@@ -12651,7 +12631,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Failure Threshold',
     name: 'failureThreshold_number',
-    default: '',
     displayOptions: {
       show: {
         task_update_v1_object: ['failureThreshold_number'],
@@ -12663,10 +12642,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '6c02aeb1-775e-418e-870b-1faccd4b2c0f',
+    default: '',
     description: 'Universally unique identifier (UUID) of a task.',
     displayName: 'Task ID',
     name: 'taskID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -12678,10 +12657,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '6c02aeb1-775e-418e-870b-1faccd4b2c0f',
+    default: '',
     description: 'Universally unique identifier (UUID) of a task.',
     displayName: 'Task ID',
     name: 'taskID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -12697,7 +12676,12 @@ const properties: INodeProperties[] = [
     description: undefined,
     required: false,
     default: [],
-    options: [],
+    options: [
+      {
+        name: 'Run Metadata',
+        value: 'run_metadata_object',
+      },
+    ],
     displayOptions: {
       show: {
         resource: ['tasks'],
@@ -12706,12 +12690,34 @@ const properties: INodeProperties[] = [
     },
   },
   {
+    type: 'json',
+    displayName: 'Run Metadata',
+    name: 'run_metadata_object',
+    description: 'Additional information that will be passed to the created run.',
+    required: false,
+    default: '{}',
+    routing: {
+      send: {
+        type: 'body',
+        property: 'runMetadata',
+        value: '={{ $value }}',
+      },
+    },
+    displayOptions: {
+      show: {
+        run_task_payload_object: ['run_metadata_object'],
+        resource: ['tasks'],
+        operation: ['runTaskV1'],
+      },
+    },
+  },
+  {
     type: 'string',
     placeholder: '6c02aeb1-775e-418e-870b-1faccd4b2c0f',
+    default: '',
     description: 'Universally unique identifier (UUID) of a task.',
     displayName: 'Task ID',
     name: 'taskID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -12723,10 +12729,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '6c02aeb1-775e-418e-870b-1faccd4b2c0f',
+    default: '',
     description: 'Universally unique identifier (UUID) of a task.',
     displayName: 'Task ID',
     name: 'taskID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -12761,6 +12767,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description: 'Page of the API response to retrieve.',
     typeOptions: {
       minValue: 1,
@@ -12774,7 +12781,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Page',
     name: 'page_number',
-    default: '',
     displayOptions: {
       show: {
         resource: ['transformations'],
@@ -12848,6 +12854,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     description: "The type of transformation, which can be either 'code' or 'noCode'.",
     options: [
       {
@@ -12868,7 +12875,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Type',
     name: 'type_options',
-    default: '',
     displayOptions: {
       show: {
         resource: ['transformations'],
@@ -12918,6 +12924,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description:
       'It is deprecated. Use the `input` field with proper `type` instead to specify the transformation code.',
     routing: {
@@ -12929,7 +12936,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Code',
     name: 'code_string',
-    default: '',
     displayOptions: {
       show: {
         transformation_create_object: ['code_string'],
@@ -12940,6 +12946,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'The uniquely identified name of your transformation.',
     routing: {
       send: {
@@ -12950,7 +12957,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Name',
     name: 'name_string',
-    default: '',
     displayOptions: {
       show: {
         transformation_create_object: ['name_string'],
@@ -12958,9 +12964,11 @@ const properties: INodeProperties[] = [
         operation: ['createTransformation'],
       },
     },
+    required: true,
   },
   {
     type: 'options',
+    default: '',
     description: "The type of transformation, which can be either 'code' or 'noCode'.",
     options: [
       {
@@ -12981,7 +12989,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Type',
     name: 'type_options',
-    default: '',
     displayOptions: {
       show: {
         transformation_create_object: ['type_options'],
@@ -13045,10 +13052,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'The source code of the transformation.',
     displayName: 'Code',
     name: 'code_string_input',
-    default: '',
     displayOptions: {
       show: {
         transformation_create_object: ['input'],
@@ -13058,6 +13065,7 @@ const properties: INodeProperties[] = [
         operation: ['createTransformation'],
       },
     },
+    required: true,
   },
   {
     displayName: 'Transformation No Code',
@@ -13087,7 +13095,7 @@ const properties: INodeProperties[] = [
     name: 'steps_json_input',
     default: '[]',
     description: undefined,
-    required: false,
+    required: true,
     displayOptions: {
       show: {
         transformation_create_object: ['input'],
@@ -13100,6 +13108,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'A descriptive name for your transformation of what it does.',
     routing: {
       send: {
@@ -13110,7 +13119,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Description',
     name: 'description_string',
-    default: '',
     displayOptions: {
       show: {
         transformation_create_object: ['description_string'],
@@ -13129,7 +13137,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'authenticationIDs',
       },
     },
@@ -13162,6 +13170,10 @@ const properties: INodeProperties[] = [
         value: 'input',
       },
       {
+        name: 'Sample Record',
+        value: 'sample_record_object',
+      },
+      {
         name: 'Authentications',
         value: 'authentications_json',
       },
@@ -13175,6 +13187,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description:
       'It is deprecated. Use the `input` field with proper `type` instead to specify the transformation code.',
     routing: {
@@ -13186,7 +13199,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Code',
     name: 'code_string',
-    default: '',
     displayOptions: {
       show: {
         transformation_try_object: ['code_string'],
@@ -13197,6 +13209,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     description: "The type of transformation, which can be either 'code' or 'noCode'.",
     options: [
       {
@@ -13217,7 +13230,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Type',
     name: 'type_options',
-    default: '',
     displayOptions: {
       show: {
         transformation_try_object: ['type_options'],
@@ -13281,10 +13293,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'The source code of the transformation.',
     displayName: 'Code',
     name: 'code_string_input',
-    default: '',
     displayOptions: {
       show: {
         transformation_try_object: ['input'],
@@ -13294,6 +13306,7 @@ const properties: INodeProperties[] = [
         operation: ['tryTransformation'],
       },
     },
+    required: true,
   },
   {
     displayName: 'Transformation No Code',
@@ -13323,7 +13336,7 @@ const properties: INodeProperties[] = [
     name: 'steps_json_input',
     default: '[]',
     description: undefined,
-    required: false,
+    required: true,
     displayOptions: {
       show: {
         transformation_try_object: ['input'],
@@ -13336,15 +13349,37 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'json',
+    displayName: 'Sample Record',
+    name: 'sample_record_object',
+    description: 'The record to apply the given code to.',
+    required: true,
+    default: '{}',
+    routing: {
+      send: {
+        type: 'body',
+        property: 'sampleRecord',
+        value: '={{ $value }}',
+      },
+    },
+    displayOptions: {
+      show: {
+        transformation_try_object: ['sample_record_object'],
+        resource: ['transformations'],
+        operation: ['tryTransformation'],
+      },
+    },
+  },
+  {
+    type: 'json',
     displayName: 'Authentications',
     name: 'authentications_json',
-    default: '',
+    default: '[]',
     description: undefined,
     required: false,
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'authentications',
       },
     },
@@ -13382,11 +13417,11 @@ const properties: INodeProperties[] = [
     name: 'transformationIDs_json',
     default: '[]',
     description: undefined,
-    required: false,
+    required: true,
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'transformationIDs',
       },
     },
@@ -13401,10 +13436,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '6c02aeb1-775e-418e-870b-1faccd4b2c0f',
+    default: '',
     description: 'Universally unique identifier (UUID) of a transformation.',
     displayName: 'Transformation ID',
     name: 'transformationID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -13416,10 +13451,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '6c02aeb1-775e-418e-870b-1faccd4b2c0f',
+    default: '',
     description: 'Universally unique identifier (UUID) of a transformation.',
     displayName: 'Transformation ID',
     name: 'transformationID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -13470,6 +13505,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description:
       'It is deprecated. Use the `input` field with proper `type` instead to specify the transformation code.',
     routing: {
@@ -13481,7 +13517,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Code',
     name: 'code_string',
-    default: '',
     displayOptions: {
       show: {
         transformation_create_object: ['code_string'],
@@ -13492,6 +13527,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'The uniquely identified name of your transformation.',
     routing: {
       send: {
@@ -13502,7 +13538,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Name',
     name: 'name_string',
-    default: '',
     displayOptions: {
       show: {
         transformation_create_object: ['name_string'],
@@ -13510,9 +13545,11 @@ const properties: INodeProperties[] = [
         operation: ['updateTransformation'],
       },
     },
+    required: true,
   },
   {
     type: 'options',
+    default: '',
     description: "The type of transformation, which can be either 'code' or 'noCode'.",
     options: [
       {
@@ -13533,7 +13570,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Type',
     name: 'type_options',
-    default: '',
     displayOptions: {
       show: {
         transformation_create_object: ['type_options'],
@@ -13597,10 +13633,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'The source code of the transformation.',
     displayName: 'Code',
     name: 'code_string_input',
-    default: '',
     displayOptions: {
       show: {
         transformation_create_object: ['input'],
@@ -13610,6 +13646,7 @@ const properties: INodeProperties[] = [
         operation: ['updateTransformation'],
       },
     },
+    required: true,
   },
   {
     displayName: 'Transformation No Code',
@@ -13639,7 +13676,7 @@ const properties: INodeProperties[] = [
     name: 'steps_json_input',
     default: '[]',
     description: undefined,
-    required: false,
+    required: true,
     displayOptions: {
       show: {
         transformation_create_object: ['input'],
@@ -13652,6 +13689,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'A descriptive name for your transformation of what it does.',
     routing: {
       send: {
@@ -13662,7 +13700,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Description',
     name: 'description_string',
-    default: '',
     displayOptions: {
       show: {
         transformation_create_object: ['description_string'],
@@ -13681,7 +13718,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'authenticationIDs',
       },
     },
@@ -13696,10 +13733,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '6c02aeb1-775e-418e-870b-1faccd4b2c0f',
+    default: '',
     description: 'Universally unique identifier (UUID) of a transformation.',
     displayName: 'Transformation ID',
     name: 'transformationID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -13711,10 +13748,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '6c02aeb1-775e-418e-870b-1faccd4b2c0f',
+    default: '',
     description: 'Universally unique identifier (UUID) of a transformation.',
     displayName: 'Transformation ID',
     name: 'transformationID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -13744,6 +13781,10 @@ const properties: INodeProperties[] = [
         value: 'input',
       },
       {
+        name: 'Sample Record',
+        value: 'sample_record_object',
+      },
+      {
         name: 'Authentications',
         value: 'authentications_json',
       },
@@ -13757,6 +13798,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description:
       'It is deprecated. Use the `input` field with proper `type` instead to specify the transformation code.',
     routing: {
@@ -13768,7 +13810,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Code',
     name: 'code_string',
-    default: '',
     displayOptions: {
       show: {
         transformation_try_object: ['code_string'],
@@ -13779,6 +13820,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     description: "The type of transformation, which can be either 'code' or 'noCode'.",
     options: [
       {
@@ -13799,7 +13841,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Type',
     name: 'type_options',
-    default: '',
     displayOptions: {
       show: {
         transformation_try_object: ['type_options'],
@@ -13863,10 +13904,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'The source code of the transformation.',
     displayName: 'Code',
     name: 'code_string_input',
-    default: '',
     displayOptions: {
       show: {
         transformation_try_object: ['input'],
@@ -13876,6 +13917,7 @@ const properties: INodeProperties[] = [
         operation: ['tryTransformationBeforeUpdate'],
       },
     },
+    required: true,
   },
   {
     displayName: 'Transformation No Code',
@@ -13905,7 +13947,7 @@ const properties: INodeProperties[] = [
     name: 'steps_json_input',
     default: '[]',
     description: undefined,
-    required: false,
+    required: true,
     displayOptions: {
       show: {
         transformation_try_object: ['input'],
@@ -13918,15 +13960,37 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'json',
+    displayName: 'Sample Record',
+    name: 'sample_record_object',
+    description: 'The record to apply the given code to.',
+    required: true,
+    default: '{}',
+    routing: {
+      send: {
+        type: 'body',
+        property: 'sampleRecord',
+        value: '={{ $value }}',
+      },
+    },
+    displayOptions: {
+      show: {
+        transformation_try_object: ['sample_record_object'],
+        resource: ['transformations'],
+        operation: ['tryTransformationBeforeUpdate'],
+      },
+    },
+  },
+  {
+    type: 'json',
     displayName: 'Authentications',
     name: 'authentications_json',
-    default: '',
+    default: '[]',
     description: undefined,
     required: false,
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'authentications',
       },
     },
@@ -13964,6 +14028,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description: 'Page of the API response to retrieve.',
     typeOptions: {
       minValue: 1,
@@ -13977,7 +14042,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Page',
     name: 'page_number',
-    default: '',
     displayOptions: {
       show: {
         resource: ['observability'],
@@ -13995,7 +14059,7 @@ const properties: INodeProperties[] = [
     routing: {
       request: {
         qs: {
-          status: '={{ JSON.parse($value) }}',
+          status: '={{ $value }}',
         },
       },
     },
@@ -14016,7 +14080,7 @@ const properties: INodeProperties[] = [
     routing: {
       request: {
         qs: {
-          type: '={{ JSON.parse($value) }}',
+          type: '={{ $value }}',
         },
       },
     },
@@ -14030,6 +14094,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '6c02aeb1-775e-418e-870b-1faccd4b2c0f',
+    default: '',
     description: 'Universally unique identifier (UUID) of a task.',
     routing: {
       request: {
@@ -14040,7 +14105,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Task ID',
     name: 'taskID_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['observability'],
@@ -14114,6 +14178,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -14123,7 +14188,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Start Date',
     name: 'startDate_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['observability'],
@@ -14133,6 +14197,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -14142,7 +14207,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'End Date',
     name: 'endDate_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['observability'],
@@ -14153,10 +14217,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '6c02aeb1-775e-418e-870b-1faccd4b2c0f',
+    default: '',
     description: 'Universally unique identifier (UUID) of a task run.',
     displayName: 'Run ID',
     name: 'runID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -14168,10 +14232,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '6c02aeb1-775e-418e-870b-1faccd4b2c0f',
+    default: '',
     description: 'Universally unique identifier (UUID) of a task run.',
     displayName: 'Run ID',
     name: 'runID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -14206,6 +14270,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description: 'Page of the API response to retrieve.',
     typeOptions: {
       minValue: 1,
@@ -14219,7 +14284,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Page',
     name: 'page_number',
-    default: '',
     displayOptions: {
       show: {
         resource: ['observability'],
@@ -14237,7 +14301,7 @@ const properties: INodeProperties[] = [
     routing: {
       request: {
         qs: {
-          status: '={{ JSON.parse($value) }}',
+          status: '={{ $value }}',
         },
       },
     },
@@ -14258,7 +14322,7 @@ const properties: INodeProperties[] = [
     routing: {
       request: {
         qs: {
-          type: '={{ JSON.parse($value) }}',
+          type: '={{ $value }}',
         },
       },
     },
@@ -14271,6 +14335,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     description: 'Property by which to sort the list of task run events.',
     options: [
       {
@@ -14295,7 +14360,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Sort',
     name: 'sort_options',
-    default: '',
     displayOptions: {
       show: {
         resource: ['observability'],
@@ -14335,6 +14399,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -14344,7 +14409,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Start Date',
     name: 'startDate_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['observability'],
@@ -14354,6 +14418,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -14363,7 +14428,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'End Date',
     name: 'endDate_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['observability'],
@@ -14374,10 +14438,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '6c02aeb1-775e-418e-870b-1faccd4b2c0f',
+    default: '',
     description: 'Universally unique identifier (UUID) of a task run.',
     displayName: 'Run ID',
     name: 'runID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -14389,10 +14453,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '6c02aeb1-775e-418e-870b-1faccd4b2c0f',
+    default: '',
     description: 'Universally unique identifier (UUID) of an event.',
     displayName: 'Event ID',
     name: 'eventID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {

@@ -367,6 +367,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'test-crawler',
+    default: '',
     description: 'Name of the crawler.',
     routing: {
       request: {
@@ -377,7 +378,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Name',
     name: 'name_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['crawlers'],
@@ -387,6 +387,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Algolia application ID where the crawler creates and updates indices.\n',
     routing: {
       request: {
@@ -397,7 +398,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'App ID',
     name: 'appID_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['crawlers'],
@@ -432,6 +432,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'test-crawler',
+    default: '',
     description: 'Name of the crawler.',
     routing: {
       send: {
@@ -442,7 +443,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Name',
     name: 'name_string',
-    default: '',
     displayOptions: {
       show: {
         crawler_create_object: ['name_string'],
@@ -450,6 +450,7 @@ const properties: INodeProperties[] = [
         operation: ['createCrawler'],
       },
     },
+    required: true,
   },
   {
     displayName: 'Configuration',
@@ -512,8 +513,8 @@ const properties: INodeProperties[] = [
         value: 'indexPrefix_string_config',
       },
       {
-        name: 'Index Settings',
-        value: 'index_settings_config',
+        name: 'Initial Index Settings',
+        value: 'initial_index_settings_object_config',
       },
       {
         name: 'Link Extractor',
@@ -569,7 +570,7 @@ const properties: INodeProperties[] = [
         type: 'body',
         property: 'config',
         value:
-          '={{ { "actions": typeof $parameter.actions_json_config !== "undefined" ? JSON.parse($parameter.actions_json_config) : undefined, "apiKey": typeof $parameter.apiKey_string_config !== "undefined" ? $parameter.apiKey_string_config : undefined, "applicationId": typeof $parameter.applicationId_string_config !== "undefined" ? $parameter.applicationId_string_config : undefined, "exclusionPatterns": typeof $parameter.exclusionPatterns_json_config !== "undefined" ? JSON.parse($parameter.exclusionPatterns_json_config) : undefined, "externalData": typeof $parameter.externalData_json_config !== "undefined" ? JSON.parse($parameter.externalData_json_config) : undefined, "extraUrls": typeof $parameter.extraUrls_json_config !== "undefined" ? JSON.parse($parameter.extraUrls_json_config) : undefined, "ignoreCanonicalTo": typeof $parameter.ignoreCanonicalTo_boolean_config !== "undefined" ? $parameter.ignoreCanonicalTo_boolean_config : typeof $parameter.ignoreCanonicalTo_json_config !== "undefined" ? JSON.parse($parameter.ignoreCanonicalTo_json_config) : undefined, "ignoreNoFollowTo": typeof $parameter.ignoreNoFollowTo_boolean_config !== "undefined" ? $parameter.ignoreNoFollowTo_boolean_config : undefined, "ignoreNoIndex": typeof $parameter.ignoreNoIndex_boolean_config !== "undefined" ? $parameter.ignoreNoIndex_boolean_config : undefined, "ignorePaginationAttributes": typeof $parameter.ignorePaginationAttributes_boolean_config !== "undefined" ? $parameter.ignorePaginationAttributes_boolean_config : undefined, "ignoreQueryParams": typeof $parameter.ignoreQueryParams_json_config !== "undefined" ? JSON.parse($parameter.ignoreQueryParams_json_config) : undefined, "ignoreRobotsTxtRules": typeof $parameter.ignoreRobotsTxtRules_boolean_config !== "undefined" ? $parameter.ignoreRobotsTxtRules_boolean_config : undefined, "indexPrefix": typeof $parameter.indexPrefix_string_config !== "undefined" ? $parameter.indexPrefix_string_config : undefined, "initialIndexSettings": typeof $parameter.index_settings_config !== "undefined" ? JSON.parse($parameter.index_settings_config) : undefined, "linkExtractor": { "__type": typeof $parameter.__type_options_linkExtractor_config !== "undefined" ? $parameter.__type_options_linkExtractor_config : undefined, "source": typeof $parameter.source_string_linkExtractor_config !== "undefined" ? $parameter.source_string_linkExtractor_config : undefined }, "login": typeof $parameter.http_request_object_config !== "undefined" ? { "url": typeof $parameter.url_string_login_config !== "undefined" ? $parameter.url_string_login_config : undefined, "requestOptions": { "method": typeof $parameter.method_string_requestOptions_login_config !== "undefined" ? $parameter.method_string_requestOptions_login_config : undefined, "headers": { "Accept-Language": typeof $parameter.Accept-Language_string_headers_requestOptions_login_config !== "undefined" ? $parameter.Accept-Language_string_headers_requestOptions_login_config : undefined, "Authorization": typeof $parameter.Authorization_string_headers_requestOptions_login_config !== "undefined" ? $parameter.Authorization_string_headers_requestOptions_login_config : undefined, "Cookie": typeof $parameter.Cookie_string_headers_requestOptions_login_config !== "undefined" ? $parameter.Cookie_string_headers_requestOptions_login_config : undefined }, "body": typeof $parameter.body_string_requestOptions_login_config !== "undefined" ? $parameter.body_string_requestOptions_login_config : undefined, "timeout": typeof $parameter.timeout_number_requestOptions_login_config !== "undefined" ? $parameter.timeout_number_requestOptions_login_config : undefined } } : typeof $parameter.url_string_login_config !== "undefined" ? $parameter.url_string_login_config : typeof $parameter.login_request_options_object_login_config !== "undefined" ? $parameter.login_request_options_object_login_config : typeof $parameter.method_string_requestOptions_login_config !== "undefined" ? $parameter.method_string_requestOptions_login_config : typeof $parameter.headers_object_requestOptions_login_config !== "undefined" ? $parameter.headers_object_requestOptions_login_config : typeof $parameter.Accept-Language_string_headers_requestOptions_login_config !== "undefined" ? $parameter.Accept-Language_string_headers_requestOptions_login_config : typeof $parameter.Authorization_string_headers_requestOptions_login_config !== "undefined" ? $parameter.Authorization_string_headers_requestOptions_login_config : typeof $parameter.Cookie_string_headers_requestOptions_login_config !== "undefined" ? $parameter.Cookie_string_headers_requestOptions_login_config : typeof $parameter.body_string_requestOptions_login_config !== "undefined" ? $parameter.body_string_requestOptions_login_config : typeof $parameter.timeout_number_requestOptions_login_config !== "undefined" ? $parameter.timeout_number_requestOptions_login_config : typeof $parameter.browserbased_object_config !== "undefined" ? { "url": typeof $parameter.url_string_login_config !== "undefined" ? $parameter.url_string_login_config : undefined, "username": typeof $parameter.username_string_login_config !== "undefined" ? $parameter.username_string_login_config : undefined, "password": typeof $parameter.password_string_login_config !== "undefined" ? $parameter.password_string_login_config : undefined, "waitTime": { "min": typeof $parameter.min_number_waitTime_login_config !== "undefined" ? $parameter.min_number_waitTime_login_config : undefined, "max": typeof $parameter.max_number_waitTime_login_config !== "undefined" ? $parameter.max_number_waitTime_login_config : undefined } } : typeof $parameter.url_string_login_config !== "undefined" ? $parameter.url_string_login_config : typeof $parameter.username_string_login_config !== "undefined" ? $parameter.username_string_login_config : typeof $parameter.password_string_login_config !== "undefined" ? $parameter.password_string_login_config : typeof $parameter.wait_time_object_login_config !== "undefined" ? $parameter.wait_time_object_login_config : typeof $parameter.min_number_waitTime_login_config !== "undefined" ? $parameter.min_number_waitTime_login_config : typeof $parameter.max_number_waitTime_login_config !== "undefined" ? $parameter.max_number_waitTime_login_config : typeof $parameter.oauth_20_object_config !== "undefined" ? { "accessTokenRequest": { "url": typeof $parameter.url_string_accessTokenRequest_login_config !== "undefined" ? $parameter.url_string_accessTokenRequest_login_config : undefined, "grantType": typeof $parameter.grantType_options_accessTokenRequest_login_config !== "undefined" ? $parameter.grantType_options_accessTokenRequest_login_config : undefined, "clientId": typeof $parameter.clientId_string_accessTokenRequest_login_config !== "undefined" ? $parameter.clientId_string_accessTokenRequest_login_config : undefined, "clientSecret": typeof $parameter.clientSecret_string_accessTokenRequest_login_config !== "undefined" ? $parameter.clientSecret_string_accessTokenRequest_login_config : undefined, "scope": typeof $parameter.scope_string_accessTokenRequest_login_config !== "undefined" ? $parameter.scope_string_accessTokenRequest_login_config : undefined, "extraParameters": { "resource": typeof $parameter.resource_string_extraParameters_accessTokenRequest_login_config !== "undefined" ? $parameter.resource_string_extraParameters_accessTokenRequest_login_config : undefined } } } : typeof $parameter.access_token_request_object_login_config !== "undefined" ? $parameter.access_token_request_object_login_config : typeof $parameter.url_string_accessTokenRequest_login_config !== "undefined" ? $parameter.url_string_accessTokenRequest_login_config : typeof $parameter.grantType_options_accessTokenRequest_login_config !== "undefined" ? $parameter.grantType_options_accessTokenRequest_login_config : typeof $parameter.clientId_string_accessTokenRequest_login_config !== "undefined" ? $parameter.clientId_string_accessTokenRequest_login_config : typeof $parameter.clientSecret_string_accessTokenRequest_login_config !== "undefined" ? $parameter.clientSecret_string_accessTokenRequest_login_config : typeof $parameter.scope_string_accessTokenRequest_login_config !== "undefined" ? $parameter.scope_string_accessTokenRequest_login_config : typeof $parameter.extra_parameters_object_accessTokenRequest_login_config !== "undefined" ? $parameter.extra_parameters_object_accessTokenRequest_login_config : typeof $parameter.resource_string_extraParameters_accessTokenRequest_login_config !== "undefined" ? $parameter.resource_string_extraParameters_accessTokenRequest_login_config : undefined, "maxDepth": typeof $parameter.maxDepth_number_config !== "undefined" ? $parameter.maxDepth_number_config : undefined, "maxUrls": typeof $parameter.maxUrls_number_config !== "undefined" ? $parameter.maxUrls_number_config : undefined, "rateLimit": typeof $parameter.rateLimit_number_config !== "undefined" ? $parameter.rateLimit_number_config : undefined, "renderJavaScript": typeof $parameter.renderJavaScript_boolean_config !== "undefined" ? $parameter.renderJavaScript_boolean_config : typeof $parameter.renderJavaScript_json_config !== "undefined" ? JSON.parse($parameter.renderJavaScript_json_config) : typeof $parameter.headless_browser_config_object_config !== "undefined" ? { "enabled": typeof $parameter.enabled_boolean_renderJavaScript_config !== "undefined" ? $parameter.enabled_boolean_renderJavaScript_config : undefined, "patterns": typeof $parameter.patterns_json_renderJavaScript_config !== "undefined" ? JSON.parse($parameter.patterns_json_renderJavaScript_config) : undefined, "adBlock": typeof $parameter.adBlock_boolean_renderJavaScript_config !== "undefined" ? $parameter.adBlock_boolean_renderJavaScript_config : undefined, "waitTime": { "min": typeof $parameter.min_number_waitTime_renderJavaScript_config !== "undefined" ? $parameter.min_number_waitTime_renderJavaScript_config : undefined, "max": typeof $parameter.max_number_waitTime_renderJavaScript_config !== "undefined" ? $parameter.max_number_waitTime_renderJavaScript_config : undefined } } : typeof $parameter.enabled_boolean_renderJavaScript_config !== "undefined" ? $parameter.enabled_boolean_renderJavaScript_config : typeof $parameter.patterns_json_renderJavaScript_config !== "undefined" ? JSON.parse($parameter.patterns_json_renderJavaScript_config) : typeof $parameter.adBlock_boolean_renderJavaScript_config !== "undefined" ? $parameter.adBlock_boolean_renderJavaScript_config : typeof $parameter.wait_time_object_renderJavaScript_config !== "undefined" ? $parameter.wait_time_object_renderJavaScript_config : typeof $parameter.min_number_waitTime_renderJavaScript_config !== "undefined" ? $parameter.min_number_waitTime_renderJavaScript_config : typeof $parameter.max_number_waitTime_renderJavaScript_config !== "undefined" ? $parameter.max_number_waitTime_renderJavaScript_config : undefined, "requestOptions": { "proxy": typeof $parameter.proxy_string_requestOptions_config !== "undefined" ? $parameter.proxy_string_requestOptions_config : undefined, "timeout": typeof $parameter.timeout_number_requestOptions_config !== "undefined" ? $parameter.timeout_number_requestOptions_config : undefined, "retries": typeof $parameter.retries_number_requestOptions_config !== "undefined" ? $parameter.retries_number_requestOptions_config : undefined, "headers": { "Accept-Language": typeof $parameter.Accept-Language_string_headers_requestOptions_config !== "undefined" ? $parameter.Accept-Language_string_headers_requestOptions_config : undefined, "Authorization": typeof $parameter.Authorization_string_headers_requestOptions_config !== "undefined" ? $parameter.Authorization_string_headers_requestOptions_config : undefined, "Cookie": typeof $parameter.Cookie_string_headers_requestOptions_config !== "undefined" ? $parameter.Cookie_string_headers_requestOptions_config : undefined } }, "safetyChecks": { "beforeIndexPublishing": { "maxLostRecordsPercentage": typeof $parameter.maxLostRecordsPercentage_number_beforeIndexPublishing_safetyChecks_config !== "undefined" ? $parameter.maxLostRecordsPercentage_number_beforeIndexPublishing_safetyChecks_config : undefined, "maxFailedUrls": typeof $parameter.maxFailedUrls_number_beforeIndexPublishing_safetyChecks_config !== "undefined" ? $parameter.maxFailedUrls_number_beforeIndexPublishing_safetyChecks_config : undefined } }, "saveBackup": typeof $parameter.saveBackup_boolean_config !== "undefined" ? $parameter.saveBackup_boolean_config : undefined, "schedule": typeof $parameter.schedule_string_config !== "undefined" ? $parameter.schedule_string_config : undefined, "sitemaps": typeof $parameter.sitemaps_json_config !== "undefined" ? JSON.parse($parameter.sitemaps_json_config) : undefined, "startUrls": typeof $parameter.startUrls_json_config !== "undefined" ? JSON.parse($parameter.startUrls_json_config) : undefined } }}',
+          '={{ { "actions": typeof $parameter.actions_json_config !== "undefined" ? JSON.parse($parameter.actions_json_config) : undefined, "apiKey": typeof $parameter.apiKey_string_config !== "undefined" ? $parameter.apiKey_string_config : undefined, "applicationId": typeof $parameter.applicationId_string_config !== "undefined" ? $parameter.applicationId_string_config : undefined, "exclusionPatterns": typeof $parameter.exclusionPatterns_json_config !== "undefined" ? JSON.parse($parameter.exclusionPatterns_json_config) : undefined, "externalData": typeof $parameter.externalData_json_config !== "undefined" ? JSON.parse($parameter.externalData_json_config) : undefined, "extraUrls": typeof $parameter.extraUrls_json_config !== "undefined" ? JSON.parse($parameter.extraUrls_json_config) : undefined, "ignoreCanonicalTo": typeof $parameter.ignoreCanonicalTo_boolean_config !== "undefined" ? $parameter.ignoreCanonicalTo_boolean_config : typeof $parameter.ignoreCanonicalTo_json_config !== "undefined" ? JSON.parse($parameter.ignoreCanonicalTo_json_config) : undefined, "ignoreNoFollowTo": typeof $parameter.ignoreNoFollowTo_boolean_config !== "undefined" ? $parameter.ignoreNoFollowTo_boolean_config : undefined, "ignoreNoIndex": typeof $parameter.ignoreNoIndex_boolean_config !== "undefined" ? $parameter.ignoreNoIndex_boolean_config : undefined, "ignorePaginationAttributes": typeof $parameter.ignorePaginationAttributes_boolean_config !== "undefined" ? $parameter.ignorePaginationAttributes_boolean_config : undefined, "ignoreQueryParams": typeof $parameter.ignoreQueryParams_json_config !== "undefined" ? JSON.parse($parameter.ignoreQueryParams_json_config) : undefined, "ignoreRobotsTxtRules": typeof $parameter.ignoreRobotsTxtRules_boolean_config !== "undefined" ? $parameter.ignoreRobotsTxtRules_boolean_config : undefined, "indexPrefix": typeof $parameter.indexPrefix_string_config !== "undefined" ? $parameter.indexPrefix_string_config : undefined, "initialIndexSettings": typeof $parameter.initial_index_settings_object_config !== "undefined" ? JSON.parse($parameter.initial_index_settings_object_config) : undefined, "linkExtractor": { "__type": typeof $parameter.__type_options_linkExtractor_config !== "undefined" ? $parameter.__type_options_linkExtractor_config : undefined, "source": typeof $parameter.source_string_linkExtractor_config !== "undefined" ? $parameter.source_string_linkExtractor_config : undefined }, "login": typeof $parameter.http_request_object_config !== "undefined" ? { "url": typeof $parameter.url_string_login_config !== "undefined" ? $parameter.url_string_login_config : undefined, "requestOptions": { "method": typeof $parameter.method_string_requestOptions_login_config !== "undefined" ? $parameter.method_string_requestOptions_login_config : undefined, "headers": { "Accept-Language": typeof $parameter.Accept-Language_string_headers_requestOptions_login_config !== "undefined" ? $parameter.Accept-Language_string_headers_requestOptions_login_config : undefined, "Authorization": typeof $parameter.Authorization_string_headers_requestOptions_login_config !== "undefined" ? $parameter.Authorization_string_headers_requestOptions_login_config : undefined, "Cookie": typeof $parameter.Cookie_string_headers_requestOptions_login_config !== "undefined" ? $parameter.Cookie_string_headers_requestOptions_login_config : undefined }, "body": typeof $parameter.body_string_requestOptions_login_config !== "undefined" ? $parameter.body_string_requestOptions_login_config : undefined, "timeout": typeof $parameter.timeout_number_requestOptions_login_config !== "undefined" ? $parameter.timeout_number_requestOptions_login_config : undefined } } : typeof $parameter.url_string_login_config !== "undefined" ? $parameter.url_string_login_config : typeof $parameter.login_request_options_object_login_config !== "undefined" ? $parameter.login_request_options_object_login_config : typeof $parameter.method_string_requestOptions_login_config !== "undefined" ? $parameter.method_string_requestOptions_login_config : typeof $parameter.headers_object_requestOptions_login_config !== "undefined" ? $parameter.headers_object_requestOptions_login_config : typeof $parameter.Accept-Language_string_headers_requestOptions_login_config !== "undefined" ? $parameter.Accept-Language_string_headers_requestOptions_login_config : typeof $parameter.Authorization_string_headers_requestOptions_login_config !== "undefined" ? $parameter.Authorization_string_headers_requestOptions_login_config : typeof $parameter.Cookie_string_headers_requestOptions_login_config !== "undefined" ? $parameter.Cookie_string_headers_requestOptions_login_config : typeof $parameter.body_string_requestOptions_login_config !== "undefined" ? $parameter.body_string_requestOptions_login_config : typeof $parameter.timeout_number_requestOptions_login_config !== "undefined" ? $parameter.timeout_number_requestOptions_login_config : typeof $parameter.browserbased_object_config !== "undefined" ? { "url": typeof $parameter.url_string_login_config !== "undefined" ? $parameter.url_string_login_config : undefined, "username": typeof $parameter.username_string_login_config !== "undefined" ? $parameter.username_string_login_config : undefined, "password": typeof $parameter.password_string_login_config !== "undefined" ? $parameter.password_string_login_config : undefined, "waitTime": { "min": typeof $parameter.min_number_waitTime_login_config !== "undefined" ? $parameter.min_number_waitTime_login_config : undefined, "max": typeof $parameter.max_number_waitTime_login_config !== "undefined" ? $parameter.max_number_waitTime_login_config : undefined } } : typeof $parameter.url_string_login_config !== "undefined" ? $parameter.url_string_login_config : typeof $parameter.username_string_login_config !== "undefined" ? $parameter.username_string_login_config : typeof $parameter.password_string_login_config !== "undefined" ? $parameter.password_string_login_config : typeof $parameter.wait_time_object_login_config !== "undefined" ? $parameter.wait_time_object_login_config : typeof $parameter.min_number_waitTime_login_config !== "undefined" ? $parameter.min_number_waitTime_login_config : typeof $parameter.max_number_waitTime_login_config !== "undefined" ? $parameter.max_number_waitTime_login_config : typeof $parameter.oauth_20_object_config !== "undefined" ? { "accessTokenRequest": { "url": typeof $parameter.url_string_accessTokenRequest_login_config !== "undefined" ? $parameter.url_string_accessTokenRequest_login_config : undefined, "grantType": typeof $parameter.grantType_options_accessTokenRequest_login_config !== "undefined" ? $parameter.grantType_options_accessTokenRequest_login_config : undefined, "clientId": typeof $parameter.clientId_string_accessTokenRequest_login_config !== "undefined" ? $parameter.clientId_string_accessTokenRequest_login_config : undefined, "clientSecret": typeof $parameter.clientSecret_string_accessTokenRequest_login_config !== "undefined" ? $parameter.clientSecret_string_accessTokenRequest_login_config : undefined, "scope": typeof $parameter.scope_string_accessTokenRequest_login_config !== "undefined" ? $parameter.scope_string_accessTokenRequest_login_config : undefined, "extraParameters": { "resource": typeof $parameter.resource_string_extraParameters_accessTokenRequest_login_config !== "undefined" ? $parameter.resource_string_extraParameters_accessTokenRequest_login_config : undefined } } } : typeof $parameter.access_token_request_object_login_config !== "undefined" ? $parameter.access_token_request_object_login_config : typeof $parameter.url_string_accessTokenRequest_login_config !== "undefined" ? $parameter.url_string_accessTokenRequest_login_config : typeof $parameter.grantType_options_accessTokenRequest_login_config !== "undefined" ? $parameter.grantType_options_accessTokenRequest_login_config : typeof $parameter.clientId_string_accessTokenRequest_login_config !== "undefined" ? $parameter.clientId_string_accessTokenRequest_login_config : typeof $parameter.clientSecret_string_accessTokenRequest_login_config !== "undefined" ? $parameter.clientSecret_string_accessTokenRequest_login_config : typeof $parameter.scope_string_accessTokenRequest_login_config !== "undefined" ? $parameter.scope_string_accessTokenRequest_login_config : typeof $parameter.extra_parameters_object_accessTokenRequest_login_config !== "undefined" ? $parameter.extra_parameters_object_accessTokenRequest_login_config : typeof $parameter.resource_string_extraParameters_accessTokenRequest_login_config !== "undefined" ? $parameter.resource_string_extraParameters_accessTokenRequest_login_config : undefined, "maxDepth": typeof $parameter.maxDepth_number_config !== "undefined" ? $parameter.maxDepth_number_config : undefined, "maxUrls": typeof $parameter.maxUrls_number_config !== "undefined" ? $parameter.maxUrls_number_config : undefined, "rateLimit": typeof $parameter.rateLimit_number_config !== "undefined" ? $parameter.rateLimit_number_config : undefined, "renderJavaScript": typeof $parameter.renderJavaScript_boolean_config !== "undefined" ? $parameter.renderJavaScript_boolean_config : typeof $parameter.renderJavaScript_json_config !== "undefined" ? JSON.parse($parameter.renderJavaScript_json_config) : typeof $parameter.headless_browser_config_object_config !== "undefined" ? { "enabled": typeof $parameter.enabled_boolean_renderJavaScript_config !== "undefined" ? $parameter.enabled_boolean_renderJavaScript_config : undefined, "patterns": typeof $parameter.patterns_json_renderJavaScript_config !== "undefined" ? JSON.parse($parameter.patterns_json_renderJavaScript_config) : undefined, "adBlock": typeof $parameter.adBlock_boolean_renderJavaScript_config !== "undefined" ? $parameter.adBlock_boolean_renderJavaScript_config : undefined, "waitTime": { "min": typeof $parameter.min_number_waitTime_renderJavaScript_config !== "undefined" ? $parameter.min_number_waitTime_renderJavaScript_config : undefined, "max": typeof $parameter.max_number_waitTime_renderJavaScript_config !== "undefined" ? $parameter.max_number_waitTime_renderJavaScript_config : undefined } } : typeof $parameter.enabled_boolean_renderJavaScript_config !== "undefined" ? $parameter.enabled_boolean_renderJavaScript_config : typeof $parameter.patterns_json_renderJavaScript_config !== "undefined" ? JSON.parse($parameter.patterns_json_renderJavaScript_config) : typeof $parameter.adBlock_boolean_renderJavaScript_config !== "undefined" ? $parameter.adBlock_boolean_renderJavaScript_config : typeof $parameter.wait_time_object_renderJavaScript_config !== "undefined" ? $parameter.wait_time_object_renderJavaScript_config : typeof $parameter.min_number_waitTime_renderJavaScript_config !== "undefined" ? $parameter.min_number_waitTime_renderJavaScript_config : typeof $parameter.max_number_waitTime_renderJavaScript_config !== "undefined" ? $parameter.max_number_waitTime_renderJavaScript_config : undefined, "requestOptions": { "proxy": typeof $parameter.proxy_string_requestOptions_config !== "undefined" ? $parameter.proxy_string_requestOptions_config : undefined, "timeout": typeof $parameter.timeout_number_requestOptions_config !== "undefined" ? $parameter.timeout_number_requestOptions_config : undefined, "retries": typeof $parameter.retries_number_requestOptions_config !== "undefined" ? $parameter.retries_number_requestOptions_config : undefined, "headers": { "Accept-Language": typeof $parameter.Accept-Language_string_headers_requestOptions_config !== "undefined" ? $parameter.Accept-Language_string_headers_requestOptions_config : undefined, "Authorization": typeof $parameter.Authorization_string_headers_requestOptions_config !== "undefined" ? $parameter.Authorization_string_headers_requestOptions_config : undefined, "Cookie": typeof $parameter.Cookie_string_headers_requestOptions_config !== "undefined" ? $parameter.Cookie_string_headers_requestOptions_config : undefined } }, "safetyChecks": { "beforeIndexPublishing": { "maxLostRecordsPercentage": typeof $parameter.maxLostRecordsPercentage_number_beforeIndexPublishing_safetyChecks_config !== "undefined" ? $parameter.maxLostRecordsPercentage_number_beforeIndexPublishing_safetyChecks_config : undefined, "maxFailedUrls": typeof $parameter.maxFailedUrls_number_beforeIndexPublishing_safetyChecks_config !== "undefined" ? $parameter.maxFailedUrls_number_beforeIndexPublishing_safetyChecks_config : undefined } }, "saveBackup": typeof $parameter.saveBackup_boolean_config !== "undefined" ? $parameter.saveBackup_boolean_config : undefined, "schedule": typeof $parameter.schedule_string_config !== "undefined" ? $parameter.schedule_string_config : undefined, "sitemaps": typeof $parameter.sitemaps_json_config !== "undefined" ? JSON.parse($parameter.sitemaps_json_config) : undefined, "startUrls": typeof $parameter.startUrls_json_config !== "undefined" ? JSON.parse($parameter.startUrls_json_config) : undefined } }}',
       },
     },
     displayOptions: {
@@ -584,9 +585,9 @@ const properties: INodeProperties[] = [
     type: 'json',
     displayName: 'Actions',
     name: 'actions_json_config',
-    default: '',
+    default: '[]',
     description: 'A list of actions.',
-    required: false,
+    required: true,
     displayOptions: {
       show: {
         crawler_create_object: ['configuration_object'],
@@ -598,11 +599,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description:
       "The Algolia API key the crawler uses for indexing records.\nIf you don't provide an API key, one will be generated by the Crawler when you create a configuration.\n\nThe API key must have:\n\n- These [rights and restrictions](https://www.algolia.com/doc/guides/security/api-keys/#rights-and-restrictions): `search`, `addObject`, `deleteObject`, `deleteIndex`, `settings`, `editSettings`, `listIndexes`, `browse`\n- Access to the correct set of indices, based on the crawler's `indexPrefix`.\nFor example, if the prefix is `crawler_`, the API key must have access to `crawler_*`.\n\n**Don't use your [Admin API key](https://www.algolia.com/doc/guides/security/api-keys/#predefined-api-keys)**.\n",
     displayName: 'Api Key',
     name: 'apiKey_string_config',
-    default: '',
     displayOptions: {
       show: {
         crawler_create_object: ['configuration_object'],
@@ -614,10 +615,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Algolia application ID where the crawler creates and updates indices.\n',
     displayName: 'Application Id',
     name: 'applicationId_string_config',
-    default: '',
     displayOptions: {
       show: {
         crawler_create_object: ['configuration_object'],
@@ -626,6 +627,7 @@ const properties: INodeProperties[] = [
         operation: ['createCrawler'],
       },
     },
+    required: true,
   },
   {
     type: 'json',
@@ -702,11 +704,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       'Determines if the crawler should extract records from a page with a [canonical URL](https://www.algolia.com/doc/tools/crawler/getting-started/crawler-configuration/#canonical-urls-and-crawler-behavior).\n\nIf `ignoreCanonicalTo` is set to:\n\n- `true` all canonical URLs are ignored.\n- One or more URL patterns, the crawler will ignore the canonical URL if it matches a pattern.\n',
     displayName: 'Ignore Canonical To (Boolean)',
     name: 'ignoreCanonicalTo_boolean_config',
-    default: '',
     displayOptions: {
       show: {
         crawler_create_object: ['configuration_object'],
@@ -736,11 +738,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       "Determines if the crawler should follow links with a `nofollow` directive.\nIf `true`, the crawler will ignore the `nofollow` directive and crawl links on the page.\n\nThe crawler always ignores links that don't match your [configuration settings](https://www.algolia.com/doc/tools/crawler/getting-started/crawler-configuration/#exclude-and-include-content).\n`ignoreNoFollowTo` applies to:\n\n- Links that are ignored because the [`robots` meta tag](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta/name#Other_metadata_names) contains `nofollow` or `none`.\n- Links with a [`rel` attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel) containing the `nofollow` directive.\n",
     displayName: 'Ignore No Follow To',
     name: 'ignoreNoFollowTo_boolean_config',
-    default: '',
     displayOptions: {
       show: {
         crawler_create_object: ['configuration_object'],
@@ -752,11 +754,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       'Whether to ignore the `noindex` robots meta tag.\nIf `true`, pages with this meta tag _will_ be crawled.\n',
     displayName: 'Ignore No Index',
     name: 'ignoreNoIndex_boolean_config',
-    default: '',
     displayOptions: {
       show: {
         crawler_create_object: ['configuration_object'],
@@ -801,10 +803,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description: 'Whether to ignore rules defined in your `robots.txt` file.',
     displayName: 'Ignore Robots Txt Rules',
     name: 'ignoreRobotsTxtRules_boolean_config',
-    default: '',
     displayOptions: {
       show: {
         crawler_create_object: ['configuration_object'],
@@ -817,11 +819,11 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'crawler_',
+    default: '',
     description:
       "A prefix for all indices created by this crawler. It's combined with the `indexName` for each action to form the complete index name.",
     displayName: 'Index Prefix',
     name: 'indexPrefix_string_config',
-    default: '',
     displayOptions: {
       show: {
         crawler_create_object: ['configuration_object'],
@@ -833,14 +835,16 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'json',
-    name: 'index_settings_config',
-    displayName: 'Index Settings',
-    description: 'Index settings.',
-    default: '',
+    displayName: 'Initial Index Settings',
+    name: 'initial_index_settings_object_config',
+    description:
+      "Crawler index settings.\n\nThese index settings are only applied during the first crawl of an index.\n\nAny subsequent changes won't be applied to the index.\nInstead, make changes to your index settings in the [Algolia dashboard](https://dashboard.algolia.com/explorer/configuration).\n",
+    required: false,
+    default: '{}',
     displayOptions: {
       show: {
         crawler_create_object: ['configuration_object'],
-        configuration_object: ['index_settings_config'],
+        configuration_object: ['initial_index_settings_object_config'],
         resource: ['crawlers'],
         operation: ['createCrawler'],
       },
@@ -875,6 +879,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     options: [
       {
         name: 'function',
@@ -883,7 +888,6 @@ const properties: INodeProperties[] = [
     ],
     displayName: '  Type',
     name: '__type_options_linkExtractor_config',
-    default: '',
     displayOptions: {
       show: {
         crawler_create_object: ['configuration_object'],
@@ -898,9 +902,9 @@ const properties: INodeProperties[] = [
     type: 'string',
     placeholder:
       '({ $, url, defaultExtractor }) => {\n  if (/example.com\/doc\//.test(url.href)) {\n    // For all pages under `/doc`, only extract the first found URL.\n    return defaultExtractor().slice(0, 1)\n  }\n  // For all other pages, use the default.\n  return defaultExtractor()\n}\n',
+    default: '',
     displayName: 'Source',
     name: 'source_string_linkExtractor_config',
-    default: '',
     displayOptions: {
       show: {
         crawler_create_object: ['configuration_object'],
@@ -969,10 +973,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'https://example.com/login',
+    default: '',
     description: 'URL with your login form.',
     displayName: 'Url',
     name: 'url_string_login_config',
-    default: '',
     displayOptions: {
       show: {
         crawler_create_object: ['configuration_object'],
@@ -983,6 +987,7 @@ const properties: INodeProperties[] = [
         operation: ['createCrawler'],
       },
     },
+    required: true,
   },
   {
     displayName: 'Login Request Options',
@@ -1075,10 +1080,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'fr-FR',
+    default: '',
     description: 'Preferred natural language and locale.',
     displayName: 'Accept-Language',
     name: 'Accept-Language_string_headers_requestOptions_login_config',
-    default: '',
     displayOptions: {
       show: {
         crawler_create_object: ['configuration_object'],
@@ -1095,10 +1100,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'Bearer Aerehdf==',
+    default: '',
     description: 'Basic authentication header.',
     displayName: 'Authorization',
     name: 'Authorization_string_headers_requestOptions_login_config',
-    default: '',
     displayOptions: {
       show: {
         crawler_create_object: ['configuration_object'],
@@ -1115,10 +1120,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'session=1234',
+    default: '',
     description: 'Cookie. The header will be replaced by the cookie retrieved when logging in.',
     displayName: 'Cookie',
     name: 'Cookie_string_headers_requestOptions_login_config',
-    default: '',
     displayOptions: {
       show: {
         crawler_create_object: ['configuration_object'],
@@ -1135,10 +1140,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'id=user&password=s3cr3t',
+    default: '',
     description: 'Form content.',
     displayName: 'Body',
     name: 'body_string_requestOptions_login_config',
-    default: '',
     displayOptions: {
       show: {
         crawler_create_object: ['configuration_object'],
@@ -1153,10 +1158,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description: 'Timeout for the request.',
     displayName: 'Timeout',
     name: 'timeout_number_requestOptions_login_config',
-    default: '',
     displayOptions: {
       show: {
         crawler_create_object: ['configuration_object'],
@@ -1208,11 +1213,11 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'https://example.com/login',
+    default: '',
     description:
       'URL of your login page.\n\nThe crawler looks for an input matching the selector `input[type=text]` or `input[type=email]` for the username and `input[type=password]` for the password.\n',
     displayName: 'Url',
     name: 'url_string_login_config',
-    default: '',
     displayOptions: {
       show: {
         crawler_create_object: ['configuration_object'],
@@ -1223,14 +1228,15 @@ const properties: INodeProperties[] = [
         operation: ['createCrawler'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
     placeholder: 'crawler',
+    default: '',
     description: 'Username for signing in.',
     displayName: 'Username',
     name: 'username_string_login_config',
-    default: '',
     displayOptions: {
       show: {
         crawler_create_object: ['configuration_object'],
@@ -1241,14 +1247,15 @@ const properties: INodeProperties[] = [
         operation: ['createCrawler'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
     placeholder: 's3cr3t',
+    default: '',
     description: 'Password for signing in.',
     displayName: 'Password',
     name: 'password_string_login_config',
-    default: '',
     displayOptions: {
       show: {
         crawler_create_object: ['configuration_object'],
@@ -1259,6 +1266,7 @@ const properties: INodeProperties[] = [
         operation: ['createCrawler'],
       },
     },
+    required: true,
   },
   {
     displayName: 'Wait Time',
@@ -1291,10 +1299,10 @@ const properties: INodeProperties[] = [
   {
     type: 'number',
     placeholder: '7000',
+    default: '',
     description: 'Minimum waiting time in milliseconds.',
     displayName: 'Min',
     name: 'min_number_waitTime_login_config',
-    default: 0,
     displayOptions: {
       show: {
         crawler_create_object: ['configuration_object'],
@@ -1397,10 +1405,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'URL for the access token endpoint.',
     displayName: 'Url',
     name: 'url_string_accessTokenRequest_login_config',
-    default: '',
     displayOptions: {
       show: {
         crawler_create_object: ['configuration_object'],
@@ -1412,9 +1420,11 @@ const properties: INodeProperties[] = [
         operation: ['createCrawler'],
       },
     },
+    required: true,
   },
   {
     type: 'options',
+    default: '',
     description: 'OAuth 2.0 grant type.',
     options: [
       {
@@ -1424,7 +1434,6 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Grant Type',
     name: 'grantType_options_accessTokenRequest_login_config',
-    default: '',
     displayOptions: {
       show: {
         crawler_create_object: ['configuration_object'],
@@ -1436,14 +1445,15 @@ const properties: INodeProperties[] = [
         operation: ['createCrawler'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
+    default: '',
     description:
       '[Client identifier](https://datatracker.ietf.org/doc/html/rfc6749#section-2.2).\n',
     displayName: 'Client Id',
     name: 'clientId_string_accessTokenRequest_login_config',
-    default: '',
     displayOptions: {
       show: {
         crawler_create_object: ['configuration_object'],
@@ -1455,13 +1465,14 @@ const properties: INodeProperties[] = [
         operation: ['createCrawler'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
+    default: '',
     description: 'Client secret.',
     displayName: 'Client Secret',
     name: 'clientSecret_string_accessTokenRequest_login_config',
-    default: '',
     displayOptions: {
       show: {
         crawler_create_object: ['configuration_object'],
@@ -1473,14 +1484,15 @@ const properties: INodeProperties[] = [
         operation: ['createCrawler'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
+    default: '',
     description:
       '[Access token scope](https://datatracker.ietf.org/doc/html/rfc6749#section-3.3).\n',
     displayName: 'Scope',
     name: 'scope_string_accessTokenRequest_login_config',
-    default: '',
     displayOptions: {
       show: {
         crawler_create_object: ['configuration_object'],
@@ -1520,11 +1532,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description:
       'App ID URI of the receiving web service.\n\nFor more information, see [Azure Active Directory](https://learn.microsoft.com/en-us/previous-versions/azure/active-directory/azuread-dev/v1-oauth2-client-creds-grant-flow#first-case-access-token-request-with-a-shared-secret).\n',
     displayName: 'Resource',
     name: 'resource_string_extraParameters_accessTokenRequest_login_config',
-    default: '',
     displayOptions: {
       show: {
         crawler_create_object: ['configuration_object'],
@@ -1543,6 +1555,7 @@ const properties: INodeProperties[] = [
   {
     type: 'number',
     placeholder: '5',
+    default: '',
     description:
       "Determines the maximum path depth of crawled URLs.\n\nPath depth is calculated based on the number of slash characters (`/`) after the domain (starting at 1).\nFor example:\n\n- **1** `http://example.com`\n- **1** `http://example.com/`\n- **1** `http://example.com/foo`\n- **2** `http://example.com/foo/`\n- **2** `http://example.com/foo/bar`\n- **3** `http://example.com/foo/bar/`\n\n**URLs added with `startUrls` and `sitemaps` aren't checked for `maxDepth`.**.\n",
     typeOptions: {
@@ -1551,7 +1564,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Max Depth',
     name: 'maxDepth_number_config',
-    default: '',
     displayOptions: {
       show: {
         crawler_create_object: ['configuration_object'],
@@ -1564,6 +1576,7 @@ const properties: INodeProperties[] = [
   {
     type: 'number',
     placeholder: '250',
+    default: '',
     description:
       'Limits the number of URLs your crawler processes.\n\nChange it to a low value, such as 100, for quick crawling tests.\nChange it to a higher explicit value for full crawls to prevent it from getting "lost" in complex site structures.\nBecause the Crawler works on many pages simultaneously, `maxUrls` doesn\'t guarantee finding the same pages each time it runs.\n',
     typeOptions: {
@@ -1572,7 +1585,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Max Urls',
     name: 'maxUrls_number_config',
-    default: '',
     displayOptions: {
       show: {
         crawler_create_object: ['configuration_object'],
@@ -1585,6 +1597,7 @@ const properties: INodeProperties[] = [
   {
     type: 'number',
     placeholder: '4',
+    default: '',
     description:
       "Determines the number of concurrent tasks per second that can run for this configuration.\n\nA higher rate limit means more crawls per second.\nAlgolia prevents system overload by ensuring the number of URLs added in the last second and the number of URLs being processed is less than the rate limit:\n\n\n```\nmax(new_urls_added, active_urls_processing) <= rateLimit\n```\n\nStart with a low value (for example, 2) and increase it if you need faster crawling.\nBe aware that a high `rateLimit` can have a huge impact on bandwidth cost and server resource consumption.\n\nThe number of pages processed per second depends on the average time it takes to fetch, process, and upload a URL. \nFor a given `rateLimit` if fetching, processing, and uploading URLs takes (on average):\n\n- Less than a second, your crawler processes up to `rateLimit` pages per second.\n- Four seconds, your crawler processes up to `rateLimit / 4` pages per second.\n\nIn the latter case, increasing `rateLimit` improves performance, up to a point. \nHowever, if the processing time remains at four seconds, increasing `rateLimit` won't increase the number of pages processed per second.\n",
     typeOptions: {
@@ -1593,7 +1606,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Rate Limit',
     name: 'rateLimit_number_config',
-    default: '',
     displayOptions: {
       show: {
         crawler_create_object: ['configuration_object'],
@@ -1602,6 +1614,7 @@ const properties: INodeProperties[] = [
         operation: ['createCrawler'],
       },
     },
+    required: true,
   },
   {
     type: 'options',
@@ -1633,10 +1646,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description: 'Whether to render all pages.',
     displayName: 'Render Java Script (Boolean)',
     name: 'renderJavaScript_boolean_config',
-    default: '',
     displayOptions: {
       show: {
         crawler_create_object: ['configuration_object'],
@@ -1702,10 +1715,10 @@ const properties: INodeProperties[] = [
   {
     type: 'boolean',
     placeholder: 'true',
+    default: false,
     description: 'Whether to enable JavaScript rendering.',
     displayName: 'Enabled',
     name: 'enabled_boolean_renderJavaScript_config',
-    default: '',
     displayOptions: {
       show: {
         crawler_create_object: ['configuration_object'],
@@ -1716,6 +1729,7 @@ const properties: INodeProperties[] = [
         operation: ['createCrawler'],
       },
     },
+    required: true,
   },
   {
     type: 'json',
@@ -1723,7 +1737,7 @@ const properties: INodeProperties[] = [
     name: 'patterns_json_renderJavaScript_config',
     default: '[]',
     description: 'URLs or URL patterns to render.',
-    required: false,
+    required: true,
     displayOptions: {
       show: {
         crawler_create_object: ['configuration_object'],
@@ -1737,11 +1751,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       "Whether to use the Crawler's ad blocker.\nIt blocks most ads and tracking scripts but can break some sites.\n",
     displayName: 'Ad Block',
     name: 'adBlock_boolean_renderJavaScript_config',
-    default: false,
     displayOptions: {
       show: {
         crawler_create_object: ['configuration_object'],
@@ -1784,10 +1798,10 @@ const properties: INodeProperties[] = [
   {
     type: 'number',
     placeholder: '7000',
+    default: '',
     description: 'Minimum waiting time in milliseconds.',
     displayName: 'Min',
     name: 'min_number_waitTime_renderJavaScript_config',
-    default: 0,
     displayOptions: {
       show: {
         crawler_create_object: ['configuration_object'],
@@ -1855,10 +1869,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Proxy for all crawler requests.',
     displayName: 'Proxy',
     name: 'proxy_string_requestOptions_config',
-    default: '',
     displayOptions: {
       show: {
         crawler_create_object: ['configuration_object'],
@@ -1935,10 +1949,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'fr-FR',
+    default: '',
     description: 'Preferred natural language and locale.',
     displayName: 'Accept-Language',
     name: 'Accept-Language_string_headers_requestOptions_config',
-    default: '',
     displayOptions: {
       show: {
         crawler_create_object: ['configuration_object'],
@@ -1953,10 +1967,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'Bearer Aerehdf==',
+    default: '',
     description: 'Basic authentication header.',
     displayName: 'Authorization',
     name: 'Authorization_string_headers_requestOptions_config',
-    default: '',
     displayOptions: {
       show: {
         crawler_create_object: ['configuration_object'],
@@ -1971,10 +1985,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'session=1234',
+    default: '',
     description: 'Cookie. The header will be replaced by the cookie retrieved when logging in.',
     displayName: 'Cookie',
     name: 'Cookie_string_headers_requestOptions_config',
-    default: '',
     displayOptions: {
       show: {
         crawler_create_object: ['configuration_object'],
@@ -2062,10 +2076,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description: 'Stops the crawler if a specified number of pages fail to crawl.',
     displayName: 'Max Failed Urls',
     name: 'maxFailedUrls_number_beforeIndexPublishing_safetyChecks_config',
-    default: '',
     displayOptions: {
       show: {
         crawler_create_object: ['configuration_object'],
@@ -2081,11 +2095,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       'Whether to back up your index before the crawler overwrites it with new records.\n',
     displayName: 'Save Backup',
     name: 'saveBackup_boolean_config',
-    default: '',
     displayOptions: {
       show: {
         crawler_create_object: ['configuration_object'],
@@ -2098,11 +2112,11 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'every weekday at 12:00 pm',
+    default: '',
     description:
       'Schedule for running the crawl.\n\nInstead of manually starting a crawl each time, you can set up a schedule for automatic crawls.\n[Use the visual UI](https://www.algolia.com/doc/tools/crawler/getting-started/crawler-configuration-visual) or add the `schedule` parameter to [your configuration](https://www.algolia.com/doc/tools/crawler/getting-started/crawler-configuration).\n\n`schedule` uses [Later.js syntax](https://bunkat.github.io/later) to specify when to crawl your site.\nHere are some key things to keep in mind when using `Later.js` syntax with the Crawler:\n\n- The interval between two scheduled crawls must be at least 24 hours.\n- To crawl daily, use "every 1 day" instead of "everyday" or "every day".\n- If you don\'t specify a time, the crawl can happen any time during the scheduled day.\n- Specify times for the UTC (GMT+0) timezone\n- Include minutes when specifying a time. For example, "at 3:00 pm" instead of "at 3pm".\n- Use "at 12:00 am" to specify midnight, not "at 00:00 am".\n',
     displayName: 'Schedule',
     name: 'schedule_string_config',
-    default: '',
     displayOptions: {
       show: {
         crawler_create_object: ['configuration_object'],
@@ -2147,10 +2161,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'e0f6db8a-24f5-4092-83a4-1b2c6cb6d809',
+    default: '',
     description: 'Universally unique identifier (UUID) of the crawler.',
     displayName: 'Id',
     name: 'id_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -2161,6 +2175,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     routing: {
       request: {
         qs: {
@@ -2170,7 +2185,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'With Config',
     name: 'withConfig_boolean',
-    default: '',
     displayOptions: {
       show: {
         resource: ['crawlers'],
@@ -2181,10 +2195,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'e0f6db8a-24f5-4092-83a4-1b2c6cb6d809',
+    default: '',
     description: 'Universally unique identifier (UUID) of the crawler.',
     displayName: 'Id',
     name: 'id_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -2220,6 +2234,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'test-crawler',
+    default: '',
     description: 'Name of the crawler.',
     routing: {
       send: {
@@ -2230,7 +2245,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Name',
     name: 'name_string',
-    default: '',
     displayOptions: {
       show: {
         patch_crawler_object: ['name_string'],
@@ -2300,8 +2314,8 @@ const properties: INodeProperties[] = [
         value: 'indexPrefix_string_config',
       },
       {
-        name: 'Index Settings',
-        value: 'index_settings_config',
+        name: 'Initial Index Settings',
+        value: 'initial_index_settings_object_config',
       },
       {
         name: 'Link Extractor',
@@ -2357,7 +2371,7 @@ const properties: INodeProperties[] = [
         type: 'body',
         property: 'config',
         value:
-          '={{ { "actions": typeof $parameter.actions_json_config !== "undefined" ? JSON.parse($parameter.actions_json_config) : undefined, "apiKey": typeof $parameter.apiKey_string_config !== "undefined" ? $parameter.apiKey_string_config : undefined, "applicationId": typeof $parameter.applicationId_string_config !== "undefined" ? $parameter.applicationId_string_config : undefined, "exclusionPatterns": typeof $parameter.exclusionPatterns_json_config !== "undefined" ? JSON.parse($parameter.exclusionPatterns_json_config) : undefined, "externalData": typeof $parameter.externalData_json_config !== "undefined" ? JSON.parse($parameter.externalData_json_config) : undefined, "extraUrls": typeof $parameter.extraUrls_json_config !== "undefined" ? JSON.parse($parameter.extraUrls_json_config) : undefined, "ignoreCanonicalTo": typeof $parameter.ignoreCanonicalTo_boolean_config !== "undefined" ? $parameter.ignoreCanonicalTo_boolean_config : typeof $parameter.ignoreCanonicalTo_json_config !== "undefined" ? JSON.parse($parameter.ignoreCanonicalTo_json_config) : undefined, "ignoreNoFollowTo": typeof $parameter.ignoreNoFollowTo_boolean_config !== "undefined" ? $parameter.ignoreNoFollowTo_boolean_config : undefined, "ignoreNoIndex": typeof $parameter.ignoreNoIndex_boolean_config !== "undefined" ? $parameter.ignoreNoIndex_boolean_config : undefined, "ignorePaginationAttributes": typeof $parameter.ignorePaginationAttributes_boolean_config !== "undefined" ? $parameter.ignorePaginationAttributes_boolean_config : undefined, "ignoreQueryParams": typeof $parameter.ignoreQueryParams_json_config !== "undefined" ? JSON.parse($parameter.ignoreQueryParams_json_config) : undefined, "ignoreRobotsTxtRules": typeof $parameter.ignoreRobotsTxtRules_boolean_config !== "undefined" ? $parameter.ignoreRobotsTxtRules_boolean_config : undefined, "indexPrefix": typeof $parameter.indexPrefix_string_config !== "undefined" ? $parameter.indexPrefix_string_config : undefined, "initialIndexSettings": typeof $parameter.index_settings_config !== "undefined" ? JSON.parse($parameter.index_settings_config) : undefined, "linkExtractor": { "__type": typeof $parameter.__type_options_linkExtractor_config !== "undefined" ? $parameter.__type_options_linkExtractor_config : undefined, "source": typeof $parameter.source_string_linkExtractor_config !== "undefined" ? $parameter.source_string_linkExtractor_config : undefined }, "login": typeof $parameter.http_request_object_config !== "undefined" ? { "url": typeof $parameter.url_string_login_config !== "undefined" ? $parameter.url_string_login_config : undefined, "requestOptions": { "method": typeof $parameter.method_string_requestOptions_login_config !== "undefined" ? $parameter.method_string_requestOptions_login_config : undefined, "headers": { "Accept-Language": typeof $parameter.Accept-Language_string_headers_requestOptions_login_config !== "undefined" ? $parameter.Accept-Language_string_headers_requestOptions_login_config : undefined, "Authorization": typeof $parameter.Authorization_string_headers_requestOptions_login_config !== "undefined" ? $parameter.Authorization_string_headers_requestOptions_login_config : undefined, "Cookie": typeof $parameter.Cookie_string_headers_requestOptions_login_config !== "undefined" ? $parameter.Cookie_string_headers_requestOptions_login_config : undefined }, "body": typeof $parameter.body_string_requestOptions_login_config !== "undefined" ? $parameter.body_string_requestOptions_login_config : undefined, "timeout": typeof $parameter.timeout_number_requestOptions_login_config !== "undefined" ? $parameter.timeout_number_requestOptions_login_config : undefined } } : typeof $parameter.url_string_login_config !== "undefined" ? $parameter.url_string_login_config : typeof $parameter.login_request_options_object_login_config !== "undefined" ? $parameter.login_request_options_object_login_config : typeof $parameter.method_string_requestOptions_login_config !== "undefined" ? $parameter.method_string_requestOptions_login_config : typeof $parameter.headers_object_requestOptions_login_config !== "undefined" ? $parameter.headers_object_requestOptions_login_config : typeof $parameter.Accept-Language_string_headers_requestOptions_login_config !== "undefined" ? $parameter.Accept-Language_string_headers_requestOptions_login_config : typeof $parameter.Authorization_string_headers_requestOptions_login_config !== "undefined" ? $parameter.Authorization_string_headers_requestOptions_login_config : typeof $parameter.Cookie_string_headers_requestOptions_login_config !== "undefined" ? $parameter.Cookie_string_headers_requestOptions_login_config : typeof $parameter.body_string_requestOptions_login_config !== "undefined" ? $parameter.body_string_requestOptions_login_config : typeof $parameter.timeout_number_requestOptions_login_config !== "undefined" ? $parameter.timeout_number_requestOptions_login_config : typeof $parameter.browserbased_object_config !== "undefined" ? { "url": typeof $parameter.url_string_login_config !== "undefined" ? $parameter.url_string_login_config : undefined, "username": typeof $parameter.username_string_login_config !== "undefined" ? $parameter.username_string_login_config : undefined, "password": typeof $parameter.password_string_login_config !== "undefined" ? $parameter.password_string_login_config : undefined, "waitTime": { "min": typeof $parameter.min_number_waitTime_login_config !== "undefined" ? $parameter.min_number_waitTime_login_config : undefined, "max": typeof $parameter.max_number_waitTime_login_config !== "undefined" ? $parameter.max_number_waitTime_login_config : undefined } } : typeof $parameter.url_string_login_config !== "undefined" ? $parameter.url_string_login_config : typeof $parameter.username_string_login_config !== "undefined" ? $parameter.username_string_login_config : typeof $parameter.password_string_login_config !== "undefined" ? $parameter.password_string_login_config : typeof $parameter.wait_time_object_login_config !== "undefined" ? $parameter.wait_time_object_login_config : typeof $parameter.min_number_waitTime_login_config !== "undefined" ? $parameter.min_number_waitTime_login_config : typeof $parameter.max_number_waitTime_login_config !== "undefined" ? $parameter.max_number_waitTime_login_config : typeof $parameter.oauth_20_object_config !== "undefined" ? { "accessTokenRequest": { "url": typeof $parameter.url_string_accessTokenRequest_login_config !== "undefined" ? $parameter.url_string_accessTokenRequest_login_config : undefined, "grantType": typeof $parameter.grantType_options_accessTokenRequest_login_config !== "undefined" ? $parameter.grantType_options_accessTokenRequest_login_config : undefined, "clientId": typeof $parameter.clientId_string_accessTokenRequest_login_config !== "undefined" ? $parameter.clientId_string_accessTokenRequest_login_config : undefined, "clientSecret": typeof $parameter.clientSecret_string_accessTokenRequest_login_config !== "undefined" ? $parameter.clientSecret_string_accessTokenRequest_login_config : undefined, "scope": typeof $parameter.scope_string_accessTokenRequest_login_config !== "undefined" ? $parameter.scope_string_accessTokenRequest_login_config : undefined, "extraParameters": { "resource": typeof $parameter.resource_string_extraParameters_accessTokenRequest_login_config !== "undefined" ? $parameter.resource_string_extraParameters_accessTokenRequest_login_config : undefined } } } : typeof $parameter.access_token_request_object_login_config !== "undefined" ? $parameter.access_token_request_object_login_config : typeof $parameter.url_string_accessTokenRequest_login_config !== "undefined" ? $parameter.url_string_accessTokenRequest_login_config : typeof $parameter.grantType_options_accessTokenRequest_login_config !== "undefined" ? $parameter.grantType_options_accessTokenRequest_login_config : typeof $parameter.clientId_string_accessTokenRequest_login_config !== "undefined" ? $parameter.clientId_string_accessTokenRequest_login_config : typeof $parameter.clientSecret_string_accessTokenRequest_login_config !== "undefined" ? $parameter.clientSecret_string_accessTokenRequest_login_config : typeof $parameter.scope_string_accessTokenRequest_login_config !== "undefined" ? $parameter.scope_string_accessTokenRequest_login_config : typeof $parameter.extra_parameters_object_accessTokenRequest_login_config !== "undefined" ? $parameter.extra_parameters_object_accessTokenRequest_login_config : typeof $parameter.resource_string_extraParameters_accessTokenRequest_login_config !== "undefined" ? $parameter.resource_string_extraParameters_accessTokenRequest_login_config : undefined, "maxDepth": typeof $parameter.maxDepth_number_config !== "undefined" ? $parameter.maxDepth_number_config : undefined, "maxUrls": typeof $parameter.maxUrls_number_config !== "undefined" ? $parameter.maxUrls_number_config : undefined, "rateLimit": typeof $parameter.rateLimit_number_config !== "undefined" ? $parameter.rateLimit_number_config : undefined, "renderJavaScript": typeof $parameter.renderJavaScript_boolean_config !== "undefined" ? $parameter.renderJavaScript_boolean_config : typeof $parameter.renderJavaScript_json_config !== "undefined" ? JSON.parse($parameter.renderJavaScript_json_config) : typeof $parameter.headless_browser_config_object_config !== "undefined" ? { "enabled": typeof $parameter.enabled_boolean_renderJavaScript_config !== "undefined" ? $parameter.enabled_boolean_renderJavaScript_config : undefined, "patterns": typeof $parameter.patterns_json_renderJavaScript_config !== "undefined" ? JSON.parse($parameter.patterns_json_renderJavaScript_config) : undefined, "adBlock": typeof $parameter.adBlock_boolean_renderJavaScript_config !== "undefined" ? $parameter.adBlock_boolean_renderJavaScript_config : undefined, "waitTime": { "min": typeof $parameter.min_number_waitTime_renderJavaScript_config !== "undefined" ? $parameter.min_number_waitTime_renderJavaScript_config : undefined, "max": typeof $parameter.max_number_waitTime_renderJavaScript_config !== "undefined" ? $parameter.max_number_waitTime_renderJavaScript_config : undefined } } : typeof $parameter.enabled_boolean_renderJavaScript_config !== "undefined" ? $parameter.enabled_boolean_renderJavaScript_config : typeof $parameter.patterns_json_renderJavaScript_config !== "undefined" ? JSON.parse($parameter.patterns_json_renderJavaScript_config) : typeof $parameter.adBlock_boolean_renderJavaScript_config !== "undefined" ? $parameter.adBlock_boolean_renderJavaScript_config : typeof $parameter.wait_time_object_renderJavaScript_config !== "undefined" ? $parameter.wait_time_object_renderJavaScript_config : typeof $parameter.min_number_waitTime_renderJavaScript_config !== "undefined" ? $parameter.min_number_waitTime_renderJavaScript_config : typeof $parameter.max_number_waitTime_renderJavaScript_config !== "undefined" ? $parameter.max_number_waitTime_renderJavaScript_config : undefined, "requestOptions": { "proxy": typeof $parameter.proxy_string_requestOptions_config !== "undefined" ? $parameter.proxy_string_requestOptions_config : undefined, "timeout": typeof $parameter.timeout_number_requestOptions_config !== "undefined" ? $parameter.timeout_number_requestOptions_config : undefined, "retries": typeof $parameter.retries_number_requestOptions_config !== "undefined" ? $parameter.retries_number_requestOptions_config : undefined, "headers": { "Accept-Language": typeof $parameter.Accept-Language_string_headers_requestOptions_config !== "undefined" ? $parameter.Accept-Language_string_headers_requestOptions_config : undefined, "Authorization": typeof $parameter.Authorization_string_headers_requestOptions_config !== "undefined" ? $parameter.Authorization_string_headers_requestOptions_config : undefined, "Cookie": typeof $parameter.Cookie_string_headers_requestOptions_config !== "undefined" ? $parameter.Cookie_string_headers_requestOptions_config : undefined } }, "safetyChecks": { "beforeIndexPublishing": { "maxLostRecordsPercentage": typeof $parameter.maxLostRecordsPercentage_number_beforeIndexPublishing_safetyChecks_config !== "undefined" ? $parameter.maxLostRecordsPercentage_number_beforeIndexPublishing_safetyChecks_config : undefined, "maxFailedUrls": typeof $parameter.maxFailedUrls_number_beforeIndexPublishing_safetyChecks_config !== "undefined" ? $parameter.maxFailedUrls_number_beforeIndexPublishing_safetyChecks_config : undefined } }, "saveBackup": typeof $parameter.saveBackup_boolean_config !== "undefined" ? $parameter.saveBackup_boolean_config : undefined, "schedule": typeof $parameter.schedule_string_config !== "undefined" ? $parameter.schedule_string_config : undefined, "sitemaps": typeof $parameter.sitemaps_json_config !== "undefined" ? JSON.parse($parameter.sitemaps_json_config) : undefined, "startUrls": typeof $parameter.startUrls_json_config !== "undefined" ? JSON.parse($parameter.startUrls_json_config) : undefined } }}',
+          '={{ { "actions": typeof $parameter.actions_json_config !== "undefined" ? JSON.parse($parameter.actions_json_config) : undefined, "apiKey": typeof $parameter.apiKey_string_config !== "undefined" ? $parameter.apiKey_string_config : undefined, "applicationId": typeof $parameter.applicationId_string_config !== "undefined" ? $parameter.applicationId_string_config : undefined, "exclusionPatterns": typeof $parameter.exclusionPatterns_json_config !== "undefined" ? JSON.parse($parameter.exclusionPatterns_json_config) : undefined, "externalData": typeof $parameter.externalData_json_config !== "undefined" ? JSON.parse($parameter.externalData_json_config) : undefined, "extraUrls": typeof $parameter.extraUrls_json_config !== "undefined" ? JSON.parse($parameter.extraUrls_json_config) : undefined, "ignoreCanonicalTo": typeof $parameter.ignoreCanonicalTo_boolean_config !== "undefined" ? $parameter.ignoreCanonicalTo_boolean_config : typeof $parameter.ignoreCanonicalTo_json_config !== "undefined" ? JSON.parse($parameter.ignoreCanonicalTo_json_config) : undefined, "ignoreNoFollowTo": typeof $parameter.ignoreNoFollowTo_boolean_config !== "undefined" ? $parameter.ignoreNoFollowTo_boolean_config : undefined, "ignoreNoIndex": typeof $parameter.ignoreNoIndex_boolean_config !== "undefined" ? $parameter.ignoreNoIndex_boolean_config : undefined, "ignorePaginationAttributes": typeof $parameter.ignorePaginationAttributes_boolean_config !== "undefined" ? $parameter.ignorePaginationAttributes_boolean_config : undefined, "ignoreQueryParams": typeof $parameter.ignoreQueryParams_json_config !== "undefined" ? JSON.parse($parameter.ignoreQueryParams_json_config) : undefined, "ignoreRobotsTxtRules": typeof $parameter.ignoreRobotsTxtRules_boolean_config !== "undefined" ? $parameter.ignoreRobotsTxtRules_boolean_config : undefined, "indexPrefix": typeof $parameter.indexPrefix_string_config !== "undefined" ? $parameter.indexPrefix_string_config : undefined, "initialIndexSettings": typeof $parameter.initial_index_settings_object_config !== "undefined" ? JSON.parse($parameter.initial_index_settings_object_config) : undefined, "linkExtractor": { "__type": typeof $parameter.__type_options_linkExtractor_config !== "undefined" ? $parameter.__type_options_linkExtractor_config : undefined, "source": typeof $parameter.source_string_linkExtractor_config !== "undefined" ? $parameter.source_string_linkExtractor_config : undefined }, "login": typeof $parameter.http_request_object_config !== "undefined" ? { "url": typeof $parameter.url_string_login_config !== "undefined" ? $parameter.url_string_login_config : undefined, "requestOptions": { "method": typeof $parameter.method_string_requestOptions_login_config !== "undefined" ? $parameter.method_string_requestOptions_login_config : undefined, "headers": { "Accept-Language": typeof $parameter.Accept-Language_string_headers_requestOptions_login_config !== "undefined" ? $parameter.Accept-Language_string_headers_requestOptions_login_config : undefined, "Authorization": typeof $parameter.Authorization_string_headers_requestOptions_login_config !== "undefined" ? $parameter.Authorization_string_headers_requestOptions_login_config : undefined, "Cookie": typeof $parameter.Cookie_string_headers_requestOptions_login_config !== "undefined" ? $parameter.Cookie_string_headers_requestOptions_login_config : undefined }, "body": typeof $parameter.body_string_requestOptions_login_config !== "undefined" ? $parameter.body_string_requestOptions_login_config : undefined, "timeout": typeof $parameter.timeout_number_requestOptions_login_config !== "undefined" ? $parameter.timeout_number_requestOptions_login_config : undefined } } : typeof $parameter.url_string_login_config !== "undefined" ? $parameter.url_string_login_config : typeof $parameter.login_request_options_object_login_config !== "undefined" ? $parameter.login_request_options_object_login_config : typeof $parameter.method_string_requestOptions_login_config !== "undefined" ? $parameter.method_string_requestOptions_login_config : typeof $parameter.headers_object_requestOptions_login_config !== "undefined" ? $parameter.headers_object_requestOptions_login_config : typeof $parameter.Accept-Language_string_headers_requestOptions_login_config !== "undefined" ? $parameter.Accept-Language_string_headers_requestOptions_login_config : typeof $parameter.Authorization_string_headers_requestOptions_login_config !== "undefined" ? $parameter.Authorization_string_headers_requestOptions_login_config : typeof $parameter.Cookie_string_headers_requestOptions_login_config !== "undefined" ? $parameter.Cookie_string_headers_requestOptions_login_config : typeof $parameter.body_string_requestOptions_login_config !== "undefined" ? $parameter.body_string_requestOptions_login_config : typeof $parameter.timeout_number_requestOptions_login_config !== "undefined" ? $parameter.timeout_number_requestOptions_login_config : typeof $parameter.browserbased_object_config !== "undefined" ? { "url": typeof $parameter.url_string_login_config !== "undefined" ? $parameter.url_string_login_config : undefined, "username": typeof $parameter.username_string_login_config !== "undefined" ? $parameter.username_string_login_config : undefined, "password": typeof $parameter.password_string_login_config !== "undefined" ? $parameter.password_string_login_config : undefined, "waitTime": { "min": typeof $parameter.min_number_waitTime_login_config !== "undefined" ? $parameter.min_number_waitTime_login_config : undefined, "max": typeof $parameter.max_number_waitTime_login_config !== "undefined" ? $parameter.max_number_waitTime_login_config : undefined } } : typeof $parameter.url_string_login_config !== "undefined" ? $parameter.url_string_login_config : typeof $parameter.username_string_login_config !== "undefined" ? $parameter.username_string_login_config : typeof $parameter.password_string_login_config !== "undefined" ? $parameter.password_string_login_config : typeof $parameter.wait_time_object_login_config !== "undefined" ? $parameter.wait_time_object_login_config : typeof $parameter.min_number_waitTime_login_config !== "undefined" ? $parameter.min_number_waitTime_login_config : typeof $parameter.max_number_waitTime_login_config !== "undefined" ? $parameter.max_number_waitTime_login_config : typeof $parameter.oauth_20_object_config !== "undefined" ? { "accessTokenRequest": { "url": typeof $parameter.url_string_accessTokenRequest_login_config !== "undefined" ? $parameter.url_string_accessTokenRequest_login_config : undefined, "grantType": typeof $parameter.grantType_options_accessTokenRequest_login_config !== "undefined" ? $parameter.grantType_options_accessTokenRequest_login_config : undefined, "clientId": typeof $parameter.clientId_string_accessTokenRequest_login_config !== "undefined" ? $parameter.clientId_string_accessTokenRequest_login_config : undefined, "clientSecret": typeof $parameter.clientSecret_string_accessTokenRequest_login_config !== "undefined" ? $parameter.clientSecret_string_accessTokenRequest_login_config : undefined, "scope": typeof $parameter.scope_string_accessTokenRequest_login_config !== "undefined" ? $parameter.scope_string_accessTokenRequest_login_config : undefined, "extraParameters": { "resource": typeof $parameter.resource_string_extraParameters_accessTokenRequest_login_config !== "undefined" ? $parameter.resource_string_extraParameters_accessTokenRequest_login_config : undefined } } } : typeof $parameter.access_token_request_object_login_config !== "undefined" ? $parameter.access_token_request_object_login_config : typeof $parameter.url_string_accessTokenRequest_login_config !== "undefined" ? $parameter.url_string_accessTokenRequest_login_config : typeof $parameter.grantType_options_accessTokenRequest_login_config !== "undefined" ? $parameter.grantType_options_accessTokenRequest_login_config : typeof $parameter.clientId_string_accessTokenRequest_login_config !== "undefined" ? $parameter.clientId_string_accessTokenRequest_login_config : typeof $parameter.clientSecret_string_accessTokenRequest_login_config !== "undefined" ? $parameter.clientSecret_string_accessTokenRequest_login_config : typeof $parameter.scope_string_accessTokenRequest_login_config !== "undefined" ? $parameter.scope_string_accessTokenRequest_login_config : typeof $parameter.extra_parameters_object_accessTokenRequest_login_config !== "undefined" ? $parameter.extra_parameters_object_accessTokenRequest_login_config : typeof $parameter.resource_string_extraParameters_accessTokenRequest_login_config !== "undefined" ? $parameter.resource_string_extraParameters_accessTokenRequest_login_config : undefined, "maxDepth": typeof $parameter.maxDepth_number_config !== "undefined" ? $parameter.maxDepth_number_config : undefined, "maxUrls": typeof $parameter.maxUrls_number_config !== "undefined" ? $parameter.maxUrls_number_config : undefined, "rateLimit": typeof $parameter.rateLimit_number_config !== "undefined" ? $parameter.rateLimit_number_config : undefined, "renderJavaScript": typeof $parameter.renderJavaScript_boolean_config !== "undefined" ? $parameter.renderJavaScript_boolean_config : typeof $parameter.renderJavaScript_json_config !== "undefined" ? JSON.parse($parameter.renderJavaScript_json_config) : typeof $parameter.headless_browser_config_object_config !== "undefined" ? { "enabled": typeof $parameter.enabled_boolean_renderJavaScript_config !== "undefined" ? $parameter.enabled_boolean_renderJavaScript_config : undefined, "patterns": typeof $parameter.patterns_json_renderJavaScript_config !== "undefined" ? JSON.parse($parameter.patterns_json_renderJavaScript_config) : undefined, "adBlock": typeof $parameter.adBlock_boolean_renderJavaScript_config !== "undefined" ? $parameter.adBlock_boolean_renderJavaScript_config : undefined, "waitTime": { "min": typeof $parameter.min_number_waitTime_renderJavaScript_config !== "undefined" ? $parameter.min_number_waitTime_renderJavaScript_config : undefined, "max": typeof $parameter.max_number_waitTime_renderJavaScript_config !== "undefined" ? $parameter.max_number_waitTime_renderJavaScript_config : undefined } } : typeof $parameter.enabled_boolean_renderJavaScript_config !== "undefined" ? $parameter.enabled_boolean_renderJavaScript_config : typeof $parameter.patterns_json_renderJavaScript_config !== "undefined" ? JSON.parse($parameter.patterns_json_renderJavaScript_config) : typeof $parameter.adBlock_boolean_renderJavaScript_config !== "undefined" ? $parameter.adBlock_boolean_renderJavaScript_config : typeof $parameter.wait_time_object_renderJavaScript_config !== "undefined" ? $parameter.wait_time_object_renderJavaScript_config : typeof $parameter.min_number_waitTime_renderJavaScript_config !== "undefined" ? $parameter.min_number_waitTime_renderJavaScript_config : typeof $parameter.max_number_waitTime_renderJavaScript_config !== "undefined" ? $parameter.max_number_waitTime_renderJavaScript_config : undefined, "requestOptions": { "proxy": typeof $parameter.proxy_string_requestOptions_config !== "undefined" ? $parameter.proxy_string_requestOptions_config : undefined, "timeout": typeof $parameter.timeout_number_requestOptions_config !== "undefined" ? $parameter.timeout_number_requestOptions_config : undefined, "retries": typeof $parameter.retries_number_requestOptions_config !== "undefined" ? $parameter.retries_number_requestOptions_config : undefined, "headers": { "Accept-Language": typeof $parameter.Accept-Language_string_headers_requestOptions_config !== "undefined" ? $parameter.Accept-Language_string_headers_requestOptions_config : undefined, "Authorization": typeof $parameter.Authorization_string_headers_requestOptions_config !== "undefined" ? $parameter.Authorization_string_headers_requestOptions_config : undefined, "Cookie": typeof $parameter.Cookie_string_headers_requestOptions_config !== "undefined" ? $parameter.Cookie_string_headers_requestOptions_config : undefined } }, "safetyChecks": { "beforeIndexPublishing": { "maxLostRecordsPercentage": typeof $parameter.maxLostRecordsPercentage_number_beforeIndexPublishing_safetyChecks_config !== "undefined" ? $parameter.maxLostRecordsPercentage_number_beforeIndexPublishing_safetyChecks_config : undefined, "maxFailedUrls": typeof $parameter.maxFailedUrls_number_beforeIndexPublishing_safetyChecks_config !== "undefined" ? $parameter.maxFailedUrls_number_beforeIndexPublishing_safetyChecks_config : undefined } }, "saveBackup": typeof $parameter.saveBackup_boolean_config !== "undefined" ? $parameter.saveBackup_boolean_config : undefined, "schedule": typeof $parameter.schedule_string_config !== "undefined" ? $parameter.schedule_string_config : undefined, "sitemaps": typeof $parameter.sitemaps_json_config !== "undefined" ? JSON.parse($parameter.sitemaps_json_config) : undefined, "startUrls": typeof $parameter.startUrls_json_config !== "undefined" ? JSON.parse($parameter.startUrls_json_config) : undefined } }}',
       },
     },
     displayOptions: {
@@ -2372,9 +2386,9 @@ const properties: INodeProperties[] = [
     type: 'json',
     displayName: 'Actions',
     name: 'actions_json_config',
-    default: '',
+    default: '[]',
     description: 'A list of actions.',
-    required: false,
+    required: true,
     displayOptions: {
       show: {
         patch_crawler_object: ['configuration_object'],
@@ -2386,11 +2400,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description:
       "The Algolia API key the crawler uses for indexing records.\nIf you don't provide an API key, one will be generated by the Crawler when you create a configuration.\n\nThe API key must have:\n\n- These [rights and restrictions](https://www.algolia.com/doc/guides/security/api-keys/#rights-and-restrictions): `search`, `addObject`, `deleteObject`, `deleteIndex`, `settings`, `editSettings`, `listIndexes`, `browse`\n- Access to the correct set of indices, based on the crawler's `indexPrefix`.\nFor example, if the prefix is `crawler_`, the API key must have access to `crawler_*`.\n\n**Don't use your [Admin API key](https://www.algolia.com/doc/guides/security/api-keys/#predefined-api-keys)**.\n",
     displayName: 'Api Key',
     name: 'apiKey_string_config',
-    default: '',
     displayOptions: {
       show: {
         patch_crawler_object: ['configuration_object'],
@@ -2402,10 +2416,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Algolia application ID where the crawler creates and updates indices.\n',
     displayName: 'Application Id',
     name: 'applicationId_string_config',
-    default: '',
     displayOptions: {
       show: {
         patch_crawler_object: ['configuration_object'],
@@ -2414,6 +2428,7 @@ const properties: INodeProperties[] = [
         operation: ['patchCrawler'],
       },
     },
+    required: true,
   },
   {
     type: 'json',
@@ -2490,11 +2505,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       'Determines if the crawler should extract records from a page with a [canonical URL](https://www.algolia.com/doc/tools/crawler/getting-started/crawler-configuration/#canonical-urls-and-crawler-behavior).\n\nIf `ignoreCanonicalTo` is set to:\n\n- `true` all canonical URLs are ignored.\n- One or more URL patterns, the crawler will ignore the canonical URL if it matches a pattern.\n',
     displayName: 'Ignore Canonical To (Boolean)',
     name: 'ignoreCanonicalTo_boolean_config',
-    default: '',
     displayOptions: {
       show: {
         patch_crawler_object: ['configuration_object'],
@@ -2524,11 +2539,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       "Determines if the crawler should follow links with a `nofollow` directive.\nIf `true`, the crawler will ignore the `nofollow` directive and crawl links on the page.\n\nThe crawler always ignores links that don't match your [configuration settings](https://www.algolia.com/doc/tools/crawler/getting-started/crawler-configuration/#exclude-and-include-content).\n`ignoreNoFollowTo` applies to:\n\n- Links that are ignored because the [`robots` meta tag](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta/name#Other_metadata_names) contains `nofollow` or `none`.\n- Links with a [`rel` attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel) containing the `nofollow` directive.\n",
     displayName: 'Ignore No Follow To',
     name: 'ignoreNoFollowTo_boolean_config',
-    default: '',
     displayOptions: {
       show: {
         patch_crawler_object: ['configuration_object'],
@@ -2540,11 +2555,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       'Whether to ignore the `noindex` robots meta tag.\nIf `true`, pages with this meta tag _will_ be crawled.\n',
     displayName: 'Ignore No Index',
     name: 'ignoreNoIndex_boolean_config',
-    default: '',
     displayOptions: {
       show: {
         patch_crawler_object: ['configuration_object'],
@@ -2589,10 +2604,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description: 'Whether to ignore rules defined in your `robots.txt` file.',
     displayName: 'Ignore Robots Txt Rules',
     name: 'ignoreRobotsTxtRules_boolean_config',
-    default: '',
     displayOptions: {
       show: {
         patch_crawler_object: ['configuration_object'],
@@ -2605,11 +2620,11 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'crawler_',
+    default: '',
     description:
       "A prefix for all indices created by this crawler. It's combined with the `indexName` for each action to form the complete index name.",
     displayName: 'Index Prefix',
     name: 'indexPrefix_string_config',
-    default: '',
     displayOptions: {
       show: {
         patch_crawler_object: ['configuration_object'],
@@ -2621,14 +2636,16 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'json',
-    name: 'index_settings_config',
-    displayName: 'Index Settings',
-    description: 'Index settings.',
-    default: '',
+    displayName: 'Initial Index Settings',
+    name: 'initial_index_settings_object_config',
+    description:
+      "Crawler index settings.\n\nThese index settings are only applied during the first crawl of an index.\n\nAny subsequent changes won't be applied to the index.\nInstead, make changes to your index settings in the [Algolia dashboard](https://dashboard.algolia.com/explorer/configuration).\n",
+    required: false,
+    default: '{}',
     displayOptions: {
       show: {
         patch_crawler_object: ['configuration_object'],
-        configuration_object: ['index_settings_config'],
+        configuration_object: ['initial_index_settings_object_config'],
         resource: ['crawlers'],
         operation: ['patchCrawler'],
       },
@@ -2663,6 +2680,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     options: [
       {
         name: 'function',
@@ -2671,7 +2689,6 @@ const properties: INodeProperties[] = [
     ],
     displayName: '  Type',
     name: '__type_options_linkExtractor_config',
-    default: '',
     displayOptions: {
       show: {
         patch_crawler_object: ['configuration_object'],
@@ -2686,9 +2703,9 @@ const properties: INodeProperties[] = [
     type: 'string',
     placeholder:
       '({ $, url, defaultExtractor }) => {\n  if (/example.com\/doc\//.test(url.href)) {\n    // For all pages under `/doc`, only extract the first found URL.\n    return defaultExtractor().slice(0, 1)\n  }\n  // For all other pages, use the default.\n  return defaultExtractor()\n}\n',
+    default: '',
     displayName: 'Source',
     name: 'source_string_linkExtractor_config',
-    default: '',
     displayOptions: {
       show: {
         patch_crawler_object: ['configuration_object'],
@@ -2757,10 +2774,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'https://example.com/login',
+    default: '',
     description: 'URL with your login form.',
     displayName: 'Url',
     name: 'url_string_login_config',
-    default: '',
     displayOptions: {
       show: {
         patch_crawler_object: ['configuration_object'],
@@ -2771,6 +2788,7 @@ const properties: INodeProperties[] = [
         operation: ['patchCrawler'],
       },
     },
+    required: true,
   },
   {
     displayName: 'Login Request Options',
@@ -2863,10 +2881,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'fr-FR',
+    default: '',
     description: 'Preferred natural language and locale.',
     displayName: 'Accept-Language',
     name: 'Accept-Language_string_headers_requestOptions_login_config',
-    default: '',
     displayOptions: {
       show: {
         patch_crawler_object: ['configuration_object'],
@@ -2883,10 +2901,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'Bearer Aerehdf==',
+    default: '',
     description: 'Basic authentication header.',
     displayName: 'Authorization',
     name: 'Authorization_string_headers_requestOptions_login_config',
-    default: '',
     displayOptions: {
       show: {
         patch_crawler_object: ['configuration_object'],
@@ -2903,10 +2921,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'session=1234',
+    default: '',
     description: 'Cookie. The header will be replaced by the cookie retrieved when logging in.',
     displayName: 'Cookie',
     name: 'Cookie_string_headers_requestOptions_login_config',
-    default: '',
     displayOptions: {
       show: {
         patch_crawler_object: ['configuration_object'],
@@ -2923,10 +2941,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'id=user&password=s3cr3t',
+    default: '',
     description: 'Form content.',
     displayName: 'Body',
     name: 'body_string_requestOptions_login_config',
-    default: '',
     displayOptions: {
       show: {
         patch_crawler_object: ['configuration_object'],
@@ -2941,10 +2959,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description: 'Timeout for the request.',
     displayName: 'Timeout',
     name: 'timeout_number_requestOptions_login_config',
-    default: '',
     displayOptions: {
       show: {
         patch_crawler_object: ['configuration_object'],
@@ -2996,11 +3014,11 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'https://example.com/login',
+    default: '',
     description:
       'URL of your login page.\n\nThe crawler looks for an input matching the selector `input[type=text]` or `input[type=email]` for the username and `input[type=password]` for the password.\n',
     displayName: 'Url',
     name: 'url_string_login_config',
-    default: '',
     displayOptions: {
       show: {
         patch_crawler_object: ['configuration_object'],
@@ -3011,14 +3029,15 @@ const properties: INodeProperties[] = [
         operation: ['patchCrawler'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
     placeholder: 'crawler',
+    default: '',
     description: 'Username for signing in.',
     displayName: 'Username',
     name: 'username_string_login_config',
-    default: '',
     displayOptions: {
       show: {
         patch_crawler_object: ['configuration_object'],
@@ -3029,14 +3048,15 @@ const properties: INodeProperties[] = [
         operation: ['patchCrawler'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
     placeholder: 's3cr3t',
+    default: '',
     description: 'Password for signing in.',
     displayName: 'Password',
     name: 'password_string_login_config',
-    default: '',
     displayOptions: {
       show: {
         patch_crawler_object: ['configuration_object'],
@@ -3047,6 +3067,7 @@ const properties: INodeProperties[] = [
         operation: ['patchCrawler'],
       },
     },
+    required: true,
   },
   {
     displayName: 'Wait Time',
@@ -3079,10 +3100,10 @@ const properties: INodeProperties[] = [
   {
     type: 'number',
     placeholder: '7000',
+    default: '',
     description: 'Minimum waiting time in milliseconds.',
     displayName: 'Min',
     name: 'min_number_waitTime_login_config',
-    default: 0,
     displayOptions: {
       show: {
         patch_crawler_object: ['configuration_object'],
@@ -3185,10 +3206,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'URL for the access token endpoint.',
     displayName: 'Url',
     name: 'url_string_accessTokenRequest_login_config',
-    default: '',
     displayOptions: {
       show: {
         patch_crawler_object: ['configuration_object'],
@@ -3200,9 +3221,11 @@ const properties: INodeProperties[] = [
         operation: ['patchCrawler'],
       },
     },
+    required: true,
   },
   {
     type: 'options',
+    default: '',
     description: 'OAuth 2.0 grant type.',
     options: [
       {
@@ -3212,7 +3235,6 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Grant Type',
     name: 'grantType_options_accessTokenRequest_login_config',
-    default: '',
     displayOptions: {
       show: {
         patch_crawler_object: ['configuration_object'],
@@ -3224,14 +3246,15 @@ const properties: INodeProperties[] = [
         operation: ['patchCrawler'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
+    default: '',
     description:
       '[Client identifier](https://datatracker.ietf.org/doc/html/rfc6749#section-2.2).\n',
     displayName: 'Client Id',
     name: 'clientId_string_accessTokenRequest_login_config',
-    default: '',
     displayOptions: {
       show: {
         patch_crawler_object: ['configuration_object'],
@@ -3243,13 +3266,14 @@ const properties: INodeProperties[] = [
         operation: ['patchCrawler'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
+    default: '',
     description: 'Client secret.',
     displayName: 'Client Secret',
     name: 'clientSecret_string_accessTokenRequest_login_config',
-    default: '',
     displayOptions: {
       show: {
         patch_crawler_object: ['configuration_object'],
@@ -3261,14 +3285,15 @@ const properties: INodeProperties[] = [
         operation: ['patchCrawler'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
+    default: '',
     description:
       '[Access token scope](https://datatracker.ietf.org/doc/html/rfc6749#section-3.3).\n',
     displayName: 'Scope',
     name: 'scope_string_accessTokenRequest_login_config',
-    default: '',
     displayOptions: {
       show: {
         patch_crawler_object: ['configuration_object'],
@@ -3308,11 +3333,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description:
       'App ID URI of the receiving web service.\n\nFor more information, see [Azure Active Directory](https://learn.microsoft.com/en-us/previous-versions/azure/active-directory/azuread-dev/v1-oauth2-client-creds-grant-flow#first-case-access-token-request-with-a-shared-secret).\n',
     displayName: 'Resource',
     name: 'resource_string_extraParameters_accessTokenRequest_login_config',
-    default: '',
     displayOptions: {
       show: {
         patch_crawler_object: ['configuration_object'],
@@ -3331,6 +3356,7 @@ const properties: INodeProperties[] = [
   {
     type: 'number',
     placeholder: '5',
+    default: '',
     description:
       "Determines the maximum path depth of crawled URLs.\n\nPath depth is calculated based on the number of slash characters (`/`) after the domain (starting at 1).\nFor example:\n\n- **1** `http://example.com`\n- **1** `http://example.com/`\n- **1** `http://example.com/foo`\n- **2** `http://example.com/foo/`\n- **2** `http://example.com/foo/bar`\n- **3** `http://example.com/foo/bar/`\n\n**URLs added with `startUrls` and `sitemaps` aren't checked for `maxDepth`.**.\n",
     typeOptions: {
@@ -3339,7 +3365,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Max Depth',
     name: 'maxDepth_number_config',
-    default: '',
     displayOptions: {
       show: {
         patch_crawler_object: ['configuration_object'],
@@ -3352,6 +3377,7 @@ const properties: INodeProperties[] = [
   {
     type: 'number',
     placeholder: '250',
+    default: '',
     description:
       'Limits the number of URLs your crawler processes.\n\nChange it to a low value, such as 100, for quick crawling tests.\nChange it to a higher explicit value for full crawls to prevent it from getting "lost" in complex site structures.\nBecause the Crawler works on many pages simultaneously, `maxUrls` doesn\'t guarantee finding the same pages each time it runs.\n',
     typeOptions: {
@@ -3360,7 +3386,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Max Urls',
     name: 'maxUrls_number_config',
-    default: '',
     displayOptions: {
       show: {
         patch_crawler_object: ['configuration_object'],
@@ -3373,6 +3398,7 @@ const properties: INodeProperties[] = [
   {
     type: 'number',
     placeholder: '4',
+    default: '',
     description:
       "Determines the number of concurrent tasks per second that can run for this configuration.\n\nA higher rate limit means more crawls per second.\nAlgolia prevents system overload by ensuring the number of URLs added in the last second and the number of URLs being processed is less than the rate limit:\n\n\n```\nmax(new_urls_added, active_urls_processing) <= rateLimit\n```\n\nStart with a low value (for example, 2) and increase it if you need faster crawling.\nBe aware that a high `rateLimit` can have a huge impact on bandwidth cost and server resource consumption.\n\nThe number of pages processed per second depends on the average time it takes to fetch, process, and upload a URL. \nFor a given `rateLimit` if fetching, processing, and uploading URLs takes (on average):\n\n- Less than a second, your crawler processes up to `rateLimit` pages per second.\n- Four seconds, your crawler processes up to `rateLimit / 4` pages per second.\n\nIn the latter case, increasing `rateLimit` improves performance, up to a point. \nHowever, if the processing time remains at four seconds, increasing `rateLimit` won't increase the number of pages processed per second.\n",
     typeOptions: {
@@ -3381,7 +3407,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Rate Limit',
     name: 'rateLimit_number_config',
-    default: '',
     displayOptions: {
       show: {
         patch_crawler_object: ['configuration_object'],
@@ -3390,6 +3415,7 @@ const properties: INodeProperties[] = [
         operation: ['patchCrawler'],
       },
     },
+    required: true,
   },
   {
     type: 'options',
@@ -3421,10 +3447,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description: 'Whether to render all pages.',
     displayName: 'Render Java Script (Boolean)',
     name: 'renderJavaScript_boolean_config',
-    default: '',
     displayOptions: {
       show: {
         patch_crawler_object: ['configuration_object'],
@@ -3490,10 +3516,10 @@ const properties: INodeProperties[] = [
   {
     type: 'boolean',
     placeholder: 'true',
+    default: false,
     description: 'Whether to enable JavaScript rendering.',
     displayName: 'Enabled',
     name: 'enabled_boolean_renderJavaScript_config',
-    default: '',
     displayOptions: {
       show: {
         patch_crawler_object: ['configuration_object'],
@@ -3504,6 +3530,7 @@ const properties: INodeProperties[] = [
         operation: ['patchCrawler'],
       },
     },
+    required: true,
   },
   {
     type: 'json',
@@ -3511,7 +3538,7 @@ const properties: INodeProperties[] = [
     name: 'patterns_json_renderJavaScript_config',
     default: '[]',
     description: 'URLs or URL patterns to render.',
-    required: false,
+    required: true,
     displayOptions: {
       show: {
         patch_crawler_object: ['configuration_object'],
@@ -3525,11 +3552,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       "Whether to use the Crawler's ad blocker.\nIt blocks most ads and tracking scripts but can break some sites.\n",
     displayName: 'Ad Block',
     name: 'adBlock_boolean_renderJavaScript_config',
-    default: false,
     displayOptions: {
       show: {
         patch_crawler_object: ['configuration_object'],
@@ -3572,10 +3599,10 @@ const properties: INodeProperties[] = [
   {
     type: 'number',
     placeholder: '7000',
+    default: '',
     description: 'Minimum waiting time in milliseconds.',
     displayName: 'Min',
     name: 'min_number_waitTime_renderJavaScript_config',
-    default: 0,
     displayOptions: {
       show: {
         patch_crawler_object: ['configuration_object'],
@@ -3643,10 +3670,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Proxy for all crawler requests.',
     displayName: 'Proxy',
     name: 'proxy_string_requestOptions_config',
-    default: '',
     displayOptions: {
       show: {
         patch_crawler_object: ['configuration_object'],
@@ -3723,10 +3750,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'fr-FR',
+    default: '',
     description: 'Preferred natural language and locale.',
     displayName: 'Accept-Language',
     name: 'Accept-Language_string_headers_requestOptions_config',
-    default: '',
     displayOptions: {
       show: {
         patch_crawler_object: ['configuration_object'],
@@ -3741,10 +3768,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'Bearer Aerehdf==',
+    default: '',
     description: 'Basic authentication header.',
     displayName: 'Authorization',
     name: 'Authorization_string_headers_requestOptions_config',
-    default: '',
     displayOptions: {
       show: {
         patch_crawler_object: ['configuration_object'],
@@ -3759,10 +3786,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'session=1234',
+    default: '',
     description: 'Cookie. The header will be replaced by the cookie retrieved when logging in.',
     displayName: 'Cookie',
     name: 'Cookie_string_headers_requestOptions_config',
-    default: '',
     displayOptions: {
       show: {
         patch_crawler_object: ['configuration_object'],
@@ -3850,10 +3877,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description: 'Stops the crawler if a specified number of pages fail to crawl.',
     displayName: 'Max Failed Urls',
     name: 'maxFailedUrls_number_beforeIndexPublishing_safetyChecks_config',
-    default: '',
     displayOptions: {
       show: {
         patch_crawler_object: ['configuration_object'],
@@ -3869,11 +3896,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       'Whether to back up your index before the crawler overwrites it with new records.\n',
     displayName: 'Save Backup',
     name: 'saveBackup_boolean_config',
-    default: '',
     displayOptions: {
       show: {
         patch_crawler_object: ['configuration_object'],
@@ -3886,11 +3913,11 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'every weekday at 12:00 pm',
+    default: '',
     description:
       'Schedule for running the crawl.\n\nInstead of manually starting a crawl each time, you can set up a schedule for automatic crawls.\n[Use the visual UI](https://www.algolia.com/doc/tools/crawler/getting-started/crawler-configuration-visual) or add the `schedule` parameter to [your configuration](https://www.algolia.com/doc/tools/crawler/getting-started/crawler-configuration).\n\n`schedule` uses [Later.js syntax](https://bunkat.github.io/later) to specify when to crawl your site.\nHere are some key things to keep in mind when using `Later.js` syntax with the Crawler:\n\n- The interval between two scheduled crawls must be at least 24 hours.\n- To crawl daily, use "every 1 day" instead of "everyday" or "every day".\n- If you don\'t specify a time, the crawl can happen any time during the scheduled day.\n- Specify times for the UTC (GMT+0) timezone\n- Include minutes when specifying a time. For example, "at 3:00 pm" instead of "at 3pm".\n- Use "at 12:00 am" to specify midnight, not "at 00:00 am".\n',
     displayName: 'Schedule',
     name: 'schedule_string_config',
-    default: '',
     displayOptions: {
       show: {
         patch_crawler_object: ['configuration_object'],
@@ -3935,10 +3962,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'e0f6db8a-24f5-4092-83a4-1b2c6cb6d809',
+    default: '',
     description: 'Universally unique identifier (UUID) of the crawler.',
     displayName: 'Id',
     name: 'id_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -3950,10 +3977,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'e0f6db8a-24f5-4092-83a4-1b2c6cb6d809',
+    default: '',
     description: 'Universally unique identifier (UUID) of the crawler.',
     displayName: 'Id',
     name: 'id_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -3965,10 +3992,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'e0f6db8a-24f5-4092-83a4-1b2c6cb6d809',
+    default: '',
     description: 'Universally unique identifier (UUID) of the crawler.',
     displayName: 'Id',
     name: 'id_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -3980,10 +4007,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'e0f6db8a-24f5-4092-83a4-1b2c6cb6d809',
+    default: '',
     description: 'Universally unique identifier (UUID) of the crawler.',
     displayName: 'Id',
     name: 'id_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -3995,10 +4022,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'e0f6db8a-24f5-4092-83a4-1b2c6cb6d809',
+    default: '',
     description: 'Universally unique identifier (UUID) of the crawler.',
     displayName: 'Id',
     name: 'id_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -4034,6 +4061,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'https://www.algolia.com/blog',
+    default: '',
     description: 'URL to test.',
     routing: {
       send: {
@@ -4044,7 +4072,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Url',
     name: 'url_string',
-    default: '',
     displayOptions: {
       show: {
         test_url_object: ['url_string'],
@@ -4052,6 +4079,7 @@ const properties: INodeProperties[] = [
         operation: ['testUrl'],
       },
     },
+    required: true,
   },
   {
     type: 'multiOptions',
@@ -4086,7 +4114,7 @@ const properties: INodeProperties[] = [
         value: 'extraurls_json_config',
       },
       {
-        name: 'Ignore Canonical To Config',
+        name: 'Ignore Canonical To',
         value: 'ignorecanonicalto_config',
       },
       {
@@ -4114,15 +4142,15 @@ const properties: INodeProperties[] = [
         value: 'indexprefix_string_config',
       },
       {
-        name: 'Index Settings Config',
-        value: 'index_settings_config',
+        name: 'Initial Index Settings',
+        value: 'initial_index_settings_object_config',
       },
       {
-        name: 'Link Extractor Object Config',
+        name: 'Link Extractor',
         value: 'link_extractor_object_config',
       },
       {
-        name: 'Login Config',
+        name: 'Login',
         value: 'login_config',
       },
       {
@@ -4138,15 +4166,15 @@ const properties: INodeProperties[] = [
         value: 'ratelimit_number_config',
       },
       {
-        name: 'Render Java Script Config',
+        name: 'Render Java Script',
         value: 'renderjavascript_config',
       },
       {
-        name: 'Request',
+        name: 'Request Options',
         value: 'request_options_object_config',
       },
       {
-        name: 'Safety Checks Object Config',
+        name: 'Safety Checks',
         value: 'safety_checks_object_config',
       },
       {
@@ -4178,13 +4206,13 @@ const properties: INodeProperties[] = [
     type: 'json',
     displayName: 'Actions',
     name: 'actions_json_config',
-    default: '',
+    default: '[]',
     description: 'A list of actions.',
-    required: false,
+    required: true,
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'actions',
       },
     },
@@ -4199,6 +4227,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description:
       "The Algolia API key the crawler uses for indexing records.\nIf you don't provide an API key, one will be generated by the Crawler when you create a configuration.\n\nThe API key must have:\n\n- These [rights and restrictions](https://www.algolia.com/doc/guides/security/api-keys/#rights-and-restrictions): `search`, `addObject`, `deleteObject`, `deleteIndex`, `settings`, `editSettings`, `listIndexes`, `browse`\n- Access to the correct set of indices, based on the crawler's `indexPrefix`.\nFor example, if the prefix is `crawler_`, the API key must have access to `crawler_*`.\n\n**Don't use your [Admin API key](https://www.algolia.com/doc/guides/security/api-keys/#predefined-api-keys)**.\n",
     routing: {
@@ -4210,7 +4239,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Api Key',
     name: 'apiKey_string_config',
-    default: '',
     displayOptions: {
       show: {
         test_url_object: ['partial_config'],
@@ -4222,6 +4250,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Algolia application ID where the crawler creates and updates indices.\n',
     routing: {
       send: {
@@ -4232,7 +4261,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Application Id',
     name: 'applicationId_string_config',
-    default: '',
     displayOptions: {
       show: {
         test_url_object: ['partial_config'],
@@ -4241,6 +4269,7 @@ const properties: INodeProperties[] = [
         operation: ['testUrl'],
       },
     },
+    required: true,
   },
   {
     type: 'json',
@@ -4252,7 +4281,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'exclusionPatterns',
       },
     },
@@ -4275,7 +4304,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'externalData',
       },
     },
@@ -4299,7 +4328,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'extraUrls',
       },
     },
@@ -4346,11 +4375,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       'Determines if the crawler should extract records from a page with a [canonical URL](https://www.algolia.com/doc/tools/crawler/getting-started/crawler-configuration/#canonical-urls-and-crawler-behavior).\n\nIf `ignoreCanonicalTo` is set to:\n\n- `true` all canonical URLs are ignored.\n- One or more URL patterns, the crawler will ignore the canonical URL if it matches a pattern.\n',
     displayName: 'Ignore Canonical To (Boolean)',
     name: 'ignoreCanonicalTo_boolean_config',
-    default: '',
     displayOptions: {
       show: {
         test_url_object: ['partial_config'],
@@ -4380,6 +4409,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       "Determines if the crawler should follow links with a `nofollow` directive.\nIf `true`, the crawler will ignore the `nofollow` directive and crawl links on the page.\n\nThe crawler always ignores links that don't match your [configuration settings](https://www.algolia.com/doc/tools/crawler/getting-started/crawler-configuration/#exclude-and-include-content).\n`ignoreNoFollowTo` applies to:\n\n- Links that are ignored because the [`robots` meta tag](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta/name#Other_metadata_names) contains `nofollow` or `none`.\n- Links with a [`rel` attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel) containing the `nofollow` directive.\n",
     routing: {
@@ -4391,7 +4421,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Ignore No Follow To',
     name: 'ignoreNoFollowTo_boolean_config',
-    default: '',
     displayOptions: {
       show: {
         test_url_object: ['partial_config'],
@@ -4403,6 +4432,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       'Whether to ignore the `noindex` robots meta tag.\nIf `true`, pages with this meta tag _will_ be crawled.\n',
     routing: {
@@ -4414,7 +4444,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Ignore No Index',
     name: 'ignoreNoIndex_boolean_config',
-    default: '',
     displayOptions: {
       show: {
         test_url_object: ['partial_config'],
@@ -4458,7 +4487,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'ignoreQueryParams',
       },
     },
@@ -4473,6 +4502,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description: 'Whether to ignore rules defined in your `robots.txt` file.',
     routing: {
       send: {
@@ -4483,7 +4513,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Ignore Robots Txt Rules',
     name: 'ignoreRobotsTxtRules_boolean_config',
-    default: '',
     displayOptions: {
       show: {
         test_url_object: ['partial_config'],
@@ -4496,6 +4525,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'crawler_',
+    default: '',
     description:
       "A prefix for all indices created by this crawler. It's combined with the `indexName` for each action to form the complete index name.",
     routing: {
@@ -4507,7 +4537,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Index Prefix',
     name: 'indexPrefix_string_config',
-    default: '',
     displayOptions: {
       show: {
         test_url_object: ['partial_config'],
@@ -4519,21 +4548,23 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'json',
-    name: 'index_settings_config',
-    displayName: 'Index Settings',
-    description: 'Index settings.',
-    default: '',
+    displayName: 'Initial Index Settings',
+    name: 'initial_index_settings_object_config',
+    description:
+      "Crawler index settings.\n\nThese index settings are only applied during the first crawl of an index.\n\nAny subsequent changes won't be applied to the index.\nInstead, make changes to your index settings in the [Algolia dashboard](https://dashboard.algolia.com/explorer/configuration).\n",
+    required: false,
+    default: '{}',
     routing: {
       send: {
         type: 'body',
         property: 'initialIndexSettings',
-        value: '={{ undefined }}',
+        value: '={{ $value }}',
       },
     },
     displayOptions: {
       show: {
         test_url_object: ['partial_config'],
-        partial_config: ['index_settings_config'],
+        partial_config: ['initial_index_settings_object_config'],
         resource: ['actions'],
         operation: ['testUrl'],
       },
@@ -4576,6 +4607,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     options: [
       {
         name: 'function',
@@ -4584,7 +4616,6 @@ const properties: INodeProperties[] = [
     ],
     displayName: '  Type',
     name: '__type_options_linkExtractor_config',
-    default: '',
     displayOptions: {
       show: {
         test_url_object: ['partial_config'],
@@ -4599,9 +4630,9 @@ const properties: INodeProperties[] = [
     type: 'string',
     placeholder:
       '({ $, url, defaultExtractor }) => {\n  if (/example.com\/doc\//.test(url.href)) {\n    // For all pages under `/doc`, only extract the first found URL.\n    return defaultExtractor().slice(0, 1)\n  }\n  // For all other pages, use the default.\n  return defaultExtractor()\n}\n',
+    default: '',
     displayName: 'Source',
     name: 'source_string_linkExtractor_config',
-    default: '',
     displayOptions: {
       show: {
         test_url_object: ['partial_config'],
@@ -4678,10 +4709,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'https://example.com/login',
+    default: '',
     description: 'URL with your login form.',
     displayName: 'Url',
     name: 'url_string_login_config',
-    default: '',
     displayOptions: {
       show: {
         test_url_object: ['partial_config'],
@@ -4692,6 +4723,7 @@ const properties: INodeProperties[] = [
         operation: ['testUrl'],
       },
     },
+    required: true,
   },
   {
     displayName: 'Login Request Options',
@@ -4784,10 +4816,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'fr-FR',
+    default: '',
     description: 'Preferred natural language and locale.',
     displayName: 'Accept-Language',
     name: 'Accept-Language_string_headers_requestOptions_login_config',
-    default: '',
     displayOptions: {
       show: {
         test_url_object: ['partial_config'],
@@ -4804,10 +4836,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'Bearer Aerehdf==',
+    default: '',
     description: 'Basic authentication header.',
     displayName: 'Authorization',
     name: 'Authorization_string_headers_requestOptions_login_config',
-    default: '',
     displayOptions: {
       show: {
         test_url_object: ['partial_config'],
@@ -4824,10 +4856,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'session=1234',
+    default: '',
     description: 'Cookie. The header will be replaced by the cookie retrieved when logging in.',
     displayName: 'Cookie',
     name: 'Cookie_string_headers_requestOptions_login_config',
-    default: '',
     displayOptions: {
       show: {
         test_url_object: ['partial_config'],
@@ -4844,10 +4876,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'id=user&password=s3cr3t',
+    default: '',
     description: 'Form content.',
     displayName: 'Body',
     name: 'body_string_requestOptions_login_config',
-    default: '',
     displayOptions: {
       show: {
         test_url_object: ['partial_config'],
@@ -4862,10 +4894,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description: 'Timeout for the request.',
     displayName: 'Timeout',
     name: 'timeout_number_requestOptions_login_config',
-    default: '',
     displayOptions: {
       show: {
         test_url_object: ['partial_config'],
@@ -4917,11 +4949,11 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'https://example.com/login',
+    default: '',
     description:
       'URL of your login page.\n\nThe crawler looks for an input matching the selector `input[type=text]` or `input[type=email]` for the username and `input[type=password]` for the password.\n',
     displayName: 'Url',
     name: 'url_string_login_config',
-    default: '',
     displayOptions: {
       show: {
         test_url_object: ['partial_config'],
@@ -4932,14 +4964,15 @@ const properties: INodeProperties[] = [
         operation: ['testUrl'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
     placeholder: 'crawler',
+    default: '',
     description: 'Username for signing in.',
     displayName: 'Username',
     name: 'username_string_login_config',
-    default: '',
     displayOptions: {
       show: {
         test_url_object: ['partial_config'],
@@ -4950,14 +4983,15 @@ const properties: INodeProperties[] = [
         operation: ['testUrl'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
     placeholder: 's3cr3t',
+    default: '',
     description: 'Password for signing in.',
     displayName: 'Password',
     name: 'password_string_login_config',
-    default: '',
     displayOptions: {
       show: {
         test_url_object: ['partial_config'],
@@ -4968,6 +5002,7 @@ const properties: INodeProperties[] = [
         operation: ['testUrl'],
       },
     },
+    required: true,
   },
   {
     displayName: 'Wait Time',
@@ -5000,10 +5035,10 @@ const properties: INodeProperties[] = [
   {
     type: 'number',
     placeholder: '7000',
+    default: '',
     description: 'Minimum waiting time in milliseconds.',
     displayName: 'Min',
     name: 'min_number_waitTime_login_config',
-    default: 0,
     displayOptions: {
       show: {
         test_url_object: ['partial_config'],
@@ -5106,10 +5141,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'URL for the access token endpoint.',
     displayName: 'Url',
     name: 'url_string_accessTokenRequest_login_config',
-    default: '',
     displayOptions: {
       show: {
         test_url_object: ['partial_config'],
@@ -5121,9 +5156,11 @@ const properties: INodeProperties[] = [
         operation: ['testUrl'],
       },
     },
+    required: true,
   },
   {
     type: 'options',
+    default: '',
     description: 'OAuth 2.0 grant type.',
     options: [
       {
@@ -5133,7 +5170,6 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Grant Type',
     name: 'grantType_options_accessTokenRequest_login_config',
-    default: '',
     displayOptions: {
       show: {
         test_url_object: ['partial_config'],
@@ -5145,14 +5181,15 @@ const properties: INodeProperties[] = [
         operation: ['testUrl'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
+    default: '',
     description:
       '[Client identifier](https://datatracker.ietf.org/doc/html/rfc6749#section-2.2).\n',
     displayName: 'Client Id',
     name: 'clientId_string_accessTokenRequest_login_config',
-    default: '',
     displayOptions: {
       show: {
         test_url_object: ['partial_config'],
@@ -5164,13 +5201,14 @@ const properties: INodeProperties[] = [
         operation: ['testUrl'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
+    default: '',
     description: 'Client secret.',
     displayName: 'Client Secret',
     name: 'clientSecret_string_accessTokenRequest_login_config',
-    default: '',
     displayOptions: {
       show: {
         test_url_object: ['partial_config'],
@@ -5182,14 +5220,15 @@ const properties: INodeProperties[] = [
         operation: ['testUrl'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
+    default: '',
     description:
       '[Access token scope](https://datatracker.ietf.org/doc/html/rfc6749#section-3.3).\n',
     displayName: 'Scope',
     name: 'scope_string_accessTokenRequest_login_config',
-    default: '',
     displayOptions: {
       show: {
         test_url_object: ['partial_config'],
@@ -5229,11 +5268,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description:
       'App ID URI of the receiving web service.\n\nFor more information, see [Azure Active Directory](https://learn.microsoft.com/en-us/previous-versions/azure/active-directory/azuread-dev/v1-oauth2-client-creds-grant-flow#first-case-access-token-request-with-a-shared-secret).\n',
     displayName: 'Resource',
     name: 'resource_string_extraParameters_accessTokenRequest_login_config',
-    default: '',
     displayOptions: {
       show: {
         test_url_object: ['partial_config'],
@@ -5252,6 +5291,7 @@ const properties: INodeProperties[] = [
   {
     type: 'number',
     placeholder: '5',
+    default: '',
     description:
       "Determines the maximum path depth of crawled URLs.\n\nPath depth is calculated based on the number of slash characters (`/`) after the domain (starting at 1).\nFor example:\n\n- **1** `http://example.com`\n- **1** `http://example.com/`\n- **1** `http://example.com/foo`\n- **2** `http://example.com/foo/`\n- **2** `http://example.com/foo/bar`\n- **3** `http://example.com/foo/bar/`\n\n**URLs added with `startUrls` and `sitemaps` aren't checked for `maxDepth`.**.\n",
     typeOptions: {
@@ -5267,7 +5307,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Max Depth',
     name: 'maxDepth_number_config',
-    default: '',
     displayOptions: {
       show: {
         test_url_object: ['partial_config'],
@@ -5280,6 +5319,7 @@ const properties: INodeProperties[] = [
   {
     type: 'number',
     placeholder: '250',
+    default: '',
     description:
       'Limits the number of URLs your crawler processes.\n\nChange it to a low value, such as 100, for quick crawling tests.\nChange it to a higher explicit value for full crawls to prevent it from getting "lost" in complex site structures.\nBecause the Crawler works on many pages simultaneously, `maxUrls` doesn\'t guarantee finding the same pages each time it runs.\n',
     typeOptions: {
@@ -5295,7 +5335,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Max Urls',
     name: 'maxUrls_number_config',
-    default: '',
     displayOptions: {
       show: {
         test_url_object: ['partial_config'],
@@ -5308,6 +5347,7 @@ const properties: INodeProperties[] = [
   {
     type: 'number',
     placeholder: '4',
+    default: '',
     description:
       "Determines the number of concurrent tasks per second that can run for this configuration.\n\nA higher rate limit means more crawls per second.\nAlgolia prevents system overload by ensuring the number of URLs added in the last second and the number of URLs being processed is less than the rate limit:\n\n\n```\nmax(new_urls_added, active_urls_processing) <= rateLimit\n```\n\nStart with a low value (for example, 2) and increase it if you need faster crawling.\nBe aware that a high `rateLimit` can have a huge impact on bandwidth cost and server resource consumption.\n\nThe number of pages processed per second depends on the average time it takes to fetch, process, and upload a URL. \nFor a given `rateLimit` if fetching, processing, and uploading URLs takes (on average):\n\n- Less than a second, your crawler processes up to `rateLimit` pages per second.\n- Four seconds, your crawler processes up to `rateLimit / 4` pages per second.\n\nIn the latter case, increasing `rateLimit` improves performance, up to a point. \nHowever, if the processing time remains at four seconds, increasing `rateLimit` won't increase the number of pages processed per second.\n",
     typeOptions: {
@@ -5323,7 +5363,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Rate Limit',
     name: 'rateLimit_number_config',
-    default: '',
     displayOptions: {
       show: {
         test_url_object: ['partial_config'],
@@ -5332,6 +5371,7 @@ const properties: INodeProperties[] = [
         operation: ['testUrl'],
       },
     },
+    required: true,
   },
   {
     type: 'options',
@@ -5371,10 +5411,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description: 'Whether to render all pages.',
     displayName: 'Render Java Script (Boolean)',
     name: 'renderJavaScript_boolean_config',
-    default: '',
     displayOptions: {
       show: {
         test_url_object: ['partial_config'],
@@ -5440,10 +5480,10 @@ const properties: INodeProperties[] = [
   {
     type: 'boolean',
     placeholder: 'true',
+    default: false,
     description: 'Whether to enable JavaScript rendering.',
     displayName: 'Enabled',
     name: 'enabled_boolean_renderJavaScript_config',
-    default: '',
     displayOptions: {
       show: {
         test_url_object: ['partial_config'],
@@ -5454,6 +5494,7 @@ const properties: INodeProperties[] = [
         operation: ['testUrl'],
       },
     },
+    required: true,
   },
   {
     type: 'json',
@@ -5461,7 +5502,7 @@ const properties: INodeProperties[] = [
     name: 'patterns_json_renderJavaScript_config',
     default: '[]',
     description: 'URLs or URL patterns to render.',
-    required: false,
+    required: true,
     displayOptions: {
       show: {
         test_url_object: ['partial_config'],
@@ -5475,11 +5516,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       "Whether to use the Crawler's ad blocker.\nIt blocks most ads and tracking scripts but can break some sites.\n",
     displayName: 'Ad Block',
     name: 'adBlock_boolean_renderJavaScript_config',
-    default: false,
     displayOptions: {
       show: {
         test_url_object: ['partial_config'],
@@ -5522,10 +5563,10 @@ const properties: INodeProperties[] = [
   {
     type: 'number',
     placeholder: '7000',
+    default: '',
     description: 'Minimum waiting time in milliseconds.',
     displayName: 'Min',
     name: 'min_number_waitTime_renderJavaScript_config',
-    default: 0,
     displayOptions: {
       show: {
         test_url_object: ['partial_config'],
@@ -5601,10 +5642,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Proxy for all crawler requests.',
     displayName: 'Proxy',
     name: 'proxy_string_requestOptions_config',
-    default: '',
     displayOptions: {
       show: {
         test_url_object: ['partial_config'],
@@ -5681,10 +5722,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'fr-FR',
+    default: '',
     description: 'Preferred natural language and locale.',
     displayName: 'Accept-Language',
     name: 'Accept-Language_string_headers_requestOptions_config',
-    default: '',
     displayOptions: {
       show: {
         test_url_object: ['partial_config'],
@@ -5699,10 +5740,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'Bearer Aerehdf==',
+    default: '',
     description: 'Basic authentication header.',
     displayName: 'Authorization',
     name: 'Authorization_string_headers_requestOptions_config',
-    default: '',
     displayOptions: {
       show: {
         test_url_object: ['partial_config'],
@@ -5717,10 +5758,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'session=1234',
+    default: '',
     description: 'Cookie. The header will be replaced by the cookie retrieved when logging in.',
     displayName: 'Cookie',
     name: 'Cookie_string_headers_requestOptions_config',
-    default: '',
     displayOptions: {
       show: {
         test_url_object: ['partial_config'],
@@ -5816,10 +5857,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description: 'Stops the crawler if a specified number of pages fail to crawl.',
     displayName: 'Max Failed Urls',
     name: 'maxFailedUrls_number_beforeIndexPublishing_safetyChecks_config',
-    default: '',
     displayOptions: {
       show: {
         test_url_object: ['partial_config'],
@@ -5835,6 +5876,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       'Whether to back up your index before the crawler overwrites it with new records.\n',
     routing: {
@@ -5846,7 +5888,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Save Backup',
     name: 'saveBackup_boolean_config',
-    default: '',
     displayOptions: {
       show: {
         test_url_object: ['partial_config'],
@@ -5859,6 +5900,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'every weekday at 12:00 pm',
+    default: '',
     description:
       'Schedule for running the crawl.\n\nInstead of manually starting a crawl each time, you can set up a schedule for automatic crawls.\n[Use the visual UI](https://www.algolia.com/doc/tools/crawler/getting-started/crawler-configuration-visual) or add the `schedule` parameter to [your configuration](https://www.algolia.com/doc/tools/crawler/getting-started/crawler-configuration).\n\n`schedule` uses [Later.js syntax](https://bunkat.github.io/later) to specify when to crawl your site.\nHere are some key things to keep in mind when using `Later.js` syntax with the Crawler:\n\n- The interval between two scheduled crawls must be at least 24 hours.\n- To crawl daily, use "every 1 day" instead of "everyday" or "every day".\n- If you don\'t specify a time, the crawl can happen any time during the scheduled day.\n- Specify times for the UTC (GMT+0) timezone\n- Include minutes when specifying a time. For example, "at 3:00 pm" instead of "at 3pm".\n- Use "at 12:00 am" to specify midnight, not "at 00:00 am".\n',
     routing: {
@@ -5870,7 +5912,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Schedule',
     name: 'schedule_string_config',
-    default: '',
     displayOptions: {
       show: {
         test_url_object: ['partial_config'],
@@ -5890,7 +5931,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'sitemaps',
       },
     },
@@ -5913,7 +5954,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'startUrls',
       },
     },
@@ -5929,10 +5970,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'e0f6db8a-24f5-4092-83a4-1b2c6cb6d809',
+    default: '',
     description: 'Universally unique identifier (UUID) of the crawler.',
     displayName: 'Id',
     name: 'id_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -5971,11 +6012,11 @@ const properties: INodeProperties[] = [
     name: 'urls_json',
     default: '[]',
     description: 'URLs to crawl.',
-    required: false,
+    required: true,
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'urls',
       },
     },
@@ -5989,6 +6030,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       "Whether the specified URLs should be added to the `extraURLs` property of the crawler configuration.\nIf unspecified, the URLs are added to the `extraUrls` field only if they haven't been indexed during the last reindex.\n",
     routing: {
@@ -6000,7 +6042,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Save',
     name: 'save_boolean',
-    default: '',
     displayOptions: {
       show: {
         crawl_urls_object: ['save_boolean'],
@@ -6012,10 +6053,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'e0f6db8a-24f5-4092-83a4-1b2c6cb6d809',
+    default: '',
     description: 'Universally unique identifier (UUID) of the crawler.',
     displayName: 'Id',
     name: 'id_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -6027,10 +6068,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'e0f6db8a-24f5-4092-83a4-1b2c6cb6d809',
+    default: '',
     description: 'Universally unique identifier (UUID) of the crawler.',
     displayName: 'Id',
     name: 'id_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -6100,11 +6141,11 @@ const properties: INodeProperties[] = [
         value: 'indexprefix_string',
       },
       {
-        name: 'Index Settings',
-        value: 'index_settings',
+        name: 'Initial Index Settings',
+        value: 'initial_index_settings_object',
       },
       {
-        name: 'Link Extractor Object',
+        name: 'Link Extractor',
         value: 'link_extractor_object',
       },
       {
@@ -6128,11 +6169,11 @@ const properties: INodeProperties[] = [
         value: 'renderjavascript',
       },
       {
-        name: 'Request',
+        name: 'Request Options',
         value: 'request_options_object',
       },
       {
-        name: 'Safety Checks Object',
+        name: 'Safety Checks',
         value: 'safety_checks_object',
       },
       {
@@ -6163,13 +6204,13 @@ const properties: INodeProperties[] = [
     type: 'json',
     displayName: 'Actions',
     name: 'actions_json',
-    default: '',
+    default: '[]',
     description: 'A list of actions.',
-    required: false,
+    required: true,
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'actions',
       },
     },
@@ -6183,6 +6224,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description:
       "The Algolia API key the crawler uses for indexing records.\nIf you don't provide an API key, one will be generated by the Crawler when you create a configuration.\n\nThe API key must have:\n\n- These [rights and restrictions](https://www.algolia.com/doc/guides/security/api-keys/#rights-and-restrictions): `search`, `addObject`, `deleteObject`, `deleteIndex`, `settings`, `editSettings`, `listIndexes`, `browse`\n- Access to the correct set of indices, based on the crawler's `indexPrefix`.\nFor example, if the prefix is `crawler_`, the API key must have access to `crawler_*`.\n\n**Don't use your [Admin API key](https://www.algolia.com/doc/guides/security/api-keys/#predefined-api-keys)**.\n",
     routing: {
@@ -6194,7 +6236,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Api Key',
     name: 'apiKey_string',
-    default: '',
     displayOptions: {
       show: {
         partial_config: ['apikey_string'],
@@ -6205,6 +6246,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Algolia application ID where the crawler creates and updates indices.\n',
     routing: {
       send: {
@@ -6215,7 +6257,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Application Id',
     name: 'applicationId_string',
-    default: '',
     displayOptions: {
       show: {
         partial_config: ['applicationid_string'],
@@ -6223,6 +6264,7 @@ const properties: INodeProperties[] = [
         operation: ['patchConfig'],
       },
     },
+    required: true,
   },
   {
     type: 'json',
@@ -6234,7 +6276,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'exclusionPatterns',
       },
     },
@@ -6256,7 +6298,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'externalData',
       },
     },
@@ -6279,7 +6321,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'extraUrls',
       },
     },
@@ -6324,11 +6366,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       'Determines if the crawler should extract records from a page with a [canonical URL](https://www.algolia.com/doc/tools/crawler/getting-started/crawler-configuration/#canonical-urls-and-crawler-behavior).\n\nIf `ignoreCanonicalTo` is set to:\n\n- `true` all canonical URLs are ignored.\n- One or more URL patterns, the crawler will ignore the canonical URL if it matches a pattern.\n',
     displayName: 'Ignore Canonical To (Boolean)',
     name: 'ignoreCanonicalTo_boolean',
-    default: '',
     displayOptions: {
       show: {
         ignoreCanonicalTo: ['boolean'],
@@ -6356,6 +6398,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       "Determines if the crawler should follow links with a `nofollow` directive.\nIf `true`, the crawler will ignore the `nofollow` directive and crawl links on the page.\n\nThe crawler always ignores links that don't match your [configuration settings](https://www.algolia.com/doc/tools/crawler/getting-started/crawler-configuration/#exclude-and-include-content).\n`ignoreNoFollowTo` applies to:\n\n- Links that are ignored because the [`robots` meta tag](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta/name#Other_metadata_names) contains `nofollow` or `none`.\n- Links with a [`rel` attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel) containing the `nofollow` directive.\n",
     routing: {
@@ -6367,7 +6410,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Ignore No Follow To',
     name: 'ignoreNoFollowTo_boolean',
-    default: '',
     displayOptions: {
       show: {
         partial_config: ['ignorenofollowto_boolean'],
@@ -6378,6 +6420,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       'Whether to ignore the `noindex` robots meta tag.\nIf `true`, pages with this meta tag _will_ be crawled.\n',
     routing: {
@@ -6389,7 +6432,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Ignore No Index',
     name: 'ignoreNoIndex_boolean',
-    default: '',
     displayOptions: {
       show: {
         partial_config: ['ignorenoindex_boolean'],
@@ -6431,7 +6473,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'ignoreQueryParams',
       },
     },
@@ -6445,6 +6487,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description: 'Whether to ignore rules defined in your `robots.txt` file.',
     routing: {
       send: {
@@ -6455,7 +6498,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Ignore Robots Txt Rules',
     name: 'ignoreRobotsTxtRules_boolean',
-    default: '',
     displayOptions: {
       show: {
         partial_config: ['ignorerobotstxtrules_boolean'],
@@ -6467,6 +6509,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'crawler_',
+    default: '',
     description:
       "A prefix for all indices created by this crawler. It's combined with the `indexName` for each action to form the complete index name.",
     routing: {
@@ -6478,7 +6521,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Index Prefix',
     name: 'indexPrefix_string',
-    default: '',
     displayOptions: {
       show: {
         partial_config: ['indexprefix_string'],
@@ -6489,20 +6531,22 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'json',
-    name: 'index_settings',
-    displayName: 'Index Settings',
-    description: 'Index settings.',
-    default: '',
+    displayName: 'Initial Index Settings',
+    name: 'initial_index_settings_object',
+    description:
+      "Crawler index settings.\n\nThese index settings are only applied during the first crawl of an index.\n\nAny subsequent changes won't be applied to the index.\nInstead, make changes to your index settings in the [Algolia dashboard](https://dashboard.algolia.com/explorer/configuration).\n",
+    required: false,
+    default: '{}',
     routing: {
       send: {
         type: 'body',
         property: 'initialIndexSettings',
-        value: '={{ undefined }}',
+        value: '={{ $value }}',
       },
     },
     displayOptions: {
       show: {
-        partial_config: ['index_settings'],
+        partial_config: ['initial_index_settings_object'],
         resource: ['config'],
         operation: ['patchConfig'],
       },
@@ -6544,6 +6588,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     options: [
       {
         name: 'function',
@@ -6552,7 +6597,6 @@ const properties: INodeProperties[] = [
     ],
     displayName: '  Type',
     name: '__type_options_linkExtractor',
-    default: '',
     displayOptions: {
       show: {
         link_extractor_object: ['__type_options_linkExtractor'],
@@ -6566,9 +6610,9 @@ const properties: INodeProperties[] = [
     type: 'string',
     placeholder:
       '({ $, url, defaultExtractor }) => {\n  if (/example.com\/doc\//.test(url.href)) {\n    // For all pages under `/doc`, only extract the first found URL.\n    return defaultExtractor().slice(0, 1)\n  }\n  // For all other pages, use the default.\n  return defaultExtractor()\n}\n',
+    default: '',
     displayName: 'Source',
     name: 'source_string_linkExtractor',
-    default: '',
     displayOptions: {
       show: {
         link_extractor_object: ['source_string_linkExtractor'],
@@ -6642,10 +6686,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'https://example.com/login',
+    default: '',
     description: 'URL with your login form.',
     displayName: 'Url',
     name: 'url_string_login',
-    default: '',
     displayOptions: {
       show: {
         http_request_object: ['url_string_login'],
@@ -6655,6 +6699,7 @@ const properties: INodeProperties[] = [
         operation: ['patchConfig'],
       },
     },
+    required: true,
   },
   {
     displayName: 'Login Request Options',
@@ -6744,10 +6789,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'fr-FR',
+    default: '',
     description: 'Preferred natural language and locale.',
     displayName: 'Accept-Language',
     name: 'Accept-Language_string_headers_requestOptions_login',
-    default: '',
     displayOptions: {
       show: {
         http_request_object: ['login_request_options_object_login'],
@@ -6763,10 +6808,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'Bearer Aerehdf==',
+    default: '',
     description: 'Basic authentication header.',
     displayName: 'Authorization',
     name: 'Authorization_string_headers_requestOptions_login',
-    default: '',
     displayOptions: {
       show: {
         http_request_object: ['login_request_options_object_login'],
@@ -6782,10 +6827,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'session=1234',
+    default: '',
     description: 'Cookie. The header will be replaced by the cookie retrieved when logging in.',
     displayName: 'Cookie',
     name: 'Cookie_string_headers_requestOptions_login',
-    default: '',
     displayOptions: {
       show: {
         http_request_object: ['login_request_options_object_login'],
@@ -6801,10 +6846,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'id=user&password=s3cr3t',
+    default: '',
     description: 'Form content.',
     displayName: 'Body',
     name: 'body_string_requestOptions_login',
-    default: '',
     displayOptions: {
       show: {
         http_request_object: ['login_request_options_object_login'],
@@ -6818,10 +6863,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description: 'Timeout for the request.',
     displayName: 'Timeout',
     name: 'timeout_number_requestOptions_login',
-    default: '',
     displayOptions: {
       show: {
         http_request_object: ['login_request_options_object_login'],
@@ -6871,11 +6916,11 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'https://example.com/login',
+    default: '',
     description:
       'URL of your login page.\n\nThe crawler looks for an input matching the selector `input[type=text]` or `input[type=email]` for the username and `input[type=password]` for the password.\n',
     displayName: 'Url',
     name: 'url_string_login',
-    default: '',
     displayOptions: {
       show: {
         browserbased_object: ['url_string_login'],
@@ -6885,14 +6930,15 @@ const properties: INodeProperties[] = [
         operation: ['patchConfig'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
     placeholder: 'crawler',
+    default: '',
     description: 'Username for signing in.',
     displayName: 'Username',
     name: 'username_string_login',
-    default: '',
     displayOptions: {
       show: {
         browserbased_object: ['username_string_login'],
@@ -6902,14 +6948,15 @@ const properties: INodeProperties[] = [
         operation: ['patchConfig'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
     placeholder: 's3cr3t',
+    default: '',
     description: 'Password for signing in.',
     displayName: 'Password',
     name: 'password_string_login',
-    default: '',
     displayOptions: {
       show: {
         browserbased_object: ['password_string_login'],
@@ -6919,6 +6966,7 @@ const properties: INodeProperties[] = [
         operation: ['patchConfig'],
       },
     },
+    required: true,
   },
   {
     displayName: 'Wait Time',
@@ -6950,10 +6998,10 @@ const properties: INodeProperties[] = [
   {
     type: 'number',
     placeholder: '7000',
+    default: '',
     description: 'Minimum waiting time in milliseconds.',
     displayName: 'Min',
     name: 'min_number_waitTime_login',
-    default: 0,
     displayOptions: {
       show: {
         browserbased_object: ['wait_time_object_login'],
@@ -7052,10 +7100,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'URL for the access token endpoint.',
     displayName: 'Url',
     name: 'url_string_accessTokenRequest_login',
-    default: '',
     displayOptions: {
       show: {
         oauth_20_object: ['access_token_request_object_login'],
@@ -7066,9 +7114,11 @@ const properties: INodeProperties[] = [
         operation: ['patchConfig'],
       },
     },
+    required: true,
   },
   {
     type: 'options',
+    default: '',
     description: 'OAuth 2.0 grant type.',
     options: [
       {
@@ -7078,7 +7128,6 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Grant Type',
     name: 'grantType_options_accessTokenRequest_login',
-    default: '',
     displayOptions: {
       show: {
         oauth_20_object: ['access_token_request_object_login'],
@@ -7089,14 +7138,15 @@ const properties: INodeProperties[] = [
         operation: ['patchConfig'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
+    default: '',
     description:
       '[Client identifier](https://datatracker.ietf.org/doc/html/rfc6749#section-2.2).\n',
     displayName: 'Client Id',
     name: 'clientId_string_accessTokenRequest_login',
-    default: '',
     displayOptions: {
       show: {
         oauth_20_object: ['access_token_request_object_login'],
@@ -7107,13 +7157,14 @@ const properties: INodeProperties[] = [
         operation: ['patchConfig'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
+    default: '',
     description: 'Client secret.',
     displayName: 'Client Secret',
     name: 'clientSecret_string_accessTokenRequest_login',
-    default: '',
     displayOptions: {
       show: {
         oauth_20_object: ['access_token_request_object_login'],
@@ -7124,14 +7175,15 @@ const properties: INodeProperties[] = [
         operation: ['patchConfig'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
+    default: '',
     description:
       '[Access token scope](https://datatracker.ietf.org/doc/html/rfc6749#section-3.3).\n',
     displayName: 'Scope',
     name: 'scope_string_accessTokenRequest_login',
-    default: '',
     displayOptions: {
       show: {
         oauth_20_object: ['access_token_request_object_login'],
@@ -7169,11 +7221,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description:
       'App ID URI of the receiving web service.\n\nFor more information, see [Azure Active Directory](https://learn.microsoft.com/en-us/previous-versions/azure/active-directory/azuread-dev/v1-oauth2-client-creds-grant-flow#first-case-access-token-request-with-a-shared-secret).\n',
     displayName: 'Resource',
     name: 'resource_string_extraParameters_accessTokenRequest_login',
-    default: '',
     displayOptions: {
       show: {
         oauth_20_object: ['access_token_request_object_login'],
@@ -7189,6 +7241,7 @@ const properties: INodeProperties[] = [
   {
     type: 'number',
     placeholder: '5',
+    default: '',
     description:
       "Determines the maximum path depth of crawled URLs.\n\nPath depth is calculated based on the number of slash characters (`/`) after the domain (starting at 1).\nFor example:\n\n- **1** `http://example.com`\n- **1** `http://example.com/`\n- **1** `http://example.com/foo`\n- **2** `http://example.com/foo/`\n- **2** `http://example.com/foo/bar`\n- **3** `http://example.com/foo/bar/`\n\n**URLs added with `startUrls` and `sitemaps` aren't checked for `maxDepth`.**.\n",
     typeOptions: {
@@ -7204,7 +7257,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Max Depth',
     name: 'maxDepth_number',
-    default: '',
     displayOptions: {
       show: {
         partial_config: ['maxdepth_number'],
@@ -7216,6 +7268,7 @@ const properties: INodeProperties[] = [
   {
     type: 'number',
     placeholder: '250',
+    default: '',
     description:
       'Limits the number of URLs your crawler processes.\n\nChange it to a low value, such as 100, for quick crawling tests.\nChange it to a higher explicit value for full crawls to prevent it from getting "lost" in complex site structures.\nBecause the Crawler works on many pages simultaneously, `maxUrls` doesn\'t guarantee finding the same pages each time it runs.\n',
     typeOptions: {
@@ -7231,7 +7284,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Max Urls',
     name: 'maxUrls_number',
-    default: '',
     displayOptions: {
       show: {
         partial_config: ['maxurls_number'],
@@ -7243,6 +7295,7 @@ const properties: INodeProperties[] = [
   {
     type: 'number',
     placeholder: '4',
+    default: '',
     description:
       "Determines the number of concurrent tasks per second that can run for this configuration.\n\nA higher rate limit means more crawls per second.\nAlgolia prevents system overload by ensuring the number of URLs added in the last second and the number of URLs being processed is less than the rate limit:\n\n\n```\nmax(new_urls_added, active_urls_processing) <= rateLimit\n```\n\nStart with a low value (for example, 2) and increase it if you need faster crawling.\nBe aware that a high `rateLimit` can have a huge impact on bandwidth cost and server resource consumption.\n\nThe number of pages processed per second depends on the average time it takes to fetch, process, and upload a URL. \nFor a given `rateLimit` if fetching, processing, and uploading URLs takes (on average):\n\n- Less than a second, your crawler processes up to `rateLimit` pages per second.\n- Four seconds, your crawler processes up to `rateLimit / 4` pages per second.\n\nIn the latter case, increasing `rateLimit` improves performance, up to a point. \nHowever, if the processing time remains at four seconds, increasing `rateLimit` won't increase the number of pages processed per second.\n",
     typeOptions: {
@@ -7258,7 +7311,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Rate Limit',
     name: 'rateLimit_number',
-    default: '',
     displayOptions: {
       show: {
         partial_config: ['ratelimit_number'],
@@ -7266,6 +7318,7 @@ const properties: INodeProperties[] = [
         operation: ['patchConfig'],
       },
     },
+    required: true,
   },
   {
     type: 'options',
@@ -7304,10 +7357,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description: 'Whether to render all pages.',
     displayName: 'Render Java Script (Boolean)',
     name: 'renderJavaScript_boolean',
-    default: '',
     displayOptions: {
       show: {
         renderJavaScript: ['boolean'],
@@ -7370,10 +7423,10 @@ const properties: INodeProperties[] = [
   {
     type: 'boolean',
     placeholder: 'true',
+    default: false,
     description: 'Whether to enable JavaScript rendering.',
     displayName: 'Enabled',
     name: 'enabled_boolean_renderJavaScript',
-    default: '',
     displayOptions: {
       show: {
         headless_browser_config_object: ['enabled_boolean_renderJavaScript'],
@@ -7383,6 +7436,7 @@ const properties: INodeProperties[] = [
         operation: ['patchConfig'],
       },
     },
+    required: true,
   },
   {
     type: 'json',
@@ -7390,7 +7444,7 @@ const properties: INodeProperties[] = [
     name: 'patterns_json_renderJavaScript',
     default: '[]',
     description: 'URLs or URL patterns to render.',
-    required: false,
+    required: true,
     displayOptions: {
       show: {
         headless_browser_config_object: ['patterns_json_renderJavaScript'],
@@ -7403,11 +7457,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       "Whether to use the Crawler's ad blocker.\nIt blocks most ads and tracking scripts but can break some sites.\n",
     displayName: 'Ad Block',
     name: 'adBlock_boolean_renderJavaScript',
-    default: false,
     displayOptions: {
       show: {
         headless_browser_config_object: ['adBlock_boolean_renderJavaScript'],
@@ -7448,10 +7502,10 @@ const properties: INodeProperties[] = [
   {
     type: 'number',
     placeholder: '7000',
+    default: '',
     description: 'Minimum waiting time in milliseconds.',
     displayName: 'Min',
     name: 'min_number_waitTime_renderJavaScript',
-    default: 0,
     displayOptions: {
       show: {
         headless_browser_config_object: ['wait_time_object_renderJavaScript'],
@@ -7524,10 +7578,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Proxy for all crawler requests.',
     displayName: 'Proxy',
     name: 'proxy_string_requestOptions',
-    default: '',
     displayOptions: {
       show: {
         request_options_object: ['proxy_string_requestOptions'],
@@ -7600,10 +7654,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'fr-FR',
+    default: '',
     description: 'Preferred natural language and locale.',
     displayName: 'Accept-Language',
     name: 'Accept-Language_string_headers_requestOptions',
-    default: '',
     displayOptions: {
       show: {
         request_options_object: ['headers_object_requestOptions'],
@@ -7617,10 +7671,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'Bearer Aerehdf==',
+    default: '',
     description: 'Basic authentication header.',
     displayName: 'Authorization',
     name: 'Authorization_string_headers_requestOptions',
-    default: '',
     displayOptions: {
       show: {
         request_options_object: ['headers_object_requestOptions'],
@@ -7634,10 +7688,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'session=1234',
+    default: '',
     description: 'Cookie. The header will be replaced by the cookie retrieved when logging in.',
     displayName: 'Cookie',
     name: 'Cookie_string_headers_requestOptions',
-    default: '',
     displayOptions: {
       show: {
         request_options_object: ['headers_object_requestOptions'],
@@ -7729,10 +7783,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description: 'Stops the crawler if a specified number of pages fail to crawl.',
     displayName: 'Max Failed Urls',
     name: 'maxFailedUrls_number_beforeIndexPublishing_safetyChecks',
-    default: '',
     displayOptions: {
       show: {
         safety_checks_object: ['before_index_publishing_object_safetyChecks'],
@@ -7745,6 +7799,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       'Whether to back up your index before the crawler overwrites it with new records.\n',
     routing: {
@@ -7756,7 +7811,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Save Backup',
     name: 'saveBackup_boolean',
-    default: '',
     displayOptions: {
       show: {
         partial_config: ['savebackup_boolean'],
@@ -7768,6 +7822,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'every weekday at 12:00 pm',
+    default: '',
     description:
       'Schedule for running the crawl.\n\nInstead of manually starting a crawl each time, you can set up a schedule for automatic crawls.\n[Use the visual UI](https://www.algolia.com/doc/tools/crawler/getting-started/crawler-configuration-visual) or add the `schedule` parameter to [your configuration](https://www.algolia.com/doc/tools/crawler/getting-started/crawler-configuration).\n\n`schedule` uses [Later.js syntax](https://bunkat.github.io/later) to specify when to crawl your site.\nHere are some key things to keep in mind when using `Later.js` syntax with the Crawler:\n\n- The interval between two scheduled crawls must be at least 24 hours.\n- To crawl daily, use "every 1 day" instead of "everyday" or "every day".\n- If you don\'t specify a time, the crawl can happen any time during the scheduled day.\n- Specify times for the UTC (GMT+0) timezone\n- Include minutes when specifying a time. For example, "at 3:00 pm" instead of "at 3pm".\n- Use "at 12:00 am" to specify midnight, not "at 00:00 am".\n',
     routing: {
@@ -7779,7 +7834,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Schedule',
     name: 'schedule_string',
-    default: '',
     displayOptions: {
       show: {
         partial_config: ['schedule_string'],
@@ -7798,7 +7852,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'sitemaps',
       },
     },
@@ -7820,7 +7874,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'startUrls',
       },
     },
@@ -7835,10 +7889,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'e0f6db8a-24f5-4092-83a4-1b2c6cb6d809',
+    default: '',
     description: 'Universally unique identifier (UUID) of the crawler.',
     displayName: 'Id',
     name: 'id_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -7898,10 +7952,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'e0f6db8a-24f5-4092-83a4-1b2c6cb6d809',
+    default: '',
     description: 'Universally unique identifier (UUID) of the crawler.',
     displayName: 'Id',
     name: 'id_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -7912,9 +7966,9 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     displayName: 'Version',
     name: 'version_number',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -7926,10 +7980,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'e0f6db8a-24f5-4092-83a4-1b2c6cb6d809',
+    default: '',
     description: 'Universally unique identifier (UUID) of the crawler.',
     displayName: 'Id',
     name: 'id_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -7941,10 +7995,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '98458796-b7bb-4703-8b1b-785c1080b110',
+    default: '',
     description: 'Universally unique identifier (UUID) of the task.',
     displayName: 'Task ID',
     name: 'taskID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -7956,10 +8010,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'e0f6db8a-24f5-4092-83a4-1b2c6cb6d809',
+    default: '',
     description: 'Universally unique identifier (UUID) of the crawler.',
     displayName: 'Id',
     name: 'id_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -7971,10 +8025,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '98458796-b7bb-4703-8b1b-785c1080b110',
+    default: '',
     description: 'Universally unique identifier (UUID) of the task.',
     displayName: 'Task ID',
     name: 'taskID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -8033,6 +8087,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Algolia application ID where the crawler creates and updates indices.\n',
     routing: {
       request: {
@@ -8043,7 +8098,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'App ID',
     name: 'appID_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['domains'],

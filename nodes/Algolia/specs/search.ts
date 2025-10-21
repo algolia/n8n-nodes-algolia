@@ -1015,9 +1015,9 @@ const properties: INodeProperties[] = [
   {
     type: 'options',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     displayName: 'Index Name',
     name: 'indexName_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -1085,6 +1085,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'hitsPerPage=2&getRankingInfo=1',
+    default: '',
     description: 'Search parameters as a URL-encoded query string.',
     routing: {
       send: {
@@ -1095,7 +1096,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Params',
     name: 'params_string',
-    default: '',
     displayOptions: {
       show: {
         searchParams: ['search_parameters_as_query_string'],
@@ -1336,7 +1336,7 @@ const properties: INodeProperties[] = [
         value: 'mode_options',
       },
       {
-        name: 'Semantic Search Object',
+        name: 'Semantic Search',
         value: 'semantic_search_object',
       },
       {
@@ -1392,7 +1392,7 @@ const properties: INodeProperties[] = [
         value: 'attributecriteriacomputedbyminproximity_boolean',
       },
       {
-        name: 'Rendering Content Object',
+        name: 'Rendering Content',
         value: 'rendering_content_object',
       },
       {
@@ -1414,6 +1414,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Search query.',
     routing: {
       send: {
@@ -1424,7 +1425,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Query',
     name: 'query_string',
-    default: '',
     displayOptions: {
       show: {
         search_parameters_as_object: ['query_string'],
@@ -1437,6 +1437,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'comedy drama crime Macy Buscemi',
+    default: '',
     description:
       'Keywords to be used instead of the search query to conduct a more broader search\nUsing the `similarQuery` parameter changes other settings\n- `queryType` is set to `prefixNone`.\n- `removeStopWords` is set to true.\n- `words` is set as the first ranking criterion.\n- All remaining words are treated as `optionalWords`\nSince the `similarQuery` is supposed to do a broad search, they usually return many results.\nCombine it with `filters` to narrow down the list of results.\n',
     routing: {
@@ -1448,7 +1449,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Similar Query',
     name: 'similarQuery_string',
-    default: '',
     displayOptions: {
       show: {
         search_parameters_as_object: ['similarquery_string'],
@@ -1461,6 +1461,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '(category:Book OR category:Ebook) AND _tags:published',
+    default: '',
     description:
       "Filter expression to only include items that match the filter criteria in the response.\n\nYou can use these filter expressions:\n\n- **Numeric filters.** `<facet> <op> <number>`, where `<op>` is one of `<`, `<=`, `=`, `!=`, `>`, `>=`.\n- **Ranges.** `<facet>:<lower> TO <upper>` where `<lower>` and `<upper>` are the lower and upper limits of the range (inclusive).\n- **Facet filters.** `<facet>:<value>` where `<facet>` is a facet attribute (case-sensitive) and `<value>` a facet value.\n- **Tag filters.** `_tags:<value>` or just `<value>` (case-sensitive).\n- **Boolean filters.** `<facet>: true | false`.\n\nYou can combine filters with `AND`, `OR`, and `NOT` operators with the following restrictions:\n\n- You can only combine filters of the same type with `OR`.\n  **Not supported:** `facet:value OR num > 3`.\n- You can't use `NOT` with combinations of filters.\n  **Not supported:** `NOT(facet:value OR facet:value)`\n- You can't combine conjunctions (`AND`) with `OR`.\n  **Not supported:** `facet:value OR (facet:value AND facet:value)`\n\nUse quotes around your filters, if the facet attribute name or facet value has spaces, keywords (`OR`, `AND`, `NOT`), or quotes.\nIf a facet attribute is an array, the filter matches if it matches at least one element of the array.\n\nFor more information, see [Filters](https://www.algolia.com/doc/guides/managing-results/refine-results/filtering).\n",
     routing: {
@@ -1472,7 +1473,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Filters',
     name: 'filters_string',
-    default: '',
     displayOptions: {
       show: {
         search_parameters_as_object: ['filters_string'],
@@ -1533,9 +1533,9 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     displayName: 'Facet Filters (String)',
     name: 'facetFilters_string',
-    default: '',
     displayOptions: {
       show: {
         facetFilters: ['string'],
@@ -1597,9 +1597,9 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     displayName: 'Optional Filters (String)',
     name: 'optionalFilters_string',
-    default: '',
     displayOptions: {
       show: {
         optionalFilters: ['string'],
@@ -1661,9 +1661,9 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     displayName: 'Numeric Filters (String)',
     name: 'numericFilters_string',
-    default: '',
     displayOptions: {
       show: {
         numericFilters: ['string'],
@@ -1725,9 +1725,9 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     displayName: 'Tag Filters (String)',
     name: 'tagFilters_string',
-    default: '',
     displayOptions: {
       show: {
         tagFilters: ['string'],
@@ -1740,6 +1740,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       'Whether to sum all filter scores\nIf true, all filter scores are summed.\nOtherwise, the maximum filter score is kept.\nFor more information, see [filter scores](https://www.algolia.com/doc/guides/managing-results/refine-results/filtering/in-depth/filter-scoring/#accumulating-scores-with-sumorfiltersscores).\n',
     routing: {
@@ -1751,7 +1752,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Sum Or Filters Scores',
     name: 'sumOrFiltersScores_boolean',
-    default: false,
     displayOptions: {
       show: {
         search_parameters_as_object: ['sumorfiltersscores_boolean'],
@@ -1772,7 +1772,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'restrictSearchableAttributes',
       },
     },
@@ -1796,7 +1796,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'facets',
       },
     },
@@ -1811,6 +1811,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       "Whether faceting should be applied after deduplication with `distinct`\nThis leads to accurate facet counts when using faceting in combination with `distinct`.\nIt's usually better to use `afterDistinct` modifiers in the `attributesForFaceting` setting,\nas `facetingAfterDistinct` only computes correct facet counts if all records have the same facet values for the `attributeForDistinct`.\n",
     routing: {
@@ -1822,7 +1823,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Faceting After Distinct',
     name: 'facetingAfterDistinct_boolean',
-    default: false,
     displayOptions: {
       show: {
         search_parameters_as_object: ['facetingafterdistinct_boolean'],
@@ -1834,6 +1834,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description: 'Page of search results to retrieve.',
     typeOptions: {
       minValue: 0,
@@ -1847,7 +1848,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Page',
     name: 'page_number',
-    default: 0,
     displayOptions: {
       show: {
         search_parameters_as_object: ['page_number'],
@@ -1859,6 +1859,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description: 'Position of the first hit to retrieve.',
     routing: {
       send: {
@@ -1869,7 +1870,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Offset',
     name: 'offset_number',
-    default: '',
     displayOptions: {
       show: {
         search_parameters_as_object: ['offset_number'],
@@ -1881,6 +1881,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description: 'Number of hits to retrieve (used in combination with `offset`).',
     typeOptions: {
       minValue: 0,
@@ -1895,7 +1896,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Length',
     name: 'length_number',
-    default: '',
     displayOptions: {
       show: {
         search_parameters_as_object: ['length_number'],
@@ -1908,6 +1908,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '40.71,-74.01',
+    default: '',
     description:
       'Coordinates for the center of a circle, expressed as a comma-separated string of latitude and longitude.\n\nOnly records included within a circle around this central location are included in the results.\nThe radius of the circle is determined by the `aroundRadius` and `minimumAroundRadius` settings.\nThis parameter is ignored if you also specify `insidePolygon` or `insideBoundingBox`.\n',
     routing: {
@@ -1919,7 +1920,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Around Lat Lng',
     name: 'aroundLatLng_string',
-    default: '',
     displayOptions: {
       show: {
         search_parameters_as_object: ['aroundlatlng_string'],
@@ -1931,6 +1931,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description: "Whether to obtain the coordinates from the request's IP address.",
     routing: {
       send: {
@@ -1941,7 +1942,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Around Lat Lng Via IP',
     name: 'aroundLatLngViaIP_boolean',
-    default: false,
     displayOptions: {
       show: {
         search_parameters_as_object: ['aroundlatlngviaip_boolean'],
@@ -1985,13 +1985,13 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description: 'Maximum search radius around a central location in meters.',
     typeOptions: {
       minValue: 1,
     },
     displayName: 'Around Radius (Integer)',
     name: 'aroundRadius_number',
-    default: '',
     displayOptions: {
       show: {
         aroundRadius: ['integer'],
@@ -2004,6 +2004,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     description: "Return all records with a valid `_geoloc` attribute. Don't filter by distance.",
     options: [
       {
@@ -2013,7 +2014,6 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Around Radius (All)',
     name: 'aroundRadius_options',
-    default: '',
     displayOptions: {
       show: {
         aroundRadius: ['all'],
@@ -2044,7 +2044,7 @@ const properties: INodeProperties[] = [
         type: 'body',
         property: 'aroundPrecision',
         value:
-          '={{ typeof $parameter.aroundPrecision_number !== "undefined" ? $parameter.aroundPrecision_number : typeof $parameter.aroundPrecision_fixedCollection.aroundPrecision_fixedCollection_values !== "undefined" ? $parameter.aroundPrecision_fixedCollection.aroundPrecision_fixedCollection_values?.map(item => ({ from: typeof item.from_number_aroundPrecision !== "undefined" ? item.from_number_aroundPrecision : undefined, value: typeof item.value_number_aroundPrecision !== "undefined" ? item.value_number_aroundPrecision : undefined })) : undefined }}',
+          '={{ typeof $parameter.aroundPrecision_number !== "undefined" ? $parameter.aroundPrecision_number : typeof $parameter.aroundPrecision_json !== "undefined" ? JSON.parse($parameter.aroundPrecision_json) : undefined }}',
       },
     },
     displayOptions: {
@@ -2074,40 +2074,12 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    type: 'fixedCollection',
+    type: 'json',
     displayName: 'Around Precision (Range Objects)',
-    name: 'aroundPrecision_fixedCollection',
-    default: '',
+    name: 'aroundPrecision_json',
+    default: '[]',
     description: undefined,
     required: false,
-    typeOptions: {
-      multipleValues: true,
-    },
-    options: [
-      {
-        name: 'aroundPrecision_fixedCollection_values',
-        displayName: 'Around Precision',
-        values: [
-          {
-            type: 'number',
-            placeholder: '20',
-            description:
-              'Lower boundary of a range in meters. The Geo ranking criterion considers all records within the range to be equal.',
-            displayName: 'From',
-            name: 'from_number_aroundPrecision',
-            default: '',
-          },
-          {
-            type: 'number',
-            description:
-              'Upper boundary of a range in meters. The Geo ranking criterion considers all records within the range to be equal.',
-            displayName: 'Value',
-            name: 'value_number_aroundPrecision',
-            default: '',
-          },
-        ],
-      },
-    ],
     displayOptions: {
       show: {
         aroundPrecision: ['range_objects'],
@@ -2120,6 +2092,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description:
       "Minimum radius (in meters) for a search around a location when `aroundRadius` isn't set.",
     typeOptions: {
@@ -2134,7 +2107,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Minimum Around Radius',
     name: 'minimumAroundRadius_number',
-    default: '',
     displayOptions: {
       show: {
         search_parameters_as_object: ['minimumaroundradius_number'],
@@ -2182,9 +2154,9 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     displayName: 'Inside Bounding Box (String)',
     name: 'insideBoundingBox_string',
-    default: '',
     displayOptions: {
       show: {
         insideBoundingBox: ['string'],
@@ -2246,7 +2218,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'insidePolygon',
       },
     },
@@ -2270,7 +2242,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'naturalLanguages',
       },
     },
@@ -2294,7 +2266,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'ruleContexts',
       },
     },
@@ -2337,6 +2309,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'test-user-123',
+    default: '',
     description:
       'Unique pseudonymous or anonymous user identifier.\n\nThis helps with analytics and click and conversion events.\nFor more information, see [user token](https://www.algolia.com/doc/guides/sending-events/concepts/usertoken).\n',
     routing: {
@@ -2348,7 +2321,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'User Token',
     name: 'userToken_string',
-    default: '',
     displayOptions: {
       show: {
         search_parameters_as_object: ['usertoken_string'],
@@ -2360,6 +2332,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description: 'Whether the search response should include detailed ranking information.',
     routing: {
       send: {
@@ -2370,7 +2343,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Get Ranking Info',
     name: 'getRankingInfo_boolean',
-    default: false,
     displayOptions: {
       show: {
         search_parameters_as_object: ['getrankinginfo_boolean'],
@@ -2404,6 +2376,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       'Whether to include a `queryID` attribute in the response\nThe query ID is a unique identifier for a search query and is required for tracking [click and conversion events](https://www.algolia.com/doc/guides/sending-events/getting-started).\n',
     routing: {
@@ -2415,7 +2388,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Click Analytics',
     name: 'clickAnalytics_boolean',
-    default: false,
     displayOptions: {
       show: {
         search_parameters_as_object: ['clickanalytics_boolean'],
@@ -2458,7 +2430,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'analyticsTags',
       },
     },
@@ -2526,7 +2498,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'attributesToRetrieve',
       },
     },
@@ -2550,7 +2522,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'ranking',
       },
     },
@@ -2598,7 +2570,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'attributesToHighlight',
       },
     },
@@ -2622,7 +2594,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'attributesToSnippet',
       },
     },
@@ -2705,6 +2677,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       'Whether to restrict highlighting and snippeting to items that at least partially matched the search query.\nBy default, all items are highlighted and snippeted.\n',
     routing: {
@@ -2716,7 +2689,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Restrict Highlight And Snippet Arrays',
     name: 'restrictHighlightAndSnippetArrays_boolean',
-    default: false,
     displayOptions: {
       show: {
         search_parameters_as_object: ['restricthighlightandsnippetarrays_boolean'],
@@ -2849,6 +2821,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     description:
       '- `min`. Return matches with the lowest number of typos.\n  For example, if you have matches without typos, only include those.\n  But if there are no matches without typos (with 1 typo), include matches with 1 typo (2 typos).\n- `strict`. Return matches with the two lowest numbers of typos.\n  With `strict`, the Typo ranking criterion is applied first in the `ranking` setting.\n',
     options: [
@@ -2871,7 +2844,6 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Typo Tolerance (Typo Tolerance)',
     name: 'typoTolerance_options',
-    default: '',
     displayOptions: {
       show: {
         typoTolerance: ['typo_tolerance'],
@@ -2916,7 +2888,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'disableTypoToleranceOnAttributes',
       },
     },
@@ -2985,6 +2957,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     options: [
       {
         name: 'true',
@@ -2997,7 +2970,6 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Ignore Plurals (Boolean String)',
     name: 'ignorePlurals_options',
-    default: '',
     displayOptions: {
       show: {
         ignorePlurals: ['boolean_string'],
@@ -3010,11 +2982,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       "If true, `ignorePlurals` is active for all languages included in `queryLanguages`, or for all supported languages, if `queryLanguges` is empty.\nIf false, singulars, plurals, and other declensions won't be considered equivalent.\n",
     displayName: 'Ignore Plurals (Boolean)',
     name: 'ignorePlurals_boolean',
-    default: false,
     displayOptions: {
       show: {
         ignorePlurals: ['boolean'],
@@ -3077,11 +3049,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       'If true, stop words are removed for all languages you included in `queryLanguages`, or for all supported languages, if `queryLanguages` is empty.\nIf false, stop words are not removed.\n',
     displayName: 'Remove Stop Words (Boolean)',
     name: 'removeStopWords_boolean',
-    default: false,
     displayOptions: {
       show: {
         removeStopWords: ['boolean'],
@@ -3103,7 +3075,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'queryLanguages',
       },
     },
@@ -3163,6 +3135,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description: 'Whether to enable Personalization.',
     routing: {
       send: {
@@ -3173,7 +3146,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Enable Personalization',
     name: 'enablePersonalization_boolean',
-    default: false,
     displayOptions: {
       show: {
         search_parameters_as_object: ['enablepersonalization_boolean'],
@@ -3395,6 +3367,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       'Whether to support phrase matching and excluding words from search queries\nUse the `advancedSyntaxFeatures` parameter to control which feature is supported.\n',
     routing: {
@@ -3406,7 +3379,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Advanced Syntax',
     name: 'advancedSyntax_boolean',
-    default: false,
     displayOptions: {
       show: {
         search_parameters_as_object: ['advancedsyntax_boolean'],
@@ -3454,9 +3426,9 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     displayName: 'Optional Words (String)',
     name: 'optionalWords_string',
-    default: '',
     displayOptions: {
       show: {
         optionalWords: ['string'],
@@ -3518,7 +3490,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'disableExactOnAttributes',
       },
     },
@@ -3579,7 +3551,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'alternativesAsExact',
       },
     },
@@ -3603,7 +3575,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'advancedSyntaxFeatures',
       },
     },
@@ -3650,11 +3622,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       'Whether deduplication is turned on. If true, only one member of a group is shown in the search results.',
     displayName: 'Distinct (Boolean)',
     name: 'distinct_boolean',
-    default: '',
     displayOptions: {
       show: {
         distinct: ['boolean'],
@@ -3667,6 +3639,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description:
       "Number of members of a group of records to include in the search results.\n\n- Don't use `distinct > 1` for records that might be [promoted by rules](https://www.algolia.com/doc/guides/managing-results/rules/merchandising-and-promoting/how-to/promote-hits).\n  The number of hits won't be correct and faceting won't work as expected.\n- With `distinct > 1`, the `hitsPerPage` parameter controls the number of returned groups.\n  For example, with `hitsPerPage: 10` and `distinct: 2`, up to 20 records are returned.\n  Likewise, the `nbHits` response attribute contains the number of returned groups.\n",
     typeOptions: {
@@ -3675,7 +3648,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Distinct (Integer)',
     name: 'distinct_number',
-    default: 0,
     displayOptions: {
       show: {
         distinct: ['integer'],
@@ -3688,6 +3660,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       'Whether to replace a highlighted word with the matched synonym\nBy default, the original words are highlighted even if a synonym matches.\nFor example, with `home` as a synonym for `house` and a search for `home`,\nrecords matching either "home" or "house" are included in the search results,\nand either "home" or "house" are highlighted\nWith `replaceSynonymsInHighlight` set to `true`, a search for `home` still matches the same records,\nbut all occurrences of "house" are replaced by "home" in the highlighted response.\n',
     routing: {
@@ -3699,7 +3672,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Replace Synonyms In Highlight',
     name: 'replaceSynonymsInHighlight_boolean',
-    default: false,
     displayOptions: {
       show: {
         search_parameters_as_object: ['replacesynonymsinhighlight_boolean'],
@@ -3747,7 +3719,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'responseFields',
       },
     },
@@ -3810,6 +3782,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       'Whether the best matching attribute should be determined by minimum proximity\nThis setting only affects ranking if the Attribute ranking criterion comes before Proximity in the `ranking` setting.\nIf true, the best matching attribute is selected based on the minimum proximity of multiple matches.\nOtherwise, the best matching attribute is determined by the order in the `searchableAttributes` setting.\n',
     routing: {
@@ -3821,7 +3794,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Attribute Criteria Computed By Min Proximity',
     name: 'attributeCriteriaComputedByMinProximity_boolean',
-    default: false,
     displayOptions: {
       show: {
         search_parameters_as_object: ['attributecriteriacomputedbyminproximity_boolean'],
@@ -3845,8 +3817,8 @@ const properties: INodeProperties[] = [
         value: 'facet_ordering_object_renderingContent',
       },
       {
-        name: 'Redirect U RL',
-        value: 'redirect_u_rl_object_renderingContent',
+        name: 'Redirect URL',
+        value: 'redirect_url_object_renderingContent',
       },
       {
         name: 'Widgets',
@@ -3858,7 +3830,7 @@ const properties: INodeProperties[] = [
         type: 'body',
         property: 'renderingContent',
         value:
-          '={{ { "facetOrdering": { "facets": { "order": typeof $parameter.order_json_facets_facetOrdering_renderingContent !== "undefined" ? JSON.parse($parameter.order_json_facets_facetOrdering_renderingContent) : undefined }, "values": typeof $parameter.value_object_facetOrdering_renderingContent !== "undefined" ? JSON.parse($parameter.value_object_facetOrdering_renderingContent) : undefined }, "redirect": { "url": typeof $parameter.url_string_redirect_renderingContent !== "undefined" ? $parameter.url_string_redirect_renderingContent : undefined }, "widgets": { "banners": typeof $parameter.banners_json_widgets_renderingContent !== "undefined" ? JSON.parse($parameter.banners_json_widgets_renderingContent) : undefined } } }}',
+          '={{ { "facetOrdering": { "facets": { "order": typeof $parameter.order_json_facets_facetOrdering_renderingContent !== "undefined" ? JSON.parse($parameter.order_json_facets_facetOrdering_renderingContent) : undefined }, "values": typeof $parameter.values_object_facetOrdering_renderingContent !== "undefined" ? JSON.parse($parameter.values_object_facetOrdering_renderingContent) : undefined }, "redirect": { "url": typeof $parameter.url_string_redirect_renderingContent !== "undefined" ? $parameter.url_string_redirect_renderingContent : undefined }, "widgets": { "banners": typeof $parameter.banners_json_widgets_renderingContent !== "undefined" ? JSON.parse($parameter.banners_json_widgets_renderingContent) : undefined } } }}',
       },
     },
     displayOptions: {
@@ -3883,8 +3855,8 @@ const properties: INodeProperties[] = [
         value: 'facets_object_facetOrdering',
       },
       {
-        name: 'Value',
-        value: 'value_object_facetOrdering',
+        name: 'Values',
+        value: 'values_object_facetOrdering',
       },
     ],
     displayOptions: {
@@ -3942,16 +3914,16 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    displayName: 'Value',
-    name: 'value_object_facetOrdering_renderingContent',
     type: 'json',
+    displayName: 'Values',
+    name: 'values_object_facetOrdering_renderingContent',
     description: 'Order of facet values. One object for each facet.',
     required: false,
-    default: '',
+    default: '{}',
     displayOptions: {
       show: {
         rendering_content_object: ['facet_ordering_object_renderingContent'],
-        facet_ordering_object_renderingContent: ['value_object_facetOrdering'],
+        facet_ordering_object_renderingContent: ['values_object_facetOrdering'],
         search_parameters_as_object: ['rendering_content_object'],
         searchParams: ['search_parameters_as_object'],
         resource: ['Search'],
@@ -3960,8 +3932,8 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    displayName: 'Redirect U RL',
-    name: 'redirect_u_rl_object_renderingContent',
+    displayName: 'Redirect URL',
+    name: 'redirect_url_object_renderingContent',
     type: 'multiOptions',
     description: 'The redirect rule container.',
     required: false,
@@ -3974,7 +3946,7 @@ const properties: INodeProperties[] = [
     ],
     displayOptions: {
       show: {
-        rendering_content_object: ['redirect_u_rl_object_renderingContent'],
+        rendering_content_object: ['redirect_url_object_renderingContent'],
         search_parameters_as_object: ['rendering_content_object'],
         searchParams: ['search_parameters_as_object'],
         resource: ['Search'],
@@ -3984,13 +3956,13 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     displayName: 'Url',
     name: 'url_string_redirect_renderingContent',
-    default: '',
     displayOptions: {
       show: {
-        rendering_content_object: ['redirect_u_rl_object_renderingContent'],
-        redirect_u_rl_object_renderingContent: ['url_string_redirect'],
+        rendering_content_object: ['redirect_url_object_renderingContent'],
+        redirect_url_object_renderingContent: ['url_string_redirect'],
         search_parameters_as_object: ['rendering_content_object'],
         searchParams: ['search_parameters_as_object'],
         resource: ['Search'],
@@ -4025,7 +3997,7 @@ const properties: INodeProperties[] = [
     type: 'json',
     displayName: 'Banners',
     name: 'banners_json_widgets_renderingContent',
-    default: '',
+    default: '[]',
     description: 'Banners defined in the Merchandising Studio for a given search.',
     required: false,
     displayOptions: {
@@ -4117,9 +4089,9 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     displayName: 'Re Ranking Apply Filter (String)',
     name: 'reRankingApplyFilter_string',
-    default: '',
     displayOptions: {
       show: {
         reRankingApplyFilter: ['string'],
@@ -4182,11 +4154,11 @@ const properties: INodeProperties[] = [
     name: 'requests_json',
     default: '[]',
     description: undefined,
-    required: false,
+    required: true,
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'requests',
       },
     },
@@ -4200,6 +4172,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     description:
       'Strategy for multiple search queries:\n\n- `none`. Run all queries.\n- `stopIfEnoughMatches`. Run the queries one by one, stopping as soon as a query matches at least the `hitsPerPage` number of results.\n',
     options: [
@@ -4221,7 +4194,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Strategy',
     name: 'strategy_options',
-    default: '',
     displayOptions: {
       show: {
         search_method_params_object: ['strategy_options'],
@@ -4233,9 +4205,9 @@ const properties: INodeProperties[] = [
   {
     type: 'options',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     displayName: 'Index Name',
     name: 'indexName_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -4273,9 +4245,9 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     displayName: 'Facet Name',
     name: 'facetName_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -4315,6 +4287,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'hitsPerPage=2&getRankingInfo=1',
+    default: '',
     description: 'Search parameters as a URL-encoded query string.',
     routing: {
       send: {
@@ -4325,7 +4298,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Params',
     name: 'params_string',
-    default: '',
     displayOptions: {
       show: {
         search_for_facet_values_request_object: ['params_string'],
@@ -4337,6 +4309,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'george',
+    default: '',
     description: "Text to search inside the facet's values.",
     routing: {
       send: {
@@ -4347,7 +4320,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Facet Query',
     name: 'facetQuery_string',
-    default: '',
     displayOptions: {
       show: {
         search_for_facet_values_request_object: ['facetQuery_string'],
@@ -4384,9 +4356,9 @@ const properties: INodeProperties[] = [
   {
     type: 'options',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     displayName: 'Index Name',
     name: 'indexName_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -4454,6 +4426,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'hitsPerPage=2&getRankingInfo=1',
+    default: '',
     description: 'Search parameters as a URL-encoded query string.',
     routing: {
       send: {
@@ -4464,7 +4437,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Params',
     name: 'params_string',
-    default: '',
     displayOptions: {
       show: {
         browseParams: ['search_parameters_as_query_string'],
@@ -4705,7 +4677,7 @@ const properties: INodeProperties[] = [
         value: 'mode_options',
       },
       {
-        name: 'Semantic Search Object',
+        name: 'Semantic Search',
         value: 'semantic_search_object',
       },
       {
@@ -4761,7 +4733,7 @@ const properties: INodeProperties[] = [
         value: 'attributecriteriacomputedbyminproximity_boolean',
       },
       {
-        name: 'Rendering Content Object',
+        name: 'Rendering Content',
         value: 'rendering_content_object',
       },
       {
@@ -4787,6 +4759,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Search query.',
     routing: {
       send: {
@@ -4797,7 +4770,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Query',
     name: 'query_string',
-    default: '',
     displayOptions: {
       show: {
         browse_params_object: ['query_string'],
@@ -4810,6 +4782,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'comedy drama crime Macy Buscemi',
+    default: '',
     description:
       'Keywords to be used instead of the search query to conduct a more broader search\nUsing the `similarQuery` parameter changes other settings\n- `queryType` is set to `prefixNone`.\n- `removeStopWords` is set to true.\n- `words` is set as the first ranking criterion.\n- All remaining words are treated as `optionalWords`\nSince the `similarQuery` is supposed to do a broad search, they usually return many results.\nCombine it with `filters` to narrow down the list of results.\n',
     routing: {
@@ -4821,7 +4794,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Similar Query',
     name: 'similarQuery_string',
-    default: '',
     displayOptions: {
       show: {
         browse_params_object: ['similarquery_string'],
@@ -4834,6 +4806,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '(category:Book OR category:Ebook) AND _tags:published',
+    default: '',
     description:
       "Filter expression to only include items that match the filter criteria in the response.\n\nYou can use these filter expressions:\n\n- **Numeric filters.** `<facet> <op> <number>`, where `<op>` is one of `<`, `<=`, `=`, `!=`, `>`, `>=`.\n- **Ranges.** `<facet>:<lower> TO <upper>` where `<lower>` and `<upper>` are the lower and upper limits of the range (inclusive).\n- **Facet filters.** `<facet>:<value>` where `<facet>` is a facet attribute (case-sensitive) and `<value>` a facet value.\n- **Tag filters.** `_tags:<value>` or just `<value>` (case-sensitive).\n- **Boolean filters.** `<facet>: true | false`.\n\nYou can combine filters with `AND`, `OR`, and `NOT` operators with the following restrictions:\n\n- You can only combine filters of the same type with `OR`.\n  **Not supported:** `facet:value OR num > 3`.\n- You can't use `NOT` with combinations of filters.\n  **Not supported:** `NOT(facet:value OR facet:value)`\n- You can't combine conjunctions (`AND`) with `OR`.\n  **Not supported:** `facet:value OR (facet:value AND facet:value)`\n\nUse quotes around your filters, if the facet attribute name or facet value has spaces, keywords (`OR`, `AND`, `NOT`), or quotes.\nIf a facet attribute is an array, the filter matches if it matches at least one element of the array.\n\nFor more information, see [Filters](https://www.algolia.com/doc/guides/managing-results/refine-results/filtering).\n",
     routing: {
@@ -4845,7 +4818,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Filters',
     name: 'filters_string',
-    default: '',
     displayOptions: {
       show: {
         browse_params_object: ['filters_string'],
@@ -4906,9 +4878,9 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     displayName: 'Facet Filters (String)',
     name: 'facetFilters_string',
-    default: '',
     displayOptions: {
       show: {
         facetFilters: ['string'],
@@ -4970,9 +4942,9 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     displayName: 'Optional Filters (String)',
     name: 'optionalFilters_string',
-    default: '',
     displayOptions: {
       show: {
         optionalFilters: ['string'],
@@ -5034,9 +5006,9 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     displayName: 'Numeric Filters (String)',
     name: 'numericFilters_string',
-    default: '',
     displayOptions: {
       show: {
         numericFilters: ['string'],
@@ -5098,9 +5070,9 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     displayName: 'Tag Filters (String)',
     name: 'tagFilters_string',
-    default: '',
     displayOptions: {
       show: {
         tagFilters: ['string'],
@@ -5113,6 +5085,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       'Whether to sum all filter scores\nIf true, all filter scores are summed.\nOtherwise, the maximum filter score is kept.\nFor more information, see [filter scores](https://www.algolia.com/doc/guides/managing-results/refine-results/filtering/in-depth/filter-scoring/#accumulating-scores-with-sumorfiltersscores).\n',
     routing: {
@@ -5124,7 +5097,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Sum Or Filters Scores',
     name: 'sumOrFiltersScores_boolean',
-    default: false,
     displayOptions: {
       show: {
         browse_params_object: ['sumorfiltersscores_boolean'],
@@ -5145,7 +5117,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'restrictSearchableAttributes',
       },
     },
@@ -5169,7 +5141,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'facets',
       },
     },
@@ -5184,6 +5156,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       "Whether faceting should be applied after deduplication with `distinct`\nThis leads to accurate facet counts when using faceting in combination with `distinct`.\nIt's usually better to use `afterDistinct` modifiers in the `attributesForFaceting` setting,\nas `facetingAfterDistinct` only computes correct facet counts if all records have the same facet values for the `attributeForDistinct`.\n",
     routing: {
@@ -5195,7 +5168,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Faceting After Distinct',
     name: 'facetingAfterDistinct_boolean',
-    default: false,
     displayOptions: {
       show: {
         browse_params_object: ['facetingafterdistinct_boolean'],
@@ -5207,6 +5179,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description: 'Page of search results to retrieve.',
     typeOptions: {
       minValue: 0,
@@ -5220,7 +5193,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Page',
     name: 'page_number',
-    default: 0,
     displayOptions: {
       show: {
         browse_params_object: ['page_number'],
@@ -5232,6 +5204,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description: 'Position of the first hit to retrieve.',
     routing: {
       send: {
@@ -5242,7 +5215,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Offset',
     name: 'offset_number',
-    default: '',
     displayOptions: {
       show: {
         browse_params_object: ['offset_number'],
@@ -5254,6 +5226,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description: 'Number of hits to retrieve (used in combination with `offset`).',
     typeOptions: {
       minValue: 0,
@@ -5268,7 +5241,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Length',
     name: 'length_number',
-    default: '',
     displayOptions: {
       show: {
         browse_params_object: ['length_number'],
@@ -5281,6 +5253,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '40.71,-74.01',
+    default: '',
     description:
       'Coordinates for the center of a circle, expressed as a comma-separated string of latitude and longitude.\n\nOnly records included within a circle around this central location are included in the results.\nThe radius of the circle is determined by the `aroundRadius` and `minimumAroundRadius` settings.\nThis parameter is ignored if you also specify `insidePolygon` or `insideBoundingBox`.\n',
     routing: {
@@ -5292,7 +5265,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Around Lat Lng',
     name: 'aroundLatLng_string',
-    default: '',
     displayOptions: {
       show: {
         browse_params_object: ['aroundlatlng_string'],
@@ -5304,6 +5276,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description: "Whether to obtain the coordinates from the request's IP address.",
     routing: {
       send: {
@@ -5314,7 +5287,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Around Lat Lng Via IP',
     name: 'aroundLatLngViaIP_boolean',
-    default: false,
     displayOptions: {
       show: {
         browse_params_object: ['aroundlatlngviaip_boolean'],
@@ -5358,13 +5330,13 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description: 'Maximum search radius around a central location in meters.',
     typeOptions: {
       minValue: 1,
     },
     displayName: 'Around Radius (Integer)',
     name: 'aroundRadius_number',
-    default: '',
     displayOptions: {
       show: {
         aroundRadius: ['integer'],
@@ -5377,6 +5349,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     description: "Return all records with a valid `_geoloc` attribute. Don't filter by distance.",
     options: [
       {
@@ -5386,7 +5359,6 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Around Radius (All)',
     name: 'aroundRadius_options',
-    default: '',
     displayOptions: {
       show: {
         aroundRadius: ['all'],
@@ -5417,7 +5389,7 @@ const properties: INodeProperties[] = [
         type: 'body',
         property: 'aroundPrecision',
         value:
-          '={{ typeof $parameter.aroundPrecision_number !== "undefined" ? $parameter.aroundPrecision_number : typeof $parameter.aroundPrecision_fixedCollection.aroundPrecision_fixedCollection_values !== "undefined" ? $parameter.aroundPrecision_fixedCollection.aroundPrecision_fixedCollection_values?.map(item => ({ from: typeof item.from_number_aroundPrecision !== "undefined" ? item.from_number_aroundPrecision : undefined, value: typeof item.value_number_aroundPrecision !== "undefined" ? item.value_number_aroundPrecision : undefined })) : undefined }}',
+          '={{ typeof $parameter.aroundPrecision_number !== "undefined" ? $parameter.aroundPrecision_number : typeof $parameter.aroundPrecision_json !== "undefined" ? JSON.parse($parameter.aroundPrecision_json) : undefined }}',
       },
     },
     displayOptions: {
@@ -5447,40 +5419,12 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    type: 'fixedCollection',
+    type: 'json',
     displayName: 'Around Precision (Range Objects)',
-    name: 'aroundPrecision_fixedCollection',
-    default: '',
+    name: 'aroundPrecision_json',
+    default: '[]',
     description: undefined,
     required: false,
-    typeOptions: {
-      multipleValues: true,
-    },
-    options: [
-      {
-        name: 'aroundPrecision_fixedCollection_values',
-        displayName: 'Around Precision',
-        values: [
-          {
-            type: 'number',
-            placeholder: '20',
-            description:
-              'Lower boundary of a range in meters. The Geo ranking criterion considers all records within the range to be equal.',
-            displayName: 'From',
-            name: 'from_number_aroundPrecision',
-            default: '',
-          },
-          {
-            type: 'number',
-            description:
-              'Upper boundary of a range in meters. The Geo ranking criterion considers all records within the range to be equal.',
-            displayName: 'Value',
-            name: 'value_number_aroundPrecision',
-            default: '',
-          },
-        ],
-      },
-    ],
     displayOptions: {
       show: {
         aroundPrecision: ['range_objects'],
@@ -5493,6 +5437,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description:
       "Minimum radius (in meters) for a search around a location when `aroundRadius` isn't set.",
     typeOptions: {
@@ -5507,7 +5452,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Minimum Around Radius',
     name: 'minimumAroundRadius_number',
-    default: '',
     displayOptions: {
       show: {
         browse_params_object: ['minimumaroundradius_number'],
@@ -5555,9 +5499,9 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     displayName: 'Inside Bounding Box (String)',
     name: 'insideBoundingBox_string',
-    default: '',
     displayOptions: {
       show: {
         insideBoundingBox: ['string'],
@@ -5619,7 +5563,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'insidePolygon',
       },
     },
@@ -5643,7 +5587,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'naturalLanguages',
       },
     },
@@ -5667,7 +5611,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'ruleContexts',
       },
     },
@@ -5710,6 +5654,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'test-user-123',
+    default: '',
     description:
       'Unique pseudonymous or anonymous user identifier.\n\nThis helps with analytics and click and conversion events.\nFor more information, see [user token](https://www.algolia.com/doc/guides/sending-events/concepts/usertoken).\n',
     routing: {
@@ -5721,7 +5666,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'User Token',
     name: 'userToken_string',
-    default: '',
     displayOptions: {
       show: {
         browse_params_object: ['usertoken_string'],
@@ -5733,6 +5677,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description: 'Whether the search response should include detailed ranking information.',
     routing: {
       send: {
@@ -5743,7 +5688,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Get Ranking Info',
     name: 'getRankingInfo_boolean',
-    default: false,
     displayOptions: {
       show: {
         browse_params_object: ['getrankinginfo_boolean'],
@@ -5777,6 +5721,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       'Whether to include a `queryID` attribute in the response\nThe query ID is a unique identifier for a search query and is required for tracking [click and conversion events](https://www.algolia.com/doc/guides/sending-events/getting-started).\n',
     routing: {
@@ -5788,7 +5733,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Click Analytics',
     name: 'clickAnalytics_boolean',
-    default: false,
     displayOptions: {
       show: {
         browse_params_object: ['clickanalytics_boolean'],
@@ -5831,7 +5775,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'analyticsTags',
       },
     },
@@ -5899,7 +5843,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'attributesToRetrieve',
       },
     },
@@ -5923,7 +5867,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'ranking',
       },
     },
@@ -5971,7 +5915,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'attributesToHighlight',
       },
     },
@@ -5995,7 +5939,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'attributesToSnippet',
       },
     },
@@ -6078,6 +6022,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       'Whether to restrict highlighting and snippeting to items that at least partially matched the search query.\nBy default, all items are highlighted and snippeted.\n',
     routing: {
@@ -6089,7 +6034,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Restrict Highlight And Snippet Arrays',
     name: 'restrictHighlightAndSnippetArrays_boolean',
-    default: false,
     displayOptions: {
       show: {
         browse_params_object: ['restricthighlightandsnippetarrays_boolean'],
@@ -6222,6 +6166,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     description:
       '- `min`. Return matches with the lowest number of typos.\n  For example, if you have matches without typos, only include those.\n  But if there are no matches without typos (with 1 typo), include matches with 1 typo (2 typos).\n- `strict`. Return matches with the two lowest numbers of typos.\n  With `strict`, the Typo ranking criterion is applied first in the `ranking` setting.\n',
     options: [
@@ -6244,7 +6189,6 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Typo Tolerance (Typo Tolerance)',
     name: 'typoTolerance_options',
-    default: '',
     displayOptions: {
       show: {
         typoTolerance: ['typo_tolerance'],
@@ -6289,7 +6233,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'disableTypoToleranceOnAttributes',
       },
     },
@@ -6358,6 +6302,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     options: [
       {
         name: 'true',
@@ -6370,7 +6315,6 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Ignore Plurals (Boolean String)',
     name: 'ignorePlurals_options',
-    default: '',
     displayOptions: {
       show: {
         ignorePlurals: ['boolean_string'],
@@ -6383,11 +6327,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       "If true, `ignorePlurals` is active for all languages included in `queryLanguages`, or for all supported languages, if `queryLanguges` is empty.\nIf false, singulars, plurals, and other declensions won't be considered equivalent.\n",
     displayName: 'Ignore Plurals (Boolean)',
     name: 'ignorePlurals_boolean',
-    default: false,
     displayOptions: {
       show: {
         ignorePlurals: ['boolean'],
@@ -6450,11 +6394,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       'If true, stop words are removed for all languages you included in `queryLanguages`, or for all supported languages, if `queryLanguages` is empty.\nIf false, stop words are not removed.\n',
     displayName: 'Remove Stop Words (Boolean)',
     name: 'removeStopWords_boolean',
-    default: false,
     displayOptions: {
       show: {
         removeStopWords: ['boolean'],
@@ -6476,7 +6420,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'queryLanguages',
       },
     },
@@ -6536,6 +6480,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description: 'Whether to enable Personalization.',
     routing: {
       send: {
@@ -6546,7 +6491,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Enable Personalization',
     name: 'enablePersonalization_boolean',
-    default: false,
     displayOptions: {
       show: {
         browse_params_object: ['enablepersonalization_boolean'],
@@ -6768,6 +6712,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       'Whether to support phrase matching and excluding words from search queries\nUse the `advancedSyntaxFeatures` parameter to control which feature is supported.\n',
     routing: {
@@ -6779,7 +6724,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Advanced Syntax',
     name: 'advancedSyntax_boolean',
-    default: false,
     displayOptions: {
       show: {
         browse_params_object: ['advancedsyntax_boolean'],
@@ -6827,9 +6771,9 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     displayName: 'Optional Words (String)',
     name: 'optionalWords_string',
-    default: '',
     displayOptions: {
       show: {
         optionalWords: ['string'],
@@ -6891,7 +6835,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'disableExactOnAttributes',
       },
     },
@@ -6952,7 +6896,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'alternativesAsExact',
       },
     },
@@ -6976,7 +6920,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'advancedSyntaxFeatures',
       },
     },
@@ -7023,11 +6967,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       'Whether deduplication is turned on. If true, only one member of a group is shown in the search results.',
     displayName: 'Distinct (Boolean)',
     name: 'distinct_boolean',
-    default: '',
     displayOptions: {
       show: {
         distinct: ['boolean'],
@@ -7040,6 +6984,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description:
       "Number of members of a group of records to include in the search results.\n\n- Don't use `distinct > 1` for records that might be [promoted by rules](https://www.algolia.com/doc/guides/managing-results/rules/merchandising-and-promoting/how-to/promote-hits).\n  The number of hits won't be correct and faceting won't work as expected.\n- With `distinct > 1`, the `hitsPerPage` parameter controls the number of returned groups.\n  For example, with `hitsPerPage: 10` and `distinct: 2`, up to 20 records are returned.\n  Likewise, the `nbHits` response attribute contains the number of returned groups.\n",
     typeOptions: {
@@ -7048,7 +6993,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Distinct (Integer)',
     name: 'distinct_number',
-    default: 0,
     displayOptions: {
       show: {
         distinct: ['integer'],
@@ -7061,6 +7005,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       'Whether to replace a highlighted word with the matched synonym\nBy default, the original words are highlighted even if a synonym matches.\nFor example, with `home` as a synonym for `house` and a search for `home`,\nrecords matching either "home" or "house" are included in the search results,\nand either "home" or "house" are highlighted\nWith `replaceSynonymsInHighlight` set to `true`, a search for `home` still matches the same records,\nbut all occurrences of "house" are replaced by "home" in the highlighted response.\n',
     routing: {
@@ -7072,7 +7017,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Replace Synonyms In Highlight',
     name: 'replaceSynonymsInHighlight_boolean',
-    default: false,
     displayOptions: {
       show: {
         browse_params_object: ['replacesynonymsinhighlight_boolean'],
@@ -7120,7 +7064,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'responseFields',
       },
     },
@@ -7183,6 +7127,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       'Whether the best matching attribute should be determined by minimum proximity\nThis setting only affects ranking if the Attribute ranking criterion comes before Proximity in the `ranking` setting.\nIf true, the best matching attribute is selected based on the minimum proximity of multiple matches.\nOtherwise, the best matching attribute is determined by the order in the `searchableAttributes` setting.\n',
     routing: {
@@ -7194,7 +7139,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Attribute Criteria Computed By Min Proximity',
     name: 'attributeCriteriaComputedByMinProximity_boolean',
-    default: false,
     displayOptions: {
       show: {
         browse_params_object: ['attributecriteriacomputedbyminproximity_boolean'],
@@ -7218,8 +7162,8 @@ const properties: INodeProperties[] = [
         value: 'facet_ordering_object_renderingContent',
       },
       {
-        name: 'Redirect U RL',
-        value: 'redirect_u_rl_object_renderingContent',
+        name: 'Redirect URL',
+        value: 'redirect_url_object_renderingContent',
       },
       {
         name: 'Widgets',
@@ -7231,7 +7175,7 @@ const properties: INodeProperties[] = [
         type: 'body',
         property: 'renderingContent',
         value:
-          '={{ { "facetOrdering": { "facets": { "order": typeof $parameter.order_json_facets_facetOrdering_renderingContent !== "undefined" ? JSON.parse($parameter.order_json_facets_facetOrdering_renderingContent) : undefined }, "values": typeof $parameter.value_object_facetOrdering_renderingContent !== "undefined" ? JSON.parse($parameter.value_object_facetOrdering_renderingContent) : undefined }, "redirect": { "url": typeof $parameter.url_string_redirect_renderingContent !== "undefined" ? $parameter.url_string_redirect_renderingContent : undefined }, "widgets": { "banners": typeof $parameter.banners_json_widgets_renderingContent !== "undefined" ? JSON.parse($parameter.banners_json_widgets_renderingContent) : undefined } } }}',
+          '={{ { "facetOrdering": { "facets": { "order": typeof $parameter.order_json_facets_facetOrdering_renderingContent !== "undefined" ? JSON.parse($parameter.order_json_facets_facetOrdering_renderingContent) : undefined }, "values": typeof $parameter.values_object_facetOrdering_renderingContent !== "undefined" ? JSON.parse($parameter.values_object_facetOrdering_renderingContent) : undefined }, "redirect": { "url": typeof $parameter.url_string_redirect_renderingContent !== "undefined" ? $parameter.url_string_redirect_renderingContent : undefined }, "widgets": { "banners": typeof $parameter.banners_json_widgets_renderingContent !== "undefined" ? JSON.parse($parameter.banners_json_widgets_renderingContent) : undefined } } }}',
       },
     },
     displayOptions: {
@@ -7256,8 +7200,8 @@ const properties: INodeProperties[] = [
         value: 'facets_object_facetOrdering',
       },
       {
-        name: 'Value',
-        value: 'value_object_facetOrdering',
+        name: 'Values',
+        value: 'values_object_facetOrdering',
       },
     ],
     displayOptions: {
@@ -7315,16 +7259,16 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    displayName: 'Value',
-    name: 'value_object_facetOrdering_renderingContent',
     type: 'json',
+    displayName: 'Values',
+    name: 'values_object_facetOrdering_renderingContent',
     description: 'Order of facet values. One object for each facet.',
     required: false,
-    default: '',
+    default: '{}',
     displayOptions: {
       show: {
         rendering_content_object: ['facet_ordering_object_renderingContent'],
-        facet_ordering_object_renderingContent: ['value_object_facetOrdering'],
+        facet_ordering_object_renderingContent: ['values_object_facetOrdering'],
         browse_params_object: ['rendering_content_object'],
         browseParams: ['browse_params_object'],
         resource: ['Search'],
@@ -7333,8 +7277,8 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    displayName: 'Redirect U RL',
-    name: 'redirect_u_rl_object_renderingContent',
+    displayName: 'Redirect URL',
+    name: 'redirect_url_object_renderingContent',
     type: 'multiOptions',
     description: 'The redirect rule container.',
     required: false,
@@ -7347,7 +7291,7 @@ const properties: INodeProperties[] = [
     ],
     displayOptions: {
       show: {
-        rendering_content_object: ['redirect_u_rl_object_renderingContent'],
+        rendering_content_object: ['redirect_url_object_renderingContent'],
         browse_params_object: ['rendering_content_object'],
         browseParams: ['browse_params_object'],
         resource: ['Search'],
@@ -7357,13 +7301,13 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     displayName: 'Url',
     name: 'url_string_redirect_renderingContent',
-    default: '',
     displayOptions: {
       show: {
-        rendering_content_object: ['redirect_u_rl_object_renderingContent'],
-        redirect_u_rl_object_renderingContent: ['url_string_redirect'],
+        rendering_content_object: ['redirect_url_object_renderingContent'],
+        redirect_url_object_renderingContent: ['url_string_redirect'],
         browse_params_object: ['rendering_content_object'],
         browseParams: ['browse_params_object'],
         resource: ['Search'],
@@ -7398,7 +7342,7 @@ const properties: INodeProperties[] = [
     type: 'json',
     displayName: 'Banners',
     name: 'banners_json_widgets_renderingContent',
-    default: '',
+    default: '[]',
     description: 'Banners defined in the Merchandising Studio for a given search.',
     required: false,
     displayOptions: {
@@ -7490,9 +7434,9 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     displayName: 'Re Ranking Apply Filter (String)',
     name: 'reRankingApplyFilter_string',
-    default: '',
     displayOptions: {
       show: {
         reRankingApplyFilter: ['string'],
@@ -7528,6 +7472,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'jMDY3M2MwM2QwMWUxMmQwYWI0ZTN',
+    default: '',
     description:
       'Cursor to get the next page of the response.\n\nThe parameter must match the value returned in the response of a previous request.\nThe last page of the response does not return a `cursor` attribute.\n',
     routing: {
@@ -7539,7 +7484,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Cursor',
     name: 'cursor_string',
-    default: '',
     displayOptions: {
       show: {
         browse_params_object: ['cursor_string'],
@@ -7552,9 +7496,9 @@ const properties: INodeProperties[] = [
   {
     type: 'options',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     displayName: 'Index Name',
     name: 'indexName_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -7591,11 +7535,30 @@ const properties: INodeProperties[] = [
     },
   },
   {
+    type: 'json',
+    displayName: 'Multiple Properties',
+    name: 'multiple_properties_object',
+    description: undefined,
+    required: false,
+    default: '{}',
+    routing: {
+      request: {
+        body: '={{ $value }}',
+      },
+    },
+    displayOptions: {
+      show: {
+        resource: ['Records'],
+        operation: ['saveObject'],
+      },
+    },
+  },
+  {
     type: 'options',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     displayName: 'Index Name',
     name: 'indexName_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -7634,9 +7597,9 @@ const properties: INodeProperties[] = [
   {
     type: 'options',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     displayName: 'Index Name',
     name: 'indexName_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -7675,10 +7638,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'test-record-123',
+    default: '',
     description: 'Unique record identifier.',
     displayName: 'Object ID',
     name: 'objectID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -7697,7 +7660,7 @@ const properties: INodeProperties[] = [
     routing: {
       request: {
         qs: {
-          attributesToRetrieve: '={{ JSON.parse($value) }}',
+          attributesToRetrieve: '={{ $value }}',
         },
       },
     },
@@ -7711,9 +7674,9 @@ const properties: INodeProperties[] = [
   {
     type: 'options',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     displayName: 'Index Name',
     name: 'indexName_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -7752,11 +7715,30 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'test-record-123',
+    default: '',
     description: 'Unique record identifier.',
     displayName: 'Object ID',
     name: 'objectID_string',
-    default: '',
     required: true,
+    displayOptions: {
+      show: {
+        resource: ['Records'],
+        operation: ['addOrUpdateObject'],
+      },
+    },
+  },
+  {
+    type: 'json',
+    displayName: 'Multiple Properties',
+    name: 'multiple_properties_object',
+    description: undefined,
+    required: false,
+    default: '{}',
+    routing: {
+      request: {
+        body: '={{ $value }}',
+      },
+    },
     displayOptions: {
       show: {
         resource: ['Records'],
@@ -7767,9 +7749,9 @@ const properties: INodeProperties[] = [
   {
     type: 'options',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     displayName: 'Index Name',
     name: 'indexName_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -7808,10 +7790,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'test-record-123',
+    default: '',
     description: 'Unique record identifier.',
     displayName: 'Object ID',
     name: 'objectID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -7823,9 +7805,9 @@ const properties: INodeProperties[] = [
   {
     type: 'options',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     displayName: 'Index Name',
     name: 'indexName_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -7958,9 +7940,9 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     displayName: 'Facet Filters (String)',
     name: 'facetFilters_string',
-    default: '',
     displayOptions: {
       show: {
         delete_by_params_object: ['facetFilters'],
@@ -7973,6 +7955,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '(category:Book OR category:Ebook) AND _tags:published',
+    default: '',
     description:
       "Filter expression to only include items that match the filter criteria in the response.\n\nYou can use these filter expressions:\n\n- **Numeric filters.** `<facet> <op> <number>`, where `<op>` is one of `<`, `<=`, `=`, `!=`, `>`, `>=`.\n- **Ranges.** `<facet>:<lower> TO <upper>` where `<lower>` and `<upper>` are the lower and upper limits of the range (inclusive).\n- **Facet filters.** `<facet>:<value>` where `<facet>` is a facet attribute (case-sensitive) and `<value>` a facet value.\n- **Tag filters.** `_tags:<value>` or just `<value>` (case-sensitive).\n- **Boolean filters.** `<facet>: true | false`.\n\nYou can combine filters with `AND`, `OR`, and `NOT` operators with the following restrictions:\n\n- You can only combine filters of the same type with `OR`.\n  **Not supported:** `facet:value OR num > 3`.\n- You can't use `NOT` with combinations of filters.\n  **Not supported:** `NOT(facet:value OR facet:value)`\n- You can't combine conjunctions (`AND`) with `OR`.\n  **Not supported:** `facet:value OR (facet:value AND facet:value)`\n\nUse quotes around your filters, if the facet attribute name or facet value has spaces, keywords (`OR`, `AND`, `NOT`), or quotes.\nIf a facet attribute is an array, the filter matches if it matches at least one element of the array.\n\nFor more information, see [Filters](https://www.algolia.com/doc/guides/managing-results/refine-results/filtering).\n",
     routing: {
@@ -7984,7 +7967,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Filters',
     name: 'filters_string',
-    default: '',
     displayOptions: {
       show: {
         delete_by_params_object: ['filters_string'],
@@ -8042,9 +8024,9 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     displayName: 'Numeric Filters (String)',
     name: 'numericFilters_string',
-    default: '',
     displayOptions: {
       show: {
         delete_by_params_object: ['numericFilters'],
@@ -8103,9 +8085,9 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     displayName: 'Tag Filters (String)',
     name: 'tagFilters_string',
-    default: '',
     displayOptions: {
       show: {
         delete_by_params_object: ['tagFilters'],
@@ -8118,6 +8100,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '40.71,-74.01',
+    default: '',
     description:
       'Coordinates for the center of a circle, expressed as a comma-separated string of latitude and longitude.\n\nOnly records included within a circle around this central location are included in the results.\nThe radius of the circle is determined by the `aroundRadius` and `minimumAroundRadius` settings.\nThis parameter is ignored if you also specify `insidePolygon` or `insideBoundingBox`.\n',
     routing: {
@@ -8129,7 +8112,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Around Lat Lng',
     name: 'aroundLatLng_string',
-    default: '',
     displayOptions: {
       show: {
         delete_by_params_object: ['aroundLatLng_string'],
@@ -8171,13 +8153,13 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description: 'Maximum search radius around a central location in meters.',
     typeOptions: {
       minValue: 1,
     },
     displayName: 'Around Radius (Integer)',
     name: 'aroundRadius_number',
-    default: '',
     displayOptions: {
       show: {
         delete_by_params_object: ['aroundRadius'],
@@ -8189,6 +8171,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     description: "Return all records with a valid `_geoloc` attribute. Don't filter by distance.",
     options: [
       {
@@ -8198,7 +8181,6 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Around Radius (All)',
     name: 'aroundRadius_options',
-    default: '',
     displayOptions: {
       show: {
         delete_by_params_object: ['aroundRadius'],
@@ -8245,9 +8227,9 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     displayName: 'Inside Bounding Box (String)',
     name: 'insideBoundingBox_string',
-    default: '',
     displayOptions: {
       show: {
         delete_by_params_object: ['insideBoundingBox'],
@@ -8306,7 +8288,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'insidePolygon',
       },
     },
@@ -8321,9 +8303,9 @@ const properties: INodeProperties[] = [
   {
     type: 'options',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     displayName: 'Index Name',
     name: 'indexName_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -8362,9 +8344,9 @@ const properties: INodeProperties[] = [
   {
     type: 'options',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     displayName: 'Index Name',
     name: 'indexName_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -8403,10 +8385,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'test-record-123',
+    default: '',
     description: 'Unique record identifier.',
     displayName: 'Object ID',
     name: 'objectID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -8435,11 +8417,30 @@ const properties: INodeProperties[] = [
     },
   },
   {
+    type: 'json',
+    displayName: 'Multiple Properties',
+    name: 'multiple_properties_object',
+    description: 'Attributes to update.',
+    required: false,
+    default: '{}',
+    routing: {
+      request: {
+        body: '={{ $value }}',
+      },
+    },
+    displayOptions: {
+      show: {
+        resource: ['Records'],
+        operation: ['partialUpdateObject'],
+      },
+    },
+  },
+  {
     type: 'options',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     displayName: 'Index Name',
     name: 'indexName_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -8499,13 +8500,13 @@ const properties: INodeProperties[] = [
     type: 'json',
     displayName: 'Requests',
     name: 'requests_json',
-    default: '',
+    default: '[]',
     description: undefined,
-    required: false,
+    required: true,
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'requests',
       },
     },
@@ -8541,13 +8542,13 @@ const properties: INodeProperties[] = [
     type: 'json',
     displayName: 'Requests',
     name: 'requests_json',
-    default: '',
+    default: '[]',
     description: undefined,
-    required: false,
+    required: true,
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'requests',
       },
     },
@@ -8569,7 +8570,7 @@ const properties: INodeProperties[] = [
     options: [
       {
         name: 'Requests',
-        value: 'requests_fixedCollection',
+        value: 'requests_json',
       },
     ],
     displayOptions: {
@@ -8580,59 +8581,22 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    type: 'fixedCollection',
+    type: 'json',
     displayName: 'Requests',
-    name: 'requests_fixedCollection',
-    default: '',
+    name: 'requests_json',
+    default: '[]',
     description: undefined,
-    required: false,
-    typeOptions: {
-      multipleValues: true,
-    },
-    options: [
-      {
-        name: 'requests_fixedCollection_values',
-        displayName: 'Requests',
-        values: [
-          {
-            type: 'json',
-            displayName: 'Attributes To Retrieve',
-            name: 'attributesToRetrieve_json_requests',
-            default: '[]',
-            description:
-              'Attributes to retrieve.\nIf not specified, all retrievable attributes are returned.\n',
-            required: false,
-          },
-          {
-            type: 'string',
-            placeholder: 'product-1',
-            description: 'Object ID for the record to retrieve.',
-            displayName: 'Object ID',
-            name: 'objectID_string_requests',
-            default: '',
-          },
-          {
-            type: 'string',
-            placeholder: 'books',
-            description: 'Index from which to retrieve the records.',
-            displayName: 'Index Name',
-            name: 'indexName_string_requests',
-            default: '',
-          },
-        ],
-      },
-    ],
+    required: true,
     routing: {
       send: {
         type: 'body',
-        value:
-          '={{ $parameter.values?.map(item => ({ attributesToRetrieve: typeof item.attributesToRetrieve_json_requests !== "undefined" ? JSON.parse(item.attributesToRetrieve_json_requests) : undefined, objectID: typeof item.objectID_string_requests !== "undefined" ? item.objectID_string_requests : undefined, indexName: typeof item.indexName_string_requests !== "undefined" ? item.indexName_string_requests : undefined })) }}',
+        value: '={{ $value }}',
         property: 'requests',
       },
     },
     displayOptions: {
       show: {
-        get_objects_params_object: ['requests_fixedCollection'],
+        get_objects_params_object: ['requests_json'],
         resource: ['Records'],
         operation: ['getObjects'],
       },
@@ -8641,9 +8605,9 @@ const properties: INodeProperties[] = [
   {
     type: 'options',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     displayName: 'Index Name',
     name: 'indexName_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -8701,9 +8665,9 @@ const properties: INodeProperties[] = [
   {
     type: 'options',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     displayName: 'Index Name',
     name: 'indexName_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -8741,6 +8705,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     routing: {
       request: {
         qs: {
@@ -8750,7 +8715,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Forward To Replicas',
     name: 'forwardToReplicas_boolean',
-    default: '',
     displayOptions: {
       show: {
         resource: ['Indices'],
@@ -8794,6 +8758,10 @@ const properties: INodeProperties[] = [
         value: 'camelcaseattributes_json',
       },
       {
+        name: 'Decompounded Attributes',
+        value: 'decompounded_attributes_object',
+      },
+      {
         name: 'Index Languages',
         value: 'indexlanguages_json',
       },
@@ -8819,7 +8787,7 @@ const properties: INodeProperties[] = [
       },
       {
         name: 'Custom Normalization',
-        value: 'customnormalization_string',
+        value: 'custom_normalization_object',
       },
       {
         name: 'Attribute For Distinct',
@@ -8934,7 +8902,7 @@ const properties: INodeProperties[] = [
         value: 'mode_options',
       },
       {
-        name: 'Semantic Search Object',
+        name: 'Semantic Search',
         value: 'semantic_search_object',
       },
       {
@@ -8990,7 +8958,7 @@ const properties: INodeProperties[] = [
         value: 'attributecriteriacomputedbyminproximity_boolean',
       },
       {
-        name: 'Rendering Content Object',
+        name: 'Rendering Content',
         value: 'rendering_content_object',
       },
       {
@@ -9020,7 +8988,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'attributesForFaceting',
       },
     },
@@ -9043,7 +9011,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'replicas',
       },
     },
@@ -9092,7 +9060,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'unretrievableAttributes',
       },
     },
@@ -9115,7 +9083,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'disableTypoToleranceOnWords',
       },
     },
@@ -9138,7 +9106,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'attributesToTransliterate',
       },
     },
@@ -9161,13 +9129,36 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'camelCaseAttributes',
       },
     },
     displayOptions: {
       show: {
         index_settings: ['camelcaseattributes_json'],
+        resource: ['Indices'],
+        operation: ['setSettings'],
+      },
+    },
+  },
+  {
+    type: 'json',
+    displayName: 'Decompounded Attributes',
+    name: 'decompounded_attributes_object',
+    description:
+      'Searchable attributes to which Algolia should apply [word segmentation](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/handling-natural-languages-nlp/how-to/customize-segmentation) (decompounding).\nAttribute names are case-sensitive.\n\nCompound words are formed by combining two or more individual words,\nand are particularly prevalent in Germanic languages—for example, "firefighter".\nWith decompounding, the individual components are indexed separately.\n\nYou can specify different lists for different languages.\nDecompounding is supported for these languages:\nDutch (`nl`), German (`de`), Finnish (`fi`), Danish (`da`), Swedish (`sv`), and Norwegian (`no`).\nDecompounding doesn\'t work for words with [non-spacing mark Unicode characters](https://www.charactercodes.net/category/non-spacing_mark).\nFor example, `Gartenstühle` won\'t be decompounded if the `ü` consists of `u` (U+0075) and `◌̈` (U+0308).\n',
+    required: false,
+    default: '{}',
+    routing: {
+      send: {
+        type: 'body',
+        property: 'decompoundedAttributes',
+        value: '={{ $value }}',
+      },
+    },
+    displayOptions: {
+      show: {
+        index_settings: ['decompounded_attributes_object'],
         resource: ['Indices'],
         operation: ['setSettings'],
       },
@@ -9184,7 +9175,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'indexLanguages',
       },
     },
@@ -9207,7 +9198,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'disablePrefixOnAttributes',
       },
     },
@@ -9221,6 +9212,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       'Whether arrays with exclusively non-negative integers should be compressed for better performance.\nIf true, the compressed arrays may be reordered.\n',
     routing: {
@@ -9232,7 +9224,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Allow Compression Of Integer Array',
     name: 'allowCompressionOfIntegerArray_boolean',
-    default: false,
     displayOptions: {
       show: {
         index_settings: ['allowcompressionofintegerarray_boolean'],
@@ -9252,7 +9243,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'numericAttributesForFiltering',
       },
     },
@@ -9267,6 +9258,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '+#',
+    default: '',
     description:
       'Control which non-alphanumeric characters are indexed.\n\nBy default, Algolia ignores [non-alphanumeric characters](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/typo-tolerance/how-to/how-to-search-in-hyphenated-attributes/#handling-non-alphanumeric-characters) like hyphen (`-`), plus (`+`), and parentheses (`(`,`)`).\nTo include such characters, define them with `separatorsToIndex`.\n\nSeparators are all non-letter characters except spaces and currency characters, such as $€£¥.\n\nWith `separatorsToIndex`, Algolia treats separator characters as separate words.\nFor example, in a search for "Disney+", Algolia considers "Disney" and "+" as two separate words.\n',
     routing: {
@@ -9278,7 +9270,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Separators To Index',
     name: 'separatorsToIndex_string',
-    default: '',
     displayOptions: {
       show: {
         index_settings: ['separatorstoindex_string'],
@@ -9298,7 +9289,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'searchableAttributes',
       },
     },
@@ -9311,32 +9302,23 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    type: 'fixedCollection',
+    type: 'json',
+    displayName: 'Custom Normalization',
+    name: 'custom_normalization_object',
+    description:
+      "Characters and their normalized replacements.\nThis overrides Algolia's default [normalization](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/handling-natural-languages-nlp/in-depth/normalization).\n",
+    required: false,
+    default: '{}',
     routing: {
       send: {
         type: 'body',
         property: 'customNormalization',
-        value: '={{ undefined }}',
+        value: '={{ $value }}',
       },
     },
-    displayName: 'Custom Normalization',
-    name: 'customNormalization_string',
-    default: '',
-    description:
-      "Characters and their normalized replacements.\nThis overrides Algolia's default [normalization](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/handling-natural-languages-nlp/in-depth/normalization).\n",
-    typeOptions: {
-      multipleValues: true,
-    },
-    options: [
-      {
-        name: 'customNormalization_string',
-        displayName: 'Custom Normalization',
-        values: [],
-      },
-    ],
     displayOptions: {
       show: {
-        index_settings: ['customnormalization_string'],
+        index_settings: ['custom_normalization_object'],
         resource: ['Indices'],
         operation: ['setSettings'],
       },
@@ -9345,6 +9327,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'url',
+    default: '',
     description:
       'Attribute that should be used to establish groups of results.\nAttribute names are case-sensitive.\n\nAll records with the same value for this attribute are considered a group.\nYou can combine `attributeForDistinct` with the `distinct` search parameter to control\nhow many items per group are included in the search results.\n\nIf you want to use the same attribute also for faceting, use the `afterDistinct` modifier of the `attributesForFaceting` setting.\nThis applies faceting _after_ deduplication, which will result in accurate facet counts.\n',
     routing: {
@@ -9356,7 +9339,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Attribute For Distinct',
     name: 'attributeForDistinct_string',
-    default: '',
     displayOptions: {
       show: {
         index_settings: ['attributefordistinct_string'],
@@ -9393,6 +9375,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'øé',
+    default: '',
     description:
       'Characters for which diacritics should be preserved.\n\nBy default, Algolia removes diacritics from letters.\nFor example, `é` becomes `e`. If this causes issues in your search,\nyou can specify characters that should keep their diacritics.\n',
     routing: {
@@ -9404,7 +9387,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Keep Diacritics On Characters',
     name: 'keepDiacriticsOnCharacters_string',
-    default: '',
     displayOptions: {
       show: {
         index_settings: ['keepdiacriticsoncharacters_string'],
@@ -9424,7 +9406,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'customRanking',
       },
     },
@@ -9447,7 +9429,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'attributesToRetrieve',
       },
     },
@@ -9470,7 +9452,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'ranking',
       },
     },
@@ -9516,7 +9498,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'attributesToHighlight',
       },
     },
@@ -9539,7 +9521,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'attributesToSnippet',
       },
     },
@@ -9618,6 +9600,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       'Whether to restrict highlighting and snippeting to items that at least partially matched the search query.\nBy default, all items are highlighted and snippeted.\n',
     routing: {
@@ -9629,7 +9612,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Restrict Highlight And Snippet Arrays',
     name: 'restrictHighlightAndSnippetArrays_boolean',
-    default: false,
     displayOptions: {
       show: {
         index_settings: ['restricthighlightandsnippetarrays_boolean'],
@@ -9756,6 +9738,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     description:
       '- `min`. Return matches with the lowest number of typos.\n  For example, if you have matches without typos, only include those.\n  But if there are no matches without typos (with 1 typo), include matches with 1 typo (2 typos).\n- `strict`. Return matches with the two lowest numbers of typos.\n  With `strict`, the Typo ranking criterion is applied first in the `ranking` setting.\n',
     options: [
@@ -9778,7 +9761,6 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Typo Tolerance (Typo Tolerance)',
     name: 'typoTolerance_options',
-    default: '',
     displayOptions: {
       show: {
         typoTolerance: ['typo_tolerance'],
@@ -9821,7 +9803,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'disableTypoToleranceOnAttributes',
       },
     },
@@ -9887,6 +9869,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     options: [
       {
         name: 'true',
@@ -9899,7 +9882,6 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Ignore Plurals (Boolean String)',
     name: 'ignorePlurals_options',
-    default: '',
     displayOptions: {
       show: {
         ignorePlurals: ['boolean_string'],
@@ -9911,11 +9893,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       "If true, `ignorePlurals` is active for all languages included in `queryLanguages`, or for all supported languages, if `queryLanguges` is empty.\nIf false, singulars, plurals, and other declensions won't be considered equivalent.\n",
     displayName: 'Ignore Plurals (Boolean)',
     name: 'ignorePlurals_boolean',
-    default: false,
     displayOptions: {
       show: {
         ignorePlurals: ['boolean'],
@@ -9975,11 +9957,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       'If true, stop words are removed for all languages you included in `queryLanguages`, or for all supported languages, if `queryLanguages` is empty.\nIf false, stop words are not removed.\n',
     displayName: 'Remove Stop Words (Boolean)',
     name: 'removeStopWords_boolean',
-    default: false,
     displayOptions: {
       show: {
         removeStopWords: ['boolean'],
@@ -10000,7 +9982,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'queryLanguages',
       },
     },
@@ -10057,6 +10039,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description: 'Whether to enable Personalization.',
     routing: {
       send: {
@@ -10067,7 +10050,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Enable Personalization',
     name: 'enablePersonalization_boolean',
-    default: false,
     displayOptions: {
       show: {
         index_settings: ['enablepersonalization_boolean'],
@@ -10281,6 +10263,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       'Whether to support phrase matching and excluding words from search queries\nUse the `advancedSyntaxFeatures` parameter to control which feature is supported.\n',
     routing: {
@@ -10292,7 +10275,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Advanced Syntax',
     name: 'advancedSyntax_boolean',
-    default: false,
     displayOptions: {
       show: {
         index_settings: ['advancedsyntax_boolean'],
@@ -10338,9 +10320,9 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     displayName: 'Optional Words (String)',
     name: 'optionalWords_string',
-    default: '',
     displayOptions: {
       show: {
         optionalWords: ['string'],
@@ -10399,7 +10381,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'disableExactOnAttributes',
       },
     },
@@ -10458,7 +10440,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'alternativesAsExact',
       },
     },
@@ -10481,7 +10463,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'advancedSyntaxFeatures',
       },
     },
@@ -10526,11 +10508,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       'Whether deduplication is turned on. If true, only one member of a group is shown in the search results.',
     displayName: 'Distinct (Boolean)',
     name: 'distinct_boolean',
-    default: '',
     displayOptions: {
       show: {
         distinct: ['boolean'],
@@ -10542,6 +10524,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description:
       "Number of members of a group of records to include in the search results.\n\n- Don't use `distinct > 1` for records that might be [promoted by rules](https://www.algolia.com/doc/guides/managing-results/rules/merchandising-and-promoting/how-to/promote-hits).\n  The number of hits won't be correct and faceting won't work as expected.\n- With `distinct > 1`, the `hitsPerPage` parameter controls the number of returned groups.\n  For example, with `hitsPerPage: 10` and `distinct: 2`, up to 20 records are returned.\n  Likewise, the `nbHits` response attribute contains the number of returned groups.\n",
     typeOptions: {
@@ -10550,7 +10533,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Distinct (Integer)',
     name: 'distinct_number',
-    default: 0,
     displayOptions: {
       show: {
         distinct: ['integer'],
@@ -10562,6 +10544,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       'Whether to replace a highlighted word with the matched synonym\nBy default, the original words are highlighted even if a synonym matches.\nFor example, with `home` as a synonym for `house` and a search for `home`,\nrecords matching either "home" or "house" are included in the search results,\nand either "home" or "house" are highlighted\nWith `replaceSynonymsInHighlight` set to `true`, a search for `home` still matches the same records,\nbut all occurrences of "house" are replaced by "home" in the highlighted response.\n',
     routing: {
@@ -10573,7 +10556,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Replace Synonyms In Highlight',
     name: 'replaceSynonymsInHighlight_boolean',
-    default: false,
     displayOptions: {
       show: {
         index_settings: ['replacesynonymsinhighlight_boolean'],
@@ -10619,7 +10601,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'responseFields',
       },
     },
@@ -10679,6 +10661,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       'Whether the best matching attribute should be determined by minimum proximity\nThis setting only affects ranking if the Attribute ranking criterion comes before Proximity in the `ranking` setting.\nIf true, the best matching attribute is selected based on the minimum proximity of multiple matches.\nOtherwise, the best matching attribute is determined by the order in the `searchableAttributes` setting.\n',
     routing: {
@@ -10690,7 +10673,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Attribute Criteria Computed By Min Proximity',
     name: 'attributeCriteriaComputedByMinProximity_boolean',
-    default: false,
     displayOptions: {
       show: {
         index_settings: ['attributecriteriacomputedbyminproximity_boolean'],
@@ -10713,8 +10695,8 @@ const properties: INodeProperties[] = [
         value: 'facet_ordering_object_renderingContent',
       },
       {
-        name: 'Redirect U RL',
-        value: 'redirect_u_rl_object_renderingContent',
+        name: 'Redirect URL',
+        value: 'redirect_url_object_renderingContent',
       },
       {
         name: 'Widgets',
@@ -10726,7 +10708,7 @@ const properties: INodeProperties[] = [
         type: 'body',
         property: 'renderingContent',
         value:
-          '={{ { "facetOrdering": { "facets": { "order": typeof $parameter.order_json_facets_facetOrdering_renderingContent !== "undefined" ? JSON.parse($parameter.order_json_facets_facetOrdering_renderingContent) : undefined }, "values": typeof $parameter.value_object_facetOrdering_renderingContent !== "undefined" ? JSON.parse($parameter.value_object_facetOrdering_renderingContent) : undefined }, "redirect": { "url": typeof $parameter.url_string_redirect_renderingContent !== "undefined" ? $parameter.url_string_redirect_renderingContent : undefined }, "widgets": { "banners": typeof $parameter.banners_json_widgets_renderingContent !== "undefined" ? JSON.parse($parameter.banners_json_widgets_renderingContent) : undefined } } }}',
+          '={{ { "facetOrdering": { "facets": { "order": typeof $parameter.order_json_facets_facetOrdering_renderingContent !== "undefined" ? JSON.parse($parameter.order_json_facets_facetOrdering_renderingContent) : undefined }, "values": typeof $parameter.values_object_facetOrdering_renderingContent !== "undefined" ? JSON.parse($parameter.values_object_facetOrdering_renderingContent) : undefined }, "redirect": { "url": typeof $parameter.url_string_redirect_renderingContent !== "undefined" ? $parameter.url_string_redirect_renderingContent : undefined }, "widgets": { "banners": typeof $parameter.banners_json_widgets_renderingContent !== "undefined" ? JSON.parse($parameter.banners_json_widgets_renderingContent) : undefined } } }}',
       },
     },
     displayOptions: {
@@ -10750,8 +10732,8 @@ const properties: INodeProperties[] = [
         value: 'facets_object_facetOrdering',
       },
       {
-        name: 'Value',
-        value: 'value_object_facetOrdering',
+        name: 'Values',
+        value: 'values_object_facetOrdering',
       },
     ],
     displayOptions: {
@@ -10806,16 +10788,16 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    displayName: 'Value',
-    name: 'value_object_facetOrdering_renderingContent',
     type: 'json',
+    displayName: 'Values',
+    name: 'values_object_facetOrdering_renderingContent',
     description: 'Order of facet values. One object for each facet.',
     required: false,
-    default: '',
+    default: '{}',
     displayOptions: {
       show: {
         rendering_content_object: ['facet_ordering_object_renderingContent'],
-        facet_ordering_object_renderingContent: ['value_object_facetOrdering'],
+        facet_ordering_object_renderingContent: ['values_object_facetOrdering'],
         index_settings: ['rendering_content_object'],
         resource: ['Indices'],
         operation: ['setSettings'],
@@ -10823,8 +10805,8 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    displayName: 'Redirect U RL',
-    name: 'redirect_u_rl_object_renderingContent',
+    displayName: 'Redirect URL',
+    name: 'redirect_url_object_renderingContent',
     type: 'multiOptions',
     description: 'The redirect rule container.',
     required: false,
@@ -10837,7 +10819,7 @@ const properties: INodeProperties[] = [
     ],
     displayOptions: {
       show: {
-        rendering_content_object: ['redirect_u_rl_object_renderingContent'],
+        rendering_content_object: ['redirect_url_object_renderingContent'],
         index_settings: ['rendering_content_object'],
         resource: ['Indices'],
         operation: ['setSettings'],
@@ -10846,13 +10828,13 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     displayName: 'Url',
     name: 'url_string_redirect_renderingContent',
-    default: '',
     displayOptions: {
       show: {
-        rendering_content_object: ['redirect_u_rl_object_renderingContent'],
-        redirect_u_rl_object_renderingContent: ['url_string_redirect'],
+        rendering_content_object: ['redirect_url_object_renderingContent'],
+        redirect_url_object_renderingContent: ['url_string_redirect'],
         index_settings: ['rendering_content_object'],
         resource: ['Indices'],
         operation: ['setSettings'],
@@ -10885,7 +10867,7 @@ const properties: INodeProperties[] = [
     type: 'json',
     displayName: 'Banners',
     name: 'banners_json_widgets_renderingContent',
-    default: '',
+    default: '[]',
     description: 'Banners defined in the Merchandising Studio for a given search.',
     required: false,
     displayOptions: {
@@ -10973,9 +10955,9 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     displayName: 'Re Ranking Apply Filter (String)',
     name: 'reRankingApplyFilter_string',
-    default: '',
     displayOptions: {
       show: {
         reRankingApplyFilter: ['string'],
@@ -11009,9 +10991,9 @@ const properties: INodeProperties[] = [
   {
     type: 'options',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     displayName: 'Index Name',
     name: 'indexName_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -11050,9 +11032,9 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'synonymID',
+    default: '',
     displayName: 'Object ID',
     name: 'objectID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -11064,9 +11046,9 @@ const properties: INodeProperties[] = [
   {
     type: 'options',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     displayName: 'Index Name',
     name: 'indexName_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -11105,9 +11087,9 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'synonymID',
+    default: '',
     displayName: 'Object ID',
     name: 'objectID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -11118,6 +11100,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     routing: {
       request: {
         qs: {
@@ -11127,7 +11110,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Forward To Replicas',
     name: 'forwardToReplicas_boolean',
-    default: '',
     displayOptions: {
       show: {
         resource: ['Synonyms'],
@@ -11186,6 +11168,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'synonymID',
+    default: '',
     description: 'Unique identifier of a synonym object.',
     routing: {
       send: {
@@ -11196,7 +11179,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Object ID',
     name: 'objectID_string',
-    default: '',
     displayOptions: {
       show: {
         synonym_hit_object: ['objectID_string'],
@@ -11204,10 +11186,12 @@ const properties: INodeProperties[] = [
         operation: ['saveSynonym'],
       },
     },
+    required: true,
   },
   {
     type: 'options',
     placeholder: 'onewaysynonym',
+    default: '',
     description: 'Synonym type.',
     options: [
       {
@@ -11252,7 +11236,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Type',
     name: 'type_options',
-    default: '',
     displayOptions: {
       show: {
         synonym_hit_object: ['type_options'],
@@ -11260,6 +11243,7 @@ const properties: INodeProperties[] = [
         operation: ['saveSynonym'],
       },
     },
+    required: true,
   },
   {
     type: 'json',
@@ -11271,7 +11255,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'synonyms',
       },
     },
@@ -11286,6 +11270,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'car',
+    default: '',
     description:
       'Word or phrase to appear in query strings (for [`onewaysynonym`s](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/adding-synonyms/in-depth/one-way-synonyms)).',
     routing: {
@@ -11297,7 +11282,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Input',
     name: 'input_string',
-    default: '',
     displayOptions: {
       show: {
         synonym_hit_object: ['input_string'],
@@ -11309,6 +11293,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'car',
+    default: '',
     description:
       'Word or phrase to appear in query strings (for [`altcorrection1` and `altcorrection2`](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/adding-synonyms/in-depth/synonyms-alternative-corrections)).',
     routing: {
@@ -11320,7 +11305,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Word',
     name: 'word_string',
-    default: '',
     displayOptions: {
       show: {
         synonym_hit_object: ['word_string'],
@@ -11339,7 +11323,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'corrections',
       },
     },
@@ -11354,6 +11338,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '<Street>',
+    default: '',
     description:
       '[Placeholder token](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/adding-synonyms/in-depth/synonyms-placeholders) to be put inside records.\n',
     routing: {
@@ -11365,7 +11350,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Placeholder',
     name: 'placeholder_string',
-    default: '',
     displayOptions: {
       show: {
         synonym_hit_object: ['placeholder_string'],
@@ -11385,7 +11369,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'replacements',
       },
     },
@@ -11400,9 +11384,9 @@ const properties: INodeProperties[] = [
   {
     type: 'options',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     displayName: 'Index Name',
     name: 'indexName_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -11441,9 +11425,9 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'synonymID',
+    default: '',
     displayName: 'Object ID',
     name: 'objectID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -11454,6 +11438,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     routing: {
       request: {
         qs: {
@@ -11463,7 +11448,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Forward To Replicas',
     name: 'forwardToReplicas_boolean',
-    default: '',
     displayOptions: {
       show: {
         resource: ['Synonyms'],
@@ -11474,9 +11458,9 @@ const properties: INodeProperties[] = [
   {
     type: 'options',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     displayName: 'Index Name',
     name: 'indexName_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -11514,6 +11498,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     routing: {
       request: {
         qs: {
@@ -11523,7 +11508,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Forward To Replicas',
     name: 'forwardToReplicas_boolean',
-    default: '',
     displayOptions: {
       show: {
         resource: ['Synonyms'],
@@ -11533,6 +11517,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     routing: {
       request: {
         qs: {
@@ -11542,7 +11527,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Replace Existing Synonyms',
     name: 'replaceExistingSynonyms_boolean',
-    default: '',
     displayOptions: {
       show: {
         resource: ['Synonyms'],
@@ -11552,12 +11536,16 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'json',
-    displayName: 'Json',
-    name: 'json',
-    default: '',
+    displayName: 'Synonym Hits',
+    name: 'synonymHits_json',
+    default: '[]',
     description: 'Matching synonyms.',
     required: false,
-    routing: undefined,
+    routing: {
+      request: {
+        body: '={{ $value }}',
+      },
+    },
     displayOptions: {
       show: {
         resource: ['Synonyms'],
@@ -11568,9 +11556,9 @@ const properties: INodeProperties[] = [
   {
     type: 'options',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     displayName: 'Index Name',
     name: 'indexName_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -11608,6 +11596,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     routing: {
       request: {
         qs: {
@@ -11617,7 +11606,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Forward To Replicas',
     name: 'forwardToReplicas_boolean',
-    default: '',
     displayOptions: {
       show: {
         resource: ['Synonyms'],
@@ -11628,9 +11616,9 @@ const properties: INodeProperties[] = [
   {
     type: 'options',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     displayName: 'Index Name',
     name: 'indexName_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -11700,6 +11688,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Search query.',
     routing: {
       send: {
@@ -11710,7 +11699,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Query',
     name: 'query_string',
-    default: '',
     displayOptions: {
       show: {
         search_synonyms_params_object: ['query_string'],
@@ -11722,6 +11710,7 @@ const properties: INodeProperties[] = [
   {
     type: 'options',
     placeholder: 'onewaysynonym',
+    default: '',
     description: 'Synonym type.',
     options: [
       {
@@ -11766,7 +11755,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Type',
     name: 'type_options',
-    default: '',
     displayOptions: {
       show: {
         search_synonyms_params_object: ['type_options'],
@@ -11777,6 +11765,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description: 'Page of search results to retrieve.',
     typeOptions: {
       minValue: 0,
@@ -11790,7 +11779,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Page',
     name: 'page_number',
-    default: 0,
     displayOptions: {
       show: {
         search_synonyms_params_object: ['page_number'],
@@ -11879,11 +11867,11 @@ const properties: INodeProperties[] = [
     default: '[]',
     description:
       "Permissions that determine the type of API requests this key can make.\nThe required ACL is listed in each endpoint's reference.\nFor more information, see [access control list](https://www.algolia.com/doc/guides/security/api-keys/#access-control-list-acl).\n",
-    required: false,
+    required: true,
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'acl',
       },
     },
@@ -11898,6 +11886,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'Used for indexing by the CLI',
+    default: '',
     description: 'Description of an API key to help you identify this API key.',
     routing: {
       send: {
@@ -11908,7 +11897,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Description',
     name: 'description_string',
-    default: '',
     displayOptions: {
       show: {
         api_key_object: ['description_string'],
@@ -11928,7 +11916,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'indexes',
       },
     },
@@ -11942,6 +11930,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description:
       "Maximum number of results this API key can retrieve in one query.\nBy default, there's no limit.\n",
     routing: {
@@ -11953,7 +11942,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Max Hits Per Query',
     name: 'maxHitsPerQuery_number',
-    default: 0,
     displayOptions: {
       show: {
         api_key_object: ['maxHitsPerQuery_number'],
@@ -11964,6 +11952,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description:
       "Maximum number of API requests allowed per IP address or [user token](https://www.algolia.com/doc/guides/sending-events/concepts/usertoken) per hour.\n\nIf this limit is reached, the API returns an error with status code `429`.\nBy default, there's no limit.\n",
     routing: {
@@ -11975,7 +11964,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Max Queries Per IPPer Hour',
     name: 'maxQueriesPerIPPerHour_number',
-    default: 0,
     displayOptions: {
       show: {
         api_key_object: ['maxQueriesPerIPPerHour_number'],
@@ -11987,6 +11975,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'typoTolerance=strict&restrictSources=192.168.1.0/24',
+    default: '',
     description:
       'Query parameters to add when making API requests with this API key.\n\nTo restrict this API key to specific IP addresses, add the `restrictSources` parameter.\nYou can only add a single source, but you can provide a range of IP addresses.\n\nCreating an API key fails if the request is made from an IP address outside the restricted range.\n',
     routing: {
@@ -11998,7 +11987,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Query Parameters',
     name: 'queryParameters_string',
-    default: '',
     displayOptions: {
       show: {
         api_key_object: ['queryParameters_string'],
@@ -12018,7 +12006,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'referers',
       },
     },
@@ -12033,6 +12021,7 @@ const properties: INodeProperties[] = [
   {
     type: 'number',
     placeholder: '86400',
+    default: '',
     description:
       "Duration (in seconds) after which the API key expires.\nBy default, API keys don't expire.\n",
     routing: {
@@ -12044,7 +12033,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Validity',
     name: 'validity_number',
-    default: 0,
     displayOptions: {
       show: {
         api_key_object: ['validity_number'],
@@ -12056,9 +12044,9 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'ALGOLIA_API_KEY',
+    default: '',
     displayName: 'Key',
     name: 'key_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -12070,9 +12058,9 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'ALGOLIA_API_KEY',
+    default: '',
     displayName: 'Key',
     name: 'key_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -12136,11 +12124,11 @@ const properties: INodeProperties[] = [
     default: '[]',
     description:
       "Permissions that determine the type of API requests this key can make.\nThe required ACL is listed in each endpoint's reference.\nFor more information, see [access control list](https://www.algolia.com/doc/guides/security/api-keys/#access-control-list-acl).\n",
-    required: false,
+    required: true,
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'acl',
       },
     },
@@ -12155,6 +12143,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'Used for indexing by the CLI',
+    default: '',
     description: 'Description of an API key to help you identify this API key.',
     routing: {
       send: {
@@ -12165,7 +12154,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Description',
     name: 'description_string',
-    default: '',
     displayOptions: {
       show: {
         api_key_object: ['description_string'],
@@ -12185,7 +12173,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'indexes',
       },
     },
@@ -12199,6 +12187,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description:
       "Maximum number of results this API key can retrieve in one query.\nBy default, there's no limit.\n",
     routing: {
@@ -12210,7 +12199,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Max Hits Per Query',
     name: 'maxHitsPerQuery_number',
-    default: 0,
     displayOptions: {
       show: {
         api_key_object: ['maxHitsPerQuery_number'],
@@ -12221,6 +12209,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description:
       "Maximum number of API requests allowed per IP address or [user token](https://www.algolia.com/doc/guides/sending-events/concepts/usertoken) per hour.\n\nIf this limit is reached, the API returns an error with status code `429`.\nBy default, there's no limit.\n",
     routing: {
@@ -12232,7 +12221,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Max Queries Per IPPer Hour',
     name: 'maxQueriesPerIPPerHour_number',
-    default: 0,
     displayOptions: {
       show: {
         api_key_object: ['maxQueriesPerIPPerHour_number'],
@@ -12244,6 +12232,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'typoTolerance=strict&restrictSources=192.168.1.0/24',
+    default: '',
     description:
       'Query parameters to add when making API requests with this API key.\n\nTo restrict this API key to specific IP addresses, add the `restrictSources` parameter.\nYou can only add a single source, but you can provide a range of IP addresses.\n\nCreating an API key fails if the request is made from an IP address outside the restricted range.\n',
     routing: {
@@ -12255,7 +12244,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Query Parameters',
     name: 'queryParameters_string',
-    default: '',
     displayOptions: {
       show: {
         api_key_object: ['queryParameters_string'],
@@ -12275,7 +12263,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'referers',
       },
     },
@@ -12290,6 +12278,7 @@ const properties: INodeProperties[] = [
   {
     type: 'number',
     placeholder: '86400',
+    default: '',
     description:
       "Duration (in seconds) after which the API key expires.\nBy default, API keys don't expire.\n",
     routing: {
@@ -12301,7 +12290,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Validity',
     name: 'validity_number',
-    default: 0,
     displayOptions: {
       show: {
         api_key_object: ['validity_number'],
@@ -12313,9 +12301,9 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'ALGOLIA_API_KEY',
+    default: '',
     displayName: 'Key',
     name: 'key_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -12327,9 +12315,9 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'ALGOLIA_API_KEY',
+    default: '',
     displayName: 'Key',
     name: 'key_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -12341,9 +12329,9 @@ const properties: INodeProperties[] = [
   {
     type: 'options',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     displayName: 'Index Name',
     name: 'indexName_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -12381,10 +12369,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Unique identifier of a rule object.',
     displayName: 'Object ID',
     name: 'objectID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -12396,9 +12384,9 @@ const properties: INodeProperties[] = [
   {
     type: 'options',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     displayName: 'Index Name',
     name: 'indexName_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -12436,10 +12424,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Unique identifier of a rule object.',
     displayName: 'Object ID',
     name: 'objectID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -12450,6 +12438,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     routing: {
       request: {
         qs: {
@@ -12459,7 +12448,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Forward To Replicas',
     name: 'forwardToReplicas_boolean',
-    default: '',
     displayOptions: {
       show: {
         resource: ['Rules'],
@@ -12497,7 +12485,7 @@ const properties: INodeProperties[] = [
       },
       {
         name: 'Validity',
-        value: 'validity_fixedCollection',
+        value: 'validity_json',
       },
     ],
     displayOptions: {
@@ -12509,6 +12497,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Unique identifier of a rule object.',
     routing: {
       send: {
@@ -12519,7 +12508,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Object ID',
     name: 'objectID_string',
-    default: '',
     displayOptions: {
       show: {
         rule_object: ['objectID_string'],
@@ -12527,19 +12515,20 @@ const properties: INodeProperties[] = [
         operation: ['saveRule'],
       },
     },
+    required: true,
   },
   {
     type: 'json',
     displayName: 'Conditions',
     name: 'conditions_json',
-    default: '',
+    default: '[]',
     description:
       "Conditions that trigger a rule.\n\nSome consequences require specific conditions or don't require any condition.\nFor more information, see [Conditions](https://www.algolia.com/doc/guides/managing-results/rules/rules-overview/#conditions).\n",
     required: false,
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'conditions',
       },
     },
@@ -12557,7 +12546,7 @@ const properties: INodeProperties[] = [
     type: 'multiOptions',
     description:
       'Effect of the rule.\n\nFor more information, see [Consequences](https://www.algolia.com/doc/guides/managing-results/rules/rules-overview/#consequences).\n',
-    required: false,
+    required: true,
     default: [],
     options: [
       {
@@ -12574,7 +12563,11 @@ const properties: INodeProperties[] = [
       },
       {
         name: 'Hide',
-        value: 'hide_fixedCollection_consequence',
+        value: 'hide_json_consequence',
+      },
+      {
+        name: 'User Data',
+        value: 'user_data_object_consequence',
       },
     ],
     routing: {
@@ -12582,7 +12575,7 @@ const properties: INodeProperties[] = [
         type: 'body',
         property: 'consequence',
         value:
-          '={{ { "similarQuery": typeof $parameter.similarQuery_string_params_consequence !== "undefined" ? $parameter.similarQuery_string_params_consequence : undefined, "filters": typeof $parameter.filters_string_params_consequence !== "undefined" ? $parameter.filters_string_params_consequence : undefined, "facetFilters": typeof $parameter.facetFilters_json_params_consequence !== "undefined" ? JSON.parse($parameter.facetFilters_json_params_consequence) : typeof $parameter.facetFilters_string_params_consequence !== "undefined" ? $parameter.facetFilters_string_params_consequence : undefined, "optionalFilters": typeof $parameter.optionalFilters_json_params_consequence !== "undefined" ? JSON.parse($parameter.optionalFilters_json_params_consequence) : typeof $parameter.optionalFilters_string_params_consequence !== "undefined" ? $parameter.optionalFilters_string_params_consequence : undefined, "numericFilters": typeof $parameter.numericFilters_json_params_consequence !== "undefined" ? JSON.parse($parameter.numericFilters_json_params_consequence) : typeof $parameter.numericFilters_string_params_consequence !== "undefined" ? $parameter.numericFilters_string_params_consequence : undefined, "tagFilters": typeof $parameter.tagFilters_json_params_consequence !== "undefined" ? JSON.parse($parameter.tagFilters_json_params_consequence) : typeof $parameter.tagFilters_string_params_consequence !== "undefined" ? $parameter.tagFilters_string_params_consequence : undefined, "sumOrFiltersScores": typeof $parameter.sumOrFiltersScores_boolean_params_consequence !== "undefined" ? $parameter.sumOrFiltersScores_boolean_params_consequence : undefined, "restrictSearchableAttributes": typeof $parameter.restrictSearchableAttributes_json_params_consequence !== "undefined" ? JSON.parse($parameter.restrictSearchableAttributes_json_params_consequence) : undefined, "facets": typeof $parameter.facets_json_params_consequence !== "undefined" ? JSON.parse($parameter.facets_json_params_consequence) : undefined, "facetingAfterDistinct": typeof $parameter.facetingAfterDistinct_boolean_params_consequence !== "undefined" ? $parameter.facetingAfterDistinct_boolean_params_consequence : undefined, "page": typeof $parameter.page_number_params_consequence !== "undefined" ? $parameter.page_number_params_consequence : undefined, "offset": typeof $parameter.offset_number_params_consequence !== "undefined" ? $parameter.offset_number_params_consequence : undefined, "length": typeof $parameter.length_number_params_consequence !== "undefined" ? $parameter.length_number_params_consequence : undefined, "aroundLatLng": typeof $parameter.aroundLatLng_string_params_consequence !== "undefined" ? $parameter.aroundLatLng_string_params_consequence : undefined, "aroundLatLngViaIP": typeof $parameter.aroundLatLngViaIP_boolean_params_consequence !== "undefined" ? $parameter.aroundLatLngViaIP_boolean_params_consequence : undefined, "aroundRadius": typeof $parameter.aroundRadius_number_params_consequence !== "undefined" ? $parameter.aroundRadius_number_params_consequence : typeof $parameter.aroundRadius_options_params_consequence !== "undefined" ? $parameter.aroundRadius_options_params_consequence : undefined, "aroundPrecision": typeof $parameter.aroundPrecision_number_params_consequence !== "undefined" ? $parameter.aroundPrecision_number_params_consequence : typeof $parameter.aroundPrecision_fixedCollection_params_consequence.aroundPrecision_fixedCollection_values !== "undefined" ? $parameter.aroundPrecision_fixedCollection_params_consequence.aroundPrecision_fixedCollection_values?.map(item => ({ from: typeof item.from_number_aroundPrecision !== "undefined" ? item.from_number_aroundPrecision : undefined, value: typeof item.value_number_aroundPrecision !== "undefined" ? item.value_number_aroundPrecision : undefined })) : undefined, "minimumAroundRadius": typeof $parameter.minimumAroundRadius_number_params_consequence !== "undefined" ? $parameter.minimumAroundRadius_number_params_consequence : undefined, "insideBoundingBox": typeof $parameter.insideBoundingBox_string_params_consequence !== "undefined" ? $parameter.insideBoundingBox_string_params_consequence : typeof $parameter.insideBoundingBox_null_params_consequence !== "undefined" ? JSON.parse($parameter.insideBoundingBox_null_params_consequence) : typeof $parameter.insideBoundingBox_json_params_consequence !== "undefined" ? JSON.parse($parameter.insideBoundingBox_json_params_consequence) : undefined, "insidePolygon": typeof $parameter.insidePolygon_json_params_consequence !== "undefined" ? JSON.parse($parameter.insidePolygon_json_params_consequence) : undefined, "naturalLanguages": typeof $parameter.naturalLanguages_json_params_consequence !== "undefined" ? JSON.parse($parameter.naturalLanguages_json_params_consequence) : undefined, "ruleContexts": typeof $parameter.ruleContexts_json_params_consequence !== "undefined" ? JSON.parse($parameter.ruleContexts_json_params_consequence) : undefined, "personalizationImpact": typeof $parameter.personalizationImpact_number_params_consequence !== "undefined" ? $parameter.personalizationImpact_number_params_consequence : undefined, "userToken": typeof $parameter.userToken_string_params_consequence !== "undefined" ? $parameter.userToken_string_params_consequence : undefined, "getRankingInfo": typeof $parameter.getRankingInfo_boolean_params_consequence !== "undefined" ? $parameter.getRankingInfo_boolean_params_consequence : undefined, "synonyms": typeof $parameter.synonyms_boolean_params_consequence !== "undefined" ? $parameter.synonyms_boolean_params_consequence : undefined, "clickAnalytics": typeof $parameter.clickAnalytics_boolean_params_consequence !== "undefined" ? $parameter.clickAnalytics_boolean_params_consequence : undefined, "analytics": typeof $parameter.analytics_boolean_params_consequence !== "undefined" ? $parameter.analytics_boolean_params_consequence : undefined, "analyticsTags": typeof $parameter.analyticsTags_json_params_consequence !== "undefined" ? JSON.parse($parameter.analyticsTags_json_params_consequence) : undefined, "percentileComputation": typeof $parameter.percentileComputation_boolean_params_consequence !== "undefined" ? $parameter.percentileComputation_boolean_params_consequence : undefined, "enableABTest": typeof $parameter.enableABTest_boolean_params_consequence !== "undefined" ? $parameter.enableABTest_boolean_params_consequence : undefined, "attributesToRetrieve": typeof $parameter.attributesToRetrieve_json_params_consequence !== "undefined" ? JSON.parse($parameter.attributesToRetrieve_json_params_consequence) : undefined, "ranking": typeof $parameter.ranking_json_params_consequence !== "undefined" ? JSON.parse($parameter.ranking_json_params_consequence) : undefined, "relevancyStrictness": typeof $parameter.relevancyStrictness_number_params_consequence !== "undefined" ? $parameter.relevancyStrictness_number_params_consequence : undefined, "attributesToHighlight": typeof $parameter.attributesToHighlight_json_params_consequence !== "undefined" ? JSON.parse($parameter.attributesToHighlight_json_params_consequence) : undefined, "attributesToSnippet": typeof $parameter.attributesToSnippet_json_params_consequence !== "undefined" ? JSON.parse($parameter.attributesToSnippet_json_params_consequence) : undefined, "highlightPreTag": typeof $parameter.highlightPreTag_string_params_consequence !== "undefined" ? $parameter.highlightPreTag_string_params_consequence : undefined, "highlightPostTag": typeof $parameter.highlightPostTag_string_params_consequence !== "undefined" ? $parameter.highlightPostTag_string_params_consequence : undefined, "snippetEllipsisText": typeof $parameter.snippetEllipsisText_string_params_consequence !== "undefined" ? $parameter.snippetEllipsisText_string_params_consequence : undefined, "restrictHighlightAndSnippetArrays": typeof $parameter.restrictHighlightAndSnippetArrays_boolean_params_consequence !== "undefined" ? $parameter.restrictHighlightAndSnippetArrays_boolean_params_consequence : undefined, "hitsPerPage": typeof $parameter.hitsPerPage_number_params_consequence !== "undefined" ? $parameter.hitsPerPage_number_params_consequence : undefined, "minWordSizefor1Typo": typeof $parameter.minWordSizefor1Typo_number_params_consequence !== "undefined" ? $parameter.minWordSizefor1Typo_number_params_consequence : undefined, "minWordSizefor2Typos": typeof $parameter.minWordSizefor2Typos_number_params_consequence !== "undefined" ? $parameter.minWordSizefor2Typos_number_params_consequence : undefined, "typoTolerance": typeof $parameter.typoTolerance_boolean_params_consequence !== "undefined" ? $parameter.typoTolerance_boolean_params_consequence : typeof $parameter.typoTolerance_options_params_consequence !== "undefined" ? $parameter.typoTolerance_options_params_consequence : undefined, "allowTyposOnNumericTokens": typeof $parameter.allowTyposOnNumericTokens_boolean_params_consequence !== "undefined" ? $parameter.allowTyposOnNumericTokens_boolean_params_consequence : undefined, "disableTypoToleranceOnAttributes": typeof $parameter.disableTypoToleranceOnAttributes_json_params_consequence !== "undefined" ? JSON.parse($parameter.disableTypoToleranceOnAttributes_json_params_consequence) : undefined, "ignorePlurals": typeof $parameter.ignorePlurals_json_params_consequence !== "undefined" ? JSON.parse($parameter.ignorePlurals_json_params_consequence) : typeof $parameter.ignorePlurals_options_params_consequence !== "undefined" ? $parameter.ignorePlurals_options_params_consequence : typeof $parameter.ignorePlurals_boolean_params_consequence !== "undefined" ? $parameter.ignorePlurals_boolean_params_consequence : undefined, "removeStopWords": typeof $parameter.removeStopWords_json_params_consequence !== "undefined" ? JSON.parse($parameter.removeStopWords_json_params_consequence) : typeof $parameter.removeStopWords_boolean_params_consequence !== "undefined" ? $parameter.removeStopWords_boolean_params_consequence : undefined, "queryLanguages": typeof $parameter.queryLanguages_json_params_consequence !== "undefined" ? JSON.parse($parameter.queryLanguages_json_params_consequence) : undefined, "decompoundQuery": typeof $parameter.decompoundQuery_boolean_params_consequence !== "undefined" ? $parameter.decompoundQuery_boolean_params_consequence : undefined, "enableRules": typeof $parameter.enableRules_boolean_params_consequence !== "undefined" ? $parameter.enableRules_boolean_params_consequence : undefined, "enablePersonalization": typeof $parameter.enablePersonalization_boolean_params_consequence !== "undefined" ? $parameter.enablePersonalization_boolean_params_consequence : undefined, "queryType": typeof $parameter.queryType_options_params_consequence !== "undefined" ? $parameter.queryType_options_params_consequence : undefined, "removeWordsIfNoResults": typeof $parameter.removeWordsIfNoResults_options_params_consequence !== "undefined" ? $parameter.removeWordsIfNoResults_options_params_consequence : undefined, "mode": typeof $parameter.mode_options_params_consequence !== "undefined" ? $parameter.mode_options_params_consequence : undefined, "semanticSearch": { "eventSources": typeof $parameter.eventSources_json_semanticSearch_params_consequence !== "undefined" ? JSON.parse($parameter.eventSources_json_semanticSearch_params_consequence) : typeof $parameter.eventSources_null_semanticSearch_params_consequence !== "undefined" ? JSON.parse($parameter.eventSources_null_semanticSearch_params_consequence) : undefined }, "advancedSyntax": typeof $parameter.advancedSyntax_boolean_params_consequence !== "undefined" ? $parameter.advancedSyntax_boolean_params_consequence : undefined, "optionalWords": typeof $parameter.optionalWords_string_params_consequence !== "undefined" ? $parameter.optionalWords_string_params_consequence : typeof $parameter.optionalWords_null_params_consequence !== "undefined" ? JSON.parse($parameter.optionalWords_null_params_consequence) : typeof $parameter.optionalWords_json_params_consequence !== "undefined" ? JSON.parse($parameter.optionalWords_json_params_consequence) : undefined, "disableExactOnAttributes": typeof $parameter.disableExactOnAttributes_json_params_consequence !== "undefined" ? JSON.parse($parameter.disableExactOnAttributes_json_params_consequence) : undefined, "exactOnSingleWordQuery": typeof $parameter.exactOnSingleWordQuery_options_params_consequence !== "undefined" ? $parameter.exactOnSingleWordQuery_options_params_consequence : undefined, "alternativesAsExact": typeof $parameter.alternativesAsExact_json_params_consequence !== "undefined" ? JSON.parse($parameter.alternativesAsExact_json_params_consequence) : undefined, "advancedSyntaxFeatures": typeof $parameter.advancedSyntaxFeatures_json_params_consequence !== "undefined" ? JSON.parse($parameter.advancedSyntaxFeatures_json_params_consequence) : undefined, "distinct": typeof $parameter.distinct_boolean_params_consequence !== "undefined" ? $parameter.distinct_boolean_params_consequence : typeof $parameter.distinct_number_params_consequence !== "undefined" ? $parameter.distinct_number_params_consequence : undefined, "replaceSynonymsInHighlight": typeof $parameter.replaceSynonymsInHighlight_boolean_params_consequence !== "undefined" ? $parameter.replaceSynonymsInHighlight_boolean_params_consequence : undefined, "minProximity": typeof $parameter.minProximity_number_params_consequence !== "undefined" ? $parameter.minProximity_number_params_consequence : undefined, "responseFields": typeof $parameter.responseFields_json_params_consequence !== "undefined" ? JSON.parse($parameter.responseFields_json_params_consequence) : undefined, "maxValuesPerFacet": typeof $parameter.maxValuesPerFacet_number_params_consequence !== "undefined" ? $parameter.maxValuesPerFacet_number_params_consequence : undefined, "sortFacetValuesBy": typeof $parameter.sortFacetValuesBy_string_params_consequence !== "undefined" ? $parameter.sortFacetValuesBy_string_params_consequence : undefined, "attributeCriteriaComputedByMinProximity": typeof $parameter.attributeCriteriaComputedByMinProximity_boolean_params_consequence !== "undefined" ? $parameter.attributeCriteriaComputedByMinProximity_boolean_params_consequence : undefined, "renderingContent": {  }, "enableReRanking": typeof $parameter.enableReRanking_boolean_params_consequence !== "undefined" ? $parameter.enableReRanking_boolean_params_consequence : undefined, "reRankingApplyFilter": typeof $parameter.reRankingApplyFilter_json_params_consequence !== "undefined" ? JSON.parse($parameter.reRankingApplyFilter_json_params_consequence) : typeof $parameter.reRankingApplyFilter_string_params_consequence !== "undefined" ? $parameter.reRankingApplyFilter_string_params_consequence : typeof $parameter.reRankingApplyFilter_null_params_consequence !== "undefined" ? JSON.parse($parameter.reRankingApplyFilter_null_params_consequence) : undefined, "query": typeof $parameter.consequence_query_object_object_params_consequence !== "undefined" ? { "remove": typeof $parameter.remove_json_query_params_consequence !== "undefined" ? JSON.parse($parameter.remove_json_query_params_consequence) : undefined, "edits": typeof $parameter.edits_json_query_params_consequence !== "undefined" ? JSON.parse($parameter.edits_json_query_params_consequence) : undefined } : typeof $parameter.remove_json_query_params_consequence !== "undefined" ? JSON.parse($parameter.remove_json_query_params_consequence) : typeof $parameter.edits_json_query_params_consequence !== "undefined" ? JSON.parse($parameter.edits_json_query_params_consequence) : typeof $parameter.query_string_params_consequence !== "undefined" ? $parameter.query_string_params_consequence : undefined, "automaticFacetFilters": typeof $parameter.automaticFacetFilters_fixedCollection_params_consequence.automaticFacetFilters_fixedCollection_values !== "undefined" ? $parameter.automaticFacetFilters_fixedCollection_params_consequence.automaticFacetFilters_fixedCollection_values?.map(item => ({ facet: typeof item.facet_string_automaticFacetFilters !== "undefined" ? item.facet_string_automaticFacetFilters : undefined, score: typeof item.score_number_automaticFacetFilters !== "undefined" ? item.score_number_automaticFacetFilters : undefined, disjunctive: typeof item.disjunctive_boolean_automaticFacetFilters !== "undefined" ? item.disjunctive_boolean_automaticFacetFilters : undefined })) : typeof $parameter.automaticFacetFilters_json_params_consequence !== "undefined" ? JSON.parse($parameter.automaticFacetFilters_json_params_consequence) : undefined, "automaticOptionalFacetFilters": typeof $parameter.automaticOptionalFacetFilters_fixedCollection_params_consequence.automaticOptionalFacetFilters_fixedCollection_values !== "undefined" ? $parameter.automaticOptionalFacetFilters_fixedCollection_params_consequence.automaticOptionalFacetFilters_fixedCollection_values?.map(item => ({ facet: typeof item.facet_string_automaticOptionalFacetFilters !== "undefined" ? item.facet_string_automaticOptionalFacetFilters : undefined, score: typeof item.score_number_automaticOptionalFacetFilters !== "undefined" ? item.score_number_automaticOptionalFacetFilters : undefined, disjunctive: typeof item.disjunctive_boolean_automaticOptionalFacetFilters !== "undefined" ? item.disjunctive_boolean_automaticOptionalFacetFilters : undefined })) : typeof $parameter.automaticOptionalFacetFilters_json_params_consequence !== "undefined" ? JSON.parse($parameter.automaticOptionalFacetFilters_json_params_consequence) : undefined, "renderingContent": {  }, "promote": typeof $parameter.promote_json_consequence !== "undefined" ? JSON.parse($parameter.promote_json_consequence) : undefined, "filterPromotes": typeof $parameter.filterPromotes_boolean_consequence !== "undefined" ? $parameter.filterPromotes_boolean_consequence : undefined, "hide": $parameter.hide_fixedCollection_consequence.hide_fixedCollection_values?.map(item => ({ objectID: typeof item.objectID_string_hide !== "undefined" ? item.objectID_string_hide : undefined })) } }}',
+          '={{ { "similarQuery": typeof $parameter.similarQuery_string_params_consequence !== "undefined" ? $parameter.similarQuery_string_params_consequence : undefined, "filters": typeof $parameter.filters_string_params_consequence !== "undefined" ? $parameter.filters_string_params_consequence : undefined, "facetFilters": typeof $parameter.facetFilters_json_params_consequence !== "undefined" ? JSON.parse($parameter.facetFilters_json_params_consequence) : typeof $parameter.facetFilters_string_params_consequence !== "undefined" ? $parameter.facetFilters_string_params_consequence : undefined, "optionalFilters": typeof $parameter.optionalFilters_json_params_consequence !== "undefined" ? JSON.parse($parameter.optionalFilters_json_params_consequence) : typeof $parameter.optionalFilters_string_params_consequence !== "undefined" ? $parameter.optionalFilters_string_params_consequence : undefined, "numericFilters": typeof $parameter.numericFilters_json_params_consequence !== "undefined" ? JSON.parse($parameter.numericFilters_json_params_consequence) : typeof $parameter.numericFilters_string_params_consequence !== "undefined" ? $parameter.numericFilters_string_params_consequence : undefined, "tagFilters": typeof $parameter.tagFilters_json_params_consequence !== "undefined" ? JSON.parse($parameter.tagFilters_json_params_consequence) : typeof $parameter.tagFilters_string_params_consequence !== "undefined" ? $parameter.tagFilters_string_params_consequence : undefined, "sumOrFiltersScores": typeof $parameter.sumOrFiltersScores_boolean_params_consequence !== "undefined" ? $parameter.sumOrFiltersScores_boolean_params_consequence : undefined, "restrictSearchableAttributes": typeof $parameter.restrictSearchableAttributes_json_params_consequence !== "undefined" ? JSON.parse($parameter.restrictSearchableAttributes_json_params_consequence) : undefined, "facets": typeof $parameter.facets_json_params_consequence !== "undefined" ? JSON.parse($parameter.facets_json_params_consequence) : undefined, "facetingAfterDistinct": typeof $parameter.facetingAfterDistinct_boolean_params_consequence !== "undefined" ? $parameter.facetingAfterDistinct_boolean_params_consequence : undefined, "page": typeof $parameter.page_number_params_consequence !== "undefined" ? $parameter.page_number_params_consequence : undefined, "offset": typeof $parameter.offset_number_params_consequence !== "undefined" ? $parameter.offset_number_params_consequence : undefined, "length": typeof $parameter.length_number_params_consequence !== "undefined" ? $parameter.length_number_params_consequence : undefined, "aroundLatLng": typeof $parameter.aroundLatLng_string_params_consequence !== "undefined" ? $parameter.aroundLatLng_string_params_consequence : undefined, "aroundLatLngViaIP": typeof $parameter.aroundLatLngViaIP_boolean_params_consequence !== "undefined" ? $parameter.aroundLatLngViaIP_boolean_params_consequence : undefined, "aroundRadius": typeof $parameter.aroundRadius_number_params_consequence !== "undefined" ? $parameter.aroundRadius_number_params_consequence : typeof $parameter.aroundRadius_options_params_consequence !== "undefined" ? $parameter.aroundRadius_options_params_consequence : undefined, "aroundPrecision": typeof $parameter.aroundPrecision_number_params_consequence !== "undefined" ? $parameter.aroundPrecision_number_params_consequence : typeof $parameter.aroundPrecision_json_params_consequence !== "undefined" ? JSON.parse($parameter.aroundPrecision_json_params_consequence) : undefined, "minimumAroundRadius": typeof $parameter.minimumAroundRadius_number_params_consequence !== "undefined" ? $parameter.minimumAroundRadius_number_params_consequence : undefined, "insideBoundingBox": typeof $parameter.insideBoundingBox_string_params_consequence !== "undefined" ? $parameter.insideBoundingBox_string_params_consequence : typeof $parameter.insideBoundingBox_null_params_consequence !== "undefined" ? JSON.parse($parameter.insideBoundingBox_null_params_consequence) : typeof $parameter.insideBoundingBox_json_params_consequence !== "undefined" ? JSON.parse($parameter.insideBoundingBox_json_params_consequence) : undefined, "insidePolygon": typeof $parameter.insidePolygon_json_params_consequence !== "undefined" ? JSON.parse($parameter.insidePolygon_json_params_consequence) : undefined, "naturalLanguages": typeof $parameter.naturalLanguages_json_params_consequence !== "undefined" ? JSON.parse($parameter.naturalLanguages_json_params_consequence) : undefined, "ruleContexts": typeof $parameter.ruleContexts_json_params_consequence !== "undefined" ? JSON.parse($parameter.ruleContexts_json_params_consequence) : undefined, "personalizationImpact": typeof $parameter.personalizationImpact_number_params_consequence !== "undefined" ? $parameter.personalizationImpact_number_params_consequence : undefined, "userToken": typeof $parameter.userToken_string_params_consequence !== "undefined" ? $parameter.userToken_string_params_consequence : undefined, "getRankingInfo": typeof $parameter.getRankingInfo_boolean_params_consequence !== "undefined" ? $parameter.getRankingInfo_boolean_params_consequence : undefined, "synonyms": typeof $parameter.synonyms_boolean_params_consequence !== "undefined" ? $parameter.synonyms_boolean_params_consequence : undefined, "clickAnalytics": typeof $parameter.clickAnalytics_boolean_params_consequence !== "undefined" ? $parameter.clickAnalytics_boolean_params_consequence : undefined, "analytics": typeof $parameter.analytics_boolean_params_consequence !== "undefined" ? $parameter.analytics_boolean_params_consequence : undefined, "analyticsTags": typeof $parameter.analyticsTags_json_params_consequence !== "undefined" ? JSON.parse($parameter.analyticsTags_json_params_consequence) : undefined, "percentileComputation": typeof $parameter.percentileComputation_boolean_params_consequence !== "undefined" ? $parameter.percentileComputation_boolean_params_consequence : undefined, "enableABTest": typeof $parameter.enableABTest_boolean_params_consequence !== "undefined" ? $parameter.enableABTest_boolean_params_consequence : undefined, "attributesToRetrieve": typeof $parameter.attributesToRetrieve_json_params_consequence !== "undefined" ? JSON.parse($parameter.attributesToRetrieve_json_params_consequence) : undefined, "ranking": typeof $parameter.ranking_json_params_consequence !== "undefined" ? JSON.parse($parameter.ranking_json_params_consequence) : undefined, "relevancyStrictness": typeof $parameter.relevancyStrictness_number_params_consequence !== "undefined" ? $parameter.relevancyStrictness_number_params_consequence : undefined, "attributesToHighlight": typeof $parameter.attributesToHighlight_json_params_consequence !== "undefined" ? JSON.parse($parameter.attributesToHighlight_json_params_consequence) : undefined, "attributesToSnippet": typeof $parameter.attributesToSnippet_json_params_consequence !== "undefined" ? JSON.parse($parameter.attributesToSnippet_json_params_consequence) : undefined, "highlightPreTag": typeof $parameter.highlightPreTag_string_params_consequence !== "undefined" ? $parameter.highlightPreTag_string_params_consequence : undefined, "highlightPostTag": typeof $parameter.highlightPostTag_string_params_consequence !== "undefined" ? $parameter.highlightPostTag_string_params_consequence : undefined, "snippetEllipsisText": typeof $parameter.snippetEllipsisText_string_params_consequence !== "undefined" ? $parameter.snippetEllipsisText_string_params_consequence : undefined, "restrictHighlightAndSnippetArrays": typeof $parameter.restrictHighlightAndSnippetArrays_boolean_params_consequence !== "undefined" ? $parameter.restrictHighlightAndSnippetArrays_boolean_params_consequence : undefined, "hitsPerPage": typeof $parameter.hitsPerPage_number_params_consequence !== "undefined" ? $parameter.hitsPerPage_number_params_consequence : undefined, "minWordSizefor1Typo": typeof $parameter.minWordSizefor1Typo_number_params_consequence !== "undefined" ? $parameter.minWordSizefor1Typo_number_params_consequence : undefined, "minWordSizefor2Typos": typeof $parameter.minWordSizefor2Typos_number_params_consequence !== "undefined" ? $parameter.minWordSizefor2Typos_number_params_consequence : undefined, "typoTolerance": typeof $parameter.typoTolerance_boolean_params_consequence !== "undefined" ? $parameter.typoTolerance_boolean_params_consequence : typeof $parameter.typoTolerance_options_params_consequence !== "undefined" ? $parameter.typoTolerance_options_params_consequence : undefined, "allowTyposOnNumericTokens": typeof $parameter.allowTyposOnNumericTokens_boolean_params_consequence !== "undefined" ? $parameter.allowTyposOnNumericTokens_boolean_params_consequence : undefined, "disableTypoToleranceOnAttributes": typeof $parameter.disableTypoToleranceOnAttributes_json_params_consequence !== "undefined" ? JSON.parse($parameter.disableTypoToleranceOnAttributes_json_params_consequence) : undefined, "ignorePlurals": typeof $parameter.ignorePlurals_json_params_consequence !== "undefined" ? JSON.parse($parameter.ignorePlurals_json_params_consequence) : typeof $parameter.ignorePlurals_options_params_consequence !== "undefined" ? $parameter.ignorePlurals_options_params_consequence : typeof $parameter.ignorePlurals_boolean_params_consequence !== "undefined" ? $parameter.ignorePlurals_boolean_params_consequence : undefined, "removeStopWords": typeof $parameter.removeStopWords_json_params_consequence !== "undefined" ? JSON.parse($parameter.removeStopWords_json_params_consequence) : typeof $parameter.removeStopWords_boolean_params_consequence !== "undefined" ? $parameter.removeStopWords_boolean_params_consequence : undefined, "queryLanguages": typeof $parameter.queryLanguages_json_params_consequence !== "undefined" ? JSON.parse($parameter.queryLanguages_json_params_consequence) : undefined, "decompoundQuery": typeof $parameter.decompoundQuery_boolean_params_consequence !== "undefined" ? $parameter.decompoundQuery_boolean_params_consequence : undefined, "enableRules": typeof $parameter.enableRules_boolean_params_consequence !== "undefined" ? $parameter.enableRules_boolean_params_consequence : undefined, "enablePersonalization": typeof $parameter.enablePersonalization_boolean_params_consequence !== "undefined" ? $parameter.enablePersonalization_boolean_params_consequence : undefined, "queryType": typeof $parameter.queryType_options_params_consequence !== "undefined" ? $parameter.queryType_options_params_consequence : undefined, "removeWordsIfNoResults": typeof $parameter.removeWordsIfNoResults_options_params_consequence !== "undefined" ? $parameter.removeWordsIfNoResults_options_params_consequence : undefined, "mode": typeof $parameter.mode_options_params_consequence !== "undefined" ? $parameter.mode_options_params_consequence : undefined, "semanticSearch": { "eventSources": typeof $parameter.eventSources_json_semanticSearch_params_consequence !== "undefined" ? JSON.parse($parameter.eventSources_json_semanticSearch_params_consequence) : typeof $parameter.eventSources_null_semanticSearch_params_consequence !== "undefined" ? JSON.parse($parameter.eventSources_null_semanticSearch_params_consequence) : undefined }, "advancedSyntax": typeof $parameter.advancedSyntax_boolean_params_consequence !== "undefined" ? $parameter.advancedSyntax_boolean_params_consequence : undefined, "optionalWords": typeof $parameter.optionalWords_string_params_consequence !== "undefined" ? $parameter.optionalWords_string_params_consequence : typeof $parameter.optionalWords_null_params_consequence !== "undefined" ? JSON.parse($parameter.optionalWords_null_params_consequence) : typeof $parameter.optionalWords_json_params_consequence !== "undefined" ? JSON.parse($parameter.optionalWords_json_params_consequence) : undefined, "disableExactOnAttributes": typeof $parameter.disableExactOnAttributes_json_params_consequence !== "undefined" ? JSON.parse($parameter.disableExactOnAttributes_json_params_consequence) : undefined, "exactOnSingleWordQuery": typeof $parameter.exactOnSingleWordQuery_options_params_consequence !== "undefined" ? $parameter.exactOnSingleWordQuery_options_params_consequence : undefined, "alternativesAsExact": typeof $parameter.alternativesAsExact_json_params_consequence !== "undefined" ? JSON.parse($parameter.alternativesAsExact_json_params_consequence) : undefined, "advancedSyntaxFeatures": typeof $parameter.advancedSyntaxFeatures_json_params_consequence !== "undefined" ? JSON.parse($parameter.advancedSyntaxFeatures_json_params_consequence) : undefined, "distinct": typeof $parameter.distinct_boolean_params_consequence !== "undefined" ? $parameter.distinct_boolean_params_consequence : typeof $parameter.distinct_number_params_consequence !== "undefined" ? $parameter.distinct_number_params_consequence : undefined, "replaceSynonymsInHighlight": typeof $parameter.replaceSynonymsInHighlight_boolean_params_consequence !== "undefined" ? $parameter.replaceSynonymsInHighlight_boolean_params_consequence : undefined, "minProximity": typeof $parameter.minProximity_number_params_consequence !== "undefined" ? $parameter.minProximity_number_params_consequence : undefined, "responseFields": typeof $parameter.responseFields_json_params_consequence !== "undefined" ? JSON.parse($parameter.responseFields_json_params_consequence) : undefined, "maxValuesPerFacet": typeof $parameter.maxValuesPerFacet_number_params_consequence !== "undefined" ? $parameter.maxValuesPerFacet_number_params_consequence : undefined, "sortFacetValuesBy": typeof $parameter.sortFacetValuesBy_string_params_consequence !== "undefined" ? $parameter.sortFacetValuesBy_string_params_consequence : undefined, "attributeCriteriaComputedByMinProximity": typeof $parameter.attributeCriteriaComputedByMinProximity_boolean_params_consequence !== "undefined" ? $parameter.attributeCriteriaComputedByMinProximity_boolean_params_consequence : undefined, "renderingContent": {  }, "enableReRanking": typeof $parameter.enableReRanking_boolean_params_consequence !== "undefined" ? $parameter.enableReRanking_boolean_params_consequence : undefined, "reRankingApplyFilter": typeof $parameter.reRankingApplyFilter_json_params_consequence !== "undefined" ? JSON.parse($parameter.reRankingApplyFilter_json_params_consequence) : typeof $parameter.reRankingApplyFilter_string_params_consequence !== "undefined" ? $parameter.reRankingApplyFilter_string_params_consequence : typeof $parameter.reRankingApplyFilter_null_params_consequence !== "undefined" ? JSON.parse($parameter.reRankingApplyFilter_null_params_consequence) : undefined, "query": typeof $parameter.consequence_query_object_object_params_consequence !== "undefined" ? { "remove": typeof $parameter.remove_json_query_params_consequence !== "undefined" ? JSON.parse($parameter.remove_json_query_params_consequence) : undefined, "edits": typeof $parameter.edits_json_query_params_consequence !== "undefined" ? JSON.parse($parameter.edits_json_query_params_consequence) : undefined } : typeof $parameter.remove_json_query_params_consequence !== "undefined" ? JSON.parse($parameter.remove_json_query_params_consequence) : typeof $parameter.edits_json_query_params_consequence !== "undefined" ? JSON.parse($parameter.edits_json_query_params_consequence) : typeof $parameter.query_string_params_consequence !== "undefined" ? $parameter.query_string_params_consequence : undefined, "automaticFacetFilters": typeof $parameter.automaticFacetFilters_array_params_consequence !== "undefined" ? JSON.parse($parameter.automaticFacetFilters_array_params_consequence) : undefined, "automaticOptionalFacetFilters": typeof $parameter.automaticOptionalFacetFilters_array_params_consequence !== "undefined" ? JSON.parse($parameter.automaticOptionalFacetFilters_array_params_consequence) : undefined, "renderingContent": {  }, "promote": typeof $parameter.promote_json_consequence !== "undefined" ? JSON.parse($parameter.promote_json_consequence) : undefined, "filterPromotes": typeof $parameter.filterPromotes_boolean_consequence !== "undefined" ? $parameter.filterPromotes_boolean_consequence : undefined, "hide": typeof $parameter.hide_json_consequence !== "undefined" ? JSON.parse($parameter.hide_json_consequence) : undefined, "userData": typeof $parameter.user_data_object_consequence !== "undefined" ? JSON.parse($parameter.user_data_object_consequence) : undefined } }}',
       },
     },
     displayOptions: {
@@ -12609,19 +12602,19 @@ const properties: INodeProperties[] = [
         value: 'filters_string_params',
       },
       {
-        name: 'Facet Filters Params',
+        name: 'Facet Filters',
         value: 'facetfilters_params',
       },
       {
-        name: 'Optional Filters Params',
+        name: 'Optional Filters',
         value: 'optionalfilters_params',
       },
       {
-        name: 'Numeric Filters Params',
+        name: 'Numeric Filters',
         value: 'numericfilters_params',
       },
       {
-        name: 'Tag Filters Params',
+        name: 'Tag Filters',
         value: 'tagfilters_params',
       },
       {
@@ -12661,11 +12654,11 @@ const properties: INodeProperties[] = [
         value: 'aroundlatlngviaip_boolean_params',
       },
       {
-        name: 'Around Radius Params',
+        name: 'Around Radius',
         value: 'aroundradius_params',
       },
       {
-        name: 'Around Precision Params',
+        name: 'Around Precision',
         value: 'aroundprecision_params',
       },
       {
@@ -12673,7 +12666,7 @@ const properties: INodeProperties[] = [
         value: 'minimumaroundradius_number_params',
       },
       {
-        name: 'Inside Bounding Box Params',
+        name: 'Inside Bounding Box',
         value: 'insideboundingbox_params',
       },
       {
@@ -12773,7 +12766,7 @@ const properties: INodeProperties[] = [
         value: 'minwordsizefor2typos_number_params',
       },
       {
-        name: 'Typo Tolerance Params',
+        name: 'Typo Tolerance',
         value: 'typotolerance_params',
       },
       {
@@ -12785,11 +12778,11 @@ const properties: INodeProperties[] = [
         value: 'disabletypotoleranceonattributes_json_params',
       },
       {
-        name: 'Ignore Plurals Params',
+        name: 'Ignore Plurals',
         value: 'ignoreplurals_params',
       },
       {
-        name: 'Remove Stop Words Params',
+        name: 'Remove Stop Words',
         value: 'removestopwords_params',
       },
       {
@@ -12821,7 +12814,7 @@ const properties: INodeProperties[] = [
         value: 'mode_options_params',
       },
       {
-        name: 'Semantic Search Object Params',
+        name: 'Semantic Search',
         value: 'semantic_search_object_params',
       },
       {
@@ -12829,7 +12822,7 @@ const properties: INodeProperties[] = [
         value: 'advancedsyntax_boolean_params',
       },
       {
-        name: 'Optional Words Params',
+        name: 'Optional Words',
         value: 'optionalwords_params',
       },
       {
@@ -12849,7 +12842,7 @@ const properties: INodeProperties[] = [
         value: 'advancedsyntaxfeatures_json_params',
       },
       {
-        name: 'Distinct Params',
+        name: 'Distinct',
         value: 'distinct_params',
       },
       {
@@ -12877,7 +12870,7 @@ const properties: INodeProperties[] = [
         value: 'attributecriteriacomputedbyminproximity_boolean_params',
       },
       {
-        name: 'Rendering Content Object Params',
+        name: 'Rendering Content',
         value: 'rendering_content_object_params',
       },
       {
@@ -12885,23 +12878,23 @@ const properties: INodeProperties[] = [
         value: 'enablereranking_boolean_params',
       },
       {
-        name: 'Re Ranking Apply Filter Params',
+        name: 'Re Ranking Apply Filter',
         value: 'rerankingapplyfilter_params',
       },
       {
-        name: 'Query Params',
+        name: 'Query',
         value: 'query_params',
       },
       {
-        name: 'Automatic Facet Filters Params',
+        name: 'Automatic Facet Filters',
         value: 'automaticfacetfilters_params',
       },
       {
-        name: 'Automatic Optional Facet Filters Params',
+        name: 'Automatic Optional Facet Filters',
         value: 'automaticoptionalfacetfilters_params',
       },
       {
-        name: 'Rendering Content Object Params',
+        name: 'Rendering Content',
         value: 'rendering_content_object_params',
       },
     ],
@@ -12917,11 +12910,11 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'comedy drama crime Macy Buscemi',
+    default: '',
     description:
       'Keywords to be used instead of the search query to conduct a more broader search\nUsing the `similarQuery` parameter changes other settings\n- `queryType` is set to `prefixNone`.\n- `removeStopWords` is set to true.\n- `words` is set as the first ranking criterion.\n- All remaining words are treated as `optionalWords`\nSince the `similarQuery` is supposed to do a broad search, they usually return many results.\nCombine it with `filters` to narrow down the list of results.\n',
     displayName: 'Similar Query',
     name: 'similarQuery_string_params_consequence',
-    default: '',
     displayOptions: {
       show: {
         rule_object: ['consequence_object'],
@@ -12935,11 +12928,11 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '(category:Book OR category:Ebook) AND _tags:published',
+    default: '',
     description:
       "Filter expression to only include items that match the filter criteria in the response.\n\nYou can use these filter expressions:\n\n- **Numeric filters.** `<facet> <op> <number>`, where `<op>` is one of `<`, `<=`, `=`, `!=`, `>`, `>=`.\n- **Ranges.** `<facet>:<lower> TO <upper>` where `<lower>` and `<upper>` are the lower and upper limits of the range (inclusive).\n- **Facet filters.** `<facet>:<value>` where `<facet>` is a facet attribute (case-sensitive) and `<value>` a facet value.\n- **Tag filters.** `_tags:<value>` or just `<value>` (case-sensitive).\n- **Boolean filters.** `<facet>: true | false`.\n\nYou can combine filters with `AND`, `OR`, and `NOT` operators with the following restrictions:\n\n- You can only combine filters of the same type with `OR`.\n  **Not supported:** `facet:value OR num > 3`.\n- You can't use `NOT` with combinations of filters.\n  **Not supported:** `NOT(facet:value OR facet:value)`\n- You can't combine conjunctions (`AND`) with `OR`.\n  **Not supported:** `facet:value OR (facet:value AND facet:value)`\n\nUse quotes around your filters, if the facet attribute name or facet value has spaces, keywords (`OR`, `AND`, `NOT`), or quotes.\nIf a facet attribute is an array, the filter matches if it matches at least one element of the array.\n\nFor more information, see [Filters](https://www.algolia.com/doc/guides/managing-results/refine-results/filtering).\n",
     displayName: 'Filters',
     name: 'filters_string_params_consequence',
-    default: '',
     displayOptions: {
       show: {
         rule_object: ['consequence_object'],
@@ -12995,9 +12988,9 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     displayName: 'Facet Filters (String)',
     name: 'facetFilters_string_params_consequence',
-    default: '',
     displayOptions: {
       show: {
         rule_object: ['consequence_object'],
@@ -13054,9 +13047,9 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     displayName: 'Optional Filters (String)',
     name: 'optionalFilters_string_params_consequence',
-    default: '',
     displayOptions: {
       show: {
         rule_object: ['consequence_object'],
@@ -13113,9 +13106,9 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     displayName: 'Numeric Filters (String)',
     name: 'numericFilters_string_params_consequence',
-    default: '',
     displayOptions: {
       show: {
         rule_object: ['consequence_object'],
@@ -13172,9 +13165,9 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     displayName: 'Tag Filters (String)',
     name: 'tagFilters_string_params_consequence',
-    default: '',
     displayOptions: {
       show: {
         rule_object: ['consequence_object'],
@@ -13188,11 +13181,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       'Whether to sum all filter scores\nIf true, all filter scores are summed.\nOtherwise, the maximum filter score is kept.\nFor more information, see [filter scores](https://www.algolia.com/doc/guides/managing-results/refine-results/filtering/in-depth/filter-scoring/#accumulating-scores-with-sumorfiltersscores).\n',
     displayName: 'Sum Or Filters Scores',
     name: 'sumOrFiltersScores_boolean_params_consequence',
-    default: false,
     displayOptions: {
       show: {
         rule_object: ['consequence_object'],
@@ -13241,11 +13234,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       "Whether faceting should be applied after deduplication with `distinct`\nThis leads to accurate facet counts when using faceting in combination with `distinct`.\nIt's usually better to use `afterDistinct` modifiers in the `attributesForFaceting` setting,\nas `facetingAfterDistinct` only computes correct facet counts if all records have the same facet values for the `attributeForDistinct`.\n",
     displayName: 'Faceting After Distinct',
     name: 'facetingAfterDistinct_boolean_params_consequence',
-    default: false,
     displayOptions: {
       show: {
         rule_object: ['consequence_object'],
@@ -13258,13 +13251,13 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description: 'Page of search results to retrieve.',
     typeOptions: {
       minValue: 0,
     },
     displayName: 'Page',
     name: 'page_number_params_consequence',
-    default: 0,
     displayOptions: {
       show: {
         rule_object: ['consequence_object'],
@@ -13277,10 +13270,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description: 'Position of the first hit to retrieve.',
     displayName: 'Offset',
     name: 'offset_number_params_consequence',
-    default: '',
     displayOptions: {
       show: {
         rule_object: ['consequence_object'],
@@ -13293,6 +13286,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description: 'Number of hits to retrieve (used in combination with `offset`).',
     typeOptions: {
       minValue: 0,
@@ -13300,7 +13294,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Length',
     name: 'length_number_params_consequence',
-    default: '',
     displayOptions: {
       show: {
         rule_object: ['consequence_object'],
@@ -13314,11 +13307,11 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '40.71,-74.01',
+    default: '',
     description:
       'Coordinates for the center of a circle, expressed as a comma-separated string of latitude and longitude.\n\nOnly records included within a circle around this central location are included in the results.\nThe radius of the circle is determined by the `aroundRadius` and `minimumAroundRadius` settings.\nThis parameter is ignored if you also specify `insidePolygon` or `insideBoundingBox`.\n',
     displayName: 'Around Lat Lng',
     name: 'aroundLatLng_string_params_consequence',
-    default: '',
     displayOptions: {
       show: {
         rule_object: ['consequence_object'],
@@ -13331,10 +13324,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description: "Whether to obtain the coordinates from the request's IP address.",
     displayName: 'Around Lat Lng Via IP',
     name: 'aroundLatLngViaIP_boolean_params_consequence',
-    default: false,
     displayOptions: {
       show: {
         rule_object: ['consequence_object'],
@@ -13372,13 +13365,13 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description: 'Maximum search radius around a central location in meters.',
     typeOptions: {
       minValue: 1,
     },
     displayName: 'Around Radius (Integer)',
     name: 'aroundRadius_number_params_consequence',
-    default: '',
     displayOptions: {
       show: {
         rule_object: ['consequence_object'],
@@ -13392,6 +13385,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     description: "Return all records with a valid `_geoloc` attribute. Don't filter by distance.",
     options: [
       {
@@ -13401,7 +13395,6 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Around Radius (All)',
     name: 'aroundRadius_options_params_consequence',
-    default: '',
     displayOptions: {
       show: {
         rule_object: ['consequence_object'],
@@ -13457,40 +13450,12 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    type: 'fixedCollection',
+    type: 'json',
     displayName: 'Around Precision (Range Objects)',
-    name: 'aroundPrecision_fixedCollection_params_consequence',
-    default: '',
+    name: 'aroundPrecision_json_params_consequence',
+    default: '[]',
     description: undefined,
     required: false,
-    typeOptions: {
-      multipleValues: true,
-    },
-    options: [
-      {
-        name: 'aroundPrecision_fixedCollection_values',
-        displayName: 'Around Precision',
-        values: [
-          {
-            type: 'number',
-            placeholder: '20',
-            description:
-              'Lower boundary of a range in meters. The Geo ranking criterion considers all records within the range to be equal.',
-            displayName: 'From',
-            name: 'from_number_aroundPrecision',
-            default: '',
-          },
-          {
-            type: 'number',
-            description:
-              'Upper boundary of a range in meters. The Geo ranking criterion considers all records within the range to be equal.',
-            displayName: 'Value',
-            name: 'value_number_aroundPrecision',
-            default: '',
-          },
-        ],
-      },
-    ],
     displayOptions: {
       show: {
         rule_object: ['consequence_object'],
@@ -13504,6 +13469,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description:
       "Minimum radius (in meters) for a search around a location when `aroundRadius` isn't set.",
     typeOptions: {
@@ -13511,7 +13477,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Minimum Around Radius',
     name: 'minimumAroundRadius_number_params_consequence',
-    default: '',
     displayOptions: {
       show: {
         rule_object: ['consequence_object'],
@@ -13553,9 +13518,9 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     displayName: 'Inside Bounding Box (String)',
     name: 'insideBoundingBox_string_params_consequence',
-    default: '',
     displayOptions: {
       show: {
         rule_object: ['consequence_object'],
@@ -13687,11 +13652,11 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'test-user-123',
+    default: '',
     description:
       'Unique pseudonymous or anonymous user identifier.\n\nThis helps with analytics and click and conversion events.\nFor more information, see [user token](https://www.algolia.com/doc/guides/sending-events/concepts/usertoken).\n',
     displayName: 'User Token',
     name: 'userToken_string_params_consequence',
-    default: '',
     displayOptions: {
       show: {
         rule_object: ['consequence_object'],
@@ -13704,10 +13669,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description: 'Whether the search response should include detailed ranking information.',
     displayName: 'Get Ranking Info',
     name: 'getRankingInfo_boolean_params_consequence',
-    default: false,
     displayOptions: {
       show: {
         rule_object: ['consequence_object'],
@@ -13736,11 +13701,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       'Whether to include a `queryID` attribute in the response\nThe query ID is a unique identifier for a search query and is required for tracking [click and conversion events](https://www.algolia.com/doc/guides/sending-events/getting-started).\n',
     displayName: 'Click Analytics',
     name: 'clickAnalytics_boolean_params_consequence',
-    default: false,
     displayOptions: {
       show: {
         rule_object: ['consequence_object'],
@@ -13959,11 +13924,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       'Whether to restrict highlighting and snippeting to items that at least partially matched the search query.\nBy default, all items are highlighted and snippeted.\n',
     displayName: 'Restrict Highlight And Snippet Arrays',
     name: 'restrictHighlightAndSnippetArrays_boolean_params_consequence',
-    default: false,
     displayOptions: {
       show: {
         rule_object: ['consequence_object'],
@@ -14073,6 +14038,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     description:
       '- `min`. Return matches with the lowest number of typos.\n  For example, if you have matches without typos, only include those.\n  But if there are no matches without typos (with 1 typo), include matches with 1 typo (2 typos).\n- `strict`. Return matches with the two lowest numbers of typos.\n  With `strict`, the Typo ranking criterion is applied first in the `ranking` setting.\n',
     options: [
@@ -14095,7 +14061,6 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Typo Tolerance (Typo Tolerance)',
     name: 'typoTolerance_options_params_consequence',
-    default: '',
     displayOptions: {
       show: {
         rule_object: ['consequence_object'],
@@ -14192,6 +14157,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     options: [
       {
         name: 'true',
@@ -14204,7 +14170,6 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Ignore Plurals (Boolean String)',
     name: 'ignorePlurals_options_params_consequence',
-    default: '',
     displayOptions: {
       show: {
         rule_object: ['consequence_object'],
@@ -14218,11 +14183,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       "If true, `ignorePlurals` is active for all languages included in `queryLanguages`, or for all supported languages, if `queryLanguges` is empty.\nIf false, singulars, plurals, and other declensions won't be considered equivalent.\n",
     displayName: 'Ignore Plurals (Boolean)',
     name: 'ignorePlurals_boolean_params_consequence',
-    default: false,
     displayOptions: {
       show: {
         rule_object: ['consequence_object'],
@@ -14280,11 +14245,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       'If true, stop words are removed for all languages you included in `queryLanguages`, or for all supported languages, if `queryLanguages` is empty.\nIf false, stop words are not removed.\n',
     displayName: 'Remove Stop Words (Boolean)',
     name: 'removeStopWords_boolean_params_consequence',
-    default: false,
     displayOptions: {
       show: {
         rule_object: ['consequence_object'],
@@ -14349,10 +14314,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description: 'Whether to enable Personalization.',
     displayName: 'Enable Personalization',
     name: 'enablePersonalization_boolean_params_consequence',
-    default: false,
     displayOptions: {
       show: {
         rule_object: ['consequence_object'],
@@ -14553,11 +14518,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       'Whether to support phrase matching and excluding words from search queries\nUse the `advancedSyntaxFeatures` parameter to control which feature is supported.\n',
     displayName: 'Advanced Syntax',
     name: 'advancedSyntax_boolean_params_consequence',
-    default: false,
     displayOptions: {
       show: {
         rule_object: ['consequence_object'],
@@ -14599,9 +14564,9 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     displayName: 'Optional Words (String)',
     name: 'optionalWords_string_params_consequence',
-    default: '',
     displayOptions: {
       show: {
         rule_object: ['consequence_object'],
@@ -14767,11 +14732,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       'Whether deduplication is turned on. If true, only one member of a group is shown in the search results.',
     displayName: 'Distinct (Boolean)',
     name: 'distinct_boolean_params_consequence',
-    default: '',
     displayOptions: {
       show: {
         rule_object: ['consequence_object'],
@@ -14785,6 +14750,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description:
       "Number of members of a group of records to include in the search results.\n\n- Don't use `distinct > 1` for records that might be [promoted by rules](https://www.algolia.com/doc/guides/managing-results/rules/merchandising-and-promoting/how-to/promote-hits).\n  The number of hits won't be correct and faceting won't work as expected.\n- With `distinct > 1`, the `hitsPerPage` parameter controls the number of returned groups.\n  For example, with `hitsPerPage: 10` and `distinct: 2`, up to 20 records are returned.\n  Likewise, the `nbHits` response attribute contains the number of returned groups.\n",
     typeOptions: {
@@ -14793,7 +14759,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Distinct (Integer)',
     name: 'distinct_number_params_consequence',
-    default: 0,
     displayOptions: {
       show: {
         rule_object: ['consequence_object'],
@@ -14807,11 +14772,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       'Whether to replace a highlighted word with the matched synonym\nBy default, the original words are highlighted even if a synonym matches.\nFor example, with `home` as a synonym for `house` and a search for `home`,\nrecords matching either "home" or "house" are included in the search results,\nand either "home" or "house" are highlighted\nWith `replaceSynonymsInHighlight` set to `true`, a search for `home` still matches the same records,\nbut all occurrences of "house" are replaced by "home" in the highlighted response.\n',
     displayName: 'Replace Synonyms In Highlight',
     name: 'replaceSynonymsInHighlight_boolean_params_consequence',
-    default: false,
     displayOptions: {
       show: {
         rule_object: ['consequence_object'],
@@ -14899,11 +14864,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       'Whether the best matching attribute should be determined by minimum proximity\nThis setting only affects ranking if the Attribute ranking criterion comes before Proximity in the `ranking` setting.\nIf true, the best matching attribute is selected based on the minimum proximity of multiple matches.\nOtherwise, the best matching attribute is determined by the order in the `searchableAttributes` setting.\n',
     displayName: 'Attribute Criteria Computed By Min Proximity',
     name: 'attributeCriteriaComputedByMinProximity_boolean_params_consequence',
-    default: false,
     displayOptions: {
       show: {
         rule_object: ['consequence_object'],
@@ -14928,8 +14893,8 @@ const properties: INodeProperties[] = [
         value: 'facet_ordering_object_renderingContent',
       },
       {
-        name: 'Redirect U RL',
-        value: 'redirect_u_rl_object_renderingContent',
+        name: 'Redirect URL',
+        value: 'redirect_url_object_renderingContent',
       },
       {
         name: 'Widgets',
@@ -14959,8 +14924,8 @@ const properties: INodeProperties[] = [
         value: 'facets_object_facetOrdering',
       },
       {
-        name: 'Value',
-        value: 'value_object_facetOrdering',
+        name: 'Values',
+        value: 'values_object_facetOrdering',
       },
     ],
     displayOptions: {
@@ -15021,27 +14986,27 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    displayName: 'Value',
-    name: 'value_object_facetOrdering_renderingContent_params_consequence',
     type: 'json',
+    displayName: 'Values',
+    name: 'values_object_facetOrdering_renderingContent_params_consequence',
     description: 'Order of facet values. One object for each facet.',
     required: false,
-    default: '',
+    default: '{}',
     displayOptions: {
       show: {
         rule_object: ['consequence_object'],
         consequence_object: ['consequence_params_consequence'],
         consequence_params_consequence: ['rendering_content_object_params'],
         rendering_content_object_params_consequence: ['facet_ordering_object_renderingContent'],
-        facet_ordering_object_renderingContent_params_consequence: ['value_object_facetOrdering'],
+        facet_ordering_object_renderingContent_params_consequence: ['values_object_facetOrdering'],
         resource: ['Rules'],
         operation: ['saveRule'],
       },
     },
   },
   {
-    displayName: 'Redirect U RL',
-    name: 'redirect_u_rl_object_renderingContent_params_consequence',
+    displayName: 'Redirect URL',
+    name: 'redirect_url_object_renderingContent_params_consequence',
     type: 'multiOptions',
     description: 'The redirect rule container.',
     required: false,
@@ -15057,7 +15022,7 @@ const properties: INodeProperties[] = [
         rule_object: ['consequence_object'],
         consequence_object: ['consequence_params_consequence'],
         consequence_params_consequence: ['rendering_content_object_params'],
-        rendering_content_object_params_consequence: ['redirect_u_rl_object_renderingContent'],
+        rendering_content_object_params_consequence: ['redirect_url_object_renderingContent'],
         resource: ['Rules'],
         operation: ['saveRule'],
       },
@@ -15065,16 +15030,16 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     displayName: 'Url',
     name: 'url_string_redirect_renderingContent_params_consequence',
-    default: '',
     displayOptions: {
       show: {
         rule_object: ['consequence_object'],
         consequence_object: ['consequence_params_consequence'],
         consequence_params_consequence: ['rendering_content_object_params'],
-        rendering_content_object_params_consequence: ['redirect_u_rl_object_renderingContent'],
-        redirect_u_rl_object_renderingContent_params_consequence: ['url_string_redirect'],
+        rendering_content_object_params_consequence: ['redirect_url_object_renderingContent'],
+        redirect_url_object_renderingContent_params_consequence: ['url_string_redirect'],
         resource: ['Rules'],
         operation: ['saveRule'],
       },
@@ -15108,7 +15073,7 @@ const properties: INodeProperties[] = [
     type: 'json',
     displayName: 'Banners',
     name: 'banners_json_widgets_renderingContent_params_consequence',
-    default: '',
+    default: '[]',
     description: 'Banners defined in the Merchandising Studio for a given search.',
     required: false,
     displayOptions: {
@@ -15189,9 +15154,9 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     displayName: 'Re Ranking Apply Filter (String)',
     name: 'reRankingApplyFilter_string_params_consequence',
-    default: '',
     displayOptions: {
       show: {
         rule_object: ['consequence_object'],
@@ -15302,7 +15267,7 @@ const properties: INodeProperties[] = [
     type: 'json',
     displayName: 'Edits',
     name: 'edits_json_query_params_consequence',
-    default: '',
+    default: '[]',
     description: 'Changes to make to the search query.',
     required: false,
     displayOptions: {
@@ -15319,9 +15284,9 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     displayName: 'Query (String)',
     name: 'query_string_params_consequence',
-    default: '',
     displayOptions: {
       show: {
         rule_object: ['consequence_object'],
@@ -15343,10 +15308,6 @@ const properties: INodeProperties[] = [
         name: 'Array',
         value: 'array',
       },
-      {
-        name: 'Array',
-        value: 'array',
-      },
     ],
     displayOptions: {
       show: {
@@ -15359,64 +15320,12 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    type: 'fixedCollection',
     displayName: 'Automatic Facet Filters (Array)',
-    name: 'automaticFacetFilters_fixedCollection_params_consequence',
-    default: '',
-    description: undefined,
-    required: false,
-    typeOptions: {
-      multipleValues: true,
-    },
-    options: [
-      {
-        name: 'automaticFacetFilters_fixedCollection_values',
-        displayName: 'Automatic Facet Filters',
-        values: [
-          {
-            type: 'string',
-            description:
-              'Facet name to be applied as filter.\nThe name must match placeholders in the `pattern` parameter.\nFor example, with `pattern: {facet:genre}`, `automaticFacetFilters` must be `genre`.\n',
-            displayName: 'Facet',
-            name: 'facet_string_automaticFacetFilters',
-            default: '',
-          },
-          {
-            type: 'number',
-            default: 1,
-            description: 'Filter scores to give different weights to individual filters.',
-            displayName: 'Score',
-            name: 'score_number_automaticFacetFilters',
-          },
-          {
-            type: 'boolean',
-            description:
-              'Whether the filter is disjunctive or conjunctive.\n\nIf true the filter has multiple matches, multiple occurrences are combined with the logical `OR` operation.\nIf false, multiple occurrences are combined with the logical `AND` operation.\n',
-            displayName: 'Disjunctive',
-            name: 'disjunctive_boolean_automaticFacetFilters',
-            default: false,
-          },
-        ],
-      },
-    ],
-    displayOptions: {
-      show: {
-        rule_object: ['consequence_object'],
-        consequence_object: ['consequence_params_consequence'],
-        consequence_params_consequence: ['automaticfacetfilters_params'],
-        automaticFacetFilters_params_consequence: ['array'],
-        resource: ['Rules'],
-        operation: ['saveRule'],
-      },
-    },
-  },
-  {
+    name: 'automaticFacetFilters_array_params_consequence',
     type: 'json',
-    displayName: 'Automatic Facet Filters (Array)',
-    name: 'automaticFacetFilters_json_params_consequence',
-    default: '[]',
-    description: undefined,
+    description: '',
     required: false,
+    default: '[]',
     displayOptions: {
       show: {
         rule_object: ['consequence_object'],
@@ -15438,10 +15347,6 @@ const properties: INodeProperties[] = [
         name: 'Array',
         value: 'array',
       },
-      {
-        name: 'Array',
-        value: 'array',
-      },
     ],
     displayOptions: {
       show: {
@@ -15454,64 +15359,12 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    type: 'fixedCollection',
     displayName: 'Automatic Optional Facet Filters (Array)',
-    name: 'automaticOptionalFacetFilters_fixedCollection_params_consequence',
-    default: '',
-    description: undefined,
-    required: false,
-    typeOptions: {
-      multipleValues: true,
-    },
-    options: [
-      {
-        name: 'automaticOptionalFacetFilters_fixedCollection_values',
-        displayName: 'Automatic Optional Facet Filters',
-        values: [
-          {
-            type: 'string',
-            description:
-              'Facet name to be applied as filter.\nThe name must match placeholders in the `pattern` parameter.\nFor example, with `pattern: {facet:genre}`, `automaticFacetFilters` must be `genre`.\n',
-            displayName: 'Facet',
-            name: 'facet_string_automaticOptionalFacetFilters',
-            default: '',
-          },
-          {
-            type: 'number',
-            default: 1,
-            description: 'Filter scores to give different weights to individual filters.',
-            displayName: 'Score',
-            name: 'score_number_automaticOptionalFacetFilters',
-          },
-          {
-            type: 'boolean',
-            description:
-              'Whether the filter is disjunctive or conjunctive.\n\nIf true the filter has multiple matches, multiple occurrences are combined with the logical `OR` operation.\nIf false, multiple occurrences are combined with the logical `AND` operation.\n',
-            displayName: 'Disjunctive',
-            name: 'disjunctive_boolean_automaticOptionalFacetFilters',
-            default: false,
-          },
-        ],
-      },
-    ],
-    displayOptions: {
-      show: {
-        rule_object: ['consequence_object'],
-        consequence_object: ['consequence_params_consequence'],
-        consequence_params_consequence: ['automaticoptionalfacetfilters_params'],
-        automaticOptionalFacetFilters_params_consequence: ['array'],
-        resource: ['Rules'],
-        operation: ['saveRule'],
-      },
-    },
-  },
-  {
+    name: 'automaticOptionalFacetFilters_array_params_consequence',
     type: 'json',
-    displayName: 'Automatic Optional Facet Filters (Array)',
-    name: 'automaticOptionalFacetFilters_json_params_consequence',
-    default: '[]',
-    description: undefined,
+    description: '',
     required: false,
+    default: '[]',
     displayOptions: {
       show: {
         rule_object: ['consequence_object'],
@@ -15537,8 +15390,8 @@ const properties: INodeProperties[] = [
         value: 'facet_ordering_object_renderingContent',
       },
       {
-        name: 'Redirect U RL',
-        value: 'redirect_u_rl_object_renderingContent',
+        name: 'Redirect URL',
+        value: 'redirect_url_object_renderingContent',
       },
       {
         name: 'Widgets',
@@ -15568,8 +15421,8 @@ const properties: INodeProperties[] = [
         value: 'facets_object_facetOrdering',
       },
       {
-        name: 'Value',
-        value: 'value_object_facetOrdering',
+        name: 'Values',
+        value: 'values_object_facetOrdering',
       },
     ],
     displayOptions: {
@@ -15630,27 +15483,27 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    displayName: 'Value',
-    name: 'value_object_facetOrdering_renderingContent_params_consequence',
     type: 'json',
+    displayName: 'Values',
+    name: 'values_object_facetOrdering_renderingContent_params_consequence',
     description: 'Order of facet values. One object for each facet.',
     required: false,
-    default: '',
+    default: '{}',
     displayOptions: {
       show: {
         rule_object: ['consequence_object'],
         consequence_object: ['consequence_params_consequence'],
         consequence_params_consequence: ['rendering_content_object_params'],
         rendering_content_object_params_consequence: ['facet_ordering_object_renderingContent'],
-        facet_ordering_object_renderingContent_params_consequence: ['value_object_facetOrdering'],
+        facet_ordering_object_renderingContent_params_consequence: ['values_object_facetOrdering'],
         resource: ['Rules'],
         operation: ['saveRule'],
       },
     },
   },
   {
-    displayName: 'Redirect U RL',
-    name: 'redirect_u_rl_object_renderingContent_params_consequence',
+    displayName: 'Redirect URL',
+    name: 'redirect_url_object_renderingContent_params_consequence',
     type: 'multiOptions',
     description: 'The redirect rule container.',
     required: false,
@@ -15666,7 +15519,7 @@ const properties: INodeProperties[] = [
         rule_object: ['consequence_object'],
         consequence_object: ['consequence_params_consequence'],
         consequence_params_consequence: ['rendering_content_object_params'],
-        rendering_content_object_params_consequence: ['redirect_u_rl_object_renderingContent'],
+        rendering_content_object_params_consequence: ['redirect_url_object_renderingContent'],
         resource: ['Rules'],
         operation: ['saveRule'],
       },
@@ -15674,16 +15527,16 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     displayName: 'Url',
     name: 'url_string_redirect_renderingContent_params_consequence',
-    default: '',
     displayOptions: {
       show: {
         rule_object: ['consequence_object'],
         consequence_object: ['consequence_params_consequence'],
         consequence_params_consequence: ['rendering_content_object_params'],
-        rendering_content_object_params_consequence: ['redirect_u_rl_object_renderingContent'],
-        redirect_u_rl_object_renderingContent_params_consequence: ['url_string_redirect'],
+        rendering_content_object_params_consequence: ['redirect_url_object_renderingContent'],
+        redirect_url_object_renderingContent_params_consequence: ['url_string_redirect'],
         resource: ['Rules'],
         operation: ['saveRule'],
       },
@@ -15717,7 +15570,7 @@ const properties: INodeProperties[] = [
     type: 'json',
     displayName: 'Banners',
     name: 'banners_json_widgets_renderingContent_params_consequence',
-    default: '',
+    default: '[]',
     description: 'Banners defined in the Merchandising Studio for a given search.',
     required: false,
     displayOptions: {
@@ -15751,11 +15604,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       'Determines whether promoted records must also match active filters for the consequence to apply.\n\nThis ensures user-applied filters take priority and irrelevant matches aren\'t shown.\nFor example, if you promote a record with `color: red` but the user filters for `color: blue`,\nthe "red" record won\'t be shown.\n\n> In the Algolia dashboard, when you use the **Pin an item** consequence, `filterPromotes` appears as the checkbox: **Pinned items must match active filters to be displayed.** For examples, see [Promote results with rules](https://www.algolia.com/doc/guides/managing-results/rules/merchandising-and-promoting/how-to/promote-hits/#promote-results-matching-active-filters).\n',
     displayName: 'Filter Promotes',
     name: 'filterPromotes_boolean_consequence',
-    default: false,
     displayOptions: {
       show: {
         rule_object: ['consequence_object'],
@@ -15766,35 +15619,33 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    type: 'fixedCollection',
+    type: 'json',
     displayName: 'Hide',
-    name: 'hide_fixedCollection_consequence',
-    default: '',
+    name: 'hide_json_consequence',
+    default: '[]',
     description: 'Records you want to hide from the search results.',
     required: false,
-    typeOptions: {
-      multipleValues: true,
-    },
-    options: [
-      {
-        name: 'hide_fixedCollection_values',
-        displayName: 'Hide',
-        values: [
-          {
-            type: 'string',
-            placeholder: 'test-record-123',
-            description: 'Unique record identifier.',
-            displayName: 'Object ID',
-            name: 'objectID_string_hide',
-            default: '',
-          },
-        ],
-      },
-    ],
     displayOptions: {
       show: {
         rule_object: ['consequence_object'],
-        consequence_object: ['hide_fixedCollection_consequence'],
+        consequence_object: ['hide_json_consequence'],
+        resource: ['Rules'],
+        operation: ['saveRule'],
+      },
+    },
+  },
+  {
+    type: 'json',
+    displayName: 'User Data',
+    name: 'user_data_object_consequence',
+    description:
+      "A JSON object with custom data that will be appended to the `userData` array in the response.\nThis object isn't interpreted by the API and is limited to 1&nbsp;kB of minified JSON.\n",
+    required: false,
+    default: '{}',
+    displayOptions: {
+      show: {
+        rule_object: ['consequence_object'],
+        consequence_object: ['user_data_object_consequence'],
         resource: ['Rules'],
         operation: ['saveRule'],
       },
@@ -15803,6 +15654,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'Display a promotional banner',
+    default: '',
     description:
       "Description of the rule's purpose to help you distinguish between different rules.",
     routing: {
@@ -15814,7 +15666,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Description',
     name: 'description_string',
-    default: '',
     displayOptions: {
       show: {
         rule_object: ['description_string'],
@@ -15845,48 +15696,22 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    type: 'fixedCollection',
+    type: 'json',
     displayName: 'Validity',
-    name: 'validity_fixedCollection',
-    default: '',
+    name: 'validity_json',
+    default: '[]',
     description: 'Time periods when the rule is active.',
     required: false,
-    typeOptions: {
-      multipleValues: true,
-    },
-    options: [
-      {
-        name: 'validity_fixedCollection_values',
-        displayName: 'Validity',
-        values: [
-          {
-            type: 'number',
-            description: 'When the rule should start to be active, in Unix epoch time.',
-            displayName: 'From',
-            name: 'from_number_validity',
-            default: '',
-          },
-          {
-            type: 'number',
-            description: 'When the rule should stop to be active, in Unix epoch time.',
-            displayName: 'Until',
-            name: 'until_number_validity',
-            default: '',
-          },
-        ],
-      },
-    ],
     routing: {
       send: {
         type: 'body',
-        value:
-          '={{ $parameter.values?.map(item => ({ from: typeof item.from_number_validity !== "undefined" ? item.from_number_validity : undefined, until: typeof item.until_number_validity !== "undefined" ? item.until_number_validity : undefined })) }}',
+        value: '={{ $value }}',
         property: 'validity',
       },
     },
     displayOptions: {
       show: {
-        rule_object: ['validity_fixedCollection'],
+        rule_object: ['validity_json'],
         resource: ['Rules'],
         operation: ['saveRule'],
       },
@@ -15895,9 +15720,9 @@ const properties: INodeProperties[] = [
   {
     type: 'options',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     displayName: 'Index Name',
     name: 'indexName_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -15935,10 +15760,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Unique identifier of a rule object.',
     displayName: 'Object ID',
     name: 'objectID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -15949,6 +15774,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     routing: {
       request: {
         qs: {
@@ -15958,7 +15784,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Forward To Replicas',
     name: 'forwardToReplicas_boolean',
-    default: '',
     displayOptions: {
       show: {
         resource: ['Rules'],
@@ -15969,9 +15794,9 @@ const properties: INodeProperties[] = [
   {
     type: 'options',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     displayName: 'Index Name',
     name: 'indexName_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -16009,6 +15834,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     routing: {
       request: {
         qs: {
@@ -16018,7 +15844,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Forward To Replicas',
     name: 'forwardToReplicas_boolean',
-    default: '',
     displayOptions: {
       show: {
         resource: ['Rules'],
@@ -16028,6 +15853,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     routing: {
       request: {
         qs: {
@@ -16037,7 +15863,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Clear Existing Rules',
     name: 'clearExistingRules_boolean',
-    default: '',
     displayOptions: {
       show: {
         resource: ['Rules'],
@@ -16047,12 +15872,16 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'json',
-    displayName: 'Json',
-    name: 'json',
-    default: '',
+    displayName: 'Body',
+    name: 'body',
+    default: '[]',
     description: 'Rules to add or replace.',
     required: false,
-    routing: undefined,
+    routing: {
+      request: {
+        body: '={{ $value }}',
+      },
+    },
     displayOptions: {
       show: {
         resource: ['Rules'],
@@ -16063,9 +15892,9 @@ const properties: INodeProperties[] = [
   {
     type: 'options',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     displayName: 'Index Name',
     name: 'indexName_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -16103,6 +15932,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     routing: {
       request: {
         qs: {
@@ -16112,7 +15942,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Forward To Replicas',
     name: 'forwardToReplicas_boolean',
-    default: '',
     displayOptions: {
       show: {
         resource: ['Rules'],
@@ -16123,9 +15952,9 @@ const properties: INodeProperties[] = [
   {
     type: 'options',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     displayName: 'Index Name',
     name: 'indexName_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -16203,6 +16032,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Search query for rules.',
     routing: {
       send: {
@@ -16213,7 +16043,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Query',
     name: 'query_string',
-    default: '',
     displayOptions: {
       show: {
         search_rules_params_object: ['query_string'],
@@ -16224,6 +16053,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     description:
       'Which part of the search query the pattern should match:\n\n- `startsWith`. The pattern must match the beginning of the query.\n- `endsWith`. The pattern must match the end of the query.\n- `is`. The pattern must match the query exactly.\n- `contains`. The pattern must match anywhere in the query.\n\nEmpty queries are only allowed as patterns with `anchoring: is`.\n',
     options: [
@@ -16253,7 +16083,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Anchoring',
     name: 'anchoring_options',
-    default: '',
     displayOptions: {
       show: {
         search_rules_params_object: ['anchoring_options'],
@@ -16265,6 +16094,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'mobile',
+    default: '',
     description: 'Only return rules that match the context (exact match).',
     routing: {
       send: {
@@ -16275,7 +16105,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Context',
     name: 'context_string',
-    default: '',
     displayOptions: {
       show: {
         search_rules_params_object: ['context_string'],
@@ -16286,6 +16115,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description:
       'Requested page of the API response.\n\nAlgolia uses `page` and `hitsPerPage` to control how search results are displayed ([paginated](https://www.algolia.com/doc/guides/building-search-ui/ui-and-ux-patterns/pagination/js)).\n\n- `hitsPerPage`: sets the number of search results (_hits_) displayed per page.\n- `page`: specifies the page number of the search results you want to retrieve. Page numbering starts at 0, so the first page is `page=0`, the second is `page=1`, and so on.\n\nFor example, to display 10 results per page starting from the third page, set `hitsPerPage` to 10 and `page` to 2.\n',
     typeOptions: {
@@ -16300,7 +16130,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Page',
     name: 'page_number',
-    default: '',
     displayOptions: {
       show: {
         search_rules_params_object: ['page_number'],
@@ -16368,11 +16197,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       'If `true`, return only enabled rules.\nIf `false`, return only inactive rules.\nBy default, _all_ rules are returned.\n',
     displayName: 'Enabled (Boolean)',
     name: 'enabled_boolean',
-    default: '',
     displayOptions: {
       show: {
         search_rules_params_object: ['enabled'],
@@ -16405,6 +16234,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     options: [
       {
         name: 'plurals',
@@ -16421,7 +16251,6 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Dictionary Name',
     name: 'dictionaryName_options',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -16456,6 +16285,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       'Whether to replace all custom entries in the dictionary with the ones sent with this request.',
     routing: {
@@ -16467,7 +16297,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Clear Existing Dictionary Entries',
     name: 'clearExistingDictionaryEntries_boolean',
-    default: false,
     displayOptions: {
       show: {
         batch_dictionary_entries_params_object: ['clearExistingDictionaryEntries_boolean'],
@@ -16480,13 +16309,13 @@ const properties: INodeProperties[] = [
     type: 'json',
     displayName: 'Requests',
     name: 'requests_json',
-    default: '',
+    default: '[]',
     description: 'List of additions and deletions to your dictionaries.',
-    required: false,
+    required: true,
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'requests',
       },
     },
@@ -16500,6 +16329,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     options: [
       {
         name: 'plurals',
@@ -16516,7 +16346,6 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Dictionary Name',
     name: 'dictionaryName_options',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -16559,6 +16388,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Search query.',
     routing: {
       send: {
@@ -16569,7 +16399,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Query',
     name: 'query_string',
-    default: '',
     displayOptions: {
       show: {
         search_dictionary_entries_params_object: ['query_string'],
@@ -16577,9 +16406,11 @@ const properties: INodeProperties[] = [
         operation: ['searchDictionaryEntries'],
       },
     },
+    required: true,
   },
   {
     type: 'number',
+    default: '',
     description: 'Page of search results to retrieve.',
     typeOptions: {
       minValue: 0,
@@ -16593,7 +16424,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Page',
     name: 'page_number',
-    default: 0,
     displayOptions: {
       show: {
         search_dictionary_entries_params_object: ['page_number'],
@@ -16629,6 +16459,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     description: 'ISO code for a supported language.',
     options: [
       {
@@ -16913,7 +16744,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Language',
     name: 'language_options',
-    default: '',
     displayOptions: {
       show: {
         search_dictionary_entries_params_object: ['language_options'],
@@ -16948,7 +16778,7 @@ const properties: INodeProperties[] = [
     type: 'multiOptions',
     description:
       'Key-value pairs of [supported language ISO codes](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/handling-natural-languages-nlp/in-depth/supported-languages) and boolean values.\n',
-    required: false,
+    required: true,
     default: [],
     options: [
       {
@@ -16969,7 +16799,7 @@ const properties: INodeProperties[] = [
         type: 'body',
         property: 'disableStandardEntries',
         value:
-          '={{ { "plurals": typeof $parameter.plurals_boolean_disableStandardEntries !== "undefined" ? $parameter.plurals_boolean_disableStandardEntries : typeof $parameter.plurals_null_disableStandardEntries !== "undefined" ? JSON.parse($parameter.plurals_null_disableStandardEntries) : undefined, "stopwords": typeof $parameter.stopwords_boolean_disableStandardEntries !== "undefined" ? $parameter.stopwords_boolean_disableStandardEntries : typeof $parameter.stopwords_null_disableStandardEntries !== "undefined" ? JSON.parse($parameter.stopwords_null_disableStandardEntries) : undefined, "compounds": typeof $parameter.compounds_boolean_disableStandardEntries !== "undefined" ? $parameter.compounds_boolean_disableStandardEntries : typeof $parameter.compounds_null_disableStandardEntries !== "undefined" ? JSON.parse($parameter.compounds_null_disableStandardEntries) : undefined } }}',
+          '={{ { "plurals": typeof $parameter.plurals_object_disableStandardEntries !== "undefined" ? JSON.parse($parameter.plurals_object_disableStandardEntries) : typeof $parameter.plurals_null_disableStandardEntries !== "undefined" ? JSON.parse($parameter.plurals_null_disableStandardEntries) : undefined, "stopwords": typeof $parameter.stopwords_object_disableStandardEntries !== "undefined" ? JSON.parse($parameter.stopwords_object_disableStandardEntries) : typeof $parameter.stopwords_null_disableStandardEntries !== "undefined" ? JSON.parse($parameter.stopwords_null_disableStandardEntries) : undefined, "compounds": typeof $parameter.compounds_object_disableStandardEntries !== "undefined" ? JSON.parse($parameter.compounds_object_disableStandardEntries) : typeof $parameter.compounds_null_disableStandardEntries !== "undefined" ? JSON.parse($parameter.compounds_null_disableStandardEntries) : undefined } }}',
       },
     },
     displayOptions: {
@@ -17005,21 +16835,12 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    type: 'fixedCollection',
+    type: 'json',
     displayName: 'Plurals (Object)',
-    name: 'plurals_boolean_disableStandardEntries',
-    default: '',
+    name: 'plurals_object_disableStandardEntries',
     description: 'Key-value pair of a language ISO code and a boolean value.',
-    typeOptions: {
-      multipleValues: true,
-    },
-    options: [
-      {
-        name: 'plurals_boolean',
-        displayName: 'Plurals',
-        values: [],
-      },
-    ],
+    required: false,
+    default: '{}',
     displayOptions: {
       show: {
         dictionary_settings_params_object: ['standard_entries_object'],
@@ -17077,21 +16898,12 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    type: 'fixedCollection',
+    type: 'json',
     displayName: 'Stopwords (Object)',
-    name: 'stopwords_boolean_disableStandardEntries',
-    default: '',
+    name: 'stopwords_object_disableStandardEntries',
     description: 'Key-value pair of a language ISO code and a boolean value.',
-    typeOptions: {
-      multipleValues: true,
-    },
-    options: [
-      {
-        name: 'stopwords_boolean',
-        displayName: 'Stopwords',
-        values: [],
-      },
-    ],
+    required: false,
+    default: '{}',
     displayOptions: {
       show: {
         dictionary_settings_params_object: ['standard_entries_object'],
@@ -17149,21 +16961,12 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    type: 'fixedCollection',
+    type: 'json',
     displayName: 'Compounds (Object)',
-    name: 'compounds_boolean_disableStandardEntries',
-    default: '',
+    name: 'compounds_object_disableStandardEntries',
     description: 'Key-value pair of a language ISO code and a boolean value.',
-    typeOptions: {
-      multipleValues: true,
-    },
-    options: [
-      {
-        name: 'compounds_boolean',
-        displayName: 'Compounds',
-        values: [],
-      },
-    ],
+    required: false,
+    default: '{}',
     displayOptions: {
       show: {
         dictionary_settings_params_object: ['standard_entries_object'],
@@ -17199,6 +17002,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'user1',
+    default: '',
     description: 'Unique identifier of the user who makes the search request.',
     typeOptions: {
       pattern: '^[a-zA-Z0-9 \-*.]+$',
@@ -17212,7 +17016,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'X-Algolia-User-ID',
     name: 'X-Algolia-User-ID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -17244,6 +17047,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'c11-test',
+    default: '',
     description: 'Cluster name.',
     routing: {
       send: {
@@ -17254,7 +17058,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Cluster',
     name: 'cluster_string',
-    default: '',
     displayOptions: {
       show: {
         assign_user_id_params_object: ['cluster_string'],
@@ -17262,6 +17065,7 @@ const properties: INodeProperties[] = [
         operation: ['assignUserId'],
       },
     },
+    required: true,
   },
   {
     type: 'options',
@@ -17294,12 +17098,12 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     typeOptions: {
       minValue: 0,
     },
     displayName: 'Page (Integer)',
     name: 'page_number',
-    default: '',
     displayOptions: {
       show: {
         page: ['integer'],
@@ -17350,6 +17154,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'user1',
+    default: '',
     description: 'Unique identifier of the user who makes the search request.',
     typeOptions: {
       pattern: '^[a-zA-Z0-9 \-*.]+$',
@@ -17363,7 +17168,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'X-Algolia-User-ID',
     name: 'X-Algolia-User-ID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -17399,6 +17203,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'c11-test',
+    default: '',
     description: 'Cluster name.',
     routing: {
       send: {
@@ -17409,7 +17214,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Cluster',
     name: 'cluster_string',
-    default: '',
     displayOptions: {
       show: {
         batch_assign_user_ids_params_object: ['cluster_string'],
@@ -17417,6 +17221,7 @@ const properties: INodeProperties[] = [
         operation: ['batchAssignUserIds'],
       },
     },
+    required: true,
   },
   {
     type: 'json',
@@ -17424,11 +17229,11 @@ const properties: INodeProperties[] = [
     name: 'users_json',
     default: '[]',
     description: 'User IDs to assign.',
-    required: false,
+    required: true,
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'users',
       },
     },
@@ -17443,13 +17248,13 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'user1',
+    default: '',
     description: 'Unique identifier of the user who makes the search request.',
     typeOptions: {
       pattern: '^[a-zA-Z0-9 \-*.]+$',
     },
     displayName: 'User ID',
     name: 'userID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -17461,13 +17266,13 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'user1',
+    default: '',
     description: 'Unique identifier of the user who makes the search request.',
     typeOptions: {
       pattern: '^[a-zA-Z0-9 \-*.]+$',
     },
     displayName: 'User ID',
     name: 'userID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -17510,6 +17315,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     routing: {
       send: {
         type: 'body',
@@ -17519,7 +17325,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Query',
     name: 'query_string',
-    default: '',
     displayOptions: {
       show: {
         search_user_ids_params_object: ['query_string'],
@@ -17527,10 +17332,12 @@ const properties: INodeProperties[] = [
         operation: ['searchUserIds'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
     placeholder: 'c11-test',
+    default: '',
     description: 'Cluster name.',
     routing: {
       send: {
@@ -17541,7 +17348,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Cluster Name',
     name: 'clusterName_string',
-    default: '',
     displayOptions: {
       show: {
         search_user_ids_params_object: ['clusterName_string'],
@@ -17552,6 +17358,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description: 'Page of search results to retrieve.',
     typeOptions: {
       minValue: 0,
@@ -17565,7 +17372,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Page',
     name: 'page_number',
-    default: 0,
     displayOptions: {
       show: {
         search_user_ids_params_object: ['page_number'],
@@ -17601,6 +17407,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     routing: {
       request: {
         qs: {
@@ -17610,7 +17417,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Get Clusters',
     name: 'getClusters_boolean',
-    default: '',
     displayOptions: {
       show: {
         resource: ['Clusters'],
@@ -17619,54 +17425,17 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    type: 'fixedCollection',
+    type: 'json',
     displayName: 'Sources',
-    name: 'sources_fixedCollection',
-    default: '',
+    name: 'sources_json',
+    default: '[]',
     description: 'Sources.',
     required: false,
-    typeOptions: {
-      multipleValues: true,
-    },
-    options: [
-      {
-        name: 'sources_fixedCollection_values',
-        displayName: 'Sources',
-        values: [
-          {
-            type: 'string',
-            placeholder: '10.0.0.1/32',
-            description: 'IP address range of the source.',
-            routing: {
-              send: {
-                type: 'body',
-                value: '={{ $value }}',
-                property: 'source',
-              },
-            },
-            displayName: 'Source',
-            name: 'source_string',
-            default: '',
-          },
-          {
-            type: 'string',
-            placeholder: 'Server subnet',
-            description: 'Source description.',
-            routing: {
-              send: {
-                type: 'body',
-                value: '={{ $value }}',
-                property: 'description',
-              },
-            },
-            displayName: 'Description',
-            name: 'description_string',
-            default: '',
-          },
-        ],
+    routing: {
+      request: {
+        body: '={{ $value }}',
       },
-    ],
-    routing: undefined,
+    },
     displayOptions: {
       show: {
         resource: ['Vaults'],
@@ -17701,6 +17470,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '10.0.0.1/32',
+    default: '',
     description: 'IP address range of the source.',
     routing: {
       send: {
@@ -17711,7 +17481,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Source',
     name: 'source_string',
-    default: '',
     displayOptions: {
       show: {
         source_object: ['source_string'],
@@ -17719,10 +17488,12 @@ const properties: INodeProperties[] = [
         operation: ['appendSource'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
     placeholder: 'Server subnet',
+    default: '',
     description: 'Source description.',
     routing: {
       send: {
@@ -17733,7 +17504,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Description',
     name: 'description_string',
-    default: '',
     displayOptions: {
       show: {
         source_object: ['description_string'],
@@ -17745,9 +17515,9 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '10.0.0.1/32',
+    default: '',
     displayName: 'Source',
     name: 'source_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -17758,6 +17528,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -17767,7 +17538,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Offset',
     name: 'offset_number',
-    default: 0,
     displayOptions: {
       show: {
         resource: ['Advanced'],
@@ -17829,9 +17599,9 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     displayName: 'Index Name (String)',
     name: 'indexName_string',
-    default: '',
     displayOptions: {
       show: {
         indexName: ['string'],
@@ -17927,9 +17697,9 @@ const properties: INodeProperties[] = [
   {
     type: 'number',
     placeholder: '1506303845001',
+    default: '',
     displayName: 'Task ID',
     name: 'taskID_number',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -17941,9 +17711,9 @@ const properties: INodeProperties[] = [
   {
     type: 'options',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     displayName: 'Index Name',
     name: 'indexName_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -17982,9 +17752,9 @@ const properties: INodeProperties[] = [
   {
     type: 'number',
     placeholder: '1506303845001',
+    default: '',
     displayName: 'Task ID',
     name: 'taskID_number',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -17996,9 +17766,9 @@ const properties: INodeProperties[] = [
   {
     type: 'options',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     displayName: 'Index Name',
     name: 'indexName_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -18065,6 +17835,7 @@ const properties: INodeProperties[] = [
   {
     type: 'options',
     placeholder: 'copy',
+    default: '',
     description: 'Operation to perform on the index.',
     options: [
       {
@@ -18085,7 +17856,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Operation',
     name: 'operation_options',
-    default: '',
     displayOptions: {
       show: {
         operation_index_params_object: ['operation_options'],
@@ -18093,10 +17863,12 @@ const properties: INodeProperties[] = [
         operation: ['operationIndex'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
     placeholder: 'products',
+    default: '',
     description: 'Index name (case-sensitive).',
     routing: {
       send: {
@@ -18107,7 +17879,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Destination',
     name: 'destination_string',
-    default: '',
     displayOptions: {
       show: {
         operation_index_params_object: ['destination_string'],
@@ -18115,6 +17886,7 @@ const properties: INodeProperties[] = [
         operation: ['operationIndex'],
       },
     },
+    required: true,
   },
   {
     type: 'json',
@@ -18127,7 +17899,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'scope',
       },
     },
@@ -18170,12 +17942,12 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     typeOptions: {
       minValue: 0,
     },
     displayName: 'Page (Integer)',
     name: 'page_number',
-    default: '',
     displayOptions: {
       show: {
         page: ['integer'],
