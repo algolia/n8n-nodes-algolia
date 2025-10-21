@@ -1,3 +1,7 @@
+## [0.8.1](https://github.com/algolia/n8n-nodes-algolia/compare/v0.8.0...v0.8.1) (2025-10-21)
+
+
+
 # [0.8.0](https://github.com/algolia/n8n-nodes-algolia/compare/v0.7.0...v0.8.0) (2025-10-21)
 
 ### Features
