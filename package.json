@@ -25,8 +25,8 @@
     "build": "vite build",
     "dev": "vite build --watch",
     "format": "prettier nodes credentials --write",
-    "lint": "npx n8n-node lint",
-    "lintfix": "npx n8n-node lint --fix",
+    "lint": "n8n-node lint",
+    "lintfix": "n8n-node lint --fix",
     "generate-properties": "npx tsx scripts/generate-properties.ts",
     "generate-specs-index": "npx tsx scripts/generate-specs-index.ts",
     "generate-readme-operations": "npx tsx scripts/generate-readme-operations.ts",
@@ -48,8 +48,8 @@
     "@algolia/n8n-openapi-node": "^1.3.0",
     "@typescript-eslint/parser": "~8.32.0",
     "concurrently": "^9.2.0",
-    "eslint": "^8.57.0",
-    "eslint-plugin-n8n-nodes-base": "^1.16.3",
+    "eslint": "^9.38.0",
+    "eslint-plugin-n8n-nodes-base": "^1.16.4",
     "openapi-types": "12.1.3",
     "prettier": "^3.5.3",
     "shelljs": "^0.10.0",
@@ -62,5 +62,8 @@
   },
   "peerDependencies": {
     "n8n-workflow": "^1.107.0"
+  },
+  "dependencies": {
+    "@n8n/node-cli": "^0.13.0"
   }
 }
