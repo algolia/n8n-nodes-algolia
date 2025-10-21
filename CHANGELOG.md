@@ -1,3 +1,12 @@
+# [0.8.0](https://github.com/algolia/n8n-nodes-algolia/compare/v0.7.0...v0.8.0) (2025-10-21)
+
+
+### Features
+
+* update OpenAPI specs ([#32](https://github.com/algolia/n8n-nodes-algolia/issues/32)) ([7b86df0](https://github.com/algolia/n8n-nodes-algolia/commit/7b86df0b06b71d9edebf203a0167d362b316d065))
+
+
+
 # [0.7.0](https://github.com/algolia/n8n-nodes-algolia/compare/v0.6.0...v0.7.0) (2025-10-08)
 
 ### Features
