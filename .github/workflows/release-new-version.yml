@@ -40,7 +40,6 @@ jobs:
           echo "$CHANGELOG" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
       - name: Notify Slack
-        if: success()
         run: |
           FEATURES=$(echo "$CHANGELOG" | awk '/### Features/{flag=1; next} /^###/{flag=0} flag && /^-/ {print}' | sed 's/ (.*//')
           BUG_FIXES=$(echo "$CHANGELOG" | awk '/### Bug Fixes/{flag=1; next} /^###/{flag=0} flag && /^-/ {print}' | sed 's/ (.*//')
