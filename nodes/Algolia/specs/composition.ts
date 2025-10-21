@@ -246,10 +246,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'my_composition_object_id',
+    default: '',
     description: 'Composition unique identifier.',
     displayName: 'Composition ID',
     name: 'compositionID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -391,8 +391,8 @@ const properties: INodeProperties[] = [
         value: 'enableReRanking_boolean_params',
       },
       {
-        name: 'External Injected Item',
-        value: 'external_injected_item_object_params',
+        name: 'Injected Items',
+        value: 'injected_items_object_params',
       },
     ],
     routing: {
@@ -400,7 +400,7 @@ const properties: INodeProperties[] = [
         type: 'body',
         property: 'params',
         value:
-          '={{ { "query": typeof $parameter.query_string_params !== "undefined" ? $parameter.query_string_params : undefined, "filters": typeof $parameter.filters_string_params !== "undefined" ? $parameter.filters_string_params : undefined, "page": typeof $parameter.page_number_params !== "undefined" ? $parameter.page_number_params : undefined, "getRankingInfo": typeof $parameter.getRankingInfo_boolean_params !== "undefined" ? $parameter.getRankingInfo_boolean_params : undefined, "relevancyStrictness": typeof $parameter.relevancyStrictness_number_params !== "undefined" ? $parameter.relevancyStrictness_number_params : undefined, "facetFilters": typeof $parameter.facetFilters_json_params !== "undefined" ? JSON.parse($parameter.facetFilters_json_params) : typeof $parameter.facetFilters_string_params !== "undefined" ? $parameter.facetFilters_string_params : undefined, "optionalFilters": typeof $parameter.optionalFilters_json_params !== "undefined" ? JSON.parse($parameter.optionalFilters_json_params) : typeof $parameter.optionalFilters_string_params !== "undefined" ? $parameter.optionalFilters_string_params : undefined, "numericFilters": typeof $parameter.numericFilters_json_params !== "undefined" ? JSON.parse($parameter.numericFilters_json_params) : typeof $parameter.numericFilters_string_params !== "undefined" ? $parameter.numericFilters_string_params : undefined, "hitsPerPage": typeof $parameter.hitsPerPage_number_params !== "undefined" ? $parameter.hitsPerPage_number_params : undefined, "aroundLatLng": typeof $parameter.aroundLatLng_string_params !== "undefined" ? $parameter.aroundLatLng_string_params : undefined, "aroundLatLngViaIP": typeof $parameter.aroundLatLngViaIP_boolean_params !== "undefined" ? $parameter.aroundLatLngViaIP_boolean_params : undefined, "aroundRadius": typeof $parameter.aroundRadius_number_params !== "undefined" ? $parameter.aroundRadius_number_params : typeof $parameter.aroundRadius_options_params !== "undefined" ? $parameter.aroundRadius_options_params : undefined, "aroundPrecision": typeof $parameter.aroundPrecision_number_params !== "undefined" ? $parameter.aroundPrecision_number_params : typeof $parameter.aroundPrecision_fixedCollection_params.aroundPrecision_fixedCollection_values !== "undefined" ? $parameter.aroundPrecision_fixedCollection_params.aroundPrecision_fixedCollection_values?.map(item => ({ from: typeof item.from_number_aroundPrecision !== "undefined" ? item.from_number_aroundPrecision : undefined, value: typeof item.value_number_aroundPrecision !== "undefined" ? item.value_number_aroundPrecision : undefined })) : undefined, "minimumAroundRadius": typeof $parameter.minimumAroundRadius_number_params !== "undefined" ? $parameter.minimumAroundRadius_number_params : undefined, "insideBoundingBox": typeof $parameter.insideBoundingBox_string_params !== "undefined" ? $parameter.insideBoundingBox_string_params : typeof $parameter.insideBoundingBox_null_params !== "undefined" ? JSON.parse($parameter.insideBoundingBox_null_params) : typeof $parameter.insideBoundingBox_json_params !== "undefined" ? JSON.parse($parameter.insideBoundingBox_json_params) : undefined, "insidePolygon": typeof $parameter.insidePolygon_json_params !== "undefined" ? JSON.parse($parameter.insidePolygon_json_params) : undefined, "queryLanguages": typeof $parameter.queryLanguages_json_params !== "undefined" ? JSON.parse($parameter.queryLanguages_json_params) : undefined, "naturalLanguages": typeof $parameter.naturalLanguages_json_params !== "undefined" ? JSON.parse($parameter.naturalLanguages_json_params) : undefined, "enableRules": typeof $parameter.enableRules_boolean_params !== "undefined" ? $parameter.enableRules_boolean_params : undefined, "ruleContexts": typeof $parameter.ruleContexts_json_params !== "undefined" ? JSON.parse($parameter.ruleContexts_json_params) : undefined, "userToken": typeof $parameter.userToken_string_params !== "undefined" ? $parameter.userToken_string_params : undefined, "clickAnalytics": typeof $parameter.clickAnalytics_boolean_params !== "undefined" ? $parameter.clickAnalytics_boolean_params : undefined, "analytics": typeof $parameter.analytics_boolean_params !== "undefined" ? $parameter.analytics_boolean_params : undefined, "analyticsTags": typeof $parameter.analyticsTags_json_params !== "undefined" ? JSON.parse($parameter.analyticsTags_json_params) : undefined, "enableABTest": typeof $parameter.enableABTest_boolean_params !== "undefined" ? $parameter.enableABTest_boolean_params : undefined, "enableReRanking": typeof $parameter.enableReRanking_boolean_params !== "undefined" ? $parameter.enableReRanking_boolean_params : undefined, "injectedItems": typeof $parameter.external_injected_item_object_params !== "undefined" ? JSON.parse($parameter.external_injected_item_object_params) : undefined } }}',
+          '={{ { "query": typeof $parameter.query_string_params !== "undefined" ? $parameter.query_string_params : undefined, "filters": typeof $parameter.filters_string_params !== "undefined" ? $parameter.filters_string_params : undefined, "page": typeof $parameter.page_number_params !== "undefined" ? $parameter.page_number_params : undefined, "getRankingInfo": typeof $parameter.getRankingInfo_boolean_params !== "undefined" ? $parameter.getRankingInfo_boolean_params : undefined, "relevancyStrictness": typeof $parameter.relevancyStrictness_number_params !== "undefined" ? $parameter.relevancyStrictness_number_params : undefined, "facetFilters": typeof $parameter.facetFilters_json_params !== "undefined" ? JSON.parse($parameter.facetFilters_json_params) : typeof $parameter.facetFilters_string_params !== "undefined" ? $parameter.facetFilters_string_params : undefined, "optionalFilters": typeof $parameter.optionalFilters_json_params !== "undefined" ? JSON.parse($parameter.optionalFilters_json_params) : typeof $parameter.optionalFilters_string_params !== "undefined" ? $parameter.optionalFilters_string_params : undefined, "numericFilters": typeof $parameter.numericFilters_json_params !== "undefined" ? JSON.parse($parameter.numericFilters_json_params) : typeof $parameter.numericFilters_string_params !== "undefined" ? $parameter.numericFilters_string_params : undefined, "hitsPerPage": typeof $parameter.hitsPerPage_number_params !== "undefined" ? $parameter.hitsPerPage_number_params : undefined, "aroundLatLng": typeof $parameter.aroundLatLng_string_params !== "undefined" ? $parameter.aroundLatLng_string_params : undefined, "aroundLatLngViaIP": typeof $parameter.aroundLatLngViaIP_boolean_params !== "undefined" ? $parameter.aroundLatLngViaIP_boolean_params : undefined, "aroundRadius": typeof $parameter.aroundRadius_number_params !== "undefined" ? $parameter.aroundRadius_number_params : typeof $parameter.aroundRadius_options_params !== "undefined" ? $parameter.aroundRadius_options_params : undefined, "aroundPrecision": typeof $parameter.aroundPrecision_number_params !== "undefined" ? $parameter.aroundPrecision_number_params : typeof $parameter.aroundPrecision_json_params !== "undefined" ? JSON.parse($parameter.aroundPrecision_json_params) : undefined, "minimumAroundRadius": typeof $parameter.minimumAroundRadius_number_params !== "undefined" ? $parameter.minimumAroundRadius_number_params : undefined, "insideBoundingBox": typeof $parameter.insideBoundingBox_string_params !== "undefined" ? $parameter.insideBoundingBox_string_params : typeof $parameter.insideBoundingBox_null_params !== "undefined" ? JSON.parse($parameter.insideBoundingBox_null_params) : typeof $parameter.insideBoundingBox_json_params !== "undefined" ? JSON.parse($parameter.insideBoundingBox_json_params) : undefined, "insidePolygon": typeof $parameter.insidePolygon_json_params !== "undefined" ? JSON.parse($parameter.insidePolygon_json_params) : undefined, "queryLanguages": typeof $parameter.queryLanguages_json_params !== "undefined" ? JSON.parse($parameter.queryLanguages_json_params) : undefined, "naturalLanguages": typeof $parameter.naturalLanguages_json_params !== "undefined" ? JSON.parse($parameter.naturalLanguages_json_params) : undefined, "enableRules": typeof $parameter.enableRules_boolean_params !== "undefined" ? $parameter.enableRules_boolean_params : undefined, "ruleContexts": typeof $parameter.ruleContexts_json_params !== "undefined" ? JSON.parse($parameter.ruleContexts_json_params) : undefined, "userToken": typeof $parameter.userToken_string_params !== "undefined" ? $parameter.userToken_string_params : undefined, "clickAnalytics": typeof $parameter.clickAnalytics_boolean_params !== "undefined" ? $parameter.clickAnalytics_boolean_params : undefined, "analytics": typeof $parameter.analytics_boolean_params !== "undefined" ? $parameter.analytics_boolean_params : undefined, "analyticsTags": typeof $parameter.analyticsTags_json_params !== "undefined" ? JSON.parse($parameter.analyticsTags_json_params) : undefined, "enableABTest": typeof $parameter.enableABTest_boolean_params !== "undefined" ? $parameter.enableABTest_boolean_params : undefined, "enableReRanking": typeof $parameter.enableReRanking_boolean_params !== "undefined" ? $parameter.enableReRanking_boolean_params : undefined, "injectedItems": typeof $parameter.injected_items_object_params !== "undefined" ? JSON.parse($parameter.injected_items_object_params) : undefined } }}',
       },
     },
     displayOptions: {
@@ -413,10 +413,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Search query.',
     displayName: 'Query',
     name: 'query_string_params',
-    default: '',
     displayOptions: {
       show: {
         request_body_object: ['run_composition_parameters_as_object_object'],
@@ -429,11 +429,11 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '(category:Book OR category:Ebook) AND _tags:published',
+    default: '',
     description:
       "Filter expression to only include items that match the filter criteria in the response.\n\nYou can use these filter expressions:\n\n- **Numeric filters.** `<facet> <op> <number>`, where `<op>` is one of `<`, `<=`, `=`, `!=`, `>`, `>=`.\n- **Ranges.** `<facet>:<lower> TO <upper>` where `<lower>` and `<upper>` are the lower and upper limits of the range (inclusive).\n- **Facet filters.** `<facet>:<value>` where `<facet>` is a facet attribute (case-sensitive) and `<value>` a facet value.\n- **Tag filters.** `_tags:<value>` or just `<value>` (case-sensitive).\n- **Boolean filters.** `<facet>: true | false`.\n\nYou can combine filters with `AND`, `OR`, and `NOT` operators with the following restrictions:\n\n- You can only combine filters of the same type with `OR`.\n  **Not supported:** `facet:value OR num > 3`.\n- You can't use `NOT` with combinations of filters.\n  **Not supported:** `NOT(facet:value OR facet:value)`\n- You can't combine conjunctions (`AND`) with `OR`.\n  **Not supported:** `facet:value OR (facet:value AND facet:value)`\n\nUse quotes around your filters, if the facet attribute name or facet value has spaces, keywords (`OR`, `AND`, `NOT`), or quotes.\nIf a facet attribute is an array, the filter matches if it matches at least one element of the array.\n\nFor more information, see [Filters](https://www.algolia.com/doc/guides/managing-results/refine-results/filtering).\n",
     displayName: 'Filters',
     name: 'filters_string_params',
-    default: '',
     displayOptions: {
       show: {
         request_body_object: ['run_composition_parameters_as_object_object'],
@@ -445,13 +445,13 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description: 'Page of search results to retrieve.',
     typeOptions: {
       minValue: 0,
     },
     displayName: 'Page',
     name: 'page_number_params',
-    default: 0,
     displayOptions: {
       show: {
         request_body_object: ['run_composition_parameters_as_object_object'],
@@ -463,10 +463,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description: 'Whether the run response should include detailed ranking information.',
     displayName: 'Get Ranking Info',
     name: 'getRankingInfo_boolean_params',
-    default: false,
     displayOptions: {
       show: {
         request_body_object: ['run_composition_parameters_as_object_object'],
@@ -536,9 +536,9 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     displayName: 'Facet Filters (String)',
     name: 'facetFilters_string_params',
-    default: '',
     displayOptions: {
       show: {
         request_body_object: ['run_composition_parameters_as_object_object'],
@@ -592,9 +592,9 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     displayName: 'Optional Filters (String)',
     name: 'optionalFilters_string_params',
-    default: '',
     displayOptions: {
       show: {
         request_body_object: ['run_composition_parameters_as_object_object'],
@@ -648,9 +648,9 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     displayName: 'Numeric Filters (String)',
     name: 'numericFilters_string_params',
-    default: '',
     displayOptions: {
       show: {
         request_body_object: ['run_composition_parameters_as_object_object'],
@@ -683,11 +683,11 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '40.71,-74.01',
+    default: '',
     description:
       'Coordinates for the center of a circle, expressed as a comma-separated string of latitude and longitude.\n\nOnly records included within a circle around this central location are included in the results.\nThe radius of the circle is determined by the `aroundRadius` and `minimumAroundRadius` settings.\nThis parameter is ignored if you also specify `insidePolygon` or `insideBoundingBox`.\n',
     displayName: 'Around Lat Lng',
     name: 'aroundLatLng_string_params',
-    default: '',
     displayOptions: {
       show: {
         request_body_object: ['run_composition_parameters_as_object_object'],
@@ -699,10 +699,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description: "Whether to obtain the coordinates from the request's IP address.",
     displayName: 'Around Lat Lng Via IP',
     name: 'aroundLatLngViaIP_boolean_params',
-    default: false,
     displayOptions: {
       show: {
         request_body_object: ['run_composition_parameters_as_object_object'],
@@ -738,13 +738,13 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description: 'Maximum search radius around a central location in meters.',
     typeOptions: {
       minValue: 1,
     },
     displayName: 'Around Radius (Integer)',
     name: 'aroundRadius_number_params',
-    default: '',
     displayOptions: {
       show: {
         request_body_object: ['run_composition_parameters_as_object_object'],
@@ -757,6 +757,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     description: "Return all records with a valid `_geoloc` attribute. Don't filter by distance.",
     options: [
       {
@@ -766,7 +767,6 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Around Radius (All)',
     name: 'aroundRadius_options_params',
-    default: '',
     displayOptions: {
       show: {
         request_body_object: ['run_composition_parameters_as_object_object'],
@@ -819,40 +819,12 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    type: 'fixedCollection',
+    type: 'json',
     displayName: 'Around Precision (Range Objects)',
-    name: 'aroundPrecision_fixedCollection_params',
-    default: '',
+    name: 'aroundPrecision_json_params',
+    default: '[]',
     description: undefined,
     required: false,
-    typeOptions: {
-      multipleValues: true,
-    },
-    options: [
-      {
-        name: 'aroundPrecision_fixedCollection_values',
-        displayName: 'Around Precision',
-        values: [
-          {
-            type: 'number',
-            placeholder: '20',
-            description:
-              'Lower boundary of a range in meters. The Geo ranking criterion considers all records within the range to be equal.',
-            displayName: 'From',
-            name: 'from_number_aroundPrecision',
-            default: '',
-          },
-          {
-            type: 'number',
-            description:
-              'Upper boundary of a range in meters. The Geo ranking criterion considers all records within the range to be equal.',
-            displayName: 'Value',
-            name: 'value_number_aroundPrecision',
-            default: '',
-          },
-        ],
-      },
-    ],
     displayOptions: {
       show: {
         request_body_object: ['run_composition_parameters_as_object_object'],
@@ -865,6 +837,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description:
       "Minimum radius (in meters) for a search around a location when `aroundRadius` isn't set.",
     typeOptions: {
@@ -872,7 +845,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Minimum Around Radius',
     name: 'minimumAroundRadius_number_params',
-    default: '',
     displayOptions: {
       show: {
         request_body_object: ['run_composition_parameters_as_object_object'],
@@ -912,9 +884,9 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     displayName: 'Inside Bounding Box (String)',
     name: 'insideBoundingBox_string_params',
-    default: '',
     displayOptions: {
       show: {
         request_body_object: ['run_composition_parameters_as_object_object'],
@@ -1051,11 +1023,11 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'test-user-123',
+    default: '',
     description:
       'Unique pseudonymous or anonymous user identifier.\n\nThis helps with analytics and click and conversion events.\nFor more information, see [user token](https://www.algolia.com/doc/guides/sending-events/concepts/usertoken).\n',
     displayName: 'User Token',
     name: 'userToken_string_params',
-    default: '',
     displayOptions: {
       show: {
         request_body_object: ['run_composition_parameters_as_object_object'],
@@ -1067,11 +1039,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       'Whether to include a `queryID` attribute in the response\nThe query ID is a unique identifier for a search query and is required for tracking [click and conversion events](https://www.algolia.com/doc/guides/sending-events/getting-started).\n',
     displayName: 'Click Analytics',
     name: 'clickAnalytics_boolean_params',
-    default: false,
     displayOptions: {
       show: {
         request_body_object: ['run_composition_parameters_as_object_object'],
@@ -1146,16 +1118,16 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    displayName: 'External Injected Item',
-    name: 'external_injected_item_object_params',
     type: 'json',
+    displayName: 'Injected Items',
+    name: 'injected_items_object_params',
     description: 'A list of extenrally injected objectID groups into from an external source.\n',
-    required: true,
-    default: '',
+    required: false,
+    default: '{}',
     displayOptions: {
       show: {
         request_body_object: ['run_composition_parameters_as_object_object'],
-        run_composition_parameters_as_object_object: ['external_injected_item_object_params'],
+        run_composition_parameters_as_object_object: ['injected_items_object_params'],
         resource: ['Search'],
         operation: ['search'],
       },
@@ -1164,10 +1136,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'my_composition_object_id',
+    default: '',
     description: 'Composition unique identifier.',
     displayName: 'Composition ID',
     name: 'compositionID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -1178,9 +1150,9 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     displayName: 'Facet Name',
     name: 'facetName_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -1235,7 +1207,7 @@ const properties: INodeProperties[] = [
         type: 'body',
         property: 'params',
         value:
-          '={{ { "query": typeof $parameter.query_string_params !== "undefined" ? $parameter.query_string_params : undefined, "maxFacetHits": typeof $parameter.maxFacetHits_number_params !== "undefined" ? $parameter.maxFacetHits_number_params : undefined, "searchQuery": { "query": typeof $parameter.query_string_searchQuery_params !== "undefined" ? $parameter.query_string_searchQuery_params : undefined, "filters": typeof $parameter.filters_string_searchQuery_params !== "undefined" ? $parameter.filters_string_searchQuery_params : undefined, "page": typeof $parameter.page_number_searchQuery_params !== "undefined" ? $parameter.page_number_searchQuery_params : undefined, "getRankingInfo": typeof $parameter.getRankingInfo_boolean_searchQuery_params !== "undefined" ? $parameter.getRankingInfo_boolean_searchQuery_params : undefined, "relevancyStrictness": typeof $parameter.relevancyStrictness_number_searchQuery_params !== "undefined" ? $parameter.relevancyStrictness_number_searchQuery_params : undefined, "facetFilters": typeof $parameter.facetFilters_json_searchQuery_params !== "undefined" ? JSON.parse($parameter.facetFilters_json_searchQuery_params) : typeof $parameter.facetFilters_string_searchQuery_params !== "undefined" ? $parameter.facetFilters_string_searchQuery_params : undefined, "optionalFilters": typeof $parameter.optionalFilters_json_searchQuery_params !== "undefined" ? JSON.parse($parameter.optionalFilters_json_searchQuery_params) : typeof $parameter.optionalFilters_string_searchQuery_params !== "undefined" ? $parameter.optionalFilters_string_searchQuery_params : undefined, "numericFilters": typeof $parameter.numericFilters_json_searchQuery_params !== "undefined" ? JSON.parse($parameter.numericFilters_json_searchQuery_params) : typeof $parameter.numericFilters_string_searchQuery_params !== "undefined" ? $parameter.numericFilters_string_searchQuery_params : undefined, "hitsPerPage": typeof $parameter.hitsPerPage_number_searchQuery_params !== "undefined" ? $parameter.hitsPerPage_number_searchQuery_params : undefined, "aroundLatLng": typeof $parameter.aroundLatLng_string_searchQuery_params !== "undefined" ? $parameter.aroundLatLng_string_searchQuery_params : undefined, "aroundLatLngViaIP": typeof $parameter.aroundLatLngViaIP_boolean_searchQuery_params !== "undefined" ? $parameter.aroundLatLngViaIP_boolean_searchQuery_params : undefined, "aroundRadius": typeof $parameter.aroundRadius_number_searchQuery_params !== "undefined" ? $parameter.aroundRadius_number_searchQuery_params : typeof $parameter.aroundRadius_options_searchQuery_params !== "undefined" ? $parameter.aroundRadius_options_searchQuery_params : undefined, "aroundPrecision": typeof $parameter.aroundPrecision_number_searchQuery_params !== "undefined" ? $parameter.aroundPrecision_number_searchQuery_params : typeof $parameter.aroundPrecision_fixedCollection_searchQuery_params.aroundPrecision_fixedCollection_values !== "undefined" ? $parameter.aroundPrecision_fixedCollection_searchQuery_params.aroundPrecision_fixedCollection_values?.map(item => ({ from: typeof item.from_number_aroundPrecision !== "undefined" ? item.from_number_aroundPrecision : undefined, value: typeof item.value_number_aroundPrecision !== "undefined" ? item.value_number_aroundPrecision : undefined })) : undefined, "minimumAroundRadius": typeof $parameter.minimumAroundRadius_number_searchQuery_params !== "undefined" ? $parameter.minimumAroundRadius_number_searchQuery_params : undefined, "insideBoundingBox": typeof $parameter.insideBoundingBox_string_searchQuery_params !== "undefined" ? $parameter.insideBoundingBox_string_searchQuery_params : typeof $parameter.insideBoundingBox_null_searchQuery_params !== "undefined" ? JSON.parse($parameter.insideBoundingBox_null_searchQuery_params) : typeof $parameter.insideBoundingBox_json_searchQuery_params !== "undefined" ? JSON.parse($parameter.insideBoundingBox_json_searchQuery_params) : undefined, "insidePolygon": typeof $parameter.insidePolygon_json_searchQuery_params !== "undefined" ? JSON.parse($parameter.insidePolygon_json_searchQuery_params) : undefined, "queryLanguages": typeof $parameter.queryLanguages_json_searchQuery_params !== "undefined" ? JSON.parse($parameter.queryLanguages_json_searchQuery_params) : undefined, "naturalLanguages": typeof $parameter.naturalLanguages_json_searchQuery_params !== "undefined" ? JSON.parse($parameter.naturalLanguages_json_searchQuery_params) : undefined, "enableRules": typeof $parameter.enableRules_boolean_searchQuery_params !== "undefined" ? $parameter.enableRules_boolean_searchQuery_params : undefined, "ruleContexts": typeof $parameter.ruleContexts_json_searchQuery_params !== "undefined" ? JSON.parse($parameter.ruleContexts_json_searchQuery_params) : undefined, "userToken": typeof $parameter.userToken_string_searchQuery_params !== "undefined" ? $parameter.userToken_string_searchQuery_params : undefined, "clickAnalytics": typeof $parameter.clickAnalytics_boolean_searchQuery_params !== "undefined" ? $parameter.clickAnalytics_boolean_searchQuery_params : undefined, "analytics": typeof $parameter.analytics_boolean_searchQuery_params !== "undefined" ? $parameter.analytics_boolean_searchQuery_params : undefined, "analyticsTags": typeof $parameter.analyticsTags_json_searchQuery_params !== "undefined" ? JSON.parse($parameter.analyticsTags_json_searchQuery_params) : undefined, "enableABTest": typeof $parameter.enableABTest_boolean_searchQuery_params !== "undefined" ? $parameter.enableABTest_boolean_searchQuery_params : undefined, "enableReRanking": typeof $parameter.enableReRanking_boolean_searchQuery_params !== "undefined" ? $parameter.enableReRanking_boolean_searchQuery_params : undefined, "injectedItems": typeof $parameter.external_injected_item_object_searchQuery_params !== "undefined" ? JSON.parse($parameter.external_injected_item_object_searchQuery_params) : undefined } } }}',
+          '={{ { "query": typeof $parameter.query_string_params !== "undefined" ? $parameter.query_string_params : undefined, "maxFacetHits": typeof $parameter.maxFacetHits_number_params !== "undefined" ? $parameter.maxFacetHits_number_params : undefined, "searchQuery": { "query": typeof $parameter.query_string_searchQuery_params !== "undefined" ? $parameter.query_string_searchQuery_params : undefined, "filters": typeof $parameter.filters_string_searchQuery_params !== "undefined" ? $parameter.filters_string_searchQuery_params : undefined, "page": typeof $parameter.page_number_searchQuery_params !== "undefined" ? $parameter.page_number_searchQuery_params : undefined, "getRankingInfo": typeof $parameter.getRankingInfo_boolean_searchQuery_params !== "undefined" ? $parameter.getRankingInfo_boolean_searchQuery_params : undefined, "relevancyStrictness": typeof $parameter.relevancyStrictness_number_searchQuery_params !== "undefined" ? $parameter.relevancyStrictness_number_searchQuery_params : undefined, "facetFilters": typeof $parameter.facetFilters_json_searchQuery_params !== "undefined" ? JSON.parse($parameter.facetFilters_json_searchQuery_params) : typeof $parameter.facetFilters_string_searchQuery_params !== "undefined" ? $parameter.facetFilters_string_searchQuery_params : undefined, "optionalFilters": typeof $parameter.optionalFilters_json_searchQuery_params !== "undefined" ? JSON.parse($parameter.optionalFilters_json_searchQuery_params) : typeof $parameter.optionalFilters_string_searchQuery_params !== "undefined" ? $parameter.optionalFilters_string_searchQuery_params : undefined, "numericFilters": typeof $parameter.numericFilters_json_searchQuery_params !== "undefined" ? JSON.parse($parameter.numericFilters_json_searchQuery_params) : typeof $parameter.numericFilters_string_searchQuery_params !== "undefined" ? $parameter.numericFilters_string_searchQuery_params : undefined, "hitsPerPage": typeof $parameter.hitsPerPage_number_searchQuery_params !== "undefined" ? $parameter.hitsPerPage_number_searchQuery_params : undefined, "aroundLatLng": typeof $parameter.aroundLatLng_string_searchQuery_params !== "undefined" ? $parameter.aroundLatLng_string_searchQuery_params : undefined, "aroundLatLngViaIP": typeof $parameter.aroundLatLngViaIP_boolean_searchQuery_params !== "undefined" ? $parameter.aroundLatLngViaIP_boolean_searchQuery_params : undefined, "aroundRadius": typeof $parameter.aroundRadius_number_searchQuery_params !== "undefined" ? $parameter.aroundRadius_number_searchQuery_params : typeof $parameter.aroundRadius_options_searchQuery_params !== "undefined" ? $parameter.aroundRadius_options_searchQuery_params : undefined, "aroundPrecision": typeof $parameter.aroundPrecision_number_searchQuery_params !== "undefined" ? $parameter.aroundPrecision_number_searchQuery_params : typeof $parameter.aroundPrecision_json_searchQuery_params !== "undefined" ? JSON.parse($parameter.aroundPrecision_json_searchQuery_params) : undefined, "minimumAroundRadius": typeof $parameter.minimumAroundRadius_number_searchQuery_params !== "undefined" ? $parameter.minimumAroundRadius_number_searchQuery_params : undefined, "insideBoundingBox": typeof $parameter.insideBoundingBox_string_searchQuery_params !== "undefined" ? $parameter.insideBoundingBox_string_searchQuery_params : typeof $parameter.insideBoundingBox_null_searchQuery_params !== "undefined" ? JSON.parse($parameter.insideBoundingBox_null_searchQuery_params) : typeof $parameter.insideBoundingBox_json_searchQuery_params !== "undefined" ? JSON.parse($parameter.insideBoundingBox_json_searchQuery_params) : undefined, "insidePolygon": typeof $parameter.insidePolygon_json_searchQuery_params !== "undefined" ? JSON.parse($parameter.insidePolygon_json_searchQuery_params) : undefined, "queryLanguages": typeof $parameter.queryLanguages_json_searchQuery_params !== "undefined" ? JSON.parse($parameter.queryLanguages_json_searchQuery_params) : undefined, "naturalLanguages": typeof $parameter.naturalLanguages_json_searchQuery_params !== "undefined" ? JSON.parse($parameter.naturalLanguages_json_searchQuery_params) : undefined, "enableRules": typeof $parameter.enableRules_boolean_searchQuery_params !== "undefined" ? $parameter.enableRules_boolean_searchQuery_params : undefined, "ruleContexts": typeof $parameter.ruleContexts_json_searchQuery_params !== "undefined" ? JSON.parse($parameter.ruleContexts_json_searchQuery_params) : undefined, "userToken": typeof $parameter.userToken_string_searchQuery_params !== "undefined" ? $parameter.userToken_string_searchQuery_params : undefined, "clickAnalytics": typeof $parameter.clickAnalytics_boolean_searchQuery_params !== "undefined" ? $parameter.clickAnalytics_boolean_searchQuery_params : undefined, "analytics": typeof $parameter.analytics_boolean_searchQuery_params !== "undefined" ? $parameter.analytics_boolean_searchQuery_params : undefined, "analyticsTags": typeof $parameter.analyticsTags_json_searchQuery_params !== "undefined" ? JSON.parse($parameter.analyticsTags_json_searchQuery_params) : undefined, "enableABTest": typeof $parameter.enableABTest_boolean_searchQuery_params !== "undefined" ? $parameter.enableABTest_boolean_searchQuery_params : undefined, "enableReRanking": typeof $parameter.enableReRanking_boolean_searchQuery_params !== "undefined" ? $parameter.enableReRanking_boolean_searchQuery_params : undefined, "injectedItems": typeof $parameter.injected_items_object_searchQuery_params !== "undefined" ? JSON.parse($parameter.injected_items_object_searchQuery_params) : undefined } } }}',
       },
     },
     displayOptions: {
@@ -1248,10 +1220,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Search query.',
     displayName: 'Query',
     name: 'query_string_params',
-    default: '',
     displayOptions: {
       show: {
         search_for_facet_values_request_object: ['search_for_facet_values_params_object'],
@@ -1393,8 +1365,8 @@ const properties: INodeProperties[] = [
         value: 'enableReRanking_boolean_searchQuery',
       },
       {
-        name: 'External Injected Item',
-        value: 'external_injected_item_object_searchQuery',
+        name: 'Injected Items',
+        value: 'injected_items_object_searchQuery',
       },
     ],
     displayOptions: {
@@ -1410,10 +1382,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Search query.',
     displayName: 'Query',
     name: 'query_string_searchQuery_params',
-    default: '',
     displayOptions: {
       show: {
         search_for_facet_values_request_object: ['search_for_facet_values_params_object'],
@@ -1429,11 +1401,11 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '(category:Book OR category:Ebook) AND _tags:published',
+    default: '',
     description:
       "Filter expression to only include items that match the filter criteria in the response.\n\nYou can use these filter expressions:\n\n- **Numeric filters.** `<facet> <op> <number>`, where `<op>` is one of `<`, `<=`, `=`, `!=`, `>`, `>=`.\n- **Ranges.** `<facet>:<lower> TO <upper>` where `<lower>` and `<upper>` are the lower and upper limits of the range (inclusive).\n- **Facet filters.** `<facet>:<value>` where `<facet>` is a facet attribute (case-sensitive) and `<value>` a facet value.\n- **Tag filters.** `_tags:<value>` or just `<value>` (case-sensitive).\n- **Boolean filters.** `<facet>: true | false`.\n\nYou can combine filters with `AND`, `OR`, and `NOT` operators with the following restrictions:\n\n- You can only combine filters of the same type with `OR`.\n  **Not supported:** `facet:value OR num > 3`.\n- You can't use `NOT` with combinations of filters.\n  **Not supported:** `NOT(facet:value OR facet:value)`\n- You can't combine conjunctions (`AND`) with `OR`.\n  **Not supported:** `facet:value OR (facet:value AND facet:value)`\n\nUse quotes around your filters, if the facet attribute name or facet value has spaces, keywords (`OR`, `AND`, `NOT`), or quotes.\nIf a facet attribute is an array, the filter matches if it matches at least one element of the array.\n\nFor more information, see [Filters](https://www.algolia.com/doc/guides/managing-results/refine-results/filtering).\n",
     displayName: 'Filters',
     name: 'filters_string_searchQuery_params',
-    default: '',
     displayOptions: {
       show: {
         search_for_facet_values_request_object: ['search_for_facet_values_params_object'],
@@ -1448,13 +1420,13 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description: 'Page of search results to retrieve.',
     typeOptions: {
       minValue: 0,
     },
     displayName: 'Page',
     name: 'page_number_searchQuery_params',
-    default: 0,
     displayOptions: {
       show: {
         search_for_facet_values_request_object: ['search_for_facet_values_params_object'],
@@ -1469,10 +1441,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description: 'Whether the run response should include detailed ranking information.',
     displayName: 'Get Ranking Info',
     name: 'getRankingInfo_boolean_searchQuery_params',
-    default: false,
     displayOptions: {
       show: {
         search_for_facet_values_request_object: ['search_for_facet_values_params_object'],
@@ -1556,9 +1528,9 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     displayName: 'Facet Filters (String)',
     name: 'facetFilters_string_searchQuery_params',
-    default: '',
     displayOptions: {
       show: {
         search_for_facet_values_request_object: ['search_for_facet_values_params_object'],
@@ -1621,9 +1593,9 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     displayName: 'Optional Filters (String)',
     name: 'optionalFilters_string_searchQuery_params',
-    default: '',
     displayOptions: {
       show: {
         search_for_facet_values_request_object: ['search_for_facet_values_params_object'],
@@ -1686,9 +1658,9 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     displayName: 'Numeric Filters (String)',
     name: 'numericFilters_string_searchQuery_params',
-    default: '',
     displayOptions: {
       show: {
         search_for_facet_values_request_object: ['search_for_facet_values_params_object'],
@@ -1727,11 +1699,11 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '40.71,-74.01',
+    default: '',
     description:
       'Coordinates for the center of a circle, expressed as a comma-separated string of latitude and longitude.\n\nOnly records included within a circle around this central location are included in the results.\nThe radius of the circle is determined by the `aroundRadius` and `minimumAroundRadius` settings.\nThis parameter is ignored if you also specify `insidePolygon` or `insideBoundingBox`.\n',
     displayName: 'Around Lat Lng',
     name: 'aroundLatLng_string_searchQuery_params',
-    default: '',
     displayOptions: {
       show: {
         search_for_facet_values_request_object: ['search_for_facet_values_params_object'],
@@ -1746,10 +1718,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description: "Whether to obtain the coordinates from the request's IP address.",
     displayName: 'Around Lat Lng Via IP',
     name: 'aroundLatLngViaIP_boolean_searchQuery_params',
-    default: false,
     displayOptions: {
       show: {
         search_for_facet_values_request_object: ['search_for_facet_values_params_object'],
@@ -1793,13 +1765,13 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description: 'Maximum search radius around a central location in meters.',
     typeOptions: {
       minValue: 1,
     },
     displayName: 'Around Radius (Integer)',
     name: 'aroundRadius_number_searchQuery_params',
-    default: '',
     displayOptions: {
       show: {
         search_for_facet_values_request_object: ['search_for_facet_values_params_object'],
@@ -1815,6 +1787,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     description: "Return all records with a valid `_geoloc` attribute. Don't filter by distance.",
     options: [
       {
@@ -1824,7 +1797,6 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Around Radius (All)',
     name: 'aroundRadius_options_searchQuery_params',
-    default: '',
     displayOptions: {
       show: {
         search_for_facet_values_request_object: ['search_for_facet_values_params_object'],
@@ -1886,40 +1858,12 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    type: 'fixedCollection',
+    type: 'json',
     displayName: 'Around Precision (Range Objects)',
-    name: 'aroundPrecision_fixedCollection_searchQuery_params',
-    default: '',
+    name: 'aroundPrecision_json_searchQuery_params',
+    default: '[]',
     description: undefined,
     required: false,
-    typeOptions: {
-      multipleValues: true,
-    },
-    options: [
-      {
-        name: 'aroundPrecision_fixedCollection_values',
-        displayName: 'Around Precision',
-        values: [
-          {
-            type: 'number',
-            placeholder: '20',
-            description:
-              'Lower boundary of a range in meters. The Geo ranking criterion considers all records within the range to be equal.',
-            displayName: 'From',
-            name: 'from_number_aroundPrecision',
-            default: '',
-          },
-          {
-            type: 'number',
-            description:
-              'Upper boundary of a range in meters. The Geo ranking criterion considers all records within the range to be equal.',
-            displayName: 'Value',
-            name: 'value_number_aroundPrecision',
-            default: '',
-          },
-        ],
-      },
-    ],
     displayOptions: {
       show: {
         search_for_facet_values_request_object: ['search_for_facet_values_params_object'],
@@ -1935,6 +1879,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description:
       "Minimum radius (in meters) for a search around a location when `aroundRadius` isn't set.",
     typeOptions: {
@@ -1942,7 +1887,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Minimum Around Radius',
     name: 'minimumAroundRadius_number_searchQuery_params',
-    default: '',
     displayOptions: {
       show: {
         search_for_facet_values_request_object: ['search_for_facet_values_params_object'],
@@ -1990,9 +1934,9 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     displayName: 'Inside Bounding Box (String)',
     name: 'insideBoundingBox_string_searchQuery_params',
-    default: '',
     displayOptions: {
       show: {
         search_for_facet_values_request_object: ['search_for_facet_values_params_object'],
@@ -2153,11 +2097,11 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'test-user-123',
+    default: '',
     description:
       'Unique pseudonymous or anonymous user identifier.\n\nThis helps with analytics and click and conversion events.\nFor more information, see [user token](https://www.algolia.com/doc/guides/sending-events/concepts/usertoken).\n',
     displayName: 'User Token',
     name: 'userToken_string_searchQuery_params',
-    default: '',
     displayOptions: {
       show: {
         search_for_facet_values_request_object: ['search_for_facet_values_params_object'],
@@ -2172,11 +2116,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       'Whether to include a `queryID` attribute in the response\nThe query ID is a unique identifier for a search query and is required for tracking [click and conversion events](https://www.algolia.com/doc/guides/sending-events/getting-started).\n',
     displayName: 'Click Analytics',
     name: 'clickAnalytics_boolean_searchQuery_params',
-    default: false,
     displayOptions: {
       show: {
         search_for_facet_values_request_object: ['search_for_facet_values_params_object'],
@@ -2266,21 +2210,19 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    displayName: 'External Injected Item',
-    name: 'external_injected_item_object_searchQuery_params',
     type: 'json',
+    displayName: 'Injected Items',
+    name: 'injected_items_object_searchQuery_params',
     description: 'A list of extenrally injected objectID groups into from an external source.\n',
-    required: true,
-    default: '',
+    required: false,
+    default: '{}',
     displayOptions: {
       show: {
         search_for_facet_values_request_object: ['search_for_facet_values_params_object'],
         search_for_facet_values_params_object: [
           'run_composition_parameters_as_object_object_params',
         ],
-        run_composition_parameters_as_object_object_params: [
-          'external_injected_item_object_searchQuery',
-        ],
+        run_composition_parameters_as_object_object_params: ['injected_items_object_searchQuery'],
         resource: ['Search'],
         operation: ['searchForFacetValues'],
       },
@@ -2317,12 +2259,12 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     typeOptions: {
       minValue: 0,
     },
     displayName: 'Page (Integer)',
     name: 'page_number',
-    default: '',
     displayOptions: {
       show: {
         page: ['integer'],
@@ -2373,10 +2315,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'my_composition_object_id',
+    default: '',
     description: 'Composition unique identifier.',
     displayName: 'Composition ID',
     name: 'compositionID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -2388,10 +2330,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'my_composition_object_id',
+    default: '',
     description: 'Composition unique identifier.',
     displayName: 'Composition ID',
     name: 'compositionID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -2435,6 +2377,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'my_composition_object_id',
+    default: '',
     description: 'Composition unique identifier.',
     routing: {
       send: {
@@ -2445,7 +2388,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Object ID',
     name: 'objectID_string',
-    default: '',
     displayOptions: {
       show: {
         composition_object: ['objectID_string'],
@@ -2453,10 +2395,12 @@ const properties: INodeProperties[] = [
         operation: ['putComposition'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
     placeholder: 'my lovely crafted composition',
+    default: '',
     description: 'Composition name.',
     routing: {
       send: {
@@ -2467,7 +2411,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Name',
     name: 'name_string',
-    default: '',
     displayOptions: {
       show: {
         composition_object: ['name_string'],
@@ -2475,10 +2418,12 @@ const properties: INodeProperties[] = [
         operation: ['putComposition'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
     placeholder: 'my lovely crafted composition that is used for X purpose',
+    default: '',
     description: 'Composition description.',
     routing: {
       send: {
@@ -2489,7 +2434,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Description',
     name: 'description_string',
-    default: '',
     displayOptions: {
       show: {
         composition_object: ['description_string'],
@@ -2516,7 +2460,7 @@ const properties: INodeProperties[] = [
         type: 'body',
         property: 'behavior',
         value:
-          '={{ { "injection": { "main": { "source": { "search": { "index": typeof $parameter.index_string_search_source_main_injection_behavior !== "undefined" ? $parameter.index_string_search_source_main_injection_behavior : undefined } } }, "injectedItems": typeof $parameter.injectedItems_json_injection_behavior !== "undefined" ? JSON.parse($parameter.injectedItems_json_injection_behavior) : undefined, "deduplication": { "positioning": typeof $parameter.positioning_options_deduplication_injection_behavior !== "undefined" ? $parameter.positioning_options_deduplication_injection_behavior : undefined } } } }}',
+          '={{ { "injection": { "main": { "source": { "search": { "index": typeof $parameter.index_string_search_source_main_injection_behavior !== "undefined" ? $parameter.index_string_search_source_main_injection_behavior : undefined, "params": typeof $parameter.composition_main_injection_query_parameters_as_object_object_search_source_main_injection_behavior !== "undefined" ? JSON.parse($parameter.composition_main_injection_query_parameters_as_object_object_search_source_main_injection_behavior) : undefined } } }, "injectedItems": typeof $parameter.injectedItems_json_injection_behavior !== "undefined" ? JSON.parse($parameter.injectedItems_json_injection_behavior) : undefined, "deduplication": { "positioning": typeof $parameter.positioning_options_deduplication_injection_behavior !== "undefined" ? $parameter.positioning_options_deduplication_injection_behavior : undefined } } } }}',
       },
     },
     displayOptions: {
@@ -2616,6 +2560,10 @@ const properties: INodeProperties[] = [
         name: 'Index',
         value: 'index_string_search',
       },
+      {
+        name: 'Composition Main Injection Query Parameters As Object',
+        value: 'composition_main_injection_query_parameters_as_object_object_search',
+      },
     ],
     displayOptions: {
       show: {
@@ -2634,10 +2582,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'Products',
+    default: '',
     description: 'Composition Main Index name.',
     displayName: 'Index',
     name: 'index_string_search_source_main_injection_behavior',
-    default: '',
     displayOptions: {
       show: {
         composition_object: ['composition_behavior_object'],
@@ -2652,12 +2600,37 @@ const properties: INodeProperties[] = [
         operation: ['putComposition'],
       },
     },
+    required: true,
+  },
+  {
+    type: 'json',
+    displayName: 'Composition Main Injection Query Parameters As Object',
+    name: 'composition_main_injection_query_parameters_as_object_object_search_source_main_injection_behavior',
+    description: undefined,
+    required: false,
+    default: '{}',
+    displayOptions: {
+      show: {
+        composition_object: ['composition_behavior_object'],
+        composition_behavior_object: ['injection_object_behavior'],
+        injection_object_behavior: ['main_object_injection'],
+        main_object_injection_behavior: ['composition_source_object_main'],
+        composition_source_object_main_injection_behavior: [
+          'composition_source_search_object_source',
+        ],
+        composition_source_search_object_source_main_injection_behavior: [
+          'composition_main_injection_query_parameters_as_object_object_search',
+        ],
+        resource: ['Compositions'],
+        operation: ['putComposition'],
+      },
+    },
   },
   {
     type: 'json',
     displayName: 'Injected Items',
     name: 'injectedItems_json_injection_behavior',
-    default: '',
+    default: '[]',
     description: 'list of injected items of the current Composition.',
     required: false,
     displayOptions: {
@@ -2722,14 +2695,15 @@ const properties: INodeProperties[] = [
         operation: ['putComposition'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
     placeholder: 'my_composition_object_id',
+    default: '',
     description: 'Composition unique identifier.',
     displayName: 'Composition ID',
     name: 'compositionID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -2762,13 +2736,13 @@ const properties: INodeProperties[] = [
     type: 'json',
     displayName: 'Requests',
     name: 'requests_json',
-    default: '',
+    default: '[]',
     description: undefined,
-    required: false,
+    required: true,
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'requests',
       },
     },
@@ -2783,10 +2757,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'my_composition_object_id',
+    default: '',
     description: 'Composition unique identifier.',
     displayName: 'Composition ID',
     name: 'compositionID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -2797,10 +2771,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Unique identifier of a rule object.',
     displayName: 'Object ID',
     name: 'objectID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -2812,10 +2786,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'my_composition_object_id',
+    default: '',
     description: 'Composition unique identifier.',
     displayName: 'Composition ID',
     name: 'compositionID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -2826,10 +2800,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Unique identifier of a rule object.',
     displayName: 'Object ID',
     name: 'objectID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -2868,7 +2842,7 @@ const properties: INodeProperties[] = [
       },
       {
         name: 'Validity',
-        value: 'validity_fixedCollection',
+        value: 'validity_json',
       },
       {
         name: 'Tags',
@@ -2885,6 +2859,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'my_composition_rule_object_id',
+    default: '',
     description: 'Composition rule unique identifier.',
     routing: {
       send: {
@@ -2895,7 +2870,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Object ID',
     name: 'objectID_string',
-    default: '',
     displayOptions: {
       show: {
         composition_rule_object: ['objectID_string'],
@@ -2903,18 +2877,19 @@ const properties: INodeProperties[] = [
         operation: ['putCompositionRule'],
       },
     },
+    required: true,
   },
   {
     type: 'json',
     displayName: 'Conditions',
     name: 'conditions_json',
-    default: '',
+    default: '[]',
     description: 'Conditions that trigger a composition rule.',
-    required: false,
+    required: true,
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'conditions',
       },
     },
@@ -2944,7 +2919,7 @@ const properties: INodeProperties[] = [
         type: 'body',
         property: 'consequence',
         value:
-          '={{ { "behavior": { "injection": { "main": { "source": { "search": { "index": typeof $parameter.index_string_search_source_main_injection_behavior_consequence !== "undefined" ? $parameter.index_string_search_source_main_injection_behavior_consequence : undefined } } }, "injectedItems": typeof $parameter.injectedItems_json_injection_behavior_consequence !== "undefined" ? JSON.parse($parameter.injectedItems_json_injection_behavior_consequence) : undefined, "deduplication": { "positioning": typeof $parameter.positioning_options_deduplication_injection_behavior_consequence !== "undefined" ? $parameter.positioning_options_deduplication_injection_behavior_consequence : undefined } } } } }}',
+          '={{ { "behavior": { "injection": { "main": { "source": { "search": { "index": typeof $parameter.index_string_search_source_main_injection_behavior_consequence !== "undefined" ? $parameter.index_string_search_source_main_injection_behavior_consequence : undefined, "params": typeof $parameter.composition_main_injection_query_parameters_as_object_object_search_source_main_injection_behavior_consequence !== "undefined" ? JSON.parse($parameter.composition_main_injection_query_parameters_as_object_object_search_source_main_injection_behavior_consequence) : undefined } } }, "injectedItems": typeof $parameter.injectedItems_json_injection_behavior_consequence !== "undefined" ? JSON.parse($parameter.injectedItems_json_injection_behavior_consequence) : undefined, "deduplication": { "positioning": typeof $parameter.positioning_options_deduplication_injection_behavior_consequence !== "undefined" ? $parameter.positioning_options_deduplication_injection_behavior_consequence : undefined } } } } }}',
       },
     },
     displayOptions: {
@@ -3069,6 +3044,10 @@ const properties: INodeProperties[] = [
         name: 'Index',
         value: 'index_string_search',
       },
+      {
+        name: 'Composition Main Injection Query Parameters As Object',
+        value: 'composition_main_injection_query_parameters_as_object_object_search',
+      },
     ],
     displayOptions: {
       show: {
@@ -3088,10 +3067,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'Products',
+    default: '',
     description: 'Composition Main Index name.',
     displayName: 'Index',
     name: 'index_string_search_source_main_injection_behavior_consequence',
-    default: '',
     displayOptions: {
       show: {
         composition_rule_object: ['composition_rule_consequence_object'],
@@ -3109,12 +3088,38 @@ const properties: INodeProperties[] = [
         operation: ['putCompositionRule'],
       },
     },
+    required: true,
+  },
+  {
+    type: 'json',
+    displayName: 'Composition Main Injection Query Parameters As Object',
+    name: 'composition_main_injection_query_parameters_as_object_object_search_source_main_injection_behavior_consequence',
+    description: undefined,
+    required: false,
+    default: '{}',
+    displayOptions: {
+      show: {
+        composition_rule_object: ['composition_rule_consequence_object'],
+        composition_rule_consequence_object: ['composition_behavior_object_consequence'],
+        composition_behavior_object_consequence: ['injection_object_behavior'],
+        injection_object_behavior_consequence: ['main_object_injection'],
+        main_object_injection_behavior_consequence: ['composition_source_object_main'],
+        composition_source_object_main_injection_behavior_consequence: [
+          'composition_source_search_object_source',
+        ],
+        composition_source_search_object_source_main_injection_behavior_consequence: [
+          'composition_main_injection_query_parameters_as_object_object_search',
+        ],
+        resource: ['Composition Rules'],
+        operation: ['putCompositionRule'],
+      },
+    },
   },
   {
     type: 'json',
     displayName: 'Injected Items',
     name: 'injectedItems_json_injection_behavior_consequence',
-    default: '',
+    default: '[]',
     description: 'list of injected items of the current Composition.',
     required: false,
     displayOptions: {
@@ -3182,10 +3187,12 @@ const properties: INodeProperties[] = [
         operation: ['putCompositionRule'],
       },
     },
+    required: true,
   },
   {
     type: 'string',
     placeholder: 'Display a promotional banner',
+    default: '',
     description:
       "Description of the rule's purpose to help you distinguish between different rules.",
     routing: {
@@ -3197,7 +3204,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Description',
     name: 'description_string',
-    default: '',
     displayOptions: {
       show: {
         composition_rule_object: ['description_string'],
@@ -3228,48 +3234,22 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    type: 'fixedCollection',
+    type: 'json',
     displayName: 'Validity',
-    name: 'validity_fixedCollection',
-    default: '',
+    name: 'validity_json',
+    default: '[]',
     description: 'Time periods when the rule is active.',
     required: false,
-    typeOptions: {
-      multipleValues: true,
-    },
-    options: [
-      {
-        name: 'validity_fixedCollection_values',
-        displayName: 'Validity',
-        values: [
-          {
-            type: 'number',
-            description: 'When the rule should start to be active, in Unix epoch time.',
-            displayName: 'From',
-            name: 'from_number_validity',
-            default: '',
-          },
-          {
-            type: 'number',
-            description: 'When the rule should stop to be active, in Unix epoch time.',
-            displayName: 'Until',
-            name: 'until_number_validity',
-            default: '',
-          },
-        ],
-      },
-    ],
     routing: {
       send: {
         type: 'body',
-        value:
-          '={{ $parameter.values?.map(item => ({ from: typeof item.from_number_validity !== "undefined" ? item.from_number_validity : undefined, until: typeof item.until_number_validity !== "undefined" ? item.until_number_validity : undefined })) }}',
+        value: '={{ $value }}',
         property: 'validity',
       },
     },
     displayOptions: {
       show: {
-        composition_rule_object: ['validity_fixedCollection'],
+        composition_rule_object: ['validity_json'],
         resource: ['Composition Rules'],
         operation: ['putCompositionRule'],
       },
@@ -3285,7 +3265,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'tags',
       },
     },
@@ -3300,10 +3280,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'my_composition_object_id',
+    default: '',
     description: 'Composition unique identifier.',
     displayName: 'Composition ID',
     name: 'compositionID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -3314,10 +3294,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Unique identifier of a rule object.',
     displayName: 'Object ID',
     name: 'objectID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -3329,10 +3309,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'my_composition_object_id',
+    default: '',
     description: 'Composition unique identifier.',
     displayName: 'Composition ID',
     name: 'compositionID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -3365,13 +3345,13 @@ const properties: INodeProperties[] = [
     type: 'json',
     displayName: 'Requests',
     name: 'requests_json',
-    default: '',
+    default: '[]',
     description: undefined,
     required: false,
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'requests',
       },
     },
@@ -3386,10 +3366,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'my_composition_object_id',
+    default: '',
     description: 'Composition unique identifier.',
     displayName: 'Composition ID',
     name: 'compositionID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -3440,6 +3420,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Search query for rules.',
     routing: {
       send: {
@@ -3450,7 +3431,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Query',
     name: 'query_string',
-    default: '',
     displayOptions: {
       show: {
         search_composition_rules_params_object: ['query_string'],
@@ -3461,6 +3441,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     description:
       'Which part of the search query the pattern should match:\n\n- `startsWith`. The pattern must match the beginning of the query.\n- `endsWith`. The pattern must match the end of the query.\n- `is`. The pattern must match the query exactly.\n- `contains`. The pattern must match anywhere in the query.\n\nEmpty queries are only allowed as patterns with `anchoring: is`.\n',
     options: [
@@ -3490,7 +3471,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Anchoring',
     name: 'anchoring_options',
-    default: '',
     displayOptions: {
       show: {
         search_composition_rules_params_object: ['anchoring_options'],
@@ -3502,6 +3482,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'mobile',
+    default: '',
     description: 'Only return composition rules that match the context (exact match).',
     routing: {
       send: {
@@ -3512,7 +3493,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Context',
     name: 'context_string',
-    default: '',
     displayOptions: {
       show: {
         search_composition_rules_params_object: ['context_string'],
@@ -3523,6 +3503,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description:
       'Requested page of the API response.\n\nAlgolia uses `page` and `hitsPerPage` to control how search results are displayed ([paginated](https://www.algolia.com/doc/guides/building-search-ui/ui-and-ux-patterns/pagination/js)).\n\n- `hitsPerPage`: sets the number of search results (_hits_) displayed per page.\n- `page`: specifies the page number of the search results you want to retrieve. Page numbering starts at 0, so the first page is `page=0`, the second is `page=1`, and so on.\n\nFor example, to display 10 results per page starting from the third page, set `hitsPerPage` to 10 and `page` to 2.\n',
     typeOptions: {
@@ -3537,7 +3518,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Page',
     name: 'page_number',
-    default: '',
     displayOptions: {
       show: {
         search_composition_rules_params_object: ['page_number'],
@@ -3605,11 +3585,11 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       'If `true`, return only enabled composition rules.\nIf `false`, return only inactive composition rules.\nBy default, _all_ composition rules are returned.\n',
     displayName: 'Enabled (Boolean)',
     name: 'enabled_boolean',
-    default: '',
     displayOptions: {
       show: {
         search_composition_rules_params_object: ['enabled'],
@@ -3643,10 +3623,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'my_composition_object_id',
+    default: '',
     description: 'Composition unique identifier.',
     displayName: 'Composition ID',
     name: 'compositionID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -3658,9 +3638,9 @@ const properties: INodeProperties[] = [
   {
     type: 'number',
     placeholder: '1506303845001',
+    default: '',
     displayName: 'Task ID',
     name: 'taskID_number',
-    default: '',
     required: true,
     displayOptions: {
       show: {

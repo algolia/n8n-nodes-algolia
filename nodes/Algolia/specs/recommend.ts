@@ -147,11 +147,11 @@ const properties: INodeProperties[] = [
     name: 'requests_json',
     default: '[]',
     description: 'Recommendation request with parameters depending on the requested model.',
-    required: false,
+    required: true,
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'requests',
       },
     },
@@ -166,9 +166,9 @@ const properties: INodeProperties[] = [
   {
     type: 'options',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     displayName: 'Index Name',
     name: 'indexName_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -206,6 +206,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     options: [
       {
         name: 'related-products',
@@ -226,7 +227,6 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Model',
     name: 'model_options',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -238,10 +238,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'test-record-123',
+    default: '',
     description: 'Unique record identifier.',
     displayName: 'Object ID',
     name: 'objectID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -253,9 +253,9 @@ const properties: INodeProperties[] = [
   {
     type: 'options',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     displayName: 'Index Name',
     name: 'indexName_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -293,6 +293,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     options: [
       {
         name: 'related-products',
@@ -313,7 +314,6 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Model',
     name: 'model_options',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -325,10 +325,10 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'test-record-123',
+    default: '',
     description: 'Unique record identifier.',
     displayName: 'Object ID',
     name: 'objectID_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -340,9 +340,9 @@ const properties: INodeProperties[] = [
   {
     type: 'options',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     displayName: 'Index Name',
     name: 'indexName_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -380,6 +380,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     options: [
       {
         name: 'related-products',
@@ -400,7 +401,6 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Model',
     name: 'model_options',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -412,11 +412,11 @@ const properties: INodeProperties[] = [
   {
     type: 'number',
     placeholder: '1514562690001',
+    default: '',
     description:
       "Unique identifier of a task.\n\nA successful API response means that a task was added to a queue.\nIt might not run immediately.\nYou can check the task's progress with the [`task` operation](https://www.algolia.com/doc/rest-api/search/get-task) and this task ID.\n",
     displayName: 'Task ID',
     name: 'taskID_number',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -428,9 +428,9 @@ const properties: INodeProperties[] = [
   {
     type: 'options',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     displayName: 'Index Name',
     name: 'indexName_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -468,6 +468,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     options: [
       {
         name: 'related-products',
@@ -488,7 +489,6 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Model',
     name: 'model_options',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -547,6 +547,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     description: 'Search query.',
     routing: {
       send: {
@@ -557,7 +558,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Query',
     name: 'query_string',
-    default: '',
     displayOptions: {
       show: {
         search_recommend_rules_params_object: ['query_string'],
@@ -569,6 +569,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'mobile',
+    default: '',
     description: 'Only search for rules with matching context.',
     routing: {
       send: {
@@ -579,7 +580,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Context',
     name: 'context_string',
-    default: '',
     displayOptions: {
       show: {
         search_recommend_rules_params_object: ['context_string'],
@@ -590,6 +590,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description:
       'Requested page of the API response.\n\nAlgolia uses `page` and `hitsPerPage` to control how search results are displayed ([paginated](https://www.algolia.com/doc/guides/building-search-ui/ui-and-ux-patterns/pagination/js)).\n\n- `hitsPerPage`: sets the number of search results (_hits_) displayed per page.\n- `page`: specifies the page number of the search results you want to retrieve. Page numbering starts at 0, so the first page is `page=0`, the second is `page=1`, and so on.\n\nFor example, to display 10 results per page starting from the third page, set `hitsPerPage` to 10 and `page` to 2.\n',
     typeOptions: {
@@ -604,7 +605,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Page',
     name: 'page_number',
-    default: '',
     displayOptions: {
       show: {
         search_recommend_rules_params_object: ['page_number'],
@@ -641,6 +641,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description:
       'Whether to only show rules where the value of their `enabled` property matches this parameter.\nIf absent, show all rules, regardless of their `enabled` property.\n',
     routing: {
@@ -652,7 +653,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Enabled',
     name: 'enabled_boolean',
-    default: '',
     displayOptions: {
       show: {
         search_recommend_rules_params_object: ['enabled_boolean'],
@@ -664,6 +664,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'objectID:rr-123456',
+    default: '',
     description: 'Filter expression. This only searches for rules matching the filter expression.',
     routing: {
       send: {
@@ -674,7 +675,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Filters',
     name: 'filters_string',
-    default: '',
     displayOptions: {
       show: {
         search_recommend_rules_params_object: ['filters_string'],
@@ -694,7 +694,7 @@ const properties: INodeProperties[] = [
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'facets',
       },
     },
@@ -708,6 +708,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     description: 'Maximum number of values to return for each facet.',
     typeOptions: {
       minValue: 1,
@@ -722,7 +723,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Max Values Per Facet',
     name: 'maxValuesPerFacet_number',
-    default: '',
     displayOptions: {
       show: {
         search_recommend_rules_params_object: ['maxValuesPerFacet_number'],
@@ -734,9 +734,9 @@ const properties: INodeProperties[] = [
   {
     type: 'options',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     displayName: 'Index Name',
     name: 'indexName_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -774,6 +774,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'options',
+    default: '',
     options: [
       {
         name: 'related-products',
@@ -794,7 +795,6 @@ const properties: INodeProperties[] = [
     ],
     displayName: 'Model',
     name: 'model_options',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -805,12 +805,16 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'json',
-    displayName: 'Json',
-    name: 'json',
-    default: '',
+    displayName: 'Body',
+    name: 'body',
+    default: '[]',
     description: 'Recommend rules.',
     required: false,
-    routing: undefined,
+    routing: {
+      request: {
+        body: '={{ $value }}',
+      },
+    },
     displayOptions: {
       show: {
         resource: ['rules'],

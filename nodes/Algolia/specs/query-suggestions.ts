@@ -133,12 +133,31 @@ const properties: INodeProperties[] = [
     },
   },
   {
+    type: 'json',
+    displayName: 'Configuration With Index',
+    name: 'configuration_with_index_object',
+    description: 'Query Suggestions configuration.',
+    required: true,
+    default: '{}',
+    routing: {
+      request: {
+        body: '={{ $value }}',
+      },
+    },
+    displayOptions: {
+      show: {
+        resource: ['configurations'],
+        operation: ['createConfig'],
+      },
+    },
+  },
+  {
     type: 'options',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     description: 'Name of the Query Suggestions index (case-sensitive).',
     displayName: 'Index Name',
     name: 'indexName_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -177,10 +196,10 @@ const properties: INodeProperties[] = [
   {
     type: 'options',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     description: 'Name of the Query Suggestions index (case-sensitive).',
     displayName: 'Index Name',
     name: 'indexName_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -256,13 +275,13 @@ const properties: INodeProperties[] = [
     type: 'json',
     displayName: 'Source Indices',
     name: 'sourceIndices_json',
-    default: '',
+    default: '[]',
     description: 'Algolia indices from which to get the popular searches for query suggestions.',
-    required: false,
+    required: true,
     routing: {
       send: {
         type: 'body',
-        value: '={{ JSON.parse($value) }}',
+        value: '={{ $value }}',
         property: 'sourceIndices',
       },
     },
@@ -323,10 +342,10 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description: 'If true, deduplication is enabled for all languages.',
     displayName: 'Languages (Boolean)',
     name: 'languages_boolean',
-    default: '',
     displayOptions: {
       show: {
         configuration_object: ['languages'],
@@ -406,6 +425,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description: 'Whether to turn on personalized query suggestions.',
     routing: {
       send: {
@@ -416,7 +436,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Enable Personalization',
     name: 'enablePersonalization_boolean',
-    default: false,
     displayOptions: {
       show: {
         configuration_object: ['enablePersonalization_boolean'],
@@ -427,6 +446,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     description: 'Whether to include suggestions with special characters.',
     routing: {
       send: {
@@ -437,7 +457,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Allow Special Characters',
     name: 'allowSpecialCharacters_boolean',
-    default: false,
     displayOptions: {
       show: {
         configuration_object: ['allowSpecialCharacters_boolean'],
@@ -449,10 +468,10 @@ const properties: INodeProperties[] = [
   {
     type: 'options',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     description: 'Name of the Query Suggestions index (case-sensitive).',
     displayName: 'Index Name',
     name: 'indexName_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -491,10 +510,10 @@ const properties: INodeProperties[] = [
   {
     type: 'options',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     description: 'Name of the Query Suggestions index (case-sensitive).',
     displayName: 'Index Name',
     name: 'indexName_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -533,10 +552,10 @@ const properties: INodeProperties[] = [
   {
     type: 'options',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     description: 'Name of the Query Suggestions index (case-sensitive).',
     displayName: 'Index Name',
     name: 'indexName_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {

@@ -385,6 +385,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -394,7 +395,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Index',
     name: 'index_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -405,6 +405,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     routing: {
       request: {
         qs: {
@@ -414,7 +415,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Click Analytics',
     name: 'clickAnalytics_boolean',
-    default: false,
     displayOptions: {
       show: {
         resource: ['search'],
@@ -424,6 +424,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     routing: {
       request: {
         qs: {
@@ -433,7 +434,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Revenue Analytics',
     name: 'revenueAnalytics_boolean',
-    default: false,
     displayOptions: {
       show: {
         resource: ['search'],
@@ -444,6 +444,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '2022-09-19',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -453,7 +454,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Start Date',
     name: 'startDate_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['search'],
@@ -464,6 +464,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '2023-01-21',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -473,7 +474,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'End Date',
     name: 'endDate_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['search'],
@@ -573,6 +573,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     typeOptions: {
       minValue: 0,
     },
@@ -585,7 +586,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Offset',
     name: 'offset_number',
-    default: 0,
     displayOptions: {
       show: {
         resource: ['search'],
@@ -595,6 +595,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -604,7 +605,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Tags',
     name: 'tags_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['search'],
@@ -615,6 +615,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -624,7 +625,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Index',
     name: 'index_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -636,6 +636,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '2022-09-19',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -645,7 +646,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Start Date',
     name: 'startDate_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['search'],
@@ -656,6 +656,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '2023-01-21',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -665,7 +666,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'End Date',
     name: 'endDate_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['search'],
@@ -675,6 +675,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -684,7 +685,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Tags',
     name: 'tags_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['search'],
@@ -695,6 +695,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -704,7 +705,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Index',
     name: 'index_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -716,6 +716,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '2022-09-19',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -725,7 +726,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Start Date',
     name: 'startDate_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['search'],
@@ -736,6 +736,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '2023-01-21',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -745,7 +746,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'End Date',
     name: 'endDate_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['search'],
@@ -777,6 +777,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     typeOptions: {
       minValue: 0,
     },
@@ -789,7 +790,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Offset',
     name: 'offset_number',
-    default: 0,
     displayOptions: {
       show: {
         resource: ['search'],
@@ -799,6 +799,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -808,7 +809,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Tags',
     name: 'tags_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['search'],
@@ -819,6 +819,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -828,7 +829,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Index',
     name: 'index_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -840,6 +840,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '2022-09-19',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -849,7 +850,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Start Date',
     name: 'startDate_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['click'],
@@ -860,6 +860,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '2023-01-21',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -869,7 +870,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'End Date',
     name: 'endDate_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['click'],
@@ -901,6 +901,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     typeOptions: {
       minValue: 0,
     },
@@ -913,7 +914,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Offset',
     name: 'offset_number',
-    default: 0,
     displayOptions: {
       show: {
         resource: ['click'],
@@ -923,6 +923,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -932,7 +933,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Tags',
     name: 'tags_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['click'],
@@ -943,6 +943,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -952,7 +953,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Index',
     name: 'index_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -964,6 +964,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '2022-09-19',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -973,7 +974,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Start Date',
     name: 'startDate_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['search'],
@@ -984,6 +984,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '2023-01-21',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -993,7 +994,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'End Date',
     name: 'endDate_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['search'],
@@ -1003,6 +1003,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -1012,7 +1013,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Tags',
     name: 'tags_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['search'],
@@ -1023,6 +1023,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -1032,7 +1033,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Index',
     name: 'index_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -1044,6 +1044,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '2022-09-19',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -1053,7 +1054,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Start Date',
     name: 'startDate_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['click'],
@@ -1064,6 +1064,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '2023-01-21',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -1073,7 +1074,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'End Date',
     name: 'endDate_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['click'],
@@ -1083,6 +1083,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -1092,7 +1093,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Tags',
     name: 'tags_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['click'],
@@ -1103,6 +1103,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -1112,7 +1113,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Index',
     name: 'index_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -1123,6 +1123,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -1132,7 +1133,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Search',
     name: 'search_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['search'],
@@ -1142,6 +1142,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     routing: {
       request: {
         qs: {
@@ -1151,7 +1152,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Click Analytics',
     name: 'clickAnalytics_boolean',
-    default: false,
     displayOptions: {
       show: {
         resource: ['search'],
@@ -1161,6 +1161,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'boolean',
+    default: false,
     routing: {
       request: {
         qs: {
@@ -1170,7 +1171,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Revenue Analytics',
     name: 'revenueAnalytics_boolean',
-    default: false,
     displayOptions: {
       show: {
         resource: ['search'],
@@ -1181,6 +1181,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '2022-09-19',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -1190,7 +1191,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Start Date',
     name: 'startDate_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['search'],
@@ -1201,6 +1201,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '2023-01-21',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -1210,7 +1211,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'End Date',
     name: 'endDate_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['search'],
@@ -1242,6 +1242,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     typeOptions: {
       minValue: 0,
     },
@@ -1254,7 +1255,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Offset',
     name: 'offset_number',
-    default: 0,
     displayOptions: {
       show: {
         resource: ['search'],
@@ -1264,6 +1264,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -1273,7 +1274,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Tags',
     name: 'tags_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['search'],
@@ -1284,6 +1284,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -1293,7 +1294,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Index',
     name: 'index_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -1305,6 +1305,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '2022-09-19',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -1314,7 +1315,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Start Date',
     name: 'startDate_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['user'],
@@ -1325,6 +1325,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '2023-01-21',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -1334,7 +1335,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'End Date',
     name: 'endDate_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['user'],
@@ -1344,6 +1344,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -1353,7 +1354,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Tags',
     name: 'tags_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['user'],
@@ -1364,6 +1364,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -1373,7 +1374,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Index',
     name: 'index_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -1384,6 +1384,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -1393,7 +1394,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Search',
     name: 'search_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['filter'],
@@ -1404,6 +1404,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '2022-09-19',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -1413,7 +1414,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Start Date',
     name: 'startDate_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['filter'],
@@ -1424,6 +1424,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '2023-01-21',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -1433,7 +1434,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'End Date',
     name: 'endDate_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['filter'],
@@ -1465,6 +1465,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     typeOptions: {
       minValue: 0,
     },
@@ -1477,7 +1478,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Offset',
     name: 'offset_number',
-    default: 0,
     displayOptions: {
       show: {
         resource: ['filter'],
@@ -1487,6 +1487,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -1496,7 +1497,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Tags',
     name: 'tags_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['filter'],
@@ -1507,9 +1507,9 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'brand',
+    default: '',
     displayName: 'Attribute',
     name: 'attribute_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -1521,6 +1521,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -1530,7 +1531,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Index',
     name: 'index_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -1541,6 +1541,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -1550,7 +1551,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Search',
     name: 'search_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['filter'],
@@ -1561,6 +1561,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '2022-09-19',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -1570,7 +1571,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Start Date',
     name: 'startDate_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['filter'],
@@ -1581,6 +1581,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '2023-01-21',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -1590,7 +1591,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'End Date',
     name: 'endDate_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['filter'],
@@ -1622,6 +1622,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     typeOptions: {
       minValue: 0,
     },
@@ -1634,7 +1635,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Offset',
     name: 'offset_number',
-    default: 0,
     displayOptions: {
       show: {
         resource: ['filter'],
@@ -1644,6 +1644,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -1653,7 +1654,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Tags',
     name: 'tags_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['filter'],
@@ -1664,6 +1664,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -1673,7 +1674,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Index',
     name: 'index_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -1684,6 +1684,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -1693,7 +1694,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Search',
     name: 'search_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['filter'],
@@ -1704,6 +1704,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '2022-09-19',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -1713,7 +1714,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Start Date',
     name: 'startDate_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['filter'],
@@ -1724,6 +1724,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '2023-01-21',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -1733,7 +1734,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'End Date',
     name: 'endDate_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['filter'],
@@ -1765,6 +1765,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     typeOptions: {
       minValue: 0,
     },
@@ -1777,7 +1778,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Offset',
     name: 'offset_number',
-    default: 0,
     displayOptions: {
       show: {
         resource: ['filter'],
@@ -1787,6 +1787,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -1796,7 +1797,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Tags',
     name: 'tags_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['filter'],
@@ -1807,6 +1807,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -1816,7 +1817,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Index',
     name: 'index_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -1828,6 +1828,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '2022-09-19',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -1837,7 +1838,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Start Date',
     name: 'startDate_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['user'],
@@ -1848,6 +1848,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '2023-01-21',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -1857,7 +1858,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'End Date',
     name: 'endDate_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['user'],
@@ -1889,6 +1889,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'number',
+    default: '',
     typeOptions: {
       minValue: 0,
     },
@@ -1901,7 +1902,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Offset',
     name: 'offset_number',
-    default: 0,
     displayOptions: {
       show: {
         resource: ['user'],
@@ -1911,6 +1911,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -1920,7 +1921,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Tags',
     name: 'tags_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['user'],
@@ -1931,6 +1931,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -1940,7 +1941,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Index',
     name: 'index_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -1952,6 +1952,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '2022-09-19',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -1961,7 +1962,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Start Date',
     name: 'startDate_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['click'],
@@ -1972,6 +1972,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '2023-01-21',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -1981,7 +1982,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'End Date',
     name: 'endDate_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['click'],
@@ -1991,6 +1991,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -2000,7 +2001,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Tags',
     name: 'tags_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['click'],
@@ -2011,6 +2011,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -2020,7 +2021,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Index',
     name: 'index_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -2032,6 +2032,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '2022-09-19',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -2041,7 +2042,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Start Date',
     name: 'startDate_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['click'],
@@ -2052,6 +2052,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '2023-01-21',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -2061,7 +2062,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'End Date',
     name: 'endDate_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['click'],
@@ -2071,6 +2071,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -2080,7 +2081,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Tags',
     name: 'tags_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['click'],
@@ -2091,6 +2091,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -2100,7 +2101,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Index',
     name: 'index_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -2112,6 +2112,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '2022-09-19',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -2121,7 +2122,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Start Date',
     name: 'startDate_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['click'],
@@ -2132,6 +2132,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '2023-01-21',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -2141,7 +2142,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'End Date',
     name: 'endDate_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['click'],
@@ -2151,6 +2151,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -2160,7 +2161,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Tags',
     name: 'tags_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['click'],
@@ -2171,6 +2171,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -2180,7 +2181,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Index',
     name: 'index_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -2192,6 +2192,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '2022-09-19',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -2201,7 +2202,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Start Date',
     name: 'startDate_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['click'],
@@ -2212,6 +2212,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '2023-01-21',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -2221,7 +2222,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'End Date',
     name: 'endDate_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['click'],
@@ -2231,6 +2231,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -2240,7 +2241,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Tags',
     name: 'tags_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['click'],
@@ -2251,6 +2251,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -2260,7 +2261,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Index',
     name: 'index_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -2272,6 +2272,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '2022-09-19',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -2281,7 +2282,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Start Date',
     name: 'startDate_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['click'],
@@ -2292,6 +2292,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '2023-01-21',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -2301,7 +2302,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'End Date',
     name: 'endDate_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['click'],
@@ -2311,6 +2311,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -2320,7 +2321,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Tags',
     name: 'tags_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['click'],
@@ -2331,6 +2331,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -2340,7 +2341,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Index',
     name: 'index_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -2352,6 +2352,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '2022-09-19',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -2361,7 +2362,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Start Date',
     name: 'startDate_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['click'],
@@ -2372,6 +2372,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '2023-01-21',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -2381,7 +2382,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'End Date',
     name: 'endDate_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['click'],
@@ -2391,6 +2391,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -2400,7 +2401,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Tags',
     name: 'tags_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['click'],
@@ -2411,6 +2411,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -2420,7 +2421,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Index',
     name: 'index_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
@@ -2432,6 +2432,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '2022-09-19',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -2441,7 +2442,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Start Date',
     name: 'startDate_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['revenue'],
@@ -2452,6 +2452,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: '2023-01-21',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -2461,7 +2462,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'End Date',
     name: 'endDate_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['revenue'],
@@ -2471,6 +2471,7 @@ const properties: INodeProperties[] = [
   },
   {
     type: 'string',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -2480,7 +2481,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Tags',
     name: 'tags_string',
-    default: '',
     displayOptions: {
       show: {
         resource: ['revenue'],
@@ -2491,6 +2491,7 @@ const properties: INodeProperties[] = [
   {
     type: 'string',
     placeholder: 'ALGOLIA_INDEX_NAME',
+    default: '',
     routing: {
       request: {
         qs: {
@@ -2500,7 +2501,6 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Index',
     name: 'index_string',
-    default: '',
     required: true,
     displayOptions: {
       show: {
