@@ -16,6 +16,26 @@ Algolia is a hosted search API that provides search-as-a-service solutions. It o
 
 Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes/installation/) in the n8n community nodes documentation.
 
+## Credentials
+
+To use this node, you need to authenticate with Algolia using API credentials.
+
+### Prerequisites
+
+1. [Sign up](https://dashboard.algolia.com/users/sign_up) or [log into](https://dashboard.algolia.com/users/sign_in) your Algolia account
+2. In your Algolia dashboard, go to [Settings](https://dashboard.algolia.com/account/overview) > [API Keys](https://dashboard.algolia.com/account/api-keys/all)
+3. Copy your Application ID
+4. Copy your Admin API Key
+   - Required for if you want to manage your API keys from n8n - otherwise the Write API Key should be enough)
+
+![API Keys page](assets/algolia-credentials.png)
+
+5. In n8n, create new Algolia API credentials with:
+   - **Application ID**: Your Algolia Application ID
+   - **Admin API Key**: Your Algolia Admin API Key
+
+![Credentials page](assets/n8n-credentials.png)
+
 ## Operations
 
 This node supports the following operations:
@@ -112,23 +132,64 @@ This node supports the following operations:
 - **Delete a source** - Deletes a source from the list of allowed sources.
 <!-- OPERATIONS END -->
 
-## Credentials
+## Usage examples
 
-To use this node, you need to authenticate with Algolia using API credentials.
+### Batch insert into an Algolia Index
 
-### Prerequisites
+This section demonstrates how to efficiently perform batch inserts into an Algolia index using n8n.
 
-1. Sign up for an [Algolia account](https://www.algolia.com)
-2. Create an application in your Algolia dashboard
+Batch operations are ideal for processing large datasets, as they reduce latency and improve data consistency.
 
-### Authentication Setup
+<div align="center">
 
-1. In your Algolia dashboard, go to Settings > API Keys
-2. Copy your Application ID
-3. Copy your Admin API Key (required for write operations)
-4. In n8n, create new Algolia API credentials with:
-   - **Application ID**: Your Algolia Application ID
-   - **Admin API Key**: Your Algolia Admin API Key
+![Batch workflow](assets/workflow-1.png)
+<i>Example of a Batch indexing operation workflow</i>
+
+</div>
+
+**Step-by-step guide:**
+
+1. Add a **webhook node** or a third-party webhook trigger node to initiate your workflow.
+
+2. Utilize a **Code node** (JavaScript or Python) to format your data for the Algolia batch insert operation.
+   - If your items already have unique identifiers, assign them to the `objectID` property.
+   - If not, Algolia will automatically generate a unique `objectID` when using the `addObject` or `partialUpdateObject` actions.
+   - To remove a record, use the `deleteObject` action.
+   - For a complete overview of available actions, refer to the [official documentation](https://www.algolia.com/doc/rest-api/search/batch#body-requests).
+
+![Batch workflow](assets/workflow-1-1.png)
+
+3. Add the Algolia node for **Batch indexing operations on one index** and connect it to your data list. As a best practice, ensure that only one item at a time enters this node.
+
+![Batch workflow](assets/workflow-1-2.png)
+
+4. Activate the workflow to begin automated batch indexing.
+
+Now, when items are added/deleted from your 3pr-party software, this workflow will make sure your index stays fresh and up to date!
+
+_API Rate limitations apply. See https://www.algolia.com/doc/guides/scaling/algolia-service-limits for more details._
+
+### Scheduled Cleanup of Deprecated Synonyms
+
+Over time, synonyms in your Algolia index might become outdated or no longer needed. With n8n, you can automate the removal of deprecated or unused synonyms to keep your index clean and relevant.
+
+<div align="center">
+
+![Synonym workflow](assets/workflow-2.png)
+<i>Example of a Batch indexing operation workflow</i>
+
+</div>
+
+**Step-by-step guide:**
+
+1. Use the **Schedule trigger** node to schedule the cleanup to run regularly (daily, weekly, etc.).
+2. Add the Algolia node to **"Search for synonyms"** in your target index.
+3. Use a code node to filter synonyms that match your criteria for deprecation or removal (for example, a custom `deprecated` tag or certain naming patterns).
+4. For each deprecated synonym, add an Algolia node to **"Delete a synonym"** by its ID.
+
+This workflow helps ensure your Algolia synonyms stay accurate and up to date.
+
+_API Rate limitations apply. See https://www.algolia.com/doc/guides/scaling/algolia-service-limits for more details._
 
 ## Compatibility
 
@@ -137,5 +198,5 @@ This node requires n8n version 1.0.0 or higher and Node.js 20.15 or higher.
 ## Resources
 
 - [n8n community nodes documentation](https://docs.n8n.io/integrations/#community-nodes)
-- [Algolia API documentation](https://www.algolia.com/doc/api-reference/)
+- [Algolia API documentation](https://www.algolia.com/doc/rest-api/search)
 - [Algolia dashboard](https://www.algolia.com/apps)

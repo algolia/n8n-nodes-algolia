@@ -9,7 +9,7 @@ export class Algolia implements INodeType {
     displayName: 'Algolia',
     description: 'Use Algolia in your n8n workflows',
     subtitle: '={{ $parameter.operation.replace(/([a-z])([A-Z])/g, "$1 $2").toTitleCase() }}',
-    icon: 'file:algolia.svg',
+    icon: 'file:./algolia.svg',
     defaults: {
       name: 'Algolia',
     },

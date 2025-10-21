@@ -11,7 +11,7 @@ jobs:
   build:
     name: Release
     runs-on: ubuntu-latest
-    if: github.event_name == 'workflow_dispatch' || (github.event.pull_request.merged == true && startsWith(github.head_ref, 'releases/v'))
+    if: github.event_name == 'workflow_dispatch' || (github.event.pull_request.merged == true && github.head_ref == 'feat/auto-openapi-sync')
     steps:
       - uses: actions/checkout@v4
         with:
@@ -29,3 +29,38 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+      - name: Get version
+        id: version
+        run: echo "VERSION=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
+      - name: Get changelog
+        id: changelog
+        run: |
+          CHANGELOG=$(awk '/^# \[/{if(++count==2)exit}1' CHANGELOG.md | tail -n +3)
+          echo "CHANGELOG<<EOF" >> $GITHUB_OUTPUT
+          echo "$CHANGELOG" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+      - name: Notify Slack
+        run: |
+          FEATURES=$(echo "$CHANGELOG" | awk '/### Features/{flag=1; next} /^###/{flag=0} flag && /^-/ {print}' | sed 's/ (.*//')
+          BUG_FIXES=$(echo "$CHANGELOG" | awk '/### Bug Fixes/{flag=1; next} /^###/{flag=0} flag && /^-/ {print}' | sed 's/ (.*//')
+
+          HIGHLIGHTS_MESSAGE=""
+
+          if [ -n "$FEATURES" ]; then
+            HIGHLIGHTS_MESSAGE=$(printf "%s%s\n" "$HIGHLIGHTS_MESSAGE" "$FEATURES")
+          fi
+
+          if [ -n "$BUG_FIXES" ]; then
+            HIGHLIGHTS_MESSAGE=$(printf "%s%s" "$HIGHLIGHTS_MESSAGE" "$BUG_FIXES")
+          fi
+
+          RELEASE_NOTES_LINK=https://github.com/algolia/n8n-nodes-algolia/releases/tag/v$VERSION
+
+          PAYLOAD=$(jq -n --arg version "$VERSION" --arg highlights_message "$HIGHLIGHTS_MESSAGE" --arg release_notes_link "$RELEASE_NOTES_LINK" '{version: $version, highlights_message: $highlights_message, release_notes_link: $release_notes_link}')
+          curl -X POST "$SLACK_WEBHOOK_URL" \
+            -H "Content-Type: application/json" \
+            -d "$PAYLOAD"
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          VERSION: ${{ steps.version.outputs.VERSION }}
+          CHANGELOG: ${{ steps.changelog.outputs.CHANGELOG }}

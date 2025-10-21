@@ -17,12 +17,12 @@ jobs:
       contents: write
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version-file: '.tool-versions'
           registry-url: 'https://registry.npmjs.org'
@@ -33,13 +33,7 @@ jobs:
           NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
 
       - name: Generate properties
-        run: npm run generate-properties
-
-      - name: Generate specs index
-        run: npm run generate-specs-index
-
-      - name: Generate readme operations
-        run: npm run generate-readme-operations
+        run: npm run generate
 
       - name: Format code
         run: npx prettier --write .

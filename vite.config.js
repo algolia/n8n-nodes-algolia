@@ -23,7 +23,7 @@ export default defineConfig({
     },
     emptyOutDir: true,
     target: 'esnext',
-    minify: false,
+    minify: 'esbuild',
     rollupOptions: {
       external: ['n8n-workflow', '@algolia/n8n-openapi-node'],
       output: {
@@ -35,7 +35,15 @@ export default defineConfig({
     viteStaticCopy({
       targets: [
         {
-          src: 'nodes/**/*.{json,svg}',
+          src: 'nodes/Algolia/Algolia.node.json',
+          dest: '.',
+          rename(_, __, fullPath) {
+            const relativePathFromRoot = path.relative(process.cwd(), fullPath);
+            return relativePathFromRoot.split(path.sep).join('/');
+          },
+        },
+        {
+          src: 'algolia.svg',
           dest: '.',
           rename(_, __, fullPath) {
             const relativePathFromRoot = path.relative(process.cwd(), fullPath);
