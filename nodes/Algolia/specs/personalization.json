@@ -11,7 +11,10 @@
       "variables": {
         "region": {
           "description": "The region where your Algolia application is hosted.",
-          "enum": ["us", "eu"],
+          "enum": [
+            "us",
+            "eu"
+          ],
           "default": "us"
         }
       }
@@ -212,9 +215,13 @@
     },
     "/1/profiles/personalization/{userToken}": {
       "get": {
-        "tags": ["profiles"],
+        "tags": [
+          "profiles"
+        ],
         "operationId": "getUserTokenProfile",
-        "x-acl": ["recommendation"],
+        "x-acl": [
+          "recommendation"
+        ],
         "summary": "Retrieve a user profile",
         "description": "Retrieves a user profile and their affinities for different facets.",
         "parameters": [
@@ -242,7 +249,11 @@
                   "title": "getUserTokenResponse",
                   "type": "object",
                   "additionalProperties": false,
-                  "required": ["userToken", "scores", "lastEventAt"],
+                  "required": [
+                    "userToken",
+                    "scores",
+                    "lastEventAt"
+                  ],
                   "properties": {
                     "userToken": {
                       "$ref": "#/components/schemas/userToken"
@@ -277,9 +288,13 @@
     },
     "/1/profiles/{userToken}": {
       "delete": {
-        "tags": ["profiles"],
+        "tags": [
+          "profiles"
+        ],
         "operationId": "deleteUserProfile",
-        "x-acl": ["recommendation"],
+        "x-acl": [
+          "recommendation"
+        ],
         "summary": "Delete a user profile",
         "description": "Deletes a user profile.\n\nThe response includes a date and time when the user profile can safely be considered deleted.\n",
         "parameters": [
@@ -307,7 +322,10 @@
                   "title": "deleteUserProfileResponse",
                   "type": "object",
                   "additionalProperties": false,
-                  "required": ["userToken", "deletedUntil"],
+                  "required": [
+                    "userToken",
+                    "deletedUntil"
+                  ],
                   "properties": {
                     "userToken": {
                       "$ref": "#/components/schemas/userToken"
@@ -338,9 +356,13 @@
     },
     "/1/strategies/personalization": {
       "get": {
-        "tags": ["strategies"],
+        "tags": [
+          "strategies"
+        ],
         "operationId": "getPersonalizationStrategy",
-        "x-acl": ["recommendation"],
+        "x-acl": [
+          "recommendation"
+        ],
         "summary": "Retrieve the personalization strategy",
         "description": "Retrieves the current personalization strategy.",
         "responses": {
@@ -380,9 +402,13 @@
         }
       },
       "post": {
-        "tags": ["strategies"],
+        "tags": [
+          "strategies"
+        ],
         "operationId": "setPersonalizationStrategy",
-        "x-acl": ["recommendation"],
+        "x-acl": [
+          "recommendation"
+        ],
         "summary": "Define the personalization strategy",
         "description": "Creates a new personalization strategy.",
         "requestBody": {
@@ -404,7 +430,9 @@
                   "title": "setPersonalizationStrategyResponse",
                   "type": "object",
                   "additionalProperties": false,
-                  "required": ["message"],
+                  "required": [
+                    "message"
+                  ],
                   "properties": {
                     "message": {
                       "type": "string",
@@ -435,7 +463,9 @@
       "get": {
         "x-helper": true,
         "x-asynchronous-helper": false,
-        "tags": ["Api Key"],
+        "tags": [
+          "Api Key"
+        ],
         "operationId": "setClientApiKey",
         "summary": "Switch the API key used to authenticate requests",
         "description": "Switch the API key used to authenticate requests.\n",
@@ -520,7 +550,9 @@
         "type": "string",
         "description": "Unique pseudonymous or anonymous user identifier.\n\nThis helps with analytics and click and conversion events.\nFor more information, see [user token](https://www.algolia.com/doc/guides/sending-events/concepts/usertoken).\n",
         "example": "test-user-123",
-        "x-categories": ["Personalization"]
+        "x-categories": [
+          "Personalization"
+        ]
       },
       "score": {
         "type": "integer",
@@ -530,12 +562,20 @@
         "title": "eventType",
         "type": "string",
         "description": "Event type.",
-        "enum": ["click", "conversion", "view"]
+        "enum": [
+          "click",
+          "conversion",
+          "view"
+        ]
       },
       "eventsScoring": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["score", "eventName", "eventType"],
+        "required": [
+          "score",
+          "eventName",
+          "eventType"
+        ],
         "properties": {
           "score": {
             "$ref": "#/components/schemas/score"
@@ -552,7 +592,10 @@
       "facetsScoring": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["score", "facetName"],
+        "required": [
+          "score",
+          "facetName"
+        ],
         "properties": {
           "score": {
             "$ref": "#/components/schemas/score"
@@ -566,7 +609,11 @@
       "personalizationStrategyParams": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["eventsScoring", "facetsScoring", "personalizationImpact"],
+        "required": [
+          "eventsScoring",
+          "facetsScoring",
+          "personalizationImpact"
+        ],
         "properties": {
           "eventsScoring": {
             "type": "array",
@@ -660,7 +707,10 @@
   "x-tagGroups": [
     {
       "name": "General",
-      "tags": ["profiles", "strategies"]
+      "tags": [
+        "profiles",
+        "strategies"
+      ]
     }
   ]
 }
