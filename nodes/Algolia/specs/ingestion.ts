@@ -2067,10 +2067,6 @@ const properties: INodeProperties[] = [
         value: 'name_string',
       },
       {
-        name: 'Platform',
-        value: 'platform',
-      },
-      {
         name: 'Input',
         value: 'input',
       },
@@ -2150,88 +2146,6 @@ const properties: INodeProperties[] = [
     displayOptions: {
       show: {
         authentication_update_object: ['name_string'],
-        resource: ['authentications'],
-        operation: ['updateAuthentication'],
-      },
-    },
-  },
-  {
-    type: 'options',
-    name: 'platform',
-    displayName: 'Platform',
-    default: '',
-    options: [
-      {
-        name: 'String',
-        value: 'string',
-      },
-      {
-        name: 'Null',
-        value: 'null',
-      },
-    ],
-    routing: {
-      send: {
-        type: 'body',
-        property: 'platform',
-        value:
-          '={{ typeof $parameter.platform_options !== "undefined" ? $parameter.platform_options : typeof $parameter.platform_null !== "undefined" ? JSON.parse($parameter.platform_null) : undefined }}',
-      },
-    },
-    displayOptions: {
-      show: {
-        authentication_update_object: ['platform'],
-        resource: ['authentications'],
-        operation: ['updateAuthentication'],
-      },
-    },
-  },
-  {
-    type: 'options',
-    default: '',
-    description:
-      'Name of an ecommerce platform with which to authenticate.\nThis determines which authentication type you can select.\n',
-    options: [
-      {
-        name: 'bigcommerce',
-        value: 'bigcommerce',
-      },
-      {
-        name: 'commercetools',
-        value: 'commercetools',
-      },
-      {
-        name: 'shopify',
-        value: 'shopify',
-      },
-    ],
-    displayName: 'Platform (String)',
-    name: 'platform_options',
-    displayOptions: {
-      show: {
-        authentication_update_object: ['platform'],
-        platform: ['string'],
-        resource: ['authentications'],
-        operation: ['updateAuthentication'],
-      },
-    },
-  },
-  {
-    type: 'json',
-    displayName: 'Platform (Null)',
-    name: 'platform_null',
-    default: 'null',
-    description: undefined,
-    required: false,
-    disabledOptions: {
-      show: {
-        platform: ['null'],
-      },
-    },
-    displayOptions: {
-      show: {
-        authentication_update_object: ['platform'],
-        platform: ['null'],
         resource: ['authentications'],
         operation: ['updateAuthentication'],
       },
@@ -3751,7 +3665,7 @@ const properties: INodeProperties[] = [
     displayName: 'Source Commercetools',
     name: 'source_commercetools_object',
     type: 'multiOptions',
-    description: undefined,
+    description: 'Specific configuration attributes of a `commercetools` source.',
     required: true,
     default: [],
     options: [
@@ -4136,7 +4050,7 @@ const properties: INodeProperties[] = [
     displayName: 'Source Big Commerce',
     name: 'source_big_commerce_object',
     type: 'multiOptions',
-    description: undefined,
+    description: 'Specific configuration attributes of a `bigcommerce` source.',
     required: true,
     default: [],
     options: [
@@ -4305,7 +4219,7 @@ const properties: INodeProperties[] = [
     displayName: 'Source JSON',
     name: 'source_json_object',
     type: 'multiOptions',
-    description: undefined,
+    description: 'Specific configuration attributes of a `json` source.',
     required: true,
     default: [],
     options: [
@@ -4395,7 +4309,7 @@ const properties: INodeProperties[] = [
     displayName: 'Source CSV',
     name: 'source_csv_object',
     type: 'multiOptions',
-    description: undefined,
+    description: 'Specific configuration attributes of a `csv` source.',
     required: true,
     default: [],
     options: [
@@ -4527,7 +4441,7 @@ const properties: INodeProperties[] = [
     displayName: 'Source Big Query',
     name: 'source_big_query_object',
     type: 'multiOptions',
-    description: undefined,
+    description: 'Specific configuration attributes of a `bigquery` source.',
     required: true,
     default: [],
     options: [
@@ -4697,7 +4611,7 @@ const properties: INodeProperties[] = [
     displayName: 'Source GA4Big Query Export',
     name: 'source_ga4big_query_export_object',
     type: 'multiOptions',
-    description: undefined,
+    description: 'Specific configuration attributes of a `ga4BigqueryExport` source.',
     required: true,
     default: [],
     options: [
@@ -4779,7 +4693,7 @@ const properties: INodeProperties[] = [
     displayName: 'Source Docker',
     name: 'source_docker_object',
     type: 'multiOptions',
-    description: undefined,
+    description: 'Specific configuration attributes of a `docker` source.',
     required: true,
     default: [],
     options: [
@@ -5089,7 +5003,7 @@ const properties: INodeProperties[] = [
     displayName: 'Source Commercetools',
     name: 'source_commercetools_object',
     type: 'multiOptions',
-    description: undefined,
+    description: 'Specific configuration attributes of a `commercetools` source.',
     required: true,
     default: [],
     options: [
@@ -5474,7 +5388,7 @@ const properties: INodeProperties[] = [
     displayName: 'Source Big Commerce',
     name: 'source_big_commerce_object',
     type: 'multiOptions',
-    description: undefined,
+    description: 'Specific configuration attributes of a `bigcommerce` source.',
     required: true,
     default: [],
     options: [
@@ -5643,7 +5557,7 @@ const properties: INodeProperties[] = [
     displayName: 'Source JSON',
     name: 'source_json_object',
     type: 'multiOptions',
-    description: undefined,
+    description: 'Specific configuration attributes of a `json` source.',
     required: true,
     default: [],
     options: [
@@ -5733,7 +5647,7 @@ const properties: INodeProperties[] = [
     displayName: 'Source CSV',
     name: 'source_csv_object',
     type: 'multiOptions',
-    description: undefined,
+    description: 'Specific configuration attributes of a `csv` source.',
     required: true,
     default: [],
     options: [
@@ -5865,7 +5779,7 @@ const properties: INodeProperties[] = [
     displayName: 'Source Big Query',
     name: 'source_big_query_object',
     type: 'multiOptions',
-    description: undefined,
+    description: 'Specific configuration attributes of a `bigquery` source.',
     required: true,
     default: [],
     options: [
@@ -6035,7 +5949,7 @@ const properties: INodeProperties[] = [
     displayName: 'Source GA4Big Query Export',
     name: 'source_ga4big_query_export_object',
     type: 'multiOptions',
-    description: undefined,
+    description: 'Specific configuration attributes of a `ga4BigqueryExport` source.',
     required: true,
     default: [],
     options: [
@@ -6117,7 +6031,7 @@ const properties: INodeProperties[] = [
     displayName: 'Source Docker',
     name: 'source_docker_object',
     type: 'multiOptions',
-    description: undefined,
+    description: 'Specific configuration attributes of a `docker` source.',
     required: true,
     default: [],
     options: [
@@ -6431,7 +6345,7 @@ const properties: INodeProperties[] = [
     displayName: 'Source Update Commercetools',
     name: 'source_update_commercetools_object',
     type: 'multiOptions',
-    description: undefined,
+    description: 'Specific configuration attributes of a `commercetools` source.',
     required: false,
     default: [],
     options: [
@@ -6795,7 +6709,7 @@ const properties: INodeProperties[] = [
     displayName: 'Source JSON',
     name: 'source_json_object',
     type: 'multiOptions',
-    description: undefined,
+    description: 'Specific configuration attributes of a `json` source.',
     required: true,
     default: [],
     options: [
@@ -6885,7 +6799,7 @@ const properties: INodeProperties[] = [
     displayName: 'Source CSV',
     name: 'source_csv_object',
     type: 'multiOptions',
-    description: undefined,
+    description: 'Specific configuration attributes of a `csv` source.',
     required: true,
     default: [],
     options: [
@@ -7017,7 +6931,7 @@ const properties: INodeProperties[] = [
     displayName: 'Source Big Query',
     name: 'source_big_query_object',
     type: 'multiOptions',
-    description: undefined,
+    description: 'Specific configuration attributes of a `bigquery` source.',
     required: true,
     default: [],
     options: [
@@ -7187,7 +7101,7 @@ const properties: INodeProperties[] = [
     displayName: 'Source GA4Big Query Export',
     name: 'source_ga4big_query_export_object',
     type: 'multiOptions',
-    description: undefined,
+    description: 'Specific configuration attributes of a `ga4BigqueryExport` source.',
     required: true,
     default: [],
     options: [
@@ -7269,7 +7183,7 @@ const properties: INodeProperties[] = [
     displayName: 'Source Update Docker',
     name: 'source_update_docker_object',
     type: 'multiOptions',
-    description: undefined,
+    description: 'Specific configuration attributes of a `docker` source.',
     required: true,
     default: [],
     options: [
@@ -7308,7 +7222,7 @@ const properties: INodeProperties[] = [
     displayName: 'Source Update Shopify',
     name: 'source_update_shopify_object',
     type: 'multiOptions',
-    description: undefined,
+    description: 'Specific configuration attributes of a `shopify` source.',
     required: false,
     default: [],
     options: [
@@ -7499,7 +7413,7 @@ const properties: INodeProperties[] = [
     displayName: 'Source Update Commercetools',
     name: 'source_update_commercetools_object',
     type: 'multiOptions',
-    description: undefined,
+    description: 'Specific configuration attributes of a `commercetools` source.',
     required: false,
     default: [],
     options: [
@@ -7863,7 +7777,7 @@ const properties: INodeProperties[] = [
     displayName: 'Source JSON',
     name: 'source_json_object',
     type: 'multiOptions',
-    description: undefined,
+    description: 'Specific configuration attributes of a `json` source.',
     required: true,
     default: [],
     options: [
@@ -7953,7 +7867,7 @@ const properties: INodeProperties[] = [
     displayName: 'Source CSV',
     name: 'source_csv_object',
     type: 'multiOptions',
-    description: undefined,
+    description: 'Specific configuration attributes of a `csv` source.',
     required: true,
     default: [],
     options: [
@@ -8085,7 +7999,7 @@ const properties: INodeProperties[] = [
     displayName: 'Source Big Query',
     name: 'source_big_query_object',
     type: 'multiOptions',
-    description: undefined,
+    description: 'Specific configuration attributes of a `bigquery` source.',
     required: true,
     default: [],
     options: [
@@ -8255,7 +8169,7 @@ const properties: INodeProperties[] = [
     displayName: 'Source GA4Big Query Export',
     name: 'source_ga4big_query_export_object',
     type: 'multiOptions',
-    description: undefined,
+    description: 'Specific configuration attributes of a `ga4BigqueryExport` source.',
     required: true,
     default: [],
     options: [
@@ -8337,7 +8251,7 @@ const properties: INodeProperties[] = [
     displayName: 'Source Update Docker',
     name: 'source_update_docker_object',
     type: 'multiOptions',
-    description: undefined,
+    description: 'Specific configuration attributes of a `docker` source.',
     required: true,
     default: [],
     options: [
@@ -8376,7 +8290,7 @@ const properties: INodeProperties[] = [
     displayName: 'Source Update Shopify',
     name: 'source_update_shopify_object',
     type: 'multiOptions',
-    description: undefined,
+    description: 'Specific configuration attributes of a `shopify` source.',
     required: false,
     default: [],
     options: [
