@@ -20,7 +20,6 @@
   "engines": {
     "node": ">=20.15"
   },
-  "main": "index.js",
   "scripts": {
     "build": "vite build",
     "dev": "vite build --watch",
@@ -46,6 +45,7 @@
   },
   "devDependencies": {
     "@algolia/n8n-openapi-node": "^1.3.0",
+    "@n8n/node-cli": "^0.13.0",
     "@typescript-eslint/parser": "~8.32.0",
     "concurrently": "^9.2.0",
     "eslint": "^9.38.0",
@@ -62,8 +62,5 @@
   },
   "peerDependencies": {
     "n8n-workflow": "^1.107.0"
-  },
-  "dependencies": {
-    "@n8n/node-cli": "^0.13.0"
   }
 }

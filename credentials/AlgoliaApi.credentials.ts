@@ -4,7 +4,7 @@ export class AlgoliaApi implements ICredentialType {
   name = 'algoliaApi';
   displayName = 'Algolia API';
   documentationUrl = 'https://www.algolia.com';
-  icon = 'file:./algolia.svg' as const;
+  icon = 'file:../algolia.svg' as const;
   properties: INodeProperties[] = [
     {
       displayName: 'Application ID',
