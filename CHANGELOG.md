@@ -1,37 +1,33 @@
 # [0.9.0](https://github.com/algolia/n8n-nodes-algolia/compare/v0.8.1...v0.9.0) (2025-10-24)
 
-
 ### Bug Fixes
 
-* **Parser:** fix nested objects UI ([#39](https://github.com/algolia/n8n-nodes-algolia/issues/39)) ([e15abee](https://github.com/algolia/n8n-nodes-algolia/commit/e15abee2709e78fbc65fda0df044a30d4c1f48c3))
-
+- **Parser:** fix nested objects UI ([#39](https://github.com/algolia/n8n-nodes-algolia/issues/39)) ([e15abee](https://github.com/algolia/n8n-nodes-algolia/commit/e15abee2709e78fbc65fda0df044a30d4c1f48c3))
 
 ### Features
 
-* update OpenAPI specs ([#38](https://github.com/algolia/n8n-nodes-algolia/issues/38)) ([b39de3b](https://github.com/algolia/n8n-nodes-algolia/commit/b39de3b80ed9449697853823159b590e5e86adc3))
+- update OpenAPI specs ([#38](https://github.com/algolia/n8n-nodes-algolia/issues/38)) ([b39de3b](https://github.com/algolia/n8n-nodes-algolia/commit/b39de3b80ed9449697853823159b590e5e86adc3))
 
-
-
-## [0.8.1](https://github.com/algolia/n8n-nodes-algolia/compare/v0.8.0...v0.8.1) (2025-10-21)
+# [0.8.1](https://github.com/algolia/n8n-nodes-algolia/compare/v0.8.0...v0.8.1) (2025-10-21)
 
 ### Bug Fixes
 
 - Regenerate nodes ([#36](https://github.com/algolia/n8n-nodes-algolia/issues/36)) ([4b7cb4f](https://github.com/algolia/n8n-nodes-algolia/pull/36/commits/4b7cb4fb61daeb5b06e0d3e13cf5157440efd1ba))
 
-## [0.8.0](https://github.com/algolia/n8n-nodes-algolia/compare/v0.7.0...v0.8.0) (2025-10-21)
+# [0.8.0](https://github.com/algolia/n8n-nodes-algolia/compare/v0.7.0...v0.8.0) (2025-10-21)
 
 ### Features
 
 - update OpenAPI specs ([#32](https://github.com/algolia/n8n-nodes-algolia/issues/32)) ([7b86df0](https://github.com/algolia/n8n-nodes-algolia/commit/7b86df0b06b71d9edebf203a0167d362b316d065))
 - use v1.3.0 of @algolia/n8n-openapi-node ([cba525b](https://github.com/algolia/n8n-nodes-algolia/pull/33/commits/cba525ba613888c27836b2382cb0783702aaf31d))
 
-## [0.7.0](https://github.com/algolia/n8n-nodes-algolia/compare/v0.6.0...v0.7.0) (2025-10-08)
+# [0.7.0](https://github.com/algolia/n8n-nodes-algolia/compare/v0.6.0...v0.7.0) (2025-10-08)
 
 ### Features
 
 - update OpenAPI specs ([#27](https://github.com/algolia/n8n-nodes-algolia/issues/27)) ([a325285](https://github.com/algolia/n8n-nodes-algolia/commit/a32528518e4d9e318d451454e20a1fcd5b544e03))
 
-## [0.6.0](https://github.com/algolia/n8n-nodes-algolia/compare/v0.5.2...v0.6.0) (2025-10-07)
+# [0.6.0](https://github.com/algolia/n8n-nodes-algolia/compare/v0.5.2...v0.6.0) (2025-10-07)
 
 ### Bug Fixes
 
@@ -44,13 +40,13 @@
 - update OpenAPI specs ([#19](https://github.com/algolia/n8n-nodes-algolia/issues/19)) ([b5ef420](https://github.com/algolia/n8n-nodes-algolia/commit/b5ef420383fc0c8954855050056a988675c1b9b2))
 - update OpenAPI specs ([#21](https://github.com/algolia/n8n-nodes-algolia/issues/21)) ([14c2961](https://github.com/algolia/n8n-nodes-algolia/commit/14c2961d7083069495518b693035fd1a865e37c4))
 
-## [0.5.2](https://github.com/algolia/n8n-nodes-algolia/compare/v0.4.4...v0.5.2) (2025-09-23)
+# [0.5.2](https://github.com/algolia/n8n-nodes-algolia/compare/v0.4.4...v0.5.2) (2025-09-23)
 
 ### Bug Fixes
 
 - eslint config ([efc6a05](https://github.com/algolia/n8n-nodes-algolia/commit/efc6a05d1b5ac5610473cff833ee7fe0920d23c6))
 
-## [0.5.1](https://github.com/algolia/n8n-nodes-algolia/compare/v0.4.4...v0.5.1) (2025-09-23)
+# [0.5.1](https://github.com/algolia/n8n-nodes-algolia/compare/v0.4.4...v0.5.1) (2025-09-23)
 
 ### Bug Fixes
 
@@ -74,25 +70,25 @@
 - **object:** partial update object ([#10](https://github.com/algolia/n8n-nodes-algolia/issues/10)) ([55a6823](https://github.com/algolia/n8n-nodes-algolia/commit/55a6823a048dae02d83c1edeeaada842ecd80142))
 - **openapi:** use @algolia/n8n-openapi-node package ([#15](https://github.com/algolia/n8n-nodes-algolia/issues/15)) ([7bdc15e](https://github.com/algolia/n8n-nodes-algolia/commit/7bdc15ef0fb311ff9b181bb7fd4c56e9f94a48a7))
 
-## [0.4.4](https://github.com/algolia/n8n-nodes-algolia/compare/v0.4.3...v0.4.4) (2025-08-07)
+# [0.4.4](https://github.com/algolia/n8n-nodes-algolia/compare/v0.4.3...v0.4.4) (2025-08-07)
 
 ### Bug Fixes
 
 - add other workflow for ec2 update ([e9b14f7](https://github.com/algolia/n8n-nodes-algolia/commit/e9b14f7957124f1713f59e9b2732447b9d1d3789))
 
-## [0.4.3](https://github.com/algolia/n8n-nodes-algolia/compare/v0.4.2...v0.4.3) (2025-08-07)
+# [0.4.3](https://github.com/algolia/n8n-nodes-algolia/compare/v0.4.2...v0.4.3) (2025-08-07)
 
 ### Bug Fixes
 
 - release process ([48423ed](https://github.com/algolia/n8n-nodes-algolia/commit/48423ed4c4043f4aa8c1df32ee7c322aee7ed259))
 
-## 0.4.2 (2025-08-07)
+# 0.4.2 (2025-08-07)
 
 ### Bug Fixes
 
 - update pacakge name ([6c56011](https://github.com/algolia/n8n-nodes-algolia/commit/6c56011e04b855d71a6e464bef57018ceedfb26c))
 
-## 0.4.1 (2025-08-07)
+# 0.4.1 (2025-08-07)
 
 ### Bug Fixes
 
