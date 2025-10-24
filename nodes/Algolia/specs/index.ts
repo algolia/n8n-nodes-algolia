@@ -15,18 +15,4 @@ import querysuggestions from './query-suggestions';
 import recommend from './recommend';
 import search from './search';
 
-export default {
-  abtesting,
-  abtestingv3,
-  advancedpersonalization,
-  analytics,
-  composition,
-  crawler,
-  ingestion,
-  insights,
-  monitoring,
-  personalization,
-  querysuggestions,
-  recommend,
-  search,
-};
+export default { abtesting, abtestingv3, advancedpersonalization, analytics, composition, crawler, ingestion, insights, monitoring, personalization, querysuggestions, recommend, search };
