@@ -1,3 +1,17 @@
+# [0.9.0](https://github.com/algolia/n8n-nodes-algolia/compare/v0.8.1...v0.9.0) (2025-10-24)
+
+
+### Bug Fixes
+
+* **Parser:** fix nested objects UI ([#39](https://github.com/algolia/n8n-nodes-algolia/issues/39)) ([e15abee](https://github.com/algolia/n8n-nodes-algolia/commit/e15abee2709e78fbc65fda0df044a30d4c1f48c3))
+
+
+### Features
+
+* update OpenAPI specs ([#38](https://github.com/algolia/n8n-nodes-algolia/issues/38)) ([b39de3b](https://github.com/algolia/n8n-nodes-algolia/commit/b39de3b80ed9449697853823159b590e5e86adc3))
+
+
+
 ## [0.8.1](https://github.com/algolia/n8n-nodes-algolia/compare/v0.8.0...v0.8.1) (2025-10-21)
 
 ### Bug Fixes
