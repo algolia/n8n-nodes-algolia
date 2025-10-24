@@ -3,10 +3,13 @@ permissions:
   contents: write
 on:
   workflow_dispatch:
+  pull_request:
+    types: [closed]
 jobs:
   build:
     name: Release
     runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch' || (github.event.pull_request.merged == true && startsWith(github.event.pull_request.head.ref, 'releases/v'))
     steps:
       - uses: actions/checkout@v4
         with:
