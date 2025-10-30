@@ -12,7 +12,10 @@
       "variables": {
         "region": {
           "description": "The region where your Algolia application is hosted.",
-          "enum": ["us", "eu"],
+          "enum": [
+            "us",
+            "eu"
+          ],
           "default": "us"
         }
       }
@@ -209,10 +212,14 @@
     },
     "/1/configs": {
       "get": {
-        "tags": ["configurations"],
+        "tags": [
+          "configurations"
+        ],
         "operationId": "getAllConfigs",
         "x-mcp-tool": true,
-        "x-acl": ["settings"],
+        "x-acl": [
+          "settings"
+        ],
         "summary": "List configurations",
         "description": "Retrieves all Query Suggestions configurations of your Algolia application.",
         "responses": {
@@ -235,10 +242,14 @@
         }
       },
       "post": {
-        "tags": ["configurations"],
+        "tags": [
+          "configurations"
+        ],
         "operationId": "createConfig",
         "x-mcp-tool": true,
-        "x-acl": ["editSettings"],
+        "x-acl": [
+          "editSettings"
+        ],
         "summary": "Create a configuration",
         "description": "Creates a new Query Suggestions configuration.\n\nYou can have up to 100 configurations per Algolia application.\n",
         "requestBody": {
@@ -288,10 +299,14 @@
     },
     "/1/configs/{indexName}": {
       "get": {
-        "tags": ["configurations"],
+        "tags": [
+          "configurations"
+        ],
         "operationId": "getConfig",
         "x-mcp-tool": true,
-        "x-acl": ["settings"],
+        "x-acl": [
+          "settings"
+        ],
         "summary": "Retrieve a configuration",
         "description": "Retrieves a single Query Suggestions configuration by its index name.",
         "parameters": [
@@ -322,10 +337,14 @@
         }
       },
       "put": {
-        "tags": ["configurations"],
+        "tags": [
+          "configurations"
+        ],
         "operationId": "updateConfig",
         "x-mcp-tool": true,
-        "x-acl": ["editSettings"],
+        "x-acl": [
+          "editSettings"
+        ],
         "summary": "Update a configuration",
         "description": "Updates a QuerySuggestions configuration.",
         "parameters": [
@@ -372,9 +391,13 @@
         }
       },
       "delete": {
-        "tags": ["configurations"],
+        "tags": [
+          "configurations"
+        ],
         "operationId": "deleteConfig",
-        "x-acl": ["editSettings"],
+        "x-acl": [
+          "editSettings"
+        ],
         "summary": "Delete a configuration",
         "description": "Deletes a Query Suggestions configuration.\n\nDeleting only removes the configuration and stops updates to the Query Suggestions index.\nTo delete the Query Suggestions index itself, use the Search API and the `Delete an index` operation.\n",
         "parameters": [
@@ -413,10 +436,14 @@
     },
     "/1/configs/{indexName}/status": {
       "get": {
-        "tags": ["configurations"],
+        "tags": [
+          "configurations"
+        ],
         "operationId": "getConfigStatus",
         "x-mcp-tool": true,
-        "x-acl": ["settings"],
+        "x-acl": [
+          "settings"
+        ],
         "summary": "Retrieve configuration status",
         "description": "Reports the status of a Query Suggestions index.",
         "parameters": [
@@ -473,10 +500,14 @@
     },
     "/1/logs/{indexName}": {
       "get": {
-        "tags": ["logs"],
+        "tags": [
+          "logs"
+        ],
         "operationId": "getLogFile",
         "x-mcp-tool": true,
-        "x-acl": ["settings"],
+        "x-acl": [
+          "settings"
+        ],
         "summary": "Retrieve logs",
         "description": "Retrieves the logs for a single Query Suggestions index.",
         "parameters": [
@@ -530,7 +561,10 @@
       "get": {
         "x-helper": true,
         "x-asynchronous-helper": false,
-        "tags": ["Api Key"],
+        "x-acl": [],
+        "tags": [
+          "Api Key"
+        ],
         "operationId": "setClientApiKey",
         "summary": "Switch the API key used to authenticate requests",
         "description": "Switch the API key used to authenticate requests.\n",
@@ -700,7 +734,12 @@
             "type": "null"
           }
         ],
-        "example": [["color", "brand"]]
+        "example": [
+          [
+            "color",
+            "brand"
+          ]
+        ]
       },
       "External": {
         "description": "Algolia indices with popular searches to use as query suggestions.\n\nRecords of these indices must have these attributes:\n\n- `query`: search query which will be added as a suggestion\n- `count`: measure of popularity of that search query\n\nFor example, you can export popular searches from an external analytics provider, such as Google Analytics or Adobe Analytics,\nand feed this data into an Algolia index.\nYou can use this index to generate query suggestions until your Algolia Analytics has collected enough data.\n",
@@ -720,7 +759,9 @@
       "SourceIndex": {
         "type": "object",
         "description": "Configuration of an Algolia index for Query Suggestions.",
-        "required": ["indexName"],
+        "required": [
+          "indexName"
+        ],
         "properties": {
           "indexName": {
             "type": "string",
@@ -797,7 +838,9 @@
       "Configuration": {
         "type": "object",
         "description": "Query Suggestions configuration.",
-        "required": ["sourceIndices"],
+        "required": [
+          "sourceIndices"
+        ],
         "properties": {
           "sourceIndices": {
             "type": "array",
@@ -828,7 +871,10 @@
       "ConfigurationWithIndex": {
         "type": "object",
         "description": "Query Suggestions configuration.",
-        "required": ["indexName", "sourceIndices"],
+        "required": [
+          "indexName",
+          "sourceIndices"
+        ],
         "allOf": [
           {
             "type": "object",
@@ -881,7 +927,11 @@
         "title": "level",
         "type": "string",
         "description": "Type of log entry.\n\n- `SKIP`. A query is skipped because it doesn't match the conditions for successful inclusion. For example, when a query doesn't generate enough search results.\n- `INFO`. An informative log entry.\n- `ERROR`. The Query Suggestions process encountered an error.\n",
-        "enum": ["SKIP", "INFO", "ERROR"]
+        "enum": [
+          "SKIP",
+          "INFO",
+          "ERROR"
+        ]
       }
     },
     "responses": {
@@ -1080,11 +1130,15 @@
   "x-tagGroups": [
     {
       "name": "Configurations",
-      "tags": ["configurations"]
+      "tags": [
+        "configurations"
+      ]
     },
     {
       "name": "Logs",
-      "tags": ["logs"]
+      "tags": [
+        "logs"
+      ]
     }
   ]
 }
