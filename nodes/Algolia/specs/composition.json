@@ -1013,6 +1013,7 @@
       "get": {
         "x-helper": true,
         "x-asynchronous-helper": false,
+        "x-acl": [],
         "tags": ["Api Key"],
         "operationId": "setClientApiKey",
         "summary": "Switch the API key used to authenticate requests",
@@ -1040,6 +1041,7 @@
         "x-helper": true,
         "tags": ["Records"],
         "operationId": "waitForCompositionTask",
+        "x-acl": ["editSettings", "settings", "addObject", "deleteObject", "deleteIndex"],
         "summary": "Wait for operation to complete",
         "description": "Wait for a task to complete to ensure synchronized composition updates.\n\nAll Algolia write operations are asynchronous. When you make a request for a write operation, for example, to upsert or delete a composition, Algolia creates a task on a queue and returns a taskID. The task itself runs separately, depending on the server load.\n",
         "parameters": [
@@ -1213,16 +1215,6 @@
         "default": 100,
         "x-categories": ["Ranking"]
       },
-      "facets": {
-        "type": "array",
-        "items": {
-          "type": "string"
-        },
-        "description": "Facets for which to retrieve facet values that match the search criteria and the number of matching facet values\nTo retrieve all facets, use the wildcard character `*`.\nFor more information, see [facets](https://www.algolia.com/doc/guides/managing-results/refine-results/faceting/#contextual-facet-values-and-counts).\n",
-        "default": [],
-        "example": ["*"],
-        "x-categories": ["Faceting"]
-      },
       "facetFilters": {
         "description": "Filter the search by facet values, so that only records with the same facet values are retrieved.\n\n**Prefer using the `filters` parameter, which supports all filter types and combinations with boolean operators.**\n\n- `[filter1, filter2]` is interpreted as `filter1 AND filter2`.\n- `[[filter1, filter2], filter3]` is interpreted as `filter1 OR filter2 AND filter3`.\n- `facet:-value` is interpreted as `NOT facet:value`.\n\nWhile it's best to avoid attributes that start with a `-`, you can still filter them by escaping with a backslash:\n`facet:\\-value`.\n",
         "example": [["category:Book", "category:-Movie"], "author:John Doe"],
@@ -1238,6 +1230,16 @@
           }
         ],
         "x-categories": ["Filtering"]
+      },
+      "facets": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Facets for which to retrieve facet values that match the search criteria and the number of matching facet values\nTo retrieve all facets, use the wildcard character `*`.\nTo retrieve disjunctive facets lists, annotate any facets with the `disjunctive` modifier.\nFor more information, see [facets](https://www.algolia.com/doc/guides/managing-results/refine-results/faceting/#contextual-facet-values-and-counts) and [disjunctive faceting for Smart Groups](https://www.algolia.com/doc/guides/managing-results/compositions/search-based-groups#facets-including-disjunctive-faceting).\n",
+        "default": [],
+        "example": [["category", "disjunctive(brand)", "price"], ["*"]],
+        "x-categories": ["Faceting"]
       },
       "optionalFilters": {
         "description": "Filters to promote or demote records in the search results.\n\nOptional filters work like facet filters, but they don't exclude records from the search results.\nRecords that match the optional filter rank before records that don't match.\nIf you're using a negative filter `facet:-value`, matching records rank after records that don't match.\n\n- Optional filters don't work on virtual replicas.\n- Optional filters are applied _after_ sort-by attributes.\n- Optional filters are applied _before_ custom ranking attributes (in the default [ranking](https://www.algolia.com/doc/guides/managing-results/relevance-overview/in-depth/ranking-criteria)).\n- Optional filters don't work with numeric attributes.\n",
@@ -1612,11 +1614,11 @@
           "relevancyStrictness": {
             "$ref": "#/components/schemas/relevancyStrictness"
           },
-          "facets": {
-            "$ref": "#/components/schemas/facets"
-          },
           "facetFilters": {
             "$ref": "#/components/schemas/facetFilters"
+          },
+          "facets": {
+            "$ref": "#/components/schemas/facets"
           },
           "optionalFilters": {
             "$ref": "#/components/schemas/optionalFilters"
@@ -3185,6 +3187,9 @@
               },
               "maxValuesPerFacet": {
                 "$ref": "#/components/schemas/maxValuesPerFacet"
+              },
+              "renderingContent": {
+                "$ref": "#/components/schemas/renderingContent"
               },
               "sortFacetValuesBy": {
                 "$ref": "#/components/schemas/sortFacetValuesBy"

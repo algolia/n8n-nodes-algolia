@@ -50,6 +50,7 @@
         "summary": "List crawlers",
         "description": "Lists all your crawlers.",
         "tags": ["crawlers"],
+        "x-acl": ["settings"],
         "parameters": [
           {
             "$ref": "#/components/parameters/ItemsPerPage"
@@ -94,6 +95,7 @@
         "summary": "Create a crawler",
         "description": "Creates a new crawler with the provided configuration.",
         "tags": ["crawlers"],
+        "x-acl": ["editSettings"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -149,6 +151,7 @@
         "summary": "Retrieve crawler details",
         "description": "Retrieves details about the specified crawler, optionally with its configuration.\n",
         "tags": ["crawlers"],
+        "x-acl": ["settings"],
         "parameters": [
           {
             "$ref": "#/components/parameters/CrawlerIdParameter"
@@ -193,6 +196,7 @@
           "description": "Update configuration."
         },
         "tags": ["crawlers"],
+        "x-acl": ["editSettings"],
         "parameters": [
           {
             "$ref": "#/components/parameters/CrawlerIdParameter"
@@ -236,6 +240,7 @@
         "summary": "Delete a crawler",
         "description": "Delete the specified crawler.",
         "tags": ["crawlers"],
+        "x-acl": ["editSettings"],
         "parameters": [
           {
             "$ref": "#/components/parameters/CrawlerIdParameter"
@@ -263,6 +268,7 @@
         "summary": "Unpause a crawler",
         "description": "Unpauses the specified crawler.\nPreviously ongoing crawls will be resumed.\nOtherwise, the crawler waits for its next scheduled run.\n",
         "tags": ["actions"],
+        "x-acl": [],
         "parameters": [
           {
             "$ref": "#/components/parameters/CrawlerIdParameter"
@@ -290,6 +296,7 @@
         "summary": "Pause a crawler",
         "description": "Pauses the specified crawler.",
         "tags": ["actions"],
+        "x-acl": [],
         "parameters": [
           {
             "$ref": "#/components/parameters/CrawlerIdParameter"
@@ -317,6 +324,7 @@
         "summary": "Start a crawl",
         "description": "Starts or resumes a crawl.",
         "tags": ["actions"],
+        "x-acl": [],
         "parameters": [
           {
             "$ref": "#/components/parameters/CrawlerIdParameter"
@@ -344,6 +352,7 @@
         "summary": "Test crawl a URL",
         "description": "Tests a URL with the crawler's configuration and shows the extracted records.\n\nYou can test configuration changes by overriding specific parts before updating the full configuration.\n",
         "tags": ["actions"],
+        "x-acl": [],
         "parameters": [
           {
             "$ref": "#/components/parameters/CrawlerIdParameter"
@@ -530,6 +539,7 @@
         "summary": "Crawl URLs",
         "description": "Crawls the specified URLs, extracts records from them, and adds them to the index.\nIf a crawl is currently running (the crawler's `reindexing` property is `true`),\nthe records are added to a temporary index.\n\nThis operation is rate-limited to 500 requests every 24 hours.\n",
         "tags": ["actions"],
+        "x-acl": [],
         "parameters": [
           {
             "$ref": "#/components/parameters/CrawlerIdParameter"
@@ -582,6 +592,7 @@
         "summary": "Retrieve crawler stats",
         "description": "Retrieves information about the number of crawled, skipped, and failed URLs.",
         "tags": ["crawlers"],
+        "x-acl": ["settings"],
         "parameters": [
           {
             "$ref": "#/components/parameters/CrawlerIdParameter"
@@ -629,6 +640,7 @@
         "summary": "Update crawler configuration",
         "description": "Updates the configuration of the specified crawler.\nEvery time you update the configuration, a new version is created.\n",
         "tags": ["config"],
+        "x-acl": ["editSettings"],
         "parameters": [
           {
             "$ref": "#/components/parameters/CrawlerIdParameter"
@@ -665,6 +677,7 @@
         "summary": "List configuration versions",
         "description": "Lists previous versions of the specified crawler's configuration, including who authored the change.\nEvery time you update a crawler's configuration, a new version is added.\n",
         "tags": ["config"],
+        "x-acl": ["settings"],
         "parameters": [
           {
             "$ref": "#/components/parameters/CrawlerIdParameter"
@@ -699,6 +712,7 @@
         "summary": "Retrieve a configuration version",
         "description": "Retrieves the specified version of the crawler configuration.\n\nYou can use this to restore a previous version of the configuration.\n",
         "tags": ["config"],
+        "x-acl": ["settings"],
         "parameters": [
           {
             "$ref": "#/components/parameters/CrawlerIdParameter"
@@ -746,6 +760,7 @@
         "summary": "Retrieve task status",
         "description": "Retrieves the status of the specified tasks, whether they're pending or completed.",
         "tags": ["tasks"],
+        "x-acl": ["settings"],
         "parameters": [
           {
             "$ref": "#/components/parameters/CrawlerIdParameter"
@@ -788,6 +803,7 @@
         "summary": "Cancel a blocking task",
         "description": "Cancels a blocking task.\n\nTasks that ran into an error will block your crawler's schedule.\nTo unblock the crawler, cancel the blocking task.\n",
         "tags": ["tasks"],
+        "x-acl": [],
         "parameters": [
           {
             "$ref": "#/components/parameters/CrawlerIdParameter"
@@ -818,6 +834,7 @@
         "summary": "List registered domains",
         "description": "Lists registered domains.\n\nCrawlers will only run if the URLs match any of the registered domains.\n",
         "tags": ["domains"],
+        "x-acl": ["settings"],
         "parameters": [
           {
             "$ref": "#/components/parameters/ItemsPerPage"
