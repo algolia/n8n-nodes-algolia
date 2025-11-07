@@ -117,6 +117,32 @@ const properties: INodeProperties[] = [
           },
         },
       },
+      {
+        name: 'List crawler runs',
+        value: 'listCrawlRuns',
+        action: 'List crawler runs',
+        description:
+          'The Crawler Logs feature allows you to monitor and debug your crawler’s activity by recording',
+        routing: {
+          request: {
+            method: 'GET',
+            url: '=/1/crawlers/{{ $parameter.id_string }}/crawl_runs',
+          },
+        },
+      },
+      {
+        name: 'Crawler run file',
+        value: 'getCrawlRunFile',
+        action: 'Crawler run file',
+        description:
+          'The Crawler Logs file allows you to monitor and debug your crawler’s activity by recording',
+        routing: {
+          request: {
+            method: 'GET',
+            url: '=/1/crawlers/{{ $parameter.id_string }}/{{ $parameter.logId_string }}/download',
+          },
+        },
+      },
     ],
     displayOptions: {
       show: {
@@ -830,6 +856,204 @@ const properties: INodeProperties[] = [
       show: {
         resource: ['crawlers'],
         operation: ['getStats'],
+      },
+    },
+  },
+  {
+    type: 'string',
+    placeholder: 'e0f6db8a-24f5-4092-83a4-1b2c6cb6d809',
+    default: '',
+    description: 'Universally unique identifier (UUID) of the crawler.',
+    displayName: 'Id',
+    name: 'id_string',
+    required: true,
+    displayOptions: {
+      show: {
+        resource: ['crawlers'],
+        operation: ['listCrawlRuns'],
+      },
+    },
+  },
+  {
+    type: 'string',
+    placeholder: '1762264044',
+    default: '',
+    description: "Unix string 'from' date.",
+    routing: {
+      request: {
+        qs: {
+          from: '={{ $value }}',
+        },
+      },
+    },
+    displayName: 'From',
+    name: 'from_string',
+    displayOptions: {
+      show: {
+        resource: ['crawlers'],
+        operation: ['listCrawlRuns'],
+      },
+    },
+  },
+  {
+    type: 'string',
+    placeholder: '1762264044',
+    default: '',
+    description: "Unix string 'until' date.",
+    routing: {
+      request: {
+        qs: {
+          until: '={{ $value }}',
+        },
+      },
+    },
+    displayName: 'Until',
+    name: 'until_string',
+    displayOptions: {
+      show: {
+        resource: ['crawlers'],
+        operation: ['listCrawlRuns'],
+      },
+    },
+  },
+  {
+    type: 'options',
+    default: '',
+    description:
+      'Crawled URL status.\n\nFor more information, see [Troubleshooting by crawl status](https://www.algolia.com/doc/tools/crawler/troubleshooting/crawl-status).\n',
+    options: [
+      {
+        name: 'DONE',
+        value: 'DONE',
+      },
+      {
+        name: 'SKIPPED',
+        value: 'SKIPPED',
+      },
+      {
+        name: 'FAILED',
+        value: 'FAILED',
+      },
+    ],
+    routing: {
+      request: {
+        qs: {
+          status: '={{ $value }}',
+        },
+      },
+    },
+    displayName: 'Status',
+    name: 'status_options',
+    displayOptions: {
+      show: {
+        resource: ['crawlers'],
+        operation: ['listCrawlRuns'],
+      },
+    },
+  },
+  {
+    type: 'number',
+    placeholder: '10',
+    default: 10,
+    description: 'Limit of the query results.',
+    typeOptions: {
+      minValue: 1,
+      maxValue: 1000,
+    },
+    routing: {
+      request: {
+        qs: {
+          limit: '={{ $value }}',
+        },
+      },
+    },
+    displayName: 'Limit',
+    name: 'limit_number',
+    displayOptions: {
+      show: {
+        resource: ['crawlers'],
+        operation: ['listCrawlRuns'],
+      },
+    },
+  },
+  {
+    type: 'number',
+    placeholder: '11',
+    default: '',
+    description: 'Offset of the query results.',
+    routing: {
+      request: {
+        qs: {
+          offset: '={{ $value }}',
+        },
+      },
+    },
+    displayName: 'Offset',
+    name: 'offset_number',
+    displayOptions: {
+      show: {
+        resource: ['crawlers'],
+        operation: ['listCrawlRuns'],
+      },
+    },
+  },
+  {
+    type: 'options',
+    default: '',
+    description: 'Order of the query.\n',
+    options: [
+      {
+        name: 'ASC',
+        value: 'ASC',
+      },
+      {
+        name: 'DESC',
+        value: 'DESC',
+      },
+    ],
+    routing: {
+      request: {
+        qs: {
+          order: '={{ $value }}',
+        },
+      },
+    },
+    displayName: 'Order',
+    name: 'order_options',
+    displayOptions: {
+      show: {
+        resource: ['crawlers'],
+        operation: ['listCrawlRuns'],
+      },
+    },
+  },
+  {
+    type: 'string',
+    placeholder: 'e0f6db8a-24f5-4092-83a4-1b2c6cb6d809',
+    default: '',
+    description: 'Universally unique identifier (UUID) of the crawler.',
+    displayName: 'Id',
+    name: 'id_string',
+    required: true,
+    displayOptions: {
+      show: {
+        resource: ['crawlers'],
+        operation: ['getCrawlRunFile'],
+      },
+    },
+  },
+  {
+    type: 'string',
+    placeholder: 'a2ebb507-ef64-4b6b-9d84-ef66baaa7a80',
+    default: '',
+    description: 'Universally unique identifier (UUID) of the crawler log.',
+    displayName: 'Log Id',
+    name: 'logId_string',
+    required: true,
+    displayOptions: {
+      show: {
+        resource: ['crawlers'],
+        operation: ['getCrawlRunFile'],
       },
     },
   },
