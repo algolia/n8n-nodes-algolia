@@ -7019,6 +7019,25 @@ const properties: INodeProperties[] = [
     },
   },
   {
+    type: 'json',
+    description: undefined,
+    required: false,
+    default: '{}',
+    routing: {
+      request: {
+        body: '={{ JSON.parse($value) }}',
+      },
+    },
+    displayName: 'Body',
+    name: 'body_object',
+    displayOptions: {
+      show: {
+        resource: ['Records'],
+        operation: ['saveObject'],
+      },
+    },
+  },
+  {
     type: 'options',
     placeholder: 'ALGOLIA_INDEX_NAME',
     default: '',
@@ -7185,6 +7204,25 @@ const properties: INodeProperties[] = [
     displayName: 'Object ID',
     name: 'objectID_string',
     required: true,
+    displayOptions: {
+      show: {
+        resource: ['Records'],
+        operation: ['addOrUpdateObject'],
+      },
+    },
+  },
+  {
+    type: 'json',
+    description: undefined,
+    required: false,
+    default: '{}',
+    routing: {
+      request: {
+        body: '={{ JSON.parse($value) }}',
+      },
+    },
+    displayName: 'Body',
+    name: 'body_object',
     displayOptions: {
       show: {
         resource: ['Records'],
@@ -7855,6 +7893,25 @@ const properties: INodeProperties[] = [
     },
     displayName: 'Create If Not Exists',
     name: 'createIfNotExists_boolean',
+    displayOptions: {
+      show: {
+        resource: ['Records'],
+        operation: ['partialUpdateObject'],
+      },
+    },
+  },
+  {
+    type: 'json',
+    description: 'Attributes to update.',
+    required: false,
+    default: '{}',
+    routing: {
+      request: {
+        body: '={{ JSON.parse($value) }}',
+      },
+    },
+    displayName: 'Body',
+    name: 'body_object',
     displayOptions: {
       show: {
         resource: ['Records'],

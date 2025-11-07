@@ -133,6 +133,25 @@ const properties: INodeProperties[] = [
     },
   },
   {
+    type: 'json',
+    description: 'Query Suggestions configuration.',
+    required: true,
+    default: '{}',
+    routing: {
+      request: {
+        body: '={{ JSON.parse($value) }}',
+      },
+    },
+    displayName: 'Configuration With Index',
+    name: 'configuration_with_index_object',
+    displayOptions: {
+      show: {
+        resource: ['configurations'],
+        operation: ['createConfig'],
+      },
+    },
+  },
+  {
     type: 'options',
     placeholder: 'ALGOLIA_INDEX_NAME',
     default: '',
