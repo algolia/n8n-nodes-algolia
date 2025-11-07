@@ -1,4 +1,9 @@
-import type { IAuthenticateGeneric, ICredentialType, INodeProperties } from 'n8n-workflow';
+import type {
+  IAuthenticateGeneric,
+  ICredentialTestRequest,
+  ICredentialType,
+  INodeProperties,
+} from 'n8n-workflow';
 
 export class AlgoliaApi implements ICredentialType {
   name = 'algoliaApi';
@@ -31,6 +36,12 @@ export class AlgoliaApi implements ICredentialType {
         'X-Algolia-Application-Id': '={{ $credentials.appId }}',
         'X-Algolia-API-Key': '={{ $credentials.adminApiKey }}',
       },
+    },
+  };
+  test: ICredentialTestRequest = {
+    request: {
+      baseURL: '={{ `https://${$credentials.appId}.algolia.net` }}',
+      url: '/1/keys',
     },
   };
 }
