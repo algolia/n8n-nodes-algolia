@@ -11724,6 +11724,14 @@ const properties: INodeProperties[] = [
         name: 'Validity',
         value: 'validity_json',
       },
+      {
+        name: 'Tags',
+        value: 'tags_json',
+      },
+      {
+        name: 'Scope',
+        value: 'scope_string',
+      },
     ],
     displayOptions: {
       show: {
@@ -11861,6 +11869,48 @@ const properties: INodeProperties[] = [
     displayOptions: {
       show: {
         rule_object: ['validity_json'],
+        resource: ['Rules'],
+        operation: ['saveRule'],
+      },
+    },
+  },
+  {
+    type: 'json',
+    displayName: 'Tags',
+    name: 'tags_json',
+    default: '[]',
+    description: undefined,
+    required: false,
+    routing: {
+      send: {
+        type: 'body',
+        value: '={{ JSON.parse($value) }}',
+        property: 'tags',
+      },
+    },
+    displayOptions: {
+      show: {
+        rule_object: ['tags_json'],
+        resource: ['Rules'],
+        operation: ['saveRule'],
+      },
+    },
+  },
+  {
+    type: 'string',
+    default: '',
+    routing: {
+      send: {
+        type: 'body',
+        value: '={{ $value }}',
+        property: 'scope',
+      },
+    },
+    displayName: 'Scope',
+    name: 'scope_string',
+    displayOptions: {
+      show: {
+        rule_object: ['scope_string'],
         resource: ['Rules'],
         operation: ['saveRule'],
       },

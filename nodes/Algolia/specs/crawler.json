@@ -49,12 +49,8 @@
         "operationId": "listCrawlers",
         "summary": "List crawlers",
         "description": "Lists all your crawlers.",
-        "tags": [
-          "crawlers"
-        ],
-        "x-acl": [
-          "settings"
-        ],
+        "tags": ["crawlers"],
+        "x-acl": ["settings"],
         "parameters": [
           {
             "$ref": "#/components/parameters/ItemsPerPage"
@@ -98,12 +94,8 @@
         "operationId": "createCrawler",
         "summary": "Create a crawler",
         "description": "Creates a new crawler with the provided configuration.",
-        "tags": [
-          "crawlers"
-        ],
-        "x-acl": [
-          "editSettings"
-        ],
+        "tags": ["crawlers"],
+        "x-acl": ["editSettings"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -118,10 +110,7 @@
                     "$ref": "#/components/schemas/Configuration"
                   }
                 },
-                "required": [
-                  "name",
-                  "config"
-                ]
+                "required": ["name", "config"]
               }
             }
           }
@@ -139,9 +128,7 @@
                       "$ref": "#/components/schemas/CrawlerID"
                     }
                   },
-                  "required": [
-                    "id"
-                  ]
+                  "required": ["id"]
                 }
               }
             }
@@ -163,12 +150,8 @@
         "operationId": "getCrawler",
         "summary": "Retrieve crawler details",
         "description": "Retrieves details about the specified crawler, optionally with its configuration.\n",
-        "tags": [
-          "crawlers"
-        ],
-        "x-acl": [
-          "settings"
-        ],
+        "tags": ["crawlers"],
+        "x-acl": ["settings"],
         "parameters": [
           {
             "$ref": "#/components/parameters/CrawlerIdParameter"
@@ -212,12 +195,8 @@
           "url": "https://www.algolia.com/doc/rest-api/crawler/patch-config",
           "description": "Update configuration."
         },
-        "tags": [
-          "crawlers"
-        ],
-        "x-acl": [
-          "editSettings"
-        ],
+        "tags": ["crawlers"],
+        "x-acl": ["editSettings"],
         "parameters": [
           {
             "$ref": "#/components/parameters/CrawlerIdParameter"
@@ -260,12 +239,8 @@
         "operationId": "deleteCrawler",
         "summary": "Delete a crawler",
         "description": "Delete the specified crawler.",
-        "tags": [
-          "crawlers"
-        ],
-        "x-acl": [
-          "editSettings"
-        ],
+        "tags": ["crawlers"],
+        "x-acl": ["editSettings"],
         "parameters": [
           {
             "$ref": "#/components/parameters/CrawlerIdParameter"
@@ -292,9 +267,7 @@
         "operationId": "runCrawler",
         "summary": "Unpause a crawler",
         "description": "Unpauses the specified crawler.\nPreviously ongoing crawls will be resumed.\nOtherwise, the crawler waits for its next scheduled run.\n",
-        "tags": [
-          "actions"
-        ],
+        "tags": ["actions"],
         "x-acl": [],
         "parameters": [
           {
@@ -322,9 +295,7 @@
         "operationId": "pauseCrawler",
         "summary": "Pause a crawler",
         "description": "Pauses the specified crawler.",
-        "tags": [
-          "actions"
-        ],
+        "tags": ["actions"],
         "x-acl": [],
         "parameters": [
           {
@@ -352,9 +323,7 @@
         "operationId": "startReindex",
         "summary": "Start a crawl",
         "description": "Starts or resumes a crawl.",
-        "tags": [
-          "actions"
-        ],
+        "tags": ["actions"],
         "x-acl": [],
         "parameters": [
           {
@@ -382,9 +351,7 @@
         "operationId": "testUrl",
         "summary": "Test crawl a URL",
         "description": "Tests a URL with the crawler's configuration and shows the extracted records.\n\nYou can test configuration changes by overriding specific parts before updating the full configuration.\n",
-        "tags": [
-          "actions"
-        ],
+        "tags": ["actions"],
         "x-acl": [],
         "parameters": [
           {
@@ -407,9 +374,7 @@
                     "$ref": "#/components/schemas/PartialConfig"
                   }
                 },
-                "required": [
-                  "url"
-                ]
+                "required": ["url"]
               }
             }
           }
@@ -551,13 +516,7 @@
                       "example": {}
                     }
                   },
-                  "required": [
-                    "startDate",
-                    "endDate",
-                    "logs",
-                    "records",
-                    "links"
-                  ]
+                  "required": ["startDate", "endDate", "logs", "records", "links"]
                 }
               }
             }
@@ -579,9 +538,7 @@
         "operationId": "crawlUrls",
         "summary": "Crawl URLs",
         "description": "Crawls the specified URLs, extracts records from them, and adds them to the index.\nIf a crawl is currently running (the crawler's `reindexing` property is `true`),\nthe records are added to a temporary index.\n\nThis operation is rate-limited to 500 requests every 24 hours.\n",
-        "tags": [
-          "actions"
-        ],
+        "tags": ["actions"],
         "x-acl": [],
         "parameters": [
           {
@@ -601,18 +558,14 @@
                     "items": {
                       "type": "string"
                     },
-                    "example": [
-                      "https://www.algolia.com/products/crawler/"
-                    ]
+                    "example": ["https://www.algolia.com/products/crawler/"]
                   },
                   "save": {
                     "type": "boolean",
                     "description": "Whether the specified URLs should be added to the `extraURLs` property of the crawler configuration.\nIf unspecified, the URLs are added to the `extraUrls` field only if they haven't been indexed during the last reindex.\n"
                   }
                 },
-                "required": [
-                  "urls"
-                ]
+                "required": ["urls"]
               }
             }
           }
@@ -638,12 +591,8 @@
         "operationId": "getStats",
         "summary": "Retrieve crawler stats",
         "description": "Retrieves information about the number of crawled, skipped, and failed URLs.",
-        "tags": [
-          "crawlers"
-        ],
-        "x-acl": [
-          "settings"
-        ],
+        "tags": ["crawlers"],
+        "x-acl": ["settings"],
         "parameters": [
           {
             "$ref": "#/components/parameters/CrawlerIdParameter"
@@ -671,10 +620,7 @@
                       }
                     }
                   },
-                  "required": [
-                    "count",
-                    "data"
-                  ]
+                  "required": ["count", "data"]
                 }
               }
             }
@@ -693,12 +639,8 @@
         "operationId": "listCrawlRuns",
         "summary": "List crawler runs",
         "description": "The Crawler Logs feature allows you to monitor and debug your crawler’s activity by recording\ndetailed logs for each crawl run. Logs are useful for troubleshooting crawl issues,\nverifying site coverage, and monitoring crawler performance over time.\n",
-        "tags": [
-          "crawlers"
-        ],
-        "x-acl": [
-          "settings"
-        ],
+        "tags": ["crawlers"],
+        "x-acl": ["settings"],
         "parameters": [
           {
             "$ref": "#/components/parameters/CrawlerIdParameter"
@@ -743,12 +685,8 @@
         "operationId": "getCrawlRunFile",
         "summary": "Crawler run file",
         "description": "The Crawler Logs file allows you to monitor and debug your crawler’s activity by recording\ndetailed logs for each crawl run. Logs are useful for troubleshooting crawl issues,\nverifying site coverage, and monitoring crawler performance over time.\n",
-        "tags": [
-          "crawlers"
-        ],
-        "x-acl": [
-          "settings"
-        ],
+        "tags": ["crawlers"],
+        "x-acl": ["settings"],
         "parameters": [
           {
             "$ref": "#/components/parameters/CrawlerIdParameter"
@@ -778,12 +716,8 @@
         "operationId": "patchConfig",
         "summary": "Update crawler configuration",
         "description": "Updates the configuration of the specified crawler.\nEvery time you update the configuration, a new version is created.\n",
-        "tags": [
-          "config"
-        ],
-        "x-acl": [
-          "editSettings"
-        ],
+        "tags": ["config"],
+        "x-acl": ["editSettings"],
         "parameters": [
           {
             "$ref": "#/components/parameters/CrawlerIdParameter"
@@ -819,12 +753,8 @@
         "operationId": "listConfigVersions",
         "summary": "List configuration versions",
         "description": "Lists previous versions of the specified crawler's configuration, including who authored the change.\nEvery time you update a crawler's configuration, a new version is added.\n",
-        "tags": [
-          "config"
-        ],
-        "x-acl": [
-          "settings"
-        ],
+        "tags": ["config"],
+        "x-acl": ["settings"],
         "parameters": [
           {
             "$ref": "#/components/parameters/CrawlerIdParameter"
@@ -858,12 +788,8 @@
         "operationId": "getConfigVersion",
         "summary": "Retrieve a configuration version",
         "description": "Retrieves the specified version of the crawler configuration.\n\nYou can use this to restore a previous version of the configuration.\n",
-        "tags": [
-          "config"
-        ],
-        "x-acl": [
-          "settings"
-        ],
+        "tags": ["config"],
+        "x-acl": ["settings"],
         "parameters": [
           {
             "$ref": "#/components/parameters/CrawlerIdParameter"
@@ -894,12 +820,7 @@
                       "$ref": "#/components/schemas/authorId"
                     }
                   },
-                  "required": [
-                    "version",
-                    "config",
-                    "createdAt",
-                    "authorId"
-                  ]
+                  "required": ["version", "config", "createdAt", "authorId"]
                 }
               }
             }
@@ -915,12 +836,8 @@
         "operationId": "getTaskStatus",
         "summary": "Retrieve task status",
         "description": "Retrieves the status of the specified tasks, whether they're pending or completed.",
-        "tags": [
-          "tasks"
-        ],
-        "x-acl": [
-          "settings"
-        ],
+        "tags": ["tasks"],
+        "x-acl": ["settings"],
         "parameters": [
           {
             "$ref": "#/components/parameters/CrawlerIdParameter"
@@ -943,9 +860,7 @@
                       "description": "Whether the task is pending."
                     }
                   },
-                  "required": [
-                    "pending"
-                  ]
+                  "required": ["pending"]
                 }
               }
             }
@@ -964,9 +879,7 @@
         "operationId": "cancelBlockingAction",
         "summary": "Cancel a blocking task",
         "description": "Cancels a blocking task.\n\nTasks that ran into an error will block your crawler's schedule.\nTo unblock the crawler, cancel the blocking task.\n",
-        "tags": [
-          "tasks"
-        ],
+        "tags": ["tasks"],
         "x-acl": [],
         "parameters": [
           {
@@ -997,12 +910,8 @@
         "operationId": "listDomains",
         "summary": "List registered domains",
         "description": "Lists registered domains.\n\nCrawlers will only run if the URLs match any of the registered domains.\n",
-        "tags": [
-          "domains"
-        ],
-        "x-acl": [
-          "settings"
-        ],
+        "tags": ["domains"],
+        "x-acl": ["settings"],
         "parameters": [
           {
             "$ref": "#/components/parameters/ItemsPerPage"
@@ -1142,17 +1051,7 @@
       "fileTypes": {
         "type": "string",
         "description": "For more information, see [Extract data from non-HTML documents](https://www.algolia.com/doc/tools/crawler/extracting-data/non-html-documents).\n",
-        "enum": [
-          "doc",
-          "email",
-          "html",
-          "odp",
-          "ods",
-          "odt",
-          "pdf",
-          "ppt",
-          "xls"
-        ]
+        "enum": ["doc", "email", "html", "odp", "ods", "odt", "pdf", "ppt", "xls"]
       },
       "hostnameAliases": {
         "type": "object",
@@ -1187,9 +1086,7 @@
       },
       "configurationRecordExtractorType": {
         "type": "string",
-        "enum": [
-          "function"
-        ]
+        "enum": ["function"]
       },
       "Action": {
         "type": "object",
@@ -1217,13 +1114,8 @@
             "items": {
               "$ref": "#/components/schemas/fileTypes"
             },
-            "default": [
-              "html"
-            ],
-            "example": [
-              "html",
-              "pdf"
-            ]
+            "default": ["html"],
+            "example": ["html", "pdf"]
           },
           "hostnameAliases": {
             "$ref": "#/components/schemas/hostnameAliases"
@@ -1276,16 +1168,10 @@
               "type": "string",
               "description": "Prefix a selector with `!` to ignore matching pages. \n"
             },
-            "example": [
-              ".products",
-              "!.featured"
-            ]
+            "example": [".products", "!.featured"]
           }
         },
-        "required": [
-          "indexName",
-          "recordExtractor"
-        ]
+        "required": ["indexName", "recordExtractor"]
       },
       "ignoreCanonicalTo": {
         "oneOf": [
@@ -1384,18 +1270,14 @@
         },
         "description": "An object with custom data.\n\nYou can store up to 32kB as custom data.\n",
         "default": {},
-        "x-categories": [
-          "Advanced"
-        ]
+        "x-categories": ["Advanced"]
       },
       "maxFacetHits": {
         "type": "integer",
         "description": "Maximum number of facet values to return when [searching for facet values](https://www.algolia.com/doc/guides/managing-results/refine-results/faceting/#search-for-facet-values).",
         "maximum": 100,
         "default": 10,
-        "x-categories": [
-          "Advanced"
-        ]
+        "x-categories": ["Advanced"]
       },
       "baseIndexSettings": {
         "type": "object",
@@ -1415,24 +1297,17 @@
             ],
             "description": "Attributes used for [faceting](https://www.algolia.com/doc/guides/managing-results/refine-results/faceting).\n\nFacets are attributes that let you categorize search results.\nThey can be used for filtering search results.\nBy default, no attribute is used for faceting.\nAttribute names are case-sensitive.\n\n**Modifiers**\n\n- `filterOnly(\"ATTRIBUTE\")`.\n  Allows the attribute to be used as a filter but doesn't evaluate the facet values.\n\n- `searchable(\"ATTRIBUTE\")`.\n  Allows searching for facet values.\n\n- `afterDistinct(\"ATTRIBUTE\")`.\n  Evaluates the facet count _after_ deduplication with `distinct`.\n  This ensures accurate facet counts.\n  You can apply this modifier to searchable facets: `afterDistinct(searchable(ATTRIBUTE))`.\n",
             "default": [],
-            "x-categories": [
-              "Faceting"
-            ]
+            "x-categories": ["Faceting"]
           },
           "replicas": {
             "type": "array",
             "items": {
               "type": "string"
             },
-            "example": [
-              "virtual(prod_products_price_asc)",
-              "dev_products_replica"
-            ],
+            "example": ["virtual(prod_products_price_asc)", "dev_products_replica"],
             "description": "Creates [replica indices](https://www.algolia.com/doc/guides/managing-results/refine-results/sorting/in-depth/replicas).\n\nReplicas are copies of a primary index with the same records but different settings, synonyms, or rules.\nIf you want to offer a different ranking or sorting of your search results, you'll use replica indices.\nAll index operations on a primary index are automatically forwarded to its replicas.\nTo add a replica index, you must provide the complete set of replicas to this parameter.\nIf you omit a replica from this list, the replica turns into a regular, standalone index that will no longer be synced with the primary index.\n\n**Modifier**\n\n- `virtual(\"REPLICA\")`.\n  Create a virtual replica,\n  Virtual replicas don't increase the number of records and are optimized for [Relevant sorting](https://www.algolia.com/doc/guides/managing-results/refine-results/sorting/in-depth/relevant-sort).\n",
             "default": [],
-            "x-categories": [
-              "Ranking"
-            ]
+            "x-categories": ["Ranking"]
           },
           "paginationLimitedTo": {
             "type": "integer",
@@ -1446,29 +1321,20 @@
             "items": {
               "type": "string"
             },
-            "example": [
-              "total_sales"
-            ],
+            "example": ["total_sales"],
             "description": "Attributes that can't be retrieved at query time.\n\nThis can be useful if you want to use an attribute for ranking or to [restrict access](https://www.algolia.com/doc/guides/security/api-keys/how-to/user-restricted-access-to-data),\nbut don't want to include it in the search results.\nAttribute names are case-sensitive.\n",
             "default": [],
-            "x-categories": [
-              "Attributes"
-            ]
+            "x-categories": ["Attributes"]
           },
           "disableTypoToleranceOnWords": {
             "type": "array",
             "items": {
               "type": "string"
             },
-            "example": [
-              "wheel",
-              "1X2BCD"
-            ],
+            "example": ["wheel", "1X2BCD"],
             "description": "Creates a list of [words which require exact matches](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/typo-tolerance/in-depth/configuring-typo-tolerance/#turn-off-typo-tolerance-for-certain-words).\nThis also turns off [word splitting and concatenation](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/handling-natural-languages-nlp/in-depth/splitting-and-concatenation) for the specified words.\n",
             "default": [],
-            "x-categories": [
-              "Typos"
-            ]
+            "x-categories": ["Typos"]
           },
           "attributesToTransliterate": {
             "description": "Attributes, for which you want to support [Japanese transliteration](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/handling-natural-languages-nlp/in-depth/language-specific-configurations/#japanese-transliteration-and-type-ahead).\n\nTransliteration supports searching in any of the Japanese writing systems.\nTo support transliteration, you must set the indexing language to Japanese.\nAttribute names are case-sensitive.\n",
@@ -1476,76 +1342,53 @@
             "items": {
               "type": "string"
             },
-            "example": [
-              "name",
-              "description"
-            ],
-            "x-categories": [
-              "Languages"
-            ]
+            "example": ["name", "description"],
+            "x-categories": ["Languages"]
           },
           "camelCaseAttributes": {
             "type": "array",
             "items": {
               "type": "string"
             },
-            "example": [
-              "description"
-            ],
+            "example": ["description"],
             "description": "Attributes for which to split [camel case](https://wikipedia.org/wiki/Camel_case) words.\nAttribute names are case-sensitive.\n",
             "default": [],
-            "x-categories": [
-              "Languages"
-            ]
+            "x-categories": ["Languages"]
           },
           "decompoundedAttributes": {
             "type": "object",
             "example": {
-              "de": [
-                "name"
-              ]
+              "de": ["name"]
             },
             "description": "Searchable attributes to which Algolia should apply [word segmentation](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/handling-natural-languages-nlp/how-to/customize-segmentation) (decompounding).\nAttribute names are case-sensitive.\n\nCompound words are formed by combining two or more individual words,\nand are particularly prevalent in Germanic languages—for example, \"firefighter\".\nWith decompounding, the individual components are indexed separately.\n\nYou can specify different lists for different languages.\nDecompounding is supported for these languages:\nDutch (`nl`), German (`de`), Finnish (`fi`), Danish (`da`), Swedish (`sv`), and Norwegian (`no`).\nDecompounding doesn't work for words with [non-spacing mark Unicode characters](https://www.charactercodes.net/category/non-spacing_mark).\nFor example, `Gartenstühle` won't be decompounded if the `ü` consists of `u` (U+0075) and `◌̈` (U+0308).\n",
             "default": {},
-            "x-categories": [
-              "Languages"
-            ]
+            "x-categories": ["Languages"]
           },
           "indexLanguages": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/supportedLanguage"
             },
-            "example": [
-              "ja"
-            ],
+            "example": ["ja"],
             "description": "Languages for language-specific processing steps, such as word detection and dictionary settings.\n\n**You should always specify an indexing language.**\nIf you don't specify an indexing language, the search engine uses all [supported languages](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/handling-natural-languages-nlp/in-depth/supported-languages),\nor the languages you specified with the `ignorePlurals` or `removeStopWords` parameters.\nThis can lead to unexpected search results.\nFor more information, see [Language-specific configuration](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/handling-natural-languages-nlp/in-depth/language-specific-configurations).\n",
             "default": [],
-            "x-categories": [
-              "Languages"
-            ]
+            "x-categories": ["Languages"]
           },
           "disablePrefixOnAttributes": {
             "type": "array",
             "items": {
               "type": "string"
             },
-            "example": [
-              "sku"
-            ],
+            "example": ["sku"],
             "description": "Searchable attributes for which you want to turn off [prefix matching](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/override-search-engine-defaults/#adjusting-prefix-search).\nAttribute names are case-sensitive.\n",
             "default": [],
-            "x-categories": [
-              "Query strategy"
-            ]
+            "x-categories": ["Query strategy"]
           },
           "allowCompressionOfIntegerArray": {
             "type": "boolean",
             "description": "Whether arrays with exclusively non-negative integers should be compressed for better performance.\nIf true, the compressed arrays may be reordered.\n",
             "default": false,
-            "x-categories": [
-              "Performance"
-            ]
+            "x-categories": ["Performance"]
           },
           "numericAttributesForFiltering": {
             "type": "array",
@@ -1553,40 +1396,26 @@
               "type": "string"
             },
             "description": "Numeric attributes that can be used as [numerical filters](https://www.algolia.com/doc/guides/managing-results/rules/detecting-intent/how-to/applying-a-custom-filter-for-a-specific-query/#numerical-filters).\nAttribute names are case-sensitive.\n\nBy default, all numeric attributes are available as numerical filters.\nFor faster indexing, reduce the number of numeric attributes.\n\nTo turn off filtering for all numeric attributes, specify an attribute that doesn't exist in your index, such as `NO_NUMERIC_FILTERING`.\n\n**Modifier**\n\n- `equalOnly(\"ATTRIBUTE\")`.\n  Support only filtering based on equality comparisons `=` and `!=`.\n",
-            "example": [
-              "equalOnly(quantity)",
-              "popularity"
-            ],
+            "example": ["equalOnly(quantity)", "popularity"],
             "default": [],
-            "x-categories": [
-              "Performance"
-            ]
+            "x-categories": ["Performance"]
           },
           "separatorsToIndex": {
             "type": "string",
             "example": "+#",
             "description": "Control which non-alphanumeric characters are indexed.\n\nBy default, Algolia ignores [non-alphanumeric characters](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/typo-tolerance/how-to/how-to-search-in-hyphenated-attributes/#handling-non-alphanumeric-characters) like hyphen (`-`), plus (`+`), and parentheses (`(`,`)`).\nTo include such characters, define them with `separatorsToIndex`.\n\nSeparators are all non-letter characters except spaces and currency characters, such as $€£¥.\n\nWith `separatorsToIndex`, Algolia treats separator characters as separate words.\nFor example, in a search for \"Disney+\", Algolia considers \"Disney\" and \"+\" as two separate words.\n",
             "default": "",
-            "x-categories": [
-              "Typos"
-            ]
+            "x-categories": ["Typos"]
           },
           "searchableAttributes": {
             "type": "array",
             "items": {
               "type": "string"
             },
-            "example": [
-              "title,alternative_title",
-              "author",
-              "unordered(text)",
-              "emails.personal"
-            ],
+            "example": ["title,alternative_title", "author", "unordered(text)", "emails.personal"],
             "description": "Attributes used for searching. Attribute names are case-sensitive.\n\nBy default, all attributes are searchable and the [Attribute](https://www.algolia.com/doc/guides/managing-results/relevance-overview/in-depth/ranking-criteria/#attribute) ranking criterion is turned off.\nWith a non-empty list, Algolia only returns results with matches in the selected attributes.\nIn addition, the Attribute ranking criterion is turned on: matches in attributes that are higher in the list of `searchableAttributes` rank first.\nTo make matches in two attributes rank equally, include them in a comma-separated string, such as `\"title,alternate_title\"`.\nAttributes with the same priority are always unordered.\n\nFor more information, see [Searchable attributes](https://www.algolia.com/doc/guides/sending-and-managing-data/prepare-your-data/how-to/setting-searchable-attributes).\n\n**Modifier**\n\n- `unordered(\"ATTRIBUTE\")`.\n  Ignore the position of a match within the attribute.\n\nWithout a modifier, matches at the beginning of an attribute rank higher than matches at the end.\n",
             "default": [],
-            "x-categories": [
-              "Attributes"
-            ]
+            "x-categories": ["Attributes"]
           },
           "userData": {
             "$ref": "#/components/schemas/userData"
@@ -1606,9 +1435,7 @@
                 "type": "string"
               }
             },
-            "x-categories": [
-              "Languages"
-            ]
+            "x-categories": ["Languages"]
           },
           "attributeForDistinct": {
             "description": "Attribute that should be used to establish groups of results.\nAttribute names are case-sensitive.\n\nAll records with the same value for this attribute are considered a group.\nYou can combine `attributeForDistinct` with the `distinct` search parameter to control\nhow many items per group are included in the search results.\n\nIf you want to use the same attribute also for faceting, use the `afterDistinct` modifier of the `attributesForFaceting` setting.\nThis applies faceting _after_ deduplication, which will result in accurate facet counts.\n",
@@ -1623,24 +1450,17 @@
             "example": "øé",
             "description": "Characters for which diacritics should be preserved.\n\nBy default, Algolia removes diacritics from letters.\nFor example, `é` becomes `e`. If this causes issues in your search,\nyou can specify characters that should keep their diacritics.\n",
             "default": "",
-            "x-categories": [
-              "Languages"
-            ]
+            "x-categories": ["Languages"]
           },
           "customRanking": {
             "type": "array",
             "items": {
               "type": "string"
             },
-            "example": [
-              "desc(popularity)",
-              "asc(price)"
-            ],
+            "example": ["desc(popularity)", "asc(price)"],
             "description": "Attributes to use as [custom ranking](https://www.algolia.com/doc/guides/managing-results/must-do/custom-ranking).\nAttribute names are case-sensitive.\n\nThe custom ranking attributes decide which items are shown first if the other ranking criteria are equal.\n\nRecords with missing values for your selected custom ranking attributes are always sorted last.\nBoolean attributes are sorted based on their alphabetical order.\n\n**Modifiers**\n\n- `asc(\"ATTRIBUTE\")`.\n  Sort the index by the values of an attribute, in ascending order.\n\n- `desc(\"ATTRIBUTE\")`.\n  Sort the index by the values of an attribute, in descending order.\n\nIf you use two or more custom ranking attributes,\n[reduce the precision](https://www.algolia.com/doc/guides/managing-results/must-do/custom-ranking/how-to/controlling-custom-ranking-metrics-precision) of your first attributes,\nor the other attributes will never be applied.\n",
             "default": [],
-            "x-categories": [
-              "Ranking"
-            ]
+            "x-categories": ["Ranking"]
           }
         }
       },
@@ -1649,90 +1469,60 @@
         "items": {
           "type": "string"
         },
-        "example": [
-          "author",
-          "title",
-          "content"
-        ],
+        "example": ["author", "title", "content"],
         "description": "Attributes to include in the API response\nTo reduce the size of your response, you can retrieve only some of the attributes.\nAttribute names are case-sensitive\n- `*` retrieves all attributes, except attributes included in the `customRanking` and `unretrievableAttributes` settings.\n- To retrieve all attributes except a specific one, prefix the attribute with a dash and combine it with the `*`: `[\"*\", \"-ATTRIBUTE\"]`.\n- The `objectID` attribute is always included.\n",
-        "default": [
-          "*"
-        ],
-        "x-categories": [
-          "Attributes"
-        ]
+        "default": ["*"],
+        "x-categories": ["Attributes"]
       },
       "relevancyStrictness": {
         "type": "integer",
         "example": 90,
         "description": "Relevancy threshold below which less relevant results aren't included in the results\nYou can only set `relevancyStrictness` on [virtual replica indices](https://www.algolia.com/doc/guides/managing-results/refine-results/sorting/in-depth/replicas/#what-are-virtual-replicas).\nUse this setting to strike a balance between the relevance and number of returned results.\n",
         "default": 100,
-        "x-categories": [
-          "Ranking"
-        ]
+        "x-categories": ["Ranking"]
       },
       "attributesToHighlight": {
         "type": "array",
         "items": {
           "type": "string"
         },
-        "example": [
-          "author",
-          "title",
-          "conten",
-          "content"
-        ],
+        "example": ["author", "title", "conten", "content"],
         "description": "Attributes to highlight\nBy default, all searchable attributes are highlighted.\nUse `*` to highlight all attributes or use an empty array `[]` to turn off highlighting.\nAttribute names are case-sensitive\nWith highlighting, strings that match the search query are surrounded by HTML tags defined by `highlightPreTag` and `highlightPostTag`.\nYou can use this to visually highlight matching parts of a search query in your UI\nFor more information, see [Highlighting and snippeting](https://www.algolia.com/doc/guides/building-search-ui/ui-and-ux-patterns/highlighting-snippeting/js).\n",
-        "x-categories": [
-          "Highlighting and Snippeting"
-        ]
+        "x-categories": ["Highlighting and Snippeting"]
       },
       "attributesToSnippet": {
         "type": "array",
         "items": {
           "type": "string"
         },
-        "example": [
-          "content:80",
-          "description"
-        ],
+        "example": ["content:80", "description"],
         "description": "Attributes for which to enable snippets.\nAttribute names are case-sensitive\nSnippets provide additional context to matched words.\nIf you enable snippets, they include 10 words, including the matched word.\nThe matched word will also be wrapped by HTML tags for highlighting.\nYou can adjust the number of words with the following notation: `ATTRIBUTE:NUMBER`,\nwhere `NUMBER` is the number of words to be extracted.\n",
         "default": [],
-        "x-categories": [
-          "Highlighting and Snippeting"
-        ]
+        "x-categories": ["Highlighting and Snippeting"]
       },
       "highlightPreTag": {
         "type": "string",
         "description": "HTML tag to insert before the highlighted parts in all highlighted results and snippets.",
         "default": "<em>",
-        "x-categories": [
-          "Highlighting and Snippeting"
-        ]
+        "x-categories": ["Highlighting and Snippeting"]
       },
       "highlightPostTag": {
         "type": "string",
         "description": "HTML tag to insert after the highlighted parts in all highlighted results and snippets.",
         "default": "</em>",
-        "x-categories": [
-          "Highlighting and Snippeting"
-        ]
+        "x-categories": ["Highlighting and Snippeting"]
       },
       "snippetEllipsisText": {
         "type": "string",
         "description": "String used as an ellipsis indicator when a snippet is truncated.",
         "default": "…",
-        "x-categories": [
-          "Highlighting and Snippeting"
-        ]
+        "x-categories": ["Highlighting and Snippeting"]
       },
       "restrictHighlightAndSnippetArrays": {
         "type": "boolean",
         "description": "Whether to restrict highlighting and snippeting to items that at least partially matched the search query.\nBy default, all items are highlighted and snippeted.\n",
         "default": false,
-        "x-categories": [
-          "Highlighting and Snippeting"
-        ]
+        "x-categories": ["Highlighting and Snippeting"]
       },
       "hitsPerPage": {
         "type": "integer",
@@ -1740,36 +1530,25 @@
         "default": 20,
         "minimum": 1,
         "maximum": 1000,
-        "x-categories": [
-          "Pagination"
-        ]
+        "x-categories": ["Pagination"]
       },
       "minWordSizefor1Typo": {
         "type": "integer",
         "description": "Minimum number of characters a word in the search query must contain to accept matches with [one typo](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/typo-tolerance/in-depth/configuring-typo-tolerance/#configuring-word-length-for-typos).",
         "default": 4,
-        "x-categories": [
-          "Typos"
-        ]
+        "x-categories": ["Typos"]
       },
       "minWordSizefor2Typos": {
         "type": "integer",
         "description": "Minimum number of characters a word in the search query must contain to accept matches with [two typos](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/typo-tolerance/in-depth/configuring-typo-tolerance/#configuring-word-length-for-typos).",
         "default": 8,
-        "x-categories": [
-          "Typos"
-        ]
+        "x-categories": ["Typos"]
       },
       "typoToleranceEnum": {
         "type": "string",
         "title": "typo tolerance",
         "description": "- `min`. Return matches with the lowest number of typos.\n  For example, if you have matches without typos, only include those.\n  But if there are no matches without typos (with 1 typo), include matches with 1 typo (2 typos).\n- `strict`. Return matches with the two lowest numbers of typos.\n  With `strict`, the Typo ranking criterion is applied first in the `ranking` setting.\n",
-        "enum": [
-          "min",
-          "strict",
-          "true",
-          "false"
-        ]
+        "enum": ["min", "strict", "true", "false"]
       },
       "typoTolerance": {
         "description": "Whether [typo tolerance](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/typo-tolerance) is enabled and how it is applied.\n\nIf typo tolerance is true, `min`, or `strict`, [word splitting and concatenation](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/handling-natural-languages-nlp/in-depth/splitting-and-concatenation) are also active.\n",
@@ -1783,45 +1562,31 @@
             "$ref": "#/components/schemas/typoToleranceEnum"
           }
         ],
-        "x-categories": [
-          "Typos"
-        ]
+        "x-categories": ["Typos"]
       },
       "allowTyposOnNumericTokens": {
         "type": "boolean",
         "description": "Whether to allow typos on numbers in the search query\nTurn off this setting to reduce the number of irrelevant matches\nwhen searching in large sets of similar numbers.\n",
         "default": true,
-        "x-categories": [
-          "Typos"
-        ]
+        "x-categories": ["Typos"]
       },
       "disableTypoToleranceOnAttributes": {
         "type": "array",
         "items": {
           "type": "string"
         },
-        "example": [
-          "sku"
-        ],
+        "example": ["sku"],
         "description": "Attributes for which you want to turn off [typo tolerance](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/typo-tolerance).\nAttribute names are case-sensitive\nReturning only exact matches can help when\n- [Searching in hyphenated attributes](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/typo-tolerance/how-to/how-to-search-in-hyphenated-attributes).\n- Reducing the number of matches when you have too many.\n  This can happen with attributes that are long blocks of text, such as product descriptions\nConsider alternatives such as `disableTypoToleranceOnWords` or adding synonyms if your attributes have intentional unusual spellings that might look like typos.\n",
         "default": [],
-        "x-categories": [
-          "Typos"
-        ]
+        "x-categories": ["Typos"]
       },
       "booleanString": {
         "type": "string",
-        "enum": [
-          "true",
-          "false"
-        ]
+        "enum": ["true", "false"]
       },
       "ignorePlurals": {
         "description": "Treat singular, plurals, and other forms of declensions as equivalent.\nYou should only use this feature for the languages used in your index.\n",
-        "example": [
-          "ca",
-          "es"
-        ],
+        "example": ["ca", "es"],
         "oneOf": [
           {
             "type": "array",
@@ -1839,16 +1604,11 @@
             "default": false
           }
         ],
-        "x-categories": [
-          "Languages"
-        ]
+        "x-categories": ["Languages"]
       },
       "removeStopWords": {
         "description": "Removes stop words from the search query.\n\nStop words are common words like articles, conjunctions, prepositions, or pronouns that have little or no meaning on their own.\nIn English, \"the\", \"a\", or \"and\" are stop words.\n\nYou should only use this feature for the languages used in your index.\n",
-        "example": [
-          "ca",
-          "es"
-        ],
+        "example": ["ca", "es"],
         "oneOf": [
           {
             "type": "array",
@@ -1863,87 +1623,57 @@
             "description": "If true, stop words are removed for all languages you included in `queryLanguages`, or for all supported languages, if `queryLanguages` is empty.\nIf false, stop words are not removed.\n"
           }
         ],
-        "x-categories": [
-          "Languages"
-        ]
+        "x-categories": ["Languages"]
       },
       "queryLanguages": {
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/supportedLanguage"
         },
-        "example": [
-          "es"
-        ],
+        "example": ["es"],
         "description": "Languages for language-specific query processing steps such as plurals, stop-word removal, and word-detection dictionaries \nThis setting sets a default list of languages used by the `removeStopWords` and `ignorePlurals` settings.\nThis setting also sets a dictionary for word detection in the logogram-based [CJK](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/handling-natural-languages-nlp/in-depth/normalization/#normalization-for-logogram-based-languages-cjk) languages.\nTo support this, you must place the CJK language **first** \n**You should always specify a query language.**\nIf you don't specify an indexing language, the search engine uses all [supported languages](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/handling-natural-languages-nlp/in-depth/supported-languages),\nor the languages you specified with the `ignorePlurals` or `removeStopWords` parameters.\nThis can lead to unexpected search results.\nFor more information, see [Language-specific configuration](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/handling-natural-languages-nlp/in-depth/language-specific-configurations).\n",
         "default": [],
-        "x-categories": [
-          "Languages"
-        ]
+        "x-categories": ["Languages"]
       },
       "decompoundQuery": {
         "type": "boolean",
         "description": "Whether to split compound words in the query into their building blocks\nFor more information, see [Word segmentation](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/handling-natural-languages-nlp/in-depth/language-specific-configurations/#splitting-compound-words).\nWord segmentation is supported for these languages: German, Dutch, Finnish, Swedish, and Norwegian.\nDecompounding doesn't work for words with [non-spacing mark Unicode characters](https://www.charactercodes.net/category/non-spacing_mark).\nFor example, `Gartenstühle` won't be decompounded if the `ü` consists of `u` (U+0075) and `◌̈` (U+0308).\n",
         "default": true,
-        "x-categories": [
-          "Languages"
-        ]
+        "x-categories": ["Languages"]
       },
       "enableRules": {
         "type": "boolean",
         "description": "Whether to enable rules.",
         "default": true,
-        "x-categories": [
-          "Rules"
-        ]
+        "x-categories": ["Rules"]
       },
       "enablePersonalization": {
         "type": "boolean",
         "description": "Whether to enable Personalization.",
         "default": false,
-        "x-categories": [
-          "Personalization"
-        ]
+        "x-categories": ["Personalization"]
       },
       "queryType": {
         "type": "string",
-        "enum": [
-          "prefixLast",
-          "prefixAll",
-          "prefixNone"
-        ],
+        "enum": ["prefixLast", "prefixAll", "prefixNone"],
         "description": "Determines if and how query words are interpreted as prefixes.\n\nBy default, only the last query word is treated as a prefix (`prefixLast`).\nTo turn off prefix search, use `prefixNone`.\nAvoid `prefixAll`, which treats all query words as prefixes.\nThis might lead to counterintuitive results and makes your search slower.\n\nFor more information, see [Prefix searching](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/override-search-engine-defaults/in-depth/prefix-searching).\n",
         "default": "prefixLast",
-        "x-categories": [
-          "Query strategy"
-        ]
+        "x-categories": ["Query strategy"]
       },
       "removeWordsIfNoResults": {
         "type": "string",
-        "enum": [
-          "none",
-          "lastWords",
-          "firstWords",
-          "allOptional"
-        ],
+        "enum": ["none", "lastWords", "firstWords", "allOptional"],
         "example": "firstWords",
         "description": "Strategy for removing words from the query when it doesn't return any results.\nThis helps to avoid returning empty search results.\n\n- `none`.\n  No words are removed when a query doesn't return results.\n\n- `lastWords`.\n  Treat the last (then second to last, then third to last) word as optional,\n  until there are results or at most 5 words have been removed.\n\n- `firstWords`.\n  Treat the first (then second, then third) word as optional,\n  until there are results or at most 5 words have been removed.\n\n- `allOptional`.\n  Treat all words as optional.\n\nFor more information, see [Remove words to improve results](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/empty-or-insufficient-results/in-depth/why-use-remove-words-if-no-results).\n",
         "default": "none",
-        "x-categories": [
-          "Query strategy"
-        ]
+        "x-categories": ["Query strategy"]
       },
       "mode": {
         "type": "string",
-        "enum": [
-          "neuralSearch",
-          "keywordSearch"
-        ],
+        "enum": ["neuralSearch", "keywordSearch"],
         "description": "Search mode the index will use to query for results.\n\nThis setting only applies to indices, for which Algolia enabled NeuralSearch for you.\n",
         "default": "keywordSearch",
-        "x-categories": [
-          "Query strategy"
-        ]
+        "x-categories": ["Query strategy"]
       },
       "semanticSearch": {
         "type": "object",
@@ -1969,24 +1699,17 @@
         "type": "boolean",
         "description": "Whether to support phrase matching and excluding words from search queries\nUse the `advancedSyntaxFeatures` parameter to control which feature is supported.\n",
         "default": false,
-        "x-categories": [
-          "Query strategy"
-        ]
+        "x-categories": ["Query strategy"]
       },
       "optionalWordsArray": {
         "type": "array",
         "items": {
           "type": "string"
         },
-        "example": [
-          "blue",
-          "iphone case"
-        ],
+        "example": ["blue", "iphone case"],
         "description": "List of [optional words](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/empty-or-insufficient-results/#creating-a-list-of-optional-words).",
         "default": [],
-        "x-categories": [
-          "Query strategy"
-        ]
+        "x-categories": ["Query strategy"]
       },
       "optionalWords": {
         "description": "Words that should be considered optional when found in the query.\n\nBy default, records must match all words in the search query to be included in the search results.\nAdding optional words can help to increase the number of search results by running an additional search query that doesn't include the optional words.\nFor example, if the search query is \"action video\" and \"video\" is an optional word,\nthe search engine runs two queries. One for \"action video\" and one for \"action\".\nRecords that match all words are ranked higher.\n\nFor a search query with 4 or more words **and** all its words are optional,\nthe number of matched words required for a record to be included in the search results increases for every 1,000 records:\n\n- If `optionalWords` has less than 10 words, the required number of matched words increases by 1:\n  results 1 to 1,000 require 1 matched word, results 1,001 to 2000 need 2 matched words.\n- If `optionalWords` has 10 or more words, the number of required matched words increases by the number of optional words divided by 5 (rounded down).\n  For example, with 18 optional words: results 1 to 1,000 require 1 matched word, results 1,001 to 2000 need 4 matched words.\n\nFor more information, see [Optional words](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/empty-or-insufficient-results/#creating-a-list-of-optional-words).\n",
@@ -2007,39 +1730,22 @@
         "items": {
           "type": "string"
         },
-        "example": [
-          "description"
-        ],
+        "example": ["description"],
         "description": "Searchable attributes for which you want to [turn off the Exact ranking criterion](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/override-search-engine-defaults/in-depth/adjust-exact-settings/#turn-off-exact-for-some-attributes).\nAttribute names are case-sensitive\nThis can be useful for attributes with long values, where the likelihood of an exact match is high,\nsuch as product descriptions.\nTurning off the Exact ranking criterion for these attributes favors exact matching on other attributes.\nThis reduces the impact of individual attributes with a lot of content on ranking.\n",
         "default": [],
-        "x-categories": [
-          "Query strategy"
-        ]
+        "x-categories": ["Query strategy"]
       },
       "exactOnSingleWordQuery": {
         "type": "string",
-        "enum": [
-          "attribute",
-          "none",
-          "word"
-        ],
+        "enum": ["attribute", "none", "word"],
         "description": "Determines how the [Exact ranking criterion](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/override-search-engine-defaults/in-depth/adjust-exact-settings/#turn-off-exact-for-some-attributes) is computed when the search query has only one word.\n\n- `attribute`.\n  The Exact ranking criterion is 1 if the query word and attribute value are the same.\n  For example, a search for \"road\" will match the value \"road\", but not \"road trip\".\n\n- `none`.\n  The Exact ranking criterion is ignored on single-word searches.\n\n- `word`.\n  The Exact ranking criterion is 1 if the query word is found in the attribute value.\n  The query word must have at least 3 characters and must not be a stop word.\n  Only exact matches will be highlighted,\n  partial and prefix matches won't.\n",
         "default": "attribute",
-        "x-categories": [
-          "Query strategy"
-        ]
+        "x-categories": ["Query strategy"]
       },
       "alternativesAsExact": {
         "type": "string",
-        "enum": [
-          "ignorePlurals",
-          "singleWordSynonym",
-          "multiWordsSynonym",
-          "ignoreConjugations"
-        ],
-        "x-categories": [
-          "Query strategy"
-        ]
+        "enum": ["ignorePlurals", "singleWordSynonym", "multiWordsSynonym", "ignoreConjugations"],
+        "x-categories": ["Query strategy"]
       },
       "IndexSettings_alternativesAsExact": {
         "type": "array",
@@ -2047,23 +1753,13 @@
           "$ref": "#/components/schemas/alternativesAsExact"
         },
         "description": "Determine which plurals and synonyms should be considered an exact matches\nBy default, Algolia treats singular and plural forms of a word, and single-word synonyms, as [exact](https://www.algolia.com/doc/guides/managing-results/relevance-overview/in-depth/ranking-criteria/#exact) matches when searching.\nFor example\n- \"swimsuit\" and \"swimsuits\" are treated the same\n- \"swimsuit\" and \"swimwear\" are treated the same (if they are [synonyms](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/adding-synonyms/#regular-synonyms))\n- `ignorePlurals`.\n  Plurals and similar declensions added by the `ignorePlurals` setting are considered exact matches\n- `singleWordSynonym`.\n  Single-word synonyms, such as \"NY\" = \"NYC\", are considered exact matches\n- `multiWordsSynonym`.\n  Multi-word synonyms, such as \"NY\" = \"New York\", are considered exact matches.\n",
-        "default": [
-          "ignorePlurals",
-          "singleWordSynonym"
-        ],
-        "x-categories": [
-          "Query strategy"
-        ]
+        "default": ["ignorePlurals", "singleWordSynonym"],
+        "x-categories": ["Query strategy"]
       },
       "advancedSyntaxFeatures": {
         "type": "string",
-        "enum": [
-          "exactPhrase",
-          "excludeWords"
-        ],
-        "x-categories": [
-          "Query strategy"
-        ]
+        "enum": ["exactPhrase", "excludeWords"],
+        "x-categories": ["Query strategy"]
       },
       "IndexSettings_advancedSyntaxFeatures": {
         "type": "array",
@@ -2071,13 +1767,8 @@
           "$ref": "#/components/schemas/advancedSyntaxFeatures"
         },
         "description": "Advanced search syntax features you want to support\n- `exactPhrase`.\n  Phrases in quotes must match exactly.\n  For example, `sparkly blue \"iPhone case\"` only returns records with the exact string \"iPhone case\"\n- `excludeWords`.\n  Query words prefixed with a `-` must not occur in a record.\n  For example, `search -engine` matches records that contain \"search\" but not \"engine\"\nThis setting only has an effect if `advancedSyntax` is true.\n",
-        "default": [
-          "exactPhrase",
-          "excludeWords"
-        ],
-        "x-categories": [
-          "Query strategy"
-        ]
+        "default": ["exactPhrase", "excludeWords"],
+        "x-categories": ["Query strategy"]
       },
       "distinct": {
         "description": "Determines how many records of a group are included in the search results.\n\nRecords with the same value for the `attributeForDistinct` attribute are considered a group.\nThe `distinct` setting controls how many members of the group are returned.\nThis is useful for [deduplication and grouping](https://www.algolia.com/doc/guides/managing-results/refine-results/grouping/#introducing-algolias-distinct-feature).\n\nThe `distinct` setting is ignored if `attributeForDistinct` is not set.\n",
@@ -2095,17 +1786,13 @@
             "default": 0
           }
         ],
-        "x-categories": [
-          "Advanced"
-        ]
+        "x-categories": ["Advanced"]
       },
       "replaceSynonymsInHighlight": {
         "type": "boolean",
         "description": "Whether to replace a highlighted word with the matched synonym\nBy default, the original words are highlighted even if a synonym matches.\nFor example, with `home` as a synonym for `house` and a search for `home`,\nrecords matching either \"home\" or \"house\" are included in the search results,\nand either \"home\" or \"house\" are highlighted\nWith `replaceSynonymsInHighlight` set to `true`, a search for `home` still matches the same records,\nbut all occurrences of \"house\" are replaced by \"home\" in the highlighted response.\n",
         "default": false,
-        "x-categories": [
-          "Highlighting and Snippeting"
-        ]
+        "x-categories": ["Highlighting and Snippeting"]
       },
       "minProximity": {
         "type": "integer",
@@ -2113,9 +1800,7 @@
         "maximum": 7,
         "description": "Minimum proximity score for two matching words\nThis adjusts the [Proximity ranking criterion](https://www.algolia.com/doc/guides/managing-results/relevance-overview/in-depth/ranking-criteria/#proximity)\nby equally scoring matches that are farther apart\nFor example, if `minProximity` is 2, neighboring matches and matches with one word between them would have the same score.\n",
         "default": 1,
-        "x-categories": [
-          "Advanced"
-        ]
+        "x-categories": ["Advanced"]
       },
       "responseFields": {
         "type": "array",
@@ -2123,37 +1808,27 @@
           "type": "string"
         },
         "description": "Properties to include in the API response of search and browse requests\nBy default, all response properties are included.\nTo reduce the response size, you can select which properties should be included\nAn empty list may lead to an empty API response (except properties you can't exclude)\nYou can't exclude these properties:\n`message`, `warning`, `cursor`, `abTestVariantID`,\nor any property added by setting `getRankingInfo` to true\nYour search depends on the `hits` field. If you omit this field, searches won't return any results.\nYour UI might also depend on other properties, for example, for pagination.\nBefore restricting the response size, check the impact on your search experience.\n",
-        "default": [
-          "*"
-        ],
-        "x-categories": [
-          "Advanced"
-        ]
+        "default": ["*"],
+        "x-categories": ["Advanced"]
       },
       "maxValuesPerFacet": {
         "type": "integer",
         "description": "Maximum number of facet values to return for each facet.",
         "default": 100,
         "maximum": 1000,
-        "x-categories": [
-          "Faceting"
-        ]
+        "x-categories": ["Faceting"]
       },
       "sortFacetValuesBy": {
         "type": "string",
         "description": "Order in which to retrieve facet values\n- `count`.\n  Facet values are retrieved by decreasing count.\n  The count is the number of matching records containing this facet value\n- `alpha`.\n  Retrieve facet values alphabetically\nThis setting doesn't influence how facet values are displayed in your UI (see `renderingContent`).\nFor more information, see [facet value display](https://www.algolia.com/doc/guides/building-search-ui/ui-and-ux-patterns/facet-display/js).\n",
         "default": "count",
-        "x-categories": [
-          "Faceting"
-        ]
+        "x-categories": ["Faceting"]
       },
       "attributeCriteriaComputedByMinProximity": {
         "type": "boolean",
         "description": "Whether the best matching attribute should be determined by minimum proximity\nThis setting only affects ranking if the Attribute ranking criterion comes before Proximity in the `ranking` setting.\nIf true, the best matching attribute is selected based on the minimum proximity of multiple matches.\nOtherwise, the best matching attribute is determined by the order in the `searchableAttributes` setting.\n",
         "default": false,
-        "x-categories": [
-          "Advanced"
-        ]
+        "x-categories": ["Advanced"]
       },
       "order": {
         "description": "Explicit order of facets or facet values.\n\nThis setting lets you always show specific facets or facet values at the top of the list.\n",
@@ -2175,11 +1850,7 @@
       "sortRemainingBy": {
         "description": "Order of facet values that aren't explicitly positioned with the `order` setting.\n\n- `count`.\n  Order remaining facet values by decreasing count.\n  The count is the number of matching records containing this facet value.\n\n- `alpha`.\n  Sort facet values alphabetically.\n\n- `hidden`.\n  Don't show facet values that aren't explicitly positioned.\n",
         "type": "string",
-        "enum": [
-          "count",
-          "alpha",
-          "hidden"
-        ]
+        "enum": ["count", "alpha", "hidden"]
       },
       "hide": {
         "description": "Hide facet values.",
@@ -2315,17 +1986,13 @@
             "$ref": "#/components/schemas/widgets"
           }
         },
-        "x-categories": [
-          "Advanced"
-        ]
+        "x-categories": ["Advanced"]
       },
       "enableReRanking": {
         "type": "boolean",
         "description": "Whether this search will use [Dynamic Re-Ranking](https://www.algolia.com/doc/guides/algolia-ai/re-ranking)\nThis setting only has an effect if you activated Dynamic Re-Ranking for this index in the Algolia dashboard.\n",
         "default": true,
-        "x-categories": [
-          "Filtering"
-        ]
+        "x-categories": ["Filtering"]
       },
       "reRankingApplyFilter": {
         "description": "Restrict [Dynamic Re-Ranking](https://www.algolia.com/doc/guides/algolia-ai/re-ranking) to records that match these filters.\n",
@@ -2338,9 +2005,7 @@
           },
           {
             "type": "string",
-            "x-categories": [
-              "Filtering"
-            ]
+            "x-categories": ["Filtering"]
           }
         ]
       },
@@ -2367,9 +2032,7 @@
               "exact",
               "custom"
             ],
-            "x-categories": [
-              "Ranking"
-            ]
+            "x-categories": ["Ranking"]
           },
           "relevancyStrictness": {
             "$ref": "#/components/schemas/relevancyStrictness"
@@ -2567,9 +2230,7 @@
             "$ref": "#/components/schemas/loginRequestOptions"
           }
         },
-        "required": [
-          "url"
-        ],
+        "required": ["url"],
         "example": {
           "url": "https://example.com/secure/login-with-post",
           "requestOptions": {
@@ -2624,11 +2285,7 @@
             "$ref": "#/components/schemas/waitTime"
           }
         },
-        "required": [
-          "url",
-          "username",
-          "password"
-        ],
+        "required": ["url", "username", "password"],
         "example": {
           "url": "https://example.com/secure/login-page",
           "username": "my-id",
@@ -2638,9 +2295,7 @@
       "grantType": {
         "type": "string",
         "description": "OAuth 2.0 grant type.",
-        "enum": [
-          "client_credentials"
-        ]
+        "enum": ["client_credentials"]
       },
       "extraParameters": {
         "type": "object",
@@ -2679,12 +2334,7 @@
             "$ref": "#/components/schemas/extraParameters"
           }
         },
-        "required": [
-          "url",
-          "grantType",
-          "clientId",
-          "clientSecret"
-        ]
+        "required": ["url", "grantType", "clientId", "clientSecret"]
       },
       "oauthRequest": {
         "title": "OAuth 2.0",
@@ -2695,9 +2345,7 @@
             "$ref": "#/components/schemas/accessTokenRequest"
           }
         },
-        "required": [
-          "accessTokenRequest"
-        ],
+        "required": ["accessTokenRequest"],
         "example": {
           "accessTokenRequest": {
             "url": "https://example.com/oauth2/token",
@@ -2737,9 +2385,7 @@
             "items": {
               "type": "string",
               "description": "URL or URL pattern to render.",
-              "example": [
-                "http://www.mysite.com/dynamic-pages/**"
-              ]
+              "example": ["http://www.mysite.com/dynamic-pages/**"]
             }
           },
           {
@@ -2758,9 +2404,7 @@
                 "items": {
                   "type": "string"
                 },
-                "example": [
-                  "http://www.mysite.com/dynamic-pages/**"
-                ]
+                "example": ["http://www.mysite.com/dynamic-pages/**"]
               },
               "adBlock": {
                 "type": "boolean",
@@ -2771,10 +2415,7 @@
                 "$ref": "#/components/schemas/waitTime"
               }
             },
-            "required": [
-              "enabled",
-              "patterns"
-            ]
+            "required": ["enabled", "patterns"]
           }
         ]
       },
@@ -2835,11 +2476,7 @@
       "Configuration": {
         "type": "object",
         "description": "Crawler configuration.",
-        "required": [
-          "applicationId",
-          "rateLimit",
-          "actions"
-        ],
+        "required": ["applicationId", "rateLimit", "actions"],
         "properties": {
           "actions": {
             "type": "array",
@@ -2909,10 +2546,7 @@
             "type": "array",
             "description": "Query parameters to ignore while crawling.\n\nAll URLs with the matching query parameters are treated as identical.\nThis prevents indexing URLs that just differ by their query parameters.\n",
             "maxItems": 9999,
-            "example": [
-              "ref",
-              "utm_*"
-            ],
+            "example": ["ref", "utm_*"],
             "items": {
               "type": "string",
               "description": "Use wildcards to match multiple query parameters."
@@ -3145,21 +2779,12 @@
       "urlsCrawledGroupStatus": {
         "type": "string",
         "description": "Crawled URL status.\n\nFor more information, see [Troubleshooting by crawl status](https://www.algolia.com/doc/tools/crawler/troubleshooting/crawl-status).\n",
-        "enum": [
-          "DONE",
-          "SKIPPED",
-          "FAILED"
-        ]
+        "enum": ["DONE", "SKIPPED", "FAILED"]
       },
       "urlsCrawledGroupCategory": {
         "type": "string",
         "description": "Step where the status information was generated.\n\nFor more information, see [Troubleshooting by crawl status](https://www.algolia.com/doc/tools/crawler/troubleshooting/crawl-status).\n",
-        "enum": [
-          "fetch",
-          "extraction",
-          "indexing",
-          "success"
-        ]
+        "enum": ["fetch", "extraction", "indexing", "success"]
       },
       "UrlsCrawledGroup": {
         "type": "object",
@@ -3218,10 +2843,7 @@
       "parameters_order": {
         "type": "string",
         "description": "Order of the query.\n",
-        "enum": [
-          "ASC",
-          "DESC"
-        ]
+        "enum": ["ASC", "DESC"]
       },
       "CrawlerLogID": {
         "type": "string",
@@ -3263,11 +2885,7 @@
                       "$ref": "#/components/schemas/authorId"
                     }
                   },
-                  "required": [
-                    "version",
-                    "createdAt",
-                    "authorId"
-                  ]
+                  "required": ["version", "createdAt", "authorId"]
                 }
               }
             }
@@ -3464,9 +3082,7 @@
                             "type": "integer"
                           }
                         },
-                        "required": [
-                          "message"
-                        ],
+                        "required": ["message"],
                         "example": {
                           "message": "url is not defined",
                           "line": 5
@@ -3479,9 +3095,7 @@
                   }
                 }
               },
-              "required": [
-                "error"
-              ]
+              "required": ["error"]
             }
           }
         }
@@ -3504,9 +3118,7 @@
                   "$ref": "#/components/schemas/TaskID"
                 }
               },
-              "required": [
-                "taskId"
-              ]
+              "required": ["taskId"]
             }
           }
         }
@@ -3600,10 +3212,7 @@
                   }
                 }
               },
-              "required": [
-                "logs",
-                "meta"
-              ]
+              "required": ["logs", "meta"]
             }
           }
         }
@@ -3621,9 +3230,7 @@
                   "type": "string"
                 }
               },
-              "required": [
-                "file"
-              ]
+              "required": ["file"]
             }
           }
         }
@@ -3665,9 +3272,7 @@
                             "type": "integer"
                           }
                         },
-                        "required": [
-                          "message"
-                        ],
+                        "required": ["message"],
                         "example": {
                           "message": "url is not defined",
                           "line": 5
@@ -3680,9 +3285,7 @@
                   }
                 }
               },
-              "required": [
-                "error"
-              ]
+              "required": ["error"]
             }
           }
         }
