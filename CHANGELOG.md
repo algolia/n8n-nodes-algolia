@@ -1,25 +1,18 @@
 ## [0.11.1](https://github.com/algolia/n8n-nodes-algolia/compare/v0.11.0...v0.11.1) (2025-11-07)
 
-
 ### Bug Fixes
 
-* **parser:** handle simple objects ([#49](https://github.com/algolia/n8n-nodes-algolia/issues/49)) ([8e18937](https://github.com/algolia/n8n-nodes-algolia/commit/8e1893799ce60f8f0a445c36d6b707b8496cf842))
-
-
+- **parser:** handle simple objects ([#49](https://github.com/algolia/n8n-nodes-algolia/issues/49)) ([8e18937](https://github.com/algolia/n8n-nodes-algolia/commit/8e1893799ce60f8f0a445c36d6b707b8496cf842))
 
 # [0.11.0](https://github.com/algolia/n8n-nodes-algolia/compare/v0.10.0...v0.11.0) (2025-11-07)
 
-
 ### Bug Fixes
 
-* **creds:** add credential test ([#46](https://github.com/algolia/n8n-nodes-algolia/issues/46)) ([04c63ab](https://github.com/algolia/n8n-nodes-algolia/commit/04c63ab03ea6e3b89161bc8bc8d8612cea04efa6))
-
+- **creds:** add credential test ([#46](https://github.com/algolia/n8n-nodes-algolia/issues/46)) ([04c63ab](https://github.com/algolia/n8n-nodes-algolia/commit/04c63ab03ea6e3b89161bc8bc8d8612cea04efa6))
 
 ### Features
 
-* update OpenAPI specs ([#47](https://github.com/algolia/n8n-nodes-algolia/issues/47)) ([2b1f172](https://github.com/algolia/n8n-nodes-algolia/commit/2b1f172d9de138f2956e7524305fc677c11728c6))
-
-
+- update OpenAPI specs ([#47](https://github.com/algolia/n8n-nodes-algolia/issues/47)) ([2b1f172](https://github.com/algolia/n8n-nodes-algolia/commit/2b1f172d9de138f2956e7524305fc677c11728c6))
 
 # [0.10.0](https://github.com/algolia/n8n-nodes-algolia/compare/v0.9.0...v0.10.0) (2025-11-06)
 

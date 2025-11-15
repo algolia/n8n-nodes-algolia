@@ -101,10 +101,10 @@ const properties: INodeProperties[] = [
         },
       },
       {
-        name: 'Upsert a composition',
+        name: 'Update and insert (upsert) a composition',
         value: 'putComposition',
-        action: 'Upsert a composition',
-        description: 'Upsert a composition in the current Algolia application.',
+        action: 'Update and insert (upsert) a composition',
+        description: 'Update and insert a composition in the current Algolia application.',
         routing: {
           request: {
             method: 'PUT',
