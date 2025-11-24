@@ -2,7 +2,8 @@
   "openapi": "3.0.2",
   "info": {
     "title": "Personalization API",
-    "description": "The Personalization API lets you access user profiles built from the personalization strategy.\n\n## Base URLs\n\nThe base URLs for requests to the Personalization API are:\n\n- `https://personalization.us.algolia.com`\n- `https://personalization.eu.algolia.com`\n\nUse the URL that matches your [analytics region](https://dashboard.algolia.com/account/infrastructure/analytics).\n\n**All requests must use HTTPS.**\n\n## Authentication\n\nTo authenticate your API requests, add these headers:\n\n- `x-algolia-application-id`. Your Algolia application ID.\n- `x-algolia-api-key`. An API key with the necessary permissions to make the request.\n  The required access control list (ACL) to make a request is listed in each endpoint's reference.\n\nYou can find your application ID and API key in the [Algolia dashboard](https://dashboard.algolia.com/account/api-keys).\n\n## Request format\n\nRequest bodies must be JSON objects.\n\n## Response status and errors\n\nThe Personalization API returns JSON responses.\nSince JSON doesn't guarantee any specific ordering, don't rely on the order of attributes in the API response.\n\nSuccessful responses return a `2xx` status. Client errors return a `4xx` status. Server errors are indicated by a `5xx` status.\nError responses have a `message` property with more information.\n\n## Rate limiting\n\nWhen making requests to the Personalization API, you are limited to 40 API calls per second per application.\n\nThe following headers provide information about your current limit:\n\n- `x-ratelimit-limit`: The number of requests allowed every second.\n- `x-ratelimit-remaining`: The number of requests remaining in the current\nsecond period.\n- `x-ratelimit-reset`: [Unix timestamp](https://www.unixtimestamp.com) of\nthe next time period.\n\n## Version\n\nThe current version of the Personalization API is version 1, as indicated by the `/1/` in each endpoint's URL.\n",
+    "summary": "The Personalization API lets you access user profiles built from the personalization strategy",
+    "description": "## Base URLs\n\nThe base URLs for requests to the Personalization API are:\n\n- `https://personalization.us.algolia.com`\n- `https://personalization.eu.algolia.com`\n\nUse the URL that matches your [analytics region](https://dashboard.algolia.com/account/infrastructure/analytics).\n\n**All requests must use HTTPS.**\n\n## Authentication\n\nTo authenticate your API requests, add these headers:\n\n- `x-algolia-application-id`. Your Algolia application ID.\n- `x-algolia-api-key`. An API key with the necessary permissions to make the request.\n  The required access control list (ACL) to make a request is listed in each endpoint's reference.\n\nYou can find your application ID and API key in the [Algolia dashboard](https://dashboard.algolia.com/account/api-keys).\n\n## Request format\n\nRequest bodies must be JSON objects.\n\n## Response status and errors\n\nThe Personalization API returns JSON responses.\nSince JSON doesn't guarantee any specific ordering, don't rely on the order of attributes in the API response.\n\nSuccessful responses return a `2xx` status. Client errors return a `4xx` status. Server errors are indicated by a `5xx` status.\nError responses have a `message` property with more information.\n\n## Rate limiting\n\nWhen making requests to the Personalization API, you are limited to 40 API calls per second per application.\n\nThe following headers provide information about your current limit:\n\n- `x-ratelimit-limit`: The number of requests allowed every second.\n- `x-ratelimit-remaining`: The number of requests remaining in the current\nsecond period.\n- `x-ratelimit-reset`: [Unix timestamp](https://www.unixtimestamp.com) of\nthe next time period.\n\n## Version\n\nThe current version of the Personalization API is version 1, as indicated by the `/1/` in each endpoint's URL.\n",
     "version": "1.0.0"
   },
   "servers": [
@@ -11,7 +12,10 @@
       "variables": {
         "region": {
           "description": "The region where your Algolia application is hosted.",
-          "enum": ["us", "eu"],
+          "enum": [
+            "us",
+            "eu"
+          ],
           "default": "us"
         }
       }
@@ -212,9 +216,13 @@
     },
     "/1/profiles/personalization/{userToken}": {
       "get": {
-        "tags": ["profiles"],
+        "tags": [
+          "profiles"
+        ],
         "operationId": "getUserTokenProfile",
-        "x-acl": ["recommendation"],
+        "x-acl": [
+          "recommendation"
+        ],
         "summary": "Retrieve a user profile",
         "description": "Retrieves a user profile and their affinities for different facets.",
         "parameters": [
@@ -242,7 +250,11 @@
                   "title": "getUserTokenResponse",
                   "type": "object",
                   "additionalProperties": false,
-                  "required": ["userToken", "scores", "lastEventAt"],
+                  "required": [
+                    "userToken",
+                    "scores",
+                    "lastEventAt"
+                  ],
                   "properties": {
                     "userToken": {
                       "$ref": "#/components/schemas/userToken"
@@ -277,9 +289,13 @@
     },
     "/1/profiles/{userToken}": {
       "delete": {
-        "tags": ["profiles"],
+        "tags": [
+          "profiles"
+        ],
         "operationId": "deleteUserProfile",
-        "x-acl": ["recommendation"],
+        "x-acl": [
+          "recommendation"
+        ],
         "summary": "Delete a user profile",
         "description": "Deletes a user profile.\n\nThe response includes a date and time when the user profile can safely be considered deleted.\n",
         "parameters": [
@@ -307,7 +323,10 @@
                   "title": "deleteUserProfileResponse",
                   "type": "object",
                   "additionalProperties": false,
-                  "required": ["userToken", "deletedUntil"],
+                  "required": [
+                    "userToken",
+                    "deletedUntil"
+                  ],
                   "properties": {
                     "userToken": {
                       "$ref": "#/components/schemas/userToken"
@@ -338,9 +357,13 @@
     },
     "/1/strategies/personalization": {
       "get": {
-        "tags": ["strategies"],
+        "tags": [
+          "strategies"
+        ],
         "operationId": "getPersonalizationStrategy",
-        "x-acl": ["recommendation"],
+        "x-acl": [
+          "recommendation"
+        ],
         "summary": "Retrieve the personalization strategy",
         "description": "Retrieves the current personalization strategy.",
         "responses": {
@@ -380,9 +403,13 @@
         }
       },
       "post": {
-        "tags": ["strategies"],
+        "tags": [
+          "strategies"
+        ],
         "operationId": "setPersonalizationStrategy",
-        "x-acl": ["recommendation"],
+        "x-acl": [
+          "recommendation"
+        ],
         "summary": "Define the personalization strategy",
         "description": "Creates a new personalization strategy.",
         "requestBody": {
@@ -404,7 +431,9 @@
                   "title": "setPersonalizationStrategyResponse",
                   "type": "object",
                   "additionalProperties": false,
-                  "required": ["message"],
+                  "required": [
+                    "message"
+                  ],
                   "properties": {
                     "message": {
                       "type": "string",
@@ -436,7 +465,9 @@
         "x-helper": true,
         "x-asynchronous-helper": false,
         "x-acl": [],
-        "tags": ["Api Key"],
+        "tags": [
+          "Api Key"
+        ],
         "operationId": "setClientApiKey",
         "summary": "Switch the API key used to authenticate requests",
         "description": "Switch the API key used to authenticate requests.\n",
@@ -521,7 +552,9 @@
         "type": "string",
         "description": "Unique pseudonymous or anonymous user identifier.\n\nThis helps with analytics and click and conversion events.\nFor more information, see [user token](https://www.algolia.com/doc/guides/sending-events/concepts/usertoken).\n",
         "example": "test-user-123",
-        "x-categories": ["Personalization"]
+        "x-categories": [
+          "Personalization"
+        ]
       },
       "score": {
         "type": "integer",
@@ -531,12 +564,20 @@
         "title": "eventType",
         "type": "string",
         "description": "Event type.",
-        "enum": ["click", "conversion", "view"]
+        "enum": [
+          "click",
+          "conversion",
+          "view"
+        ]
       },
       "eventsScoring": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["score", "eventName", "eventType"],
+        "required": [
+          "score",
+          "eventName",
+          "eventType"
+        ],
         "properties": {
           "score": {
             "$ref": "#/components/schemas/score"
@@ -553,7 +594,10 @@
       "facetsScoring": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["score", "facetName"],
+        "required": [
+          "score",
+          "facetName"
+        ],
         "properties": {
           "score": {
             "$ref": "#/components/schemas/score"
@@ -567,7 +611,11 @@
       "personalizationStrategyParams": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["eventsScoring", "facetsScoring", "personalizationImpact"],
+        "required": [
+          "eventsScoring",
+          "facetsScoring",
+          "personalizationImpact"
+        ],
         "properties": {
           "eventsScoring": {
             "type": "array",
@@ -661,7 +709,10 @@
   "x-tagGroups": [
     {
       "name": "General",
-      "tags": ["profiles", "strategies"]
+      "tags": [
+        "profiles",
+        "strategies"
+      ]
     }
   ]
 }
