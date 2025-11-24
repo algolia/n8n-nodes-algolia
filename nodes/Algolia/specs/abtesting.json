@@ -12,10 +12,7 @@
       "variables": {
         "region": {
           "description": "The region where your Algolia application is hosted.",
-          "enum": [
-            "us",
-            "de"
-          ],
+          "enum": ["us", "de"],
           "default": "us"
         }
       }
@@ -214,13 +211,9 @@
     },
     "/2/abtests": {
       "post": {
-        "tags": [
-          "abtest"
-        ],
+        "tags": ["abtest"],
         "operationId": "addABTests",
-        "x-acl": [
-          "editSettings"
-        ],
+        "x-acl": ["editSettings"],
         "summary": "Create an A/B test",
         "description": "Creates a new A/B test.",
         "requestBody": {
@@ -248,11 +241,7 @@
                     "$ref": "#/components/schemas/endAt"
                   }
                 },
-                "required": [
-                  "name",
-                  "variants",
-                  "endAt"
-                ]
+                "required": ["name", "variants", "endAt"]
               }
             }
           }
@@ -294,14 +283,10 @@
         }
       },
       "get": {
-        "tags": [
-          "abtest"
-        ],
+        "tags": ["abtest"],
         "operationId": "listABTests",
         "x-mcp-tool": true,
-        "x-acl": [
-          "analytics"
-        ],
+        "x-acl": ["analytics"],
         "summary": "List all A/B tests",
         "description": "Lists all A/B tests you configured for this application.",
         "parameters": [
@@ -380,11 +365,7 @@
                       "example": 12
                     }
                   },
-                  "required": [
-                    "abtests",
-                    "count",
-                    "total"
-                  ]
+                  "required": ["abtests", "count", "total"]
                 }
               }
             }
@@ -406,13 +387,9 @@
     },
     "/2/abtests/{id}": {
       "get": {
-        "tags": [
-          "abtest"
-        ],
+        "tags": ["abtest"],
         "operationId": "getABTest",
-        "x-acl": [
-          "analytics"
-        ],
+        "x-acl": ["analytics"],
         "summary": "Retrieve A/B test details",
         "description": "Retrieves the details for an A/B test by its ID.",
         "parameters": [
@@ -457,13 +434,9 @@
         }
       },
       "delete": {
-        "tags": [
-          "abtest"
-        ],
+        "tags": ["abtest"],
         "operationId": "deleteABTest",
-        "x-acl": [
-          "editSettings"
-        ],
+        "x-acl": ["editSettings"],
         "summary": "Delete an A/B test",
         "description": "Deletes an A/B test by its ID.",
         "parameters": [
@@ -510,13 +483,9 @@
     },
     "/2/abtests/{id}/stop": {
       "post": {
-        "tags": [
-          "abtest"
-        ],
+        "tags": ["abtest"],
         "operationId": "stopABTest",
-        "x-acl": [
-          "editSettings"
-        ],
+        "x-acl": ["editSettings"],
         "summary": "Stop an A/B test",
         "description": "Stops an A/B test by its ID.\n\nYou can't restart stopped A/B tests.\n",
         "parameters": [
@@ -563,13 +532,9 @@
     },
     "/2/abtests/estimate": {
       "post": {
-        "tags": [
-          "abtest"
-        ],
+        "tags": ["abtest"],
         "operationId": "estimateABTest",
-        "x-acl": [
-          "analytics"
-        ],
+        "x-acl": ["analytics"],
         "summary": "Estimate the sample size and duration of an A/B test",
         "description": "Given the traffic percentage and the expected effect size, this endpoint estimates the sample size and duration of an A/B test based on historical traffic.",
         "requestBody": {
@@ -596,9 +561,7 @@
                         "$ref": "#/components/schemas/MinimumDetectableEffect"
                       }
                     },
-                    "required": [
-                      "minimumDetectableEffect"
-                    ]
+                    "required": ["minimumDetectableEffect"]
                   },
                   "variants": {
                     "type": "array",
@@ -610,10 +573,7 @@
                     }
                   }
                 },
-                "required": [
-                  "configuration",
-                  "variants"
-                ]
+                "required": ["configuration", "variants"]
               }
             }
           }
@@ -660,9 +620,7 @@
         "x-helper": true,
         "x-asynchronous-helper": false,
         "x-acl": [],
-        "tags": [
-          "Api Key"
-        ],
+        "tags": ["Api Key"],
         "operationId": "setClientApiKey",
         "summary": "Switch the API key used to authenticate requests",
         "description": "Switch the API key used to authenticate requests.\n",
@@ -778,12 +736,7 @@
         "type": "string",
         "description": "A/B test status.\n\n- `active`. The A/B test is live and search traffic is split between the two variants.\n- `stopped`. You stopped the A/B test. The A/B test data is still available for analysis.\n- `expired`. The A/B test was automatically stopped after reaching its end date.\n- `failed`. Creating the A/B test failed.\n",
         "example": "active",
-        "enum": [
-          "active",
-          "stopped",
-          "expired",
-          "failed"
-        ]
+        "enum": ["active", "stopped", "expired", "failed"]
       },
       "currency": {
         "type": "object",
@@ -1119,12 +1072,7 @@
       "EffectMetric": {
         "type": "string",
         "description": "Metric for which you want to detect the smallest relative difference.",
-        "enum": [
-          "addToCartRate",
-          "clickThroughRate",
-          "conversionRate",
-          "purchaseRate"
-        ]
+        "enum": ["addToCartRate", "clickThroughRate", "conversionRate", "purchaseRate"]
       },
       "MinimumDetectableEffect": {
         "type": "object",
@@ -1141,10 +1089,7 @@
             "$ref": "#/components/schemas/EffectMetric"
           }
         },
-        "required": [
-          "size",
-          "metric"
-        ]
+        "required": ["size", "metric"]
       },
       "ABTestConfiguration": {
         "title": "configuration",
@@ -1266,15 +1211,7 @@
             "$ref": "#/components/schemas/ABTestConfiguration"
           }
         },
-        "required": [
-          "status",
-          "name",
-          "createdAt",
-          "endAt",
-          "updatedAt",
-          "abTestID",
-          "variants"
-        ]
+        "required": ["status", "name", "createdAt", "endAt", "updatedAt", "abTestID", "variants"]
       },
       "ABTests": {
         "oneOf": [
@@ -1304,10 +1241,7 @@
             "$ref": "#/components/schemas/description"
           }
         },
-        "required": [
-          "index",
-          "trafficPercentage"
-        ]
+        "required": ["index", "trafficPercentage"]
       },
       "customSearchParams": {
         "type": "object",
@@ -1322,12 +1256,8 @@
             "type": "object"
           }
         },
-        "required": [
-          "customSearchParameters"
-        ],
-        "x-discriminator-fields": [
-          "customSearchParameters"
-        ]
+        "required": ["customSearchParameters"],
+        "x-discriminator-fields": ["customSearchParameters"]
       },
       "abTestsVariantSearchParams": {
         "allOf": [
@@ -1371,11 +1301,7 @@
             "$ref": "#/components/schemas/taskID"
           }
         },
-        "required": [
-          "abTestID",
-          "index",
-          "taskID"
-        ]
+        "required": ["abTestID", "index", "taskID"]
       },
       "EstimateABTestResponse": {
         "type": "object",
@@ -1468,9 +1394,7 @@
   "x-tagGroups": [
     {
       "name": "General",
-      "tags": [
-        "abtest"
-      ]
+      "tags": ["abtest"]
     }
   ]
 }
