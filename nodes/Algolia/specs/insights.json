@@ -2,7 +2,8 @@
   "openapi": "3.0.2",
   "info": {
     "title": "Insights API",
-    "description": "The Insights API lets you collect events related to your search and discovery experience.\nEvents represent user interactions with your app or website.\nThey unlock powerful features, such as recommendations, personalization, smarter search results,\nand analytics that help you optimize your user experience.\n\n## Client libraries\n\nUse Algolia's API clients, libraries, and integrations to collect events from your UI and send them to the Insights API.\nSee: [Algolia's ecosystem](https://www.algolia.com/doc/guides/getting-started/how-algolia-works/in-depth/ecosystem).\n\n## Base URLs\n\nThe base URLs for making requests to the Insights API are:\n\n- `https://insights.us.algolia.io`\n- `https://insights.de.algolia.io`\n- `https//insights.algolia.io` (routes requests to the closest of the above servers, based on your geographical location)\n\n**All requests must use HTTPS.**\n\n## Authentication\n\nTo authenticate your API requests, add these headers:\n\n- `x-algolia-application-id`. Your Algolia application ID.\n- `x-algolia-api-key`. An API key with the necessary permissions to make the request.\n  The required access control list (ACL) to make a request is listed in each endpoint's reference.\n\nYou can find your application ID and API key in the [Algolia dashboard](https://dashboard.algolia.com/account/api-keys).\n\n## Request format\n\nRequest bodies must be JSON objects.\n\n## Response status and errors\n\nResponse bodies are JSON objects.\nDeleting a user token returns an empty response body with rate-limiting information as headers.\n\nSuccessful responses return a `2xx` status. Client errors return a `4xx` status. Server errors are indicated by a `5xx` status.\nError responses have a `message` property with more information.\n\nThe Insights API doesn't validate if the event parameters such as `indexName`, `objectIDs`, or `userToken`,\ncorrespond to anything in the Search API. It just checks if they're formatted correctly.\nCheck the [Events](https://dashboard.algolia.com/events/health) health section,\nwhether your events can be used for Algolia features such as Analytics, or Dynamic Re-Ranking.\n\n## Version\n\nThe current version of the Insights API is version 1, as indicated by the `/1/` in each endpoint's URL.\n",
+    "summary": "The Insights API lets you collect events related to your search and discovery experience",
+    "description": "Events represent user interactions with your app or website.\nThey unlock powerful features, such as recommendations, personalization, smarter search results,\nand analytics that help you optimize your user experience.\n\n## Client libraries\n\nUse Algolia's API clients, libraries, and integrations to collect events from your UI and send them to the Insights API.\nSee: [Algolia's ecosystem](https://www.algolia.com/doc/guides/getting-started/how-algolia-works/in-depth/ecosystem).\n\n## Base URLs\n\nThe base URLs for making requests to the Insights API are:\n\n- `https://insights.us.algolia.io`\n- `https://insights.de.algolia.io`\n- `https//insights.algolia.io` (routes requests to the closest of the above servers, based on your geographical location)\n\n**All requests must use HTTPS.**\n\n## Authentication\n\nTo authenticate your API requests, add these headers:\n\n- `x-algolia-application-id`. Your Algolia application ID.\n- `x-algolia-api-key`. An API key with the necessary permissions to make the request.\n  The required access control list (ACL) to make a request is listed in each endpoint's reference.\n\nYou can find your application ID and API key in the [Algolia dashboard](https://dashboard.algolia.com/account/api-keys).\n\n## Request format\n\nRequest bodies must be JSON objects.\n\n## Response status and errors\n\nResponse bodies are JSON objects.\nDeleting a user token returns an empty response body with rate-limiting information as headers.\n\nSuccessful responses return a `2xx` status. Client errors return a `4xx` status. Server errors are indicated by a `5xx` status.\nError responses have a `message` property with more information.\n\nThe Insights API doesn't validate if the event parameters such as `indexName`, `objectIDs`, or `userToken`,\ncorrespond to anything in the Search API. It just checks if they're formatted correctly.\nCheck the [Events](https://dashboard.algolia.com/events/health) health section,\nwhether your events can be used for Algolia features such as Analytics, or Dynamic Re-Ranking.\n\n## Version\n\nThe current version of the Insights API is version 1, as indicated by the `/1/` in each endpoint's URL.\n",
     "version": "1.0.0"
   },
   "servers": [
@@ -11,7 +12,10 @@
       "variables": {
         "region": {
           "description": "The region where your Algolia application is hosted.",
-          "enum": ["us", "de"],
+          "enum": [
+            "us",
+            "de"
+          ],
           "default": "us"
         }
       }
@@ -215,10 +219,14 @@
     },
     "/1/events": {
       "post": {
-        "tags": ["events"],
+        "tags": [
+          "events"
+        ],
         "operationId": "pushEvents",
         "summary": "Send events",
-        "x-acl": ["search"],
+        "x-acl": [
+          "search"
+        ],
         "description": "Sends a list of events to the Insights API.\n\nYou can include up to 1,000 events in a single request,\nbut the request body must be smaller than 2&nbsp;MB.\n",
         "requestBody": {
           "required": true,
@@ -228,7 +236,9 @@
                 "title": "insightsEvents",
                 "type": "object",
                 "additionalProperties": false,
-                "required": ["events"],
+                "required": [
+                  "events"
+                ],
                 "properties": {
                   "events": {
                     "type": "array",
@@ -252,8 +262,12 @@
                         "index": "test-index",
                         "userToken": "anonymous-user-1",
                         "authenticatedUserToken": "user-1",
-                        "objectIDs": ["object-1"],
-                        "positions": [1],
+                        "objectIDs": [
+                          "object-1"
+                        ],
+                        "positions": [
+                          1
+                        ],
                         "queryID": "7dfe2ada7bca48bdd0629649df0bee07"
                       }
                     ]
@@ -269,7 +283,9 @@
                         "index": "test-index",
                         "userToken": "anonymous-user-1",
                         "authenticatedUserToken": "user-1",
-                        "objectIDs": ["article-1"],
+                        "objectIDs": [
+                          "article-1"
+                        ],
                         "queryID": "7dfe2ada7bca48bdd0629649df0bee07"
                       }
                     ]
@@ -286,7 +302,9 @@
                         "index": "test-index",
                         "userToken": "anonymous-user-1",
                         "authenticatedUserToken": "user-1",
-                        "objectIDs": ["product-1"],
+                        "objectIDs": [
+                          "product-1"
+                        ],
                         "objectData": [
                           {
                             "price": 50,
@@ -310,7 +328,10 @@
                         "index": "test-index",
                         "userToken": "anonymous-user-1",
                         "authenticatedUserToken": "user-1",
-                        "objectIDs": ["product-1", "product-2"],
+                        "objectIDs": [
+                          "product-1",
+                          "product-2"
+                        ],
                         "objectData": [
                           {
                             "price": 49.99,
@@ -341,7 +362,9 @@
                         "index": "test-index",
                         "userToken": "anonymous-user-1",
                         "authenticatedUserToken": "user-1",
-                        "objectIDs": ["object-1"]
+                        "objectIDs": [
+                          "object-1"
+                        ]
                       }
                     ]
                   }
@@ -356,7 +379,9 @@
                         "index": "test-index",
                         "userToken": "anonymous-user-1",
                         "authenticatedUserToken": "user-1",
-                        "objectIDs": ["object-1"]
+                        "objectIDs": [
+                          "object-1"
+                        ]
                       }
                     ]
                   }
@@ -372,7 +397,9 @@
                         "index": "test-index",
                         "userToken": "anonymous-user-1",
                         "authenticatedUserToken": "user-1",
-                        "objectIDs": ["product-1"],
+                        "objectIDs": [
+                          "product-1"
+                        ],
                         "objectData": [
                           {
                             "price": 19.99,
@@ -395,7 +422,10 @@
                         "index": "test-index",
                         "userToken": "anonymous-user-1",
                         "authenticatedUserToken": "user-1",
-                        "objectIDs": ["product-1", "product-2"],
+                        "objectIDs": [
+                          "product-1",
+                          "product-2"
+                        ],
                         "objectData": [
                           {
                             "price": 49.99,
@@ -422,7 +452,9 @@
                         "index": "test-index",
                         "userToken": "anonymous-user-1",
                         "authenticatedUserToken": "user-1",
-                        "filters": ["category:books"]
+                        "filters": [
+                          "category:books"
+                        ]
                       }
                     ]
                   }
@@ -437,7 +469,9 @@
                         "index": "test-index",
                         "userToken": "anonymous-user-1",
                         "authenticatedUserToken": "user-1",
-                        "filters": ["category:books"]
+                        "filters": [
+                          "category:books"
+                        ]
                       }
                     ]
                   }
@@ -452,7 +486,9 @@
                         "index": "test-index",
                         "userToken": "anonymous-user-1",
                         "authenticatedUserToken": "user-1",
-                        "objectIDs": ["object-1"]
+                        "objectIDs": [
+                          "object-1"
+                        ]
                       }
                     ]
                   }
@@ -467,7 +503,9 @@
                         "index": "test-index",
                         "userToken": "anonymous-user-1",
                         "authenticatedUserToken": "user-1",
-                        "filters": ["category:books"]
+                        "filters": [
+                          "category:books"
+                        ]
                       }
                     ]
                   }
@@ -759,11 +797,15 @@
     },
     "/1/usertokens/{userToken}": {
       "delete": {
-        "tags": ["usertokens"],
+        "tags": [
+          "usertokens"
+        ],
         "operationId": "deleteUserToken",
         "summary": "Delete user token",
         "description": "Deletes all events related to the specified user token from events metrics and analytics.\nThe deletion is asynchronous, and processed within 48 hours.\nTo delete a personalization user profile, see `Delete a user profile` in the Personalization API.\n",
-        "x-acl": ["deleteObject"],
+        "x-acl": [
+          "deleteObject"
+        ],
         "parameters": [
           {
             "name": "userToken",
@@ -818,7 +860,9 @@
         "x-helper": true,
         "x-asynchronous-helper": false,
         "x-acl": [],
-        "tags": ["Api Key"],
+        "tags": [
+          "Api Key"
+        ],
         "operationId": "setClientApiKey",
         "summary": "Switch the API key used to authenticate requests",
         "description": "Switch the API key used to authenticate requests.\n",
@@ -899,7 +943,9 @@
       },
       "ClickEvent": {
         "type": "string",
-        "enum": ["click"]
+        "enum": [
+          "click"
+        ]
       },
       "index": {
         "type": "string",
@@ -914,7 +960,11 @@
         },
         "minItems": 1,
         "maxItems": 20,
-        "example": ["object-1", "object-2", "object-3"]
+        "example": [
+          "object-1",
+          "object-2",
+          "object-3"
+        ]
       },
       "positions": {
         "type": "array",
@@ -925,7 +975,11 @@
         "minItems": 1,
         "maxItems": 20,
         "description": "Position of the clicked item the search results.\n\nYou must provide 1 `position` for each `objectID`.\n",
-        "example": [1, 2, 5]
+        "example": [
+          1,
+          2,
+          5
+        ]
       },
       "queryID": {
         "type": "string",
@@ -1000,15 +1054,23 @@
           "queryID",
           "userToken"
         ],
-        "x-discriminator-fields": ["positions", "queryID", "eventType"]
+        "x-discriminator-fields": [
+          "positions",
+          "queryID",
+          "eventType"
+        ]
       },
       "ConversionEvent": {
         "type": "string",
-        "enum": ["conversion"]
+        "enum": [
+          "conversion"
+        ]
       },
       "AddToCartEvent": {
         "type": "string",
-        "enum": ["addToCart"]
+        "enum": [
+          "addToCart"
+        ]
       },
       "currency": {
         "type": "string",
@@ -1147,11 +1209,18 @@
           "objectIDs",
           "userToken"
         ],
-        "x-discriminator-fields": ["eventType", "eventSubtype", "queryID", "objectIDs"]
+        "x-discriminator-fields": [
+          "eventType",
+          "eventSubtype",
+          "queryID",
+          "objectIDs"
+        ]
       },
       "PurchaseEvent": {
         "type": "string",
-        "enum": ["purchase"]
+        "enum": [
+          "purchase"
+        ]
       },
       "PurchasedObjectIDsAfterSearch": {
         "type": "object",
@@ -1202,7 +1271,12 @@
           "userToken",
           "objectData"
         ],
-        "x-discriminator-fields": ["eventType", "eventSubtype", "objectIDs", "objectData"]
+        "x-discriminator-fields": [
+          "eventType",
+          "eventSubtype",
+          "objectIDs",
+          "objectData"
+        ]
       },
       "ConvertedObjectIDsAfterSearch": {
         "type": "object",
@@ -1235,8 +1309,18 @@
             "$ref": "#/components/schemas/timestamp"
           }
         },
-        "required": ["eventName", "eventType", "index", "objectIDs", "queryID", "userToken"],
-        "x-discriminator-fields": ["queryID", "eventType"]
+        "required": [
+          "eventName",
+          "eventType",
+          "index",
+          "objectIDs",
+          "queryID",
+          "userToken"
+        ],
+        "x-discriminator-fields": [
+          "queryID",
+          "eventType"
+        ]
       },
       "ClickedObjectIDs": {
         "type": "object",
@@ -1266,8 +1350,17 @@
             "$ref": "#/components/schemas/timestamp"
           }
         },
-        "required": ["eventName", "eventType", "index", "objectIDs", "userToken"],
-        "x-discriminator-fields": ["eventType", "objectIDs"]
+        "required": [
+          "eventName",
+          "eventType",
+          "index",
+          "objectIDs",
+          "userToken"
+        ],
+        "x-discriminator-fields": [
+          "eventType",
+          "objectIDs"
+        ]
       },
       "objectData": {
         "type": "object",
@@ -1333,8 +1426,19 @@
             "$ref": "#/components/schemas/value"
           }
         },
-        "required": ["eventName", "eventType", "eventSubtype", "index", "objectIDs", "userToken"],
-        "x-discriminator-fields": ["eventType", "eventSubtype", "objectIDs"]
+        "required": [
+          "eventName",
+          "eventType",
+          "eventSubtype",
+          "index",
+          "objectIDs",
+          "userToken"
+        ],
+        "x-discriminator-fields": [
+          "eventType",
+          "eventSubtype",
+          "objectIDs"
+        ]
       },
       "AddedToCartObjectIDs": {
         "type": "object",
@@ -1376,8 +1480,19 @@
             "$ref": "#/components/schemas/value"
           }
         },
-        "required": ["eventName", "eventType", "eventSubtype", "index", "objectIDs", "userToken"],
-        "x-discriminator-fields": ["eventType", "eventSubtype", "objectIDs"]
+        "required": [
+          "eventName",
+          "eventType",
+          "eventSubtype",
+          "index",
+          "objectIDs",
+          "userToken"
+        ],
+        "x-discriminator-fields": [
+          "eventType",
+          "eventSubtype",
+          "objectIDs"
+        ]
       },
       "ConvertedObjectIDs": {
         "type": "object",
@@ -1407,8 +1522,17 @@
             "$ref": "#/components/schemas/timestamp"
           }
         },
-        "required": ["eventName", "eventType", "index", "objectIDs", "userToken"],
-        "x-discriminator-fields": ["eventType", "objectIDs"]
+        "required": [
+          "eventName",
+          "eventType",
+          "index",
+          "objectIDs",
+          "userToken"
+        ],
+        "x-discriminator-fields": [
+          "eventType",
+          "objectIDs"
+        ]
       },
       "filters": {
         "type": "array",
@@ -1418,7 +1542,9 @@
         },
         "minItems": 1,
         "maxItems": 20,
-        "example": ["brand:apple"]
+        "example": [
+          "brand:apple"
+        ]
       },
       "ClickedFilters": {
         "type": "object",
@@ -1448,8 +1574,17 @@
             "$ref": "#/components/schemas/timestamp"
           }
         },
-        "required": ["eventName", "eventType", "index", "filters", "userToken"],
-        "x-discriminator-fields": ["eventType", "filters"]
+        "required": [
+          "eventName",
+          "eventType",
+          "index",
+          "filters",
+          "userToken"
+        ],
+        "x-discriminator-fields": [
+          "eventType",
+          "filters"
+        ]
       },
       "ConvertedFilters": {
         "type": "object",
@@ -1478,12 +1613,23 @@
             "$ref": "#/components/schemas/timestamp"
           }
         },
-        "required": ["eventName", "eventType", "index", "filters", "userToken"],
-        "x-discriminator-fields": ["eventType", "filters"]
+        "required": [
+          "eventName",
+          "eventType",
+          "index",
+          "filters",
+          "userToken"
+        ],
+        "x-discriminator-fields": [
+          "eventType",
+          "filters"
+        ]
       },
       "ViewEvent": {
         "type": "string",
-        "enum": ["view"]
+        "enum": [
+          "view"
+        ]
       },
       "ViewedObjectIDs": {
         "type": "object",
@@ -1513,8 +1659,17 @@
             "$ref": "#/components/schemas/timestamp"
           }
         },
-        "required": ["eventName", "eventType", "index", "objectIDs", "userToken"],
-        "x-discriminator-fields": ["eventType", "objectIDs"]
+        "required": [
+          "eventName",
+          "eventType",
+          "index",
+          "objectIDs",
+          "userToken"
+        ],
+        "x-discriminator-fields": [
+          "eventType",
+          "objectIDs"
+        ]
       },
       "ViewedFilters": {
         "type": "object",
@@ -1544,8 +1699,17 @@
             "$ref": "#/components/schemas/timestamp"
           }
         },
-        "required": ["eventName", "eventType", "index", "filters", "userToken"],
-        "x-discriminator-fields": ["eventType", "filters"]
+        "required": [
+          "eventName",
+          "eventType",
+          "index",
+          "filters",
+          "userToken"
+        ],
+        "x-discriminator-fields": [
+          "eventType",
+          "filters"
+        ]
       },
       "EventsItems": {
         "oneOf": [
@@ -1672,7 +1836,10 @@
   "x-tagGroups": [
     {
       "name": "General",
-      "tags": ["events", "usertokens"]
+      "tags": [
+        "events",
+        "usertokens"
+      ]
     }
   ]
 }
