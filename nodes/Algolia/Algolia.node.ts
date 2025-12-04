@@ -1,7 +1,7 @@
 import { INodeType, INodeTypeDescription, NodeConnectionTypes } from 'n8n-workflow';
 
 import pkg from '../../package.json';
-import properties from './specs/search';
+import properties from './specs/search/index';
 
 export class Algolia implements INodeType {
   description: INodeTypeDescription = {

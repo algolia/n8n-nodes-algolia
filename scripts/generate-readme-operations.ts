@@ -1,6 +1,6 @@
 import { readFileSync, writeFileSync } from 'fs';
-import properties from '../nodes/Algolia/specs/search';
 import { INodeProperties, INodePropertyOptions } from 'n8n-workflow';
+import properties from '../nodes/Algolia/specs/search/index';
 
 const getOperationsForResource = (properties: INodeProperties[], resource: string) =>
   properties
@@ -18,7 +18,7 @@ const generateContent = () => {
     .filter((p) => p.name === 'resource')
     .map((r) => r.options?.map((o) => o.name))
     .flat()
-    .filter((r) => r !== undefined);
+    .filter((r) => r !== undefined) as string[];
 
   const resourceOperations = resources.map((resourceName) => {
     return { name: resourceName, operations: getOperationsForResource(properties, resourceName) };
