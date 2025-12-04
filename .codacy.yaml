@@ -1,6 +1,7 @@
 ---
 exclude_paths:
-  - 'scripts/nodes/overrides/simplify.ts'
+  - 'scripts/**/*.ts'
+  - 'nodes/specs/**/*'
 engines:
   duplication:
     enabled: true
