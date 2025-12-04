@@ -1533,32 +1533,32 @@ const properties: INodeProperties[] = [
     default: '',
     options: [
       {
-        name: 'Auth google service account',
-        value: 'auth_google_service_account',
+        name: 'Google',
+        value: 'google',
       },
       {
-        name: 'Auth basic',
-        value: 'auth_basic',
+        name: 'Basic',
+        value: 'basic',
       },
       {
-        name: 'Auth aPIKey',
-        value: 'auth_apikey',
+        name: 'API key',
+        value: 'api_key',
       },
       {
-        name: 'Auth oAuth',
-        value: 'auth_oauth',
+        name: 'OAuth 20',
+        value: 'oauth_20',
       },
       {
-        name: 'Auth algolia',
-        value: 'auth_algolia',
+        name: 'Algolia',
+        value: 'algolia',
       },
       {
-        name: 'Auth algolia insights',
-        value: 'auth_algolia_insights',
+        name: 'Algolia Insights',
+        value: 'algolia_insights',
       },
       {
-        name: 'Auth secrets',
-        value: 'auth_secrets',
+        name: 'Key:value',
+        value: 'keyvalue',
       },
     ],
     routing: {
@@ -1566,7 +1566,7 @@ const properties: INodeProperties[] = [
         type: 'body',
         property: 'input',
         value:
-          '={{ typeof $parameter.auth_google_service_account_object !== "undefined" ? JSON.parse($parameter.auth_google_service_account_object) : typeof $parameter.auth_basic_object !== "undefined" ? JSON.parse($parameter.auth_basic_object) : typeof $parameter.auth_apikey_object !== "undefined" ? JSON.parse($parameter.auth_apikey_object) : typeof $parameter.auth_oauth_object !== "undefined" ? JSON.parse($parameter.auth_oauth_object) : typeof $parameter.auth_algolia_object !== "undefined" ? JSON.parse($parameter.auth_algolia_object) : typeof $parameter.auth_algolia_insights_object !== "undefined" ? JSON.parse($parameter.auth_algolia_insights_object) : typeof $parameter.auth_secrets_object !== "undefined" ? JSON.parse($parameter.auth_secrets_object) : undefined }}',
+          '={{ typeof $parameter.google_object !== "undefined" ? JSON.parse($parameter.google_object) : typeof $parameter.basic_object !== "undefined" ? JSON.parse($parameter.basic_object) : typeof $parameter.api_key_object !== "undefined" ? JSON.parse($parameter.api_key_object) : typeof $parameter.oauth_20_object !== "undefined" ? JSON.parse($parameter.oauth_20_object) : typeof $parameter.algolia_object !== "undefined" ? JSON.parse($parameter.algolia_object) : typeof $parameter.algolia_insights_object !== "undefined" ? JSON.parse($parameter.algolia_insights_object) : typeof $parameter.keyvalue_object !== "undefined" ? JSON.parse($parameter.keyvalue_object) : undefined }}',
       },
     },
     displayOptions: {
@@ -1583,12 +1583,12 @@ const properties: INodeProperties[] = [
     description: 'Credentials for authenticating with a Google service account, such as BigQuery.',
     required: true,
     default: '{}',
-    displayName: 'Auth Google Service Account',
-    name: 'auth_google_service_account_object',
+    displayName: 'Google',
+    name: 'google_object',
     displayOptions: {
       show: {
         authentication_create_object: ['input'],
-        input: ['auth_google_service_account'],
+        input: ['google'],
         resource: ['authentications'],
         operation: ['createAuthentication'],
       },
@@ -1599,12 +1599,12 @@ const properties: INodeProperties[] = [
     description: 'Credentials for authenticating with user name and password.',
     required: true,
     default: '{}',
-    displayName: 'Auth Basic',
-    name: 'auth_basic_object',
+    displayName: 'Basic',
+    name: 'basic_object',
     displayOptions: {
       show: {
         authentication_create_object: ['input'],
-        input: ['auth_basic'],
+        input: ['basic'],
         resource: ['authentications'],
         operation: ['createAuthentication'],
       },
@@ -1615,12 +1615,12 @@ const properties: INodeProperties[] = [
     description: 'Credentials for authenticating with an API key.',
     required: true,
     default: '{}',
-    displayName: 'Auth APIKey',
-    name: 'auth_apikey_object',
+    displayName: 'API Key',
+    name: 'api_key_object',
     displayOptions: {
       show: {
         authentication_create_object: ['input'],
-        input: ['auth_apikey'],
+        input: ['api_key'],
         resource: ['authentications'],
         operation: ['createAuthentication'],
       },
@@ -1631,12 +1631,12 @@ const properties: INodeProperties[] = [
     description: 'Credentials for authenticating with OAuth 2.0.',
     required: true,
     default: '{}',
-    displayName: 'Auth OAuth',
-    name: 'auth_oauth_object',
+    displayName: 'OAuth 20',
+    name: 'oauth_20_object',
     displayOptions: {
       show: {
         authentication_create_object: ['input'],
-        input: ['auth_oauth'],
+        input: ['oauth_20'],
         resource: ['authentications'],
         operation: ['createAuthentication'],
       },
@@ -1647,12 +1647,12 @@ const properties: INodeProperties[] = [
     description: 'Credentials for authenticating with Algolia.',
     required: true,
     default: '{}',
-    displayName: 'Auth Algolia',
-    name: 'auth_algolia_object',
+    displayName: 'Algolia',
+    name: 'algolia_object',
     displayOptions: {
       show: {
         authentication_create_object: ['input'],
-        input: ['auth_algolia'],
+        input: ['algolia'],
         resource: ['authentications'],
         operation: ['createAuthentication'],
       },
@@ -1663,12 +1663,12 @@ const properties: INodeProperties[] = [
     description: 'Credentials for authenticating with the Algolia Insights API.',
     required: true,
     default: '{}',
-    displayName: 'Auth Algolia Insights',
-    name: 'auth_algolia_insights_object',
+    displayName: 'Algolia Insights',
+    name: 'algolia_insights_object',
     displayOptions: {
       show: {
         authentication_create_object: ['input'],
-        input: ['auth_algolia_insights'],
+        input: ['algolia_insights'],
         resource: ['authentications'],
         operation: ['createAuthentication'],
       },
@@ -1679,12 +1679,12 @@ const properties: INodeProperties[] = [
     description: 'A key:value authentication for your transformations.',
     required: false,
     default: '{}',
-    displayName: 'Auth Secrets',
-    name: 'auth_secrets_object',
+    displayName: 'Key:Value',
+    name: 'keyvalue_object',
     displayOptions: {
       show: {
         authentication_create_object: ['input'],
-        input: ['auth_secrets'],
+        input: ['keyvalue'],
         resource: ['authentications'],
         operation: ['createAuthentication'],
       },
@@ -1894,8 +1894,8 @@ const properties: INodeProperties[] = [
         value: 'auth_algolia_insights_partial',
       },
       {
-        name: 'Auth secrets',
-        value: 'auth_secrets',
+        name: 'Key:value',
+        value: 'keyvalue',
       },
     ],
     routing: {
@@ -1903,7 +1903,7 @@ const properties: INodeProperties[] = [
         type: 'body',
         property: 'input',
         value:
-          '={{ typeof $parameter.auth_google_service_account_partial_object !== "undefined" ? JSON.parse($parameter.auth_google_service_account_partial_object) : typeof $parameter.auth_basic_partial_object !== "undefined" ? JSON.parse($parameter.auth_basic_partial_object) : typeof $parameter.auth_apikey_partial_object !== "undefined" ? JSON.parse($parameter.auth_apikey_partial_object) : typeof $parameter.auth_oauth_partial_object !== "undefined" ? JSON.parse($parameter.auth_oauth_partial_object) : typeof $parameter.auth_algolia_partial_object !== "undefined" ? JSON.parse($parameter.auth_algolia_partial_object) : typeof $parameter.auth_algolia_insights_partial_object !== "undefined" ? JSON.parse($parameter.auth_algolia_insights_partial_object) : typeof $parameter.auth_secrets_object !== "undefined" ? JSON.parse($parameter.auth_secrets_object) : undefined }}',
+          '={{ typeof $parameter.auth_google_service_account_partial_object !== "undefined" ? JSON.parse($parameter.auth_google_service_account_partial_object) : typeof $parameter.auth_basic_partial_object !== "undefined" ? JSON.parse($parameter.auth_basic_partial_object) : typeof $parameter.auth_apikey_partial_object !== "undefined" ? JSON.parse($parameter.auth_apikey_partial_object) : typeof $parameter.auth_oauth_partial_object !== "undefined" ? JSON.parse($parameter.auth_oauth_partial_object) : typeof $parameter.auth_algolia_partial_object !== "undefined" ? JSON.parse($parameter.auth_algolia_partial_object) : typeof $parameter.auth_algolia_insights_partial_object !== "undefined" ? JSON.parse($parameter.auth_algolia_insights_partial_object) : typeof $parameter.keyvalue_object !== "undefined" ? JSON.parse($parameter.keyvalue_object) : undefined }}',
       },
     },
     displayOptions: {
@@ -2015,12 +2015,12 @@ const properties: INodeProperties[] = [
     description: 'A key:value authentication for your transformations.',
     required: false,
     default: '{}',
-    displayName: 'Auth Secrets',
-    name: 'auth_secrets_object',
+    displayName: 'Key:Value',
+    name: 'keyvalue_object',
     displayOptions: {
       show: {
         authentication_update_object: ['input'],
-        input: ['auth_secrets'],
+        input: ['keyvalue'],
         resource: ['authentications'],
         operation: ['updateAuthentication'],
       },
@@ -4732,8 +4732,8 @@ const properties: INodeProperties[] = [
         value: 'streaming_input',
       },
       {
-        name: 'Docker streams input',
-        value: 'docker_streams_input',
+        name: 'Docker streams',
+        value: 'docker_streams',
       },
       {
         name: 'Shopify input',
@@ -4745,7 +4745,7 @@ const properties: INodeProperties[] = [
         type: 'body',
         property: 'input',
         value:
-          '={{ typeof $parameter.streaming_input_object !== "undefined" ? JSON.parse($parameter.streaming_input_object) : typeof $parameter.docker_streams_input_object !== "undefined" ? JSON.parse($parameter.docker_streams_input_object) : typeof $parameter.shopify_input_object !== "undefined" ? JSON.parse($parameter.shopify_input_object) : undefined }}',
+          '={{ typeof $parameter.streaming_input_object !== "undefined" ? JSON.parse($parameter.streaming_input_object) : typeof $parameter.docker_streams_object !== "undefined" ? JSON.parse($parameter.docker_streams_object) : typeof $parameter.shopify_input_object !== "undefined" ? JSON.parse($parameter.shopify_input_object) : undefined }}',
       },
     },
     displayOptions: {
@@ -4778,12 +4778,12 @@ const properties: INodeProperties[] = [
     description: 'The selected streams of an airbyte connector.',
     required: true,
     default: '{}',
-    displayName: 'Docker Streams Input',
-    name: 'docker_streams_input_object',
+    displayName: 'Docker Streams',
+    name: 'docker_streams_object',
     displayOptions: {
       show: {
         task_create_object: ['input'],
-        input: ['docker_streams_input'],
+        input: ['docker_streams'],
         resource: ['tasks'],
         operation: ['createTask'],
       },
@@ -5188,8 +5188,8 @@ const properties: INodeProperties[] = [
         value: 'streaming_input',
       },
       {
-        name: 'Docker streams input',
-        value: 'docker_streams_input',
+        name: 'Docker streams',
+        value: 'docker_streams',
       },
       {
         name: 'Shopify input',
@@ -5201,7 +5201,7 @@ const properties: INodeProperties[] = [
         type: 'body',
         property: 'input',
         value:
-          '={{ typeof $parameter.streaming_input_object !== "undefined" ? JSON.parse($parameter.streaming_input_object) : typeof $parameter.docker_streams_input_object !== "undefined" ? JSON.parse($parameter.docker_streams_input_object) : typeof $parameter.shopify_input_object !== "undefined" ? JSON.parse($parameter.shopify_input_object) : undefined }}',
+          '={{ typeof $parameter.streaming_input_object !== "undefined" ? JSON.parse($parameter.streaming_input_object) : typeof $parameter.docker_streams_object !== "undefined" ? JSON.parse($parameter.docker_streams_object) : typeof $parameter.shopify_input_object !== "undefined" ? JSON.parse($parameter.shopify_input_object) : undefined }}',
       },
     },
     displayOptions: {
@@ -5234,12 +5234,12 @@ const properties: INodeProperties[] = [
     description: 'The selected streams of an airbyte connector.',
     required: true,
     default: '{}',
-    displayName: 'Docker Streams Input',
-    name: 'docker_streams_input_object',
+    displayName: 'Docker Streams',
+    name: 'docker_streams_object',
     displayOptions: {
       show: {
         task_replace_object: ['input'],
-        input: ['docker_streams_input'],
+        input: ['docker_streams'],
         resource: ['tasks'],
         operation: ['replaceTask'],
       },
@@ -5445,8 +5445,8 @@ const properties: INodeProperties[] = [
         value: 'streaming_input',
       },
       {
-        name: 'Docker streams input',
-        value: 'docker_streams_input',
+        name: 'Docker streams',
+        value: 'docker_streams',
       },
       {
         name: 'Shopify input',
@@ -5458,7 +5458,7 @@ const properties: INodeProperties[] = [
         type: 'body',
         property: 'input',
         value:
-          '={{ typeof $parameter.streaming_input_object !== "undefined" ? JSON.parse($parameter.streaming_input_object) : typeof $parameter.docker_streams_input_object !== "undefined" ? JSON.parse($parameter.docker_streams_input_object) : typeof $parameter.shopify_input_object !== "undefined" ? JSON.parse($parameter.shopify_input_object) : undefined }}',
+          '={{ typeof $parameter.streaming_input_object !== "undefined" ? JSON.parse($parameter.streaming_input_object) : typeof $parameter.docker_streams_object !== "undefined" ? JSON.parse($parameter.docker_streams_object) : typeof $parameter.shopify_input_object !== "undefined" ? JSON.parse($parameter.shopify_input_object) : undefined }}',
       },
     },
     displayOptions: {
@@ -5491,12 +5491,12 @@ const properties: INodeProperties[] = [
     description: 'The selected streams of an airbyte connector.',
     required: true,
     default: '{}',
-    displayName: 'Docker Streams Input',
-    name: 'docker_streams_input_object',
+    displayName: 'Docker Streams',
+    name: 'docker_streams_object',
     displayOptions: {
       show: {
         task_update_object: ['input'],
-        input: ['docker_streams_input'],
+        input: ['docker_streams'],
         resource: ['tasks'],
         operation: ['updateTask'],
       },
@@ -6409,8 +6409,8 @@ const properties: INodeProperties[] = [
         value: 'streaming_input',
       },
       {
-        name: 'Docker streams input',
-        value: 'docker_streams_input',
+        name: 'Docker streams',
+        value: 'docker_streams',
       },
       {
         name: 'Shopify input',
@@ -6422,7 +6422,7 @@ const properties: INodeProperties[] = [
         type: 'body',
         property: 'input',
         value:
-          '={{ typeof $parameter.streaming_input_object !== "undefined" ? JSON.parse($parameter.streaming_input_object) : typeof $parameter.docker_streams_input_object !== "undefined" ? JSON.parse($parameter.docker_streams_input_object) : typeof $parameter.shopify_input_object !== "undefined" ? JSON.parse($parameter.shopify_input_object) : undefined }}',
+          '={{ typeof $parameter.streaming_input_object !== "undefined" ? JSON.parse($parameter.streaming_input_object) : typeof $parameter.docker_streams_object !== "undefined" ? JSON.parse($parameter.docker_streams_object) : typeof $parameter.shopify_input_object !== "undefined" ? JSON.parse($parameter.shopify_input_object) : undefined }}',
       },
     },
     displayOptions: {
@@ -6455,12 +6455,12 @@ const properties: INodeProperties[] = [
     description: 'The selected streams of an airbyte connector.',
     required: true,
     default: '{}',
-    displayName: 'Docker Streams Input',
-    name: 'docker_streams_input_object',
+    displayName: 'Docker Streams',
+    name: 'docker_streams_object',
     displayOptions: {
       show: {
         task_create_v1_object: ['input'],
-        input: ['docker_streams_input'],
+        input: ['docker_streams'],
         resource: ['tasks'],
         operation: ['createTaskV1'],
       },
@@ -6668,8 +6668,8 @@ const properties: INodeProperties[] = [
         value: 'streaming_input',
       },
       {
-        name: 'Docker streams input',
-        value: 'docker_streams_input',
+        name: 'Docker streams',
+        value: 'docker_streams',
       },
       {
         name: 'Shopify input',
@@ -6681,7 +6681,7 @@ const properties: INodeProperties[] = [
         type: 'body',
         property: 'input',
         value:
-          '={{ typeof $parameter.streaming_input_object !== "undefined" ? JSON.parse($parameter.streaming_input_object) : typeof $parameter.docker_streams_input_object !== "undefined" ? JSON.parse($parameter.docker_streams_input_object) : typeof $parameter.shopify_input_object !== "undefined" ? JSON.parse($parameter.shopify_input_object) : undefined }}',
+          '={{ typeof $parameter.streaming_input_object !== "undefined" ? JSON.parse($parameter.streaming_input_object) : typeof $parameter.docker_streams_object !== "undefined" ? JSON.parse($parameter.docker_streams_object) : typeof $parameter.shopify_input_object !== "undefined" ? JSON.parse($parameter.shopify_input_object) : undefined }}',
       },
     },
     displayOptions: {
@@ -6714,12 +6714,12 @@ const properties: INodeProperties[] = [
     description: 'The selected streams of an airbyte connector.',
     required: true,
     default: '{}',
-    displayName: 'Docker Streams Input',
-    name: 'docker_streams_input_object',
+    displayName: 'Docker Streams',
+    name: 'docker_streams_object',
     displayOptions: {
       show: {
         task_update_v1_object: ['input'],
-        input: ['docker_streams_input'],
+        input: ['docker_streams'],
         resource: ['tasks'],
         operation: ['updateTaskV1'],
       },
@@ -7153,12 +7153,12 @@ const properties: INodeProperties[] = [
     default: '',
     options: [
       {
-        name: 'Transformation code',
-        value: 'transformation_code',
+        name: 'Code',
+        value: 'code',
       },
       {
-        name: 'Transformation no code',
-        value: 'transformation_no_code',
+        name: 'No-code',
+        value: 'nocode',
       },
     ],
     routing: {
@@ -7166,7 +7166,7 @@ const properties: INodeProperties[] = [
         type: 'body',
         property: 'input',
         value:
-          '={{ typeof $parameter.transformation_code_object !== "undefined" ? JSON.parse($parameter.transformation_code_object) : typeof $parameter.transformation_no_code_object !== "undefined" ? JSON.parse($parameter.transformation_no_code_object) : undefined }}',
+          '={{ typeof $parameter.code_object !== "undefined" ? JSON.parse($parameter.code_object) : typeof $parameter.nocode_object !== "undefined" ? JSON.parse($parameter.nocode_object) : undefined }}',
       },
     },
     displayOptions: {
@@ -7182,12 +7182,12 @@ const properties: INodeProperties[] = [
     description: 'Input for a transformation that contains the source code of the transformation.',
     required: true,
     default: '{}',
-    displayName: 'Transformation Code',
-    name: 'transformation_code_object',
+    displayName: 'Code',
+    name: 'code_object',
     displayOptions: {
       show: {
         transformation_create_object: ['input'],
-        input: ['transformation_code'],
+        input: ['code'],
         resource: ['transformations'],
         operation: ['createTransformation'],
       },
@@ -7198,12 +7198,12 @@ const properties: INodeProperties[] = [
     description: 'Input for a no-code transformation that contains a series of steps.',
     required: true,
     default: '{}',
-    displayName: 'Transformation No Code',
-    name: 'transformation_no_code_object',
+    displayName: 'No-Code',
+    name: 'nocode_object',
     displayOptions: {
       show: {
         transformation_create_object: ['input'],
-        input: ['transformation_no_code'],
+        input: ['nocode'],
         resource: ['transformations'],
         operation: ['createTransformation'],
       },
@@ -7348,12 +7348,12 @@ const properties: INodeProperties[] = [
     default: '',
     options: [
       {
-        name: 'Transformation code',
-        value: 'transformation_code',
+        name: 'Code',
+        value: 'code',
       },
       {
-        name: 'Transformation no code',
-        value: 'transformation_no_code',
+        name: 'No-code',
+        value: 'nocode',
       },
     ],
     routing: {
@@ -7361,7 +7361,7 @@ const properties: INodeProperties[] = [
         type: 'body',
         property: 'input',
         value:
-          '={{ typeof $parameter.transformation_code_object !== "undefined" ? JSON.parse($parameter.transformation_code_object) : typeof $parameter.transformation_no_code_object !== "undefined" ? JSON.parse($parameter.transformation_no_code_object) : undefined }}',
+          '={{ typeof $parameter.code_object !== "undefined" ? JSON.parse($parameter.code_object) : typeof $parameter.nocode_object !== "undefined" ? JSON.parse($parameter.nocode_object) : undefined }}',
       },
     },
     displayOptions: {
@@ -7377,12 +7377,12 @@ const properties: INodeProperties[] = [
     description: 'Input for a transformation that contains the source code of the transformation.',
     required: true,
     default: '{}',
-    displayName: 'Transformation Code',
-    name: 'transformation_code_object',
+    displayName: 'Code',
+    name: 'code_object',
     displayOptions: {
       show: {
         transformation_try_object: ['input'],
-        input: ['transformation_code'],
+        input: ['code'],
         resource: ['transformations'],
         operation: ['tryTransformation'],
       },
@@ -7393,12 +7393,12 @@ const properties: INodeProperties[] = [
     description: 'Input for a no-code transformation that contains a series of steps.',
     required: true,
     default: '{}',
-    displayName: 'Transformation No Code',
-    name: 'transformation_no_code_object',
+    displayName: 'No-Code',
+    name: 'nocode_object',
     displayOptions: {
       show: {
         transformation_try_object: ['input'],
-        input: ['transformation_no_code'],
+        input: ['nocode'],
         resource: ['transformations'],
         operation: ['tryTransformation'],
       },
@@ -7642,12 +7642,12 @@ const properties: INodeProperties[] = [
     default: '',
     options: [
       {
-        name: 'Transformation code',
-        value: 'transformation_code',
+        name: 'Code',
+        value: 'code',
       },
       {
-        name: 'Transformation no code',
-        value: 'transformation_no_code',
+        name: 'No-code',
+        value: 'nocode',
       },
     ],
     routing: {
@@ -7655,7 +7655,7 @@ const properties: INodeProperties[] = [
         type: 'body',
         property: 'input',
         value:
-          '={{ typeof $parameter.transformation_code_object !== "undefined" ? JSON.parse($parameter.transformation_code_object) : typeof $parameter.transformation_no_code_object !== "undefined" ? JSON.parse($parameter.transformation_no_code_object) : undefined }}',
+          '={{ typeof $parameter.code_object !== "undefined" ? JSON.parse($parameter.code_object) : typeof $parameter.nocode_object !== "undefined" ? JSON.parse($parameter.nocode_object) : undefined }}',
       },
     },
     displayOptions: {
@@ -7671,12 +7671,12 @@ const properties: INodeProperties[] = [
     description: 'Input for a transformation that contains the source code of the transformation.',
     required: true,
     default: '{}',
-    displayName: 'Transformation Code',
-    name: 'transformation_code_object',
+    displayName: 'Code',
+    name: 'code_object',
     displayOptions: {
       show: {
         transformation_create_object: ['input'],
-        input: ['transformation_code'],
+        input: ['code'],
         resource: ['transformations'],
         operation: ['updateTransformation'],
       },
@@ -7687,12 +7687,12 @@ const properties: INodeProperties[] = [
     description: 'Input for a no-code transformation that contains a series of steps.',
     required: true,
     default: '{}',
-    displayName: 'Transformation No Code',
-    name: 'transformation_no_code_object',
+    displayName: 'No-Code',
+    name: 'nocode_object',
     displayOptions: {
       show: {
         transformation_create_object: ['input'],
-        input: ['transformation_no_code'],
+        input: ['nocode'],
         resource: ['transformations'],
         operation: ['updateTransformation'],
       },
@@ -7867,12 +7867,12 @@ const properties: INodeProperties[] = [
     default: '',
     options: [
       {
-        name: 'Transformation code',
-        value: 'transformation_code',
+        name: 'Code',
+        value: 'code',
       },
       {
-        name: 'Transformation no code',
-        value: 'transformation_no_code',
+        name: 'No-code',
+        value: 'nocode',
       },
     ],
     routing: {
@@ -7880,7 +7880,7 @@ const properties: INodeProperties[] = [
         type: 'body',
         property: 'input',
         value:
-          '={{ typeof $parameter.transformation_code_object !== "undefined" ? JSON.parse($parameter.transformation_code_object) : typeof $parameter.transformation_no_code_object !== "undefined" ? JSON.parse($parameter.transformation_no_code_object) : undefined }}',
+          '={{ typeof $parameter.code_object !== "undefined" ? JSON.parse($parameter.code_object) : typeof $parameter.nocode_object !== "undefined" ? JSON.parse($parameter.nocode_object) : undefined }}',
       },
     },
     displayOptions: {
@@ -7896,12 +7896,12 @@ const properties: INodeProperties[] = [
     description: 'Input for a transformation that contains the source code of the transformation.',
     required: true,
     default: '{}',
-    displayName: 'Transformation Code',
-    name: 'transformation_code_object',
+    displayName: 'Code',
+    name: 'code_object',
     displayOptions: {
       show: {
         transformation_try_object: ['input'],
-        input: ['transformation_code'],
+        input: ['code'],
         resource: ['transformations'],
         operation: ['tryTransformationBeforeUpdate'],
       },
@@ -7912,12 +7912,12 @@ const properties: INodeProperties[] = [
     description: 'Input for a no-code transformation that contains a series of steps.',
     required: true,
     default: '{}',
-    displayName: 'Transformation No Code',
-    name: 'transformation_no_code_object',
+    displayName: 'No-Code',
+    name: 'nocode_object',
     displayOptions: {
       show: {
         transformation_try_object: ['input'],
-        input: ['transformation_no_code'],
+        input: ['nocode'],
         resource: ['transformations'],
         operation: ['tryTransformationBeforeUpdate'],
       },

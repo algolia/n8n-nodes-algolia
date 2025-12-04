@@ -12,10 +12,7 @@
       "variables": {
         "region": {
           "description": "The region where your Algolia application is hosted.",
-          "enum": [
-            "eu",
-            "us"
-          ],
+          "enum": ["eu", "us"],
           "default": "us"
         }
       }
@@ -232,17 +229,11 @@
     },
     "/1/push/{indexName}": {
       "post": {
-        "tags": [
-          "tasks"
-        ],
+        "tags": ["tasks"],
         "summary": "Push records by indexName",
         "description": "Pushes records through the Pipeline, directly to an index. You can make the call synchronous by providing the `watch` parameter, for asynchronous calls, you can use the observability endpoints and/or debugger dashboard to see the status of your task.\nIf you want to leverage the [pre-indexing data transformation](https://www.algolia.com/doc/guides/sending-and-managing-data/send-and-update-your-data/how-to/transform-your-data), this is the recommended way of ingesting your records.\nThis method is similar to `pushTask`, but requires an `indexName` instead of a `taskID`. If zero or many tasks are found, an error will be returned.\n",
         "operationId": "push",
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "x-timeouts": {
           "connect": 180000,
           "read": 180000,
@@ -294,17 +285,11 @@
     },
     "/1/authentications": {
       "get": {
-        "tags": [
-          "authentications"
-        ],
+        "tags": ["authentications"],
         "summary": "List authentication resources",
         "description": "Retrieves a list of all authentication resources.",
         "operationId": "listAuthentications",
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "parameters": [
           {
             "$ref": "#/components/parameters/itemsPerPage"
@@ -345,10 +330,7 @@
                       "$ref": "#/components/schemas/Pagination"
                     }
                   },
-                  "required": [
-                    "authentications",
-                    "pagination"
-                  ]
+                  "required": ["authentications", "pagination"]
                 }
               }
             }
@@ -359,17 +341,11 @@
         }
       },
       "post": {
-        "tags": [
-          "authentications"
-        ],
+        "tags": ["authentications"],
         "summary": "Create an authentication resource",
         "description": "Creates a new authentication resource.",
         "operationId": "createAuthentication",
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "requestBody": {
           "description": "",
           "content": {
@@ -400,17 +376,11 @@
     },
     "/1/authentications/search": {
       "post": {
-        "tags": [
-          "authentications"
-        ],
+        "tags": ["authentications"],
         "summary": "Search for authentication resources",
         "description": "Searches for authentication resources.",
         "operationId": "searchAuthentications",
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -444,17 +414,11 @@
     },
     "/1/authentications/{authenticationID}": {
       "get": {
-        "tags": [
-          "authentications"
-        ],
+        "tags": ["authentications"],
         "summary": "Retrieve an authentication resource",
         "description": "Retrieves an authentication resource by its ID.",
         "operationId": "getAuthentication",
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "parameters": [
           {
             "$ref": "#/components/parameters/pathAuthenticationID"
@@ -477,17 +441,11 @@
         }
       },
       "patch": {
-        "tags": [
-          "authentications"
-        ],
+        "tags": ["authentications"],
         "summary": "Update an authentication resource",
         "description": "Updates an authentication resource.",
         "operationId": "updateAuthentication",
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "parameters": [
           {
             "$ref": "#/components/parameters/pathAuthenticationID"
@@ -520,17 +478,11 @@
         }
       },
       "delete": {
-        "tags": [
-          "authentications"
-        ],
+        "tags": ["authentications"],
         "summary": "Delete an authentication resource",
         "description": "Deletes an authentication resource. You can't delete authentication resources that are used by a source or a destination.",
         "operationId": "deleteAuthentication",
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "parameters": [
           {
             "$ref": "#/components/parameters/pathAuthenticationID"
@@ -555,18 +507,12 @@
     },
     "/1/destinations": {
       "get": {
-        "tags": [
-          "destinations"
-        ],
+        "tags": ["destinations"],
         "summary": "List destinations",
         "description": "Retrieves a list of destinations.",
         "operationId": "listDestinations",
         "x-mcp-tool": true,
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "parameters": [
           {
             "$ref": "#/components/parameters/itemsPerPage"
@@ -610,10 +556,7 @@
                       "$ref": "#/components/schemas/Pagination"
                     }
                   },
-                  "required": [
-                    "destinations",
-                    "pagination"
-                  ]
+                  "required": ["destinations", "pagination"]
                 }
               }
             }
@@ -624,17 +567,11 @@
         }
       },
       "post": {
-        "tags": [
-          "destinations"
-        ],
+        "tags": ["destinations"],
         "summary": "Create a destination",
         "description": "Creates a new destination.",
         "operationId": "createDestination",
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "requestBody": {
           "description": "",
           "content": {
@@ -665,17 +602,11 @@
     },
     "/1/destinations/search": {
       "post": {
-        "tags": [
-          "destinations"
-        ],
+        "tags": ["destinations"],
         "summary": "Search for destinations",
         "description": "Searches for destinations.",
         "operationId": "searchDestinations",
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -709,17 +640,11 @@
     },
     "/1/destinations/{destinationID}": {
       "get": {
-        "tags": [
-          "destinations"
-        ],
+        "tags": ["destinations"],
         "summary": "Retrieve a destination",
         "description": "Retrieves a destination by its ID.",
         "operationId": "getDestination",
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "parameters": [
           {
             "$ref": "#/components/parameters/pathDestinationID"
@@ -742,17 +667,11 @@
         }
       },
       "patch": {
-        "tags": [
-          "destinations"
-        ],
+        "tags": ["destinations"],
         "summary": "Update a destination",
         "description": "Updates the destination by its ID.",
         "operationId": "updateDestination",
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "parameters": [
           {
             "$ref": "#/components/parameters/pathDestinationID"
@@ -785,17 +704,11 @@
         }
       },
       "delete": {
-        "tags": [
-          "destinations"
-        ],
+        "tags": ["destinations"],
         "summary": "Delete a destination",
         "description": "Deletes a destination by its ID. You can't delete destinations that are referenced in tasks.",
         "operationId": "deleteDestination",
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "parameters": [
           {
             "$ref": "#/components/parameters/pathDestinationID"
@@ -820,18 +733,12 @@
     },
     "/1/sources": {
       "get": {
-        "tags": [
-          "sources"
-        ],
+        "tags": ["sources"],
         "summary": "List sources",
         "description": "Retrieves a list of sources.",
         "operationId": "listSources",
         "x-mcp-tool": true,
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "parameters": [
           {
             "$ref": "#/components/parameters/itemsPerPage"
@@ -872,10 +779,7 @@
                       "$ref": "#/components/schemas/Pagination"
                     }
                   },
-                  "required": [
-                    "sources",
-                    "pagination"
-                  ]
+                  "required": ["sources", "pagination"]
                 }
               }
             }
@@ -886,17 +790,11 @@
         }
       },
       "post": {
-        "tags": [
-          "sources"
-        ],
+        "tags": ["sources"],
         "summary": "Create a source",
         "description": "Creates a new source.",
         "operationId": "createSource",
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "requestBody": {
           "description": "",
           "content": {
@@ -927,17 +825,11 @@
     },
     "/1/sources/validate": {
       "post": {
-        "tags": [
-          "sources"
-        ],
+        "tags": ["sources"],
         "summary": "Validate a source payload",
         "description": "Validates a source payload to ensure it can be created and that the data source can be reached by Algolia.\n",
         "operationId": "validateSource",
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "x-timeouts": {
           "connect": 180000,
           "read": 180000,
@@ -972,17 +864,11 @@
     },
     "/1/sources/search": {
       "post": {
-        "tags": [
-          "sources"
-        ],
+        "tags": ["sources"],
         "summary": "Search for sources",
         "description": "Searches for sources.",
         "operationId": "searchSources",
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1016,17 +902,11 @@
     },
     "/1/sources/{sourceID}": {
       "get": {
-        "tags": [
-          "sources"
-        ],
+        "tags": ["sources"],
         "summary": "Retrieve a source",
         "description": "Retrieve a source by its ID.",
         "operationId": "getSource",
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "parameters": [
           {
             "$ref": "#/components/parameters/pathSourceID"
@@ -1049,17 +929,11 @@
         }
       },
       "patch": {
-        "tags": [
-          "sources"
-        ],
+        "tags": ["sources"],
         "summary": "Update a source",
         "description": "Updates a source by its ID.",
         "operationId": "updateSource",
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "parameters": [
           {
             "$ref": "#/components/parameters/pathSourceID"
@@ -1092,17 +966,11 @@
         }
       },
       "delete": {
-        "tags": [
-          "sources"
-        ],
+        "tags": ["sources"],
         "summary": "Delete a source",
         "description": "Deletes a source by its ID. You can't delete sources that are referenced in tasks.",
         "operationId": "deleteSource",
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "parameters": [
           {
             "$ref": "#/components/parameters/pathSourceID"
@@ -1127,17 +995,11 @@
     },
     "/1/sources/{sourceID}/validate": {
       "post": {
-        "tags": [
-          "sources"
-        ],
+        "tags": ["sources"],
         "summary": "Validate an update of a source payload",
         "description": "Validates an update of a source payload to ensure it can be created and that the data source can be reached by Algolia.\n",
         "operationId": "validateSourceBeforeUpdate",
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "x-timeouts": {
           "connect": 180000,
           "read": 180000,
@@ -1177,17 +1039,11 @@
     },
     "/1/sources/{sourceID}/discover": {
       "post": {
-        "tags": [
-          "sources"
-        ],
+        "tags": ["sources"],
         "summary": "Trigger a stream-listing request",
         "description": "Triggers a stream-listing request for a source.\nTriggering stream-listing requests only works with sources with `type: docker` and `imageType: airbyte`.\n",
         "operationId": "triggerDockerSourceDiscover",
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "x-timeouts": {
           "connect": 180000,
           "read": 180000,
@@ -1217,17 +1073,11 @@
     },
     "/1/sources/{sourceID}/run": {
       "post": {
-        "tags": [
-          "sources"
-        ],
+        "tags": ["sources"],
         "summary": "Run all tasks linked to a source",
         "description": "Runs all tasks linked to a source, only available for Shopify, BigCommerce and commercetools sources. Creates one run per task.",
         "operationId": "runSource",
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "parameters": [
           {
             "$ref": "#/components/parameters/pathSourceID"
@@ -1263,10 +1113,7 @@
                       "$ref": "#/components/schemas/CreatedAt"
                     }
                   },
-                  "required": [
-                    "taskWithRunID",
-                    "createdAt"
-                  ]
+                  "required": ["taskWithRunID", "createdAt"]
                 }
               }
             }
@@ -1279,18 +1126,12 @@
     },
     "/2/tasks": {
       "get": {
-        "tags": [
-          "tasks"
-        ],
+        "tags": ["tasks"],
         "summary": "List tasks",
         "description": "Retrieves a list of tasks.",
         "operationId": "listTasks",
         "x-mcp-tool": true,
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "parameters": [
           {
             "$ref": "#/components/parameters/itemsPerPage"
@@ -1347,10 +1188,7 @@
                       "$ref": "#/components/schemas/Pagination"
                     }
                   },
-                  "required": [
-                    "tasks",
-                    "pagination"
-                  ]
+                  "required": ["tasks", "pagination"]
                 }
               }
             }
@@ -1361,17 +1199,11 @@
         }
       },
       "post": {
-        "tags": [
-          "tasks"
-        ],
+        "tags": ["tasks"],
         "summary": "Create a task",
         "description": "Creates a new task.",
         "operationId": "createTask",
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "requestBody": {
           "description": "Request body for creating a task.",
           "content": {
@@ -1402,17 +1234,11 @@
     },
     "/2/tasks/search": {
       "post": {
-        "tags": [
-          "tasks"
-        ],
+        "tags": ["tasks"],
         "summary": "Search for tasks",
         "description": "Searches for tasks.",
         "operationId": "searchTasks",
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1446,14 +1272,8 @@
     },
     "/2/tasks/{taskID}": {
       "get": {
-        "tags": [
-          "tasks"
-        ],
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "tags": ["tasks"],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "summary": "Retrieve a task",
         "description": "Retrieves a task by its ID.",
         "operationId": "getTask",
@@ -1479,14 +1299,8 @@
         }
       },
       "put": {
-        "tags": [
-          "tasks"
-        ],
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "tags": ["tasks"],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "summary": "Fully update a task",
         "description": "Fully updates a task by its ID, use partialUpdateTask if you only want to update a subset of fields.",
         "operationId": "replaceTask",
@@ -1522,14 +1336,8 @@
         }
       },
       "patch": {
-        "tags": [
-          "tasks"
-        ],
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "tags": ["tasks"],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "summary": "Partially update a task",
         "description": "Partially updates a task by its ID.",
         "operationId": "updateTask",
@@ -1565,14 +1373,8 @@
         }
       },
       "delete": {
-        "tags": [
-          "tasks"
-        ],
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "tags": ["tasks"],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "summary": "Delete a task",
         "description": "Deletes a task by its ID.",
         "operationId": "deleteTask",
@@ -1600,17 +1402,11 @@
     },
     "/2/tasks/{taskID}/run": {
       "post": {
-        "tags": [
-          "tasks"
-        ],
+        "tags": ["tasks"],
         "summary": "Run a task",
         "description": "Runs a task. You can check the status of task runs with the observability endpoints.",
         "operationId": "runTask",
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "parameters": [
           {
             "$ref": "#/components/parameters/pathTaskID"
@@ -1645,9 +1441,7 @@
     },
     "/2/tasks/{taskID}/push": {
       "post": {
-        "tags": [
-          "tasks"
-        ],
+        "tags": ["tasks"],
         "summary": "Push records by task ID",
         "description": "Pushes records through the pipeline, directly to an index. You can make the call synchronous by providing the `watch` parameter, for asynchronous calls, you can use the observability endpoints or the debugger dashboard to see the status of your task.\nIf you want to transform your data before indexing, this is the recommended way of ingesting your records.\nThis method is similar to `push`, but requires a `taskID` instead of a `indexName`, which is useful when many `destinations` target the same `indexName`.\n",
         "operationId": "pushTask",
@@ -1655,11 +1449,7 @@
           "url": "https://www.algolia.com/doc/guides/sending-and-managing-data/send-and-update-your-data/how-to/transform-your-data",
           "description": "Pre-indexing data transformation."
         },
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "x-timeouts": {
           "connect": 180000,
           "read": 180000,
@@ -1702,17 +1492,11 @@
     },
     "/2/tasks/{taskID}/enable": {
       "put": {
-        "tags": [
-          "tasks"
-        ],
+        "tags": ["tasks"],
         "summary": "Enable a task",
         "description": "Enables a task.",
         "operationId": "enableTask",
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "parameters": [
           {
             "$ref": "#/components/parameters/pathTaskID"
@@ -1737,17 +1521,11 @@
     },
     "/2/tasks/{taskID}/disable": {
       "put": {
-        "tags": [
-          "tasks"
-        ],
+        "tags": ["tasks"],
         "summary": "Disable a task",
         "description": "Disables a task.",
         "operationId": "disableTask",
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "parameters": [
           {
             "$ref": "#/components/parameters/pathTaskID"
@@ -1772,18 +1550,12 @@
     },
     "/1/tasks": {
       "get": {
-        "tags": [
-          "tasks"
-        ],
+        "tags": ["tasks"],
         "summary": "List tasks V1",
         "description": "Retrieves a list of tasks using the v1 endpoint, please use `getTasks` instead.",
         "operationId": "listTasksV1",
         "deprecated": true,
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "parameters": [
           {
             "$ref": "#/components/parameters/itemsPerPage"
@@ -1834,10 +1606,7 @@
                       "$ref": "#/components/schemas/Pagination"
                     }
                   },
-                  "required": [
-                    "tasks",
-                    "pagination"
-                  ]
+                  "required": ["tasks", "pagination"]
                 }
               }
             }
@@ -1848,17 +1617,11 @@
         }
       },
       "post": {
-        "tags": [
-          "tasks"
-        ],
+        "tags": ["tasks"],
         "summary": "Create a task V1",
         "description": "Creates a new task using the v1 endpoint, please use `createTask` instead.",
         "operationId": "createTaskV1",
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "deprecated": true,
         "x-codegen-request-body-name": "taskCreate",
         "requestBody": {
@@ -1891,18 +1654,12 @@
     },
     "/1/tasks/search": {
       "post": {
-        "tags": [
-          "tasks"
-        ],
+        "tags": ["tasks"],
         "summary": "Search for tasks V1",
         "description": "Searches for tasks using the v1 endpoint, please use `searchTasks` instead.",
         "operationId": "searchTasksV1",
         "deprecated": true,
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1936,18 +1693,12 @@
     },
     "/1/tasks/{taskID}": {
       "get": {
-        "tags": [
-          "tasks"
-        ],
+        "tags": ["tasks"],
         "summary": "Retrieve a task V1",
         "description": "Retrieves a task by its ID using the v1 endpoint, please use `getTask` instead.",
         "operationId": "getTaskV1",
         "deprecated": true,
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "parameters": [
           {
             "$ref": "#/components/parameters/pathTaskID"
@@ -1970,17 +1721,11 @@
         }
       },
       "patch": {
-        "tags": [
-          "tasks"
-        ],
+        "tags": ["tasks"],
         "summary": "Update a task V1",
         "description": "Updates a task by its ID using the v1 endpoint, please use `updateTask` instead.",
         "operationId": "updateTaskV1",
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "deprecated": true,
         "parameters": [
           {
@@ -2015,17 +1760,11 @@
         }
       },
       "delete": {
-        "tags": [
-          "tasks"
-        ],
+        "tags": ["tasks"],
         "summary": "Delete a task",
         "description": "Deletes a task by its ID using the v1 endpoint, please use `deleteTask` instead.",
         "operationId": "deleteTaskV1",
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "deprecated": true,
         "parameters": [
           {
@@ -2051,18 +1790,12 @@
     },
     "/1/tasks/{taskID}/run": {
       "post": {
-        "tags": [
-          "tasks"
-        ],
+        "tags": ["tasks"],
         "summary": "Run a task V1",
         "description": "Runs a task using the v1 endpoint, please use `runTask` instead. You can check the status of task runs with the observability endpoints.",
         "operationId": "runTaskV1",
         "deprecated": true,
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "parameters": [
           {
             "$ref": "#/components/parameters/pathTaskID"
@@ -2097,18 +1830,12 @@
     },
     "/1/tasks/{taskID}/enable": {
       "put": {
-        "tags": [
-          "tasks"
-        ],
+        "tags": ["tasks"],
         "summary": "Enable a task V1",
         "description": "Enables a task using the v1 endpoint, please use `enableTask` instead.",
         "operationId": "enableTaskV1",
         "deprecated": true,
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "parameters": [
           {
             "$ref": "#/components/parameters/pathTaskID"
@@ -2133,18 +1860,12 @@
     },
     "/1/tasks/{taskID}/disable": {
       "put": {
-        "tags": [
-          "tasks"
-        ],
+        "tags": ["tasks"],
         "summary": "Disable a task V1",
         "description": "Disables a task using the v1 endpoint, please use `disableTask` instead.",
         "operationId": "disableTaskV1",
         "deprecated": true,
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "parameters": [
           {
             "$ref": "#/components/parameters/pathTaskID"
@@ -2169,18 +1890,12 @@
     },
     "/1/transformations": {
       "get": {
-        "tags": [
-          "transformations"
-        ],
+        "tags": ["transformations"],
         "summary": "List transformations",
         "description": "Retrieves a list of transformations.",
         "operationId": "listTransformations",
         "x-mcp-tool": true,
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "parameters": [
           {
             "$ref": "#/components/parameters/itemsPerPage"
@@ -2219,10 +1934,7 @@
                       "$ref": "#/components/schemas/Pagination"
                     }
                   },
-                  "required": [
-                    "transformations",
-                    "pagination"
-                  ]
+                  "required": ["transformations", "pagination"]
                 }
               }
             }
@@ -2233,17 +1945,11 @@
         }
       },
       "post": {
-        "tags": [
-          "transformations"
-        ],
+        "tags": ["transformations"],
         "summary": "Create a transformation",
         "description": "Creates a new transformation.",
         "operationId": "createTransformation",
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "requestBody": {
           "description": "Request body for creating a transformation.",
           "content": {
@@ -2274,17 +1980,11 @@
     },
     "/1/transformations/try": {
       "post": {
-        "tags": [
-          "transformations"
-        ],
+        "tags": ["transformations"],
         "summary": "Try a transformation before creating it",
         "description": "Try a transformation before creating it.",
         "operationId": "tryTransformation",
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -2314,17 +2014,11 @@
     },
     "/1/transformations/search": {
       "post": {
-        "tags": [
-          "transformations"
-        ],
+        "tags": ["transformations"],
         "summary": "Search for transformations",
         "description": "Searches for transformations.",
         "operationId": "searchTransformations",
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -2358,17 +2052,11 @@
     },
     "/1/transformations/{transformationID}": {
       "get": {
-        "tags": [
-          "transformations"
-        ],
+        "tags": ["transformations"],
         "summary": "Retrieve a transformation",
         "description": "Retrieves a transformation by its ID.",
         "operationId": "getTransformation",
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "parameters": [
           {
             "$ref": "#/components/parameters/pathTransformationID"
@@ -2391,17 +2079,11 @@
         }
       },
       "put": {
-        "tags": [
-          "transformations"
-        ],
+        "tags": ["transformations"],
         "summary": "Update a transformation",
         "description": "Updates a transformation by its ID.",
         "operationId": "updateTransformation",
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "parameters": [
           {
             "$ref": "#/components/parameters/pathTransformationID"
@@ -2434,17 +2116,11 @@
         }
       },
       "delete": {
-        "tags": [
-          "transformations"
-        ],
+        "tags": ["transformations"],
         "summary": "Delete a transformation",
         "description": "Deletes a transformation by its ID.",
         "operationId": "deleteTransformation",
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "parameters": [
           {
             "$ref": "#/components/parameters/pathTransformationID"
@@ -2469,17 +2145,11 @@
     },
     "/1/transformations/{transformationID}/try": {
       "post": {
-        "tags": [
-          "transformations"
-        ],
+        "tags": ["transformations"],
         "summary": "Try a transformation before updating it",
         "description": "Try a transformation before updating it.",
         "operationId": "tryTransformationBeforeUpdate",
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "parameters": [
           {
             "$ref": "#/components/parameters/pathTransformationID"
@@ -2514,17 +2184,11 @@
     },
     "/1/runs": {
       "get": {
-        "tags": [
-          "observability"
-        ],
+        "tags": ["observability"],
         "summary": "List task runs",
         "description": "Retrieve a list of task runs.",
         "operationId": "listRuns",
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "parameters": [
           {
             "$ref": "#/components/parameters/itemsPerPage"
@@ -2583,17 +2247,11 @@
     },
     "/1/runs/{runID}": {
       "get": {
-        "tags": [
-          "observability"
-        ],
+        "tags": ["observability"],
         "summary": "Retrieve a task run",
         "description": "Retrieve a single task run by its ID.",
         "operationId": "getRun",
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "parameters": [
           {
             "$ref": "#/components/parameters/pathRunID"
@@ -2618,17 +2276,11 @@
     },
     "/1/runs/{runID}/events": {
       "get": {
-        "tags": [
-          "observability"
-        ],
+        "tags": ["observability"],
         "summary": "List task run events",
         "description": "Retrieves a list of events for a task run, identified by its ID.",
         "operationId": "listEvents",
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "parameters": [
           {
             "$ref": "#/components/parameters/pathRunID"
@@ -2691,11 +2343,7 @@
                       "$ref": "#/components/schemas/Window"
                     }
                   },
-                  "required": [
-                    "events",
-                    "pagination",
-                    "window"
-                  ]
+                  "required": ["events", "pagination", "window"]
                 }
               }
             }
@@ -2708,17 +2356,11 @@
     },
     "/1/runs/{runID}/events/{eventID}": {
       "get": {
-        "tags": [
-          "observability"
-        ],
+        "tags": ["observability"],
         "summary": "Retrieve a task run event",
         "description": "Retrieves a single task run event by its ID.",
         "operationId": "getEvent",
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "parameters": [
           {
             "$ref": "#/components/parameters/pathRunID"
@@ -2749,9 +2391,7 @@
         "x-helper": true,
         "x-asynchronous-helper": false,
         "x-acl": [],
-        "tags": [
-          "Api Key"
-        ],
+        "tags": ["Api Key"],
         "operationId": "setClientApiKey",
         "summary": "Switch the API key used to authenticate requests",
         "description": "Switch the API key used to authenticate requests.\n",
@@ -2776,22 +2416,9 @@
     "/chunkedPush": {
       "get": {
         "x-helper": true,
-        "tags": [
-          "Records"
-        ],
-        "x-available-languages": [
-          "csharp",
-          "go",
-          "java",
-          "javascript",
-          "php",
-          "python"
-        ],
-        "x-acl": [
-          "addObject",
-          "deleteIndex",
-          "editSettings"
-        ],
+        "tags": ["Records"],
+        "x-available-languages": ["csharp", "go", "java", "javascript", "php", "python"],
+        "x-acl": ["addObject", "deleteIndex", "editSettings"],
         "operationId": "chunkedPush",
         "summary": "Replace all records in an index",
         "description": "Helper: Chunks the given `objects` list in subset of 1000 elements max in order to make it fit in `push` requests by leveraging the Transformation pipeline setup in the Push connector (https://www.algolia.com/doc/guides/sending-and-managing-data/send-and-update-your-data/connectors/push).\n",
@@ -3081,10 +2708,7 @@
           "items": {
             "$ref": "#/components/schemas/authenticationID"
           },
-          "example": [
-            "10000000-0a75-4000-a000-000000000001",
-            "none"
-          ]
+          "example": ["10000000-0a75-4000-a000-000000000001", "none"]
         }
       },
       "sourceParameters_sort": {
@@ -3375,9 +2999,7 @@
               "title": "pushTaskRecords",
               "type": "object",
               "additionalProperties": true,
-              "required": [
-                "objectID"
-              ],
+              "required": ["objectID"],
               "properties": {
                 "objectID": {
                   "$ref": "#/components/schemas/objectID"
@@ -3386,10 +3008,7 @@
             }
           }
         },
-        "required": [
-          "action",
-          "records"
-        ]
+        "required": ["action", "records"]
       },
       "RunID": {
         "type": "string",
@@ -3405,14 +3024,7 @@
         "oneOf": [
           {
             "type": "string",
-            "enum": [
-              "created",
-              "started",
-              "retried",
-              "failed",
-              "succeeded",
-              "critical"
-            ]
+            "enum": ["created", "started", "retried", "failed", "succeeded", "critical"]
           },
           {
             "type": "null"
@@ -3421,12 +3033,7 @@
       },
       "EventType": {
         "type": "string",
-        "enum": [
-          "fetch",
-          "record",
-          "log",
-          "transform"
-        ]
+        "enum": ["fetch", "record", "log", "transform"]
       },
       "PublishedAt": {
         "type": "string",
@@ -3471,14 +3078,7 @@
             "$ref": "#/components/schemas/PublishedAt"
           }
         },
-        "required": [
-          "eventID",
-          "runID",
-          "status",
-          "type",
-          "batchSize",
-          "publishedAt"
-        ]
+        "required": ["eventID", "runID", "status", "type", "batchSize", "publishedAt"]
       },
       "CreatedAt": {
         "type": "string",
@@ -3516,9 +3116,7 @@
             "$ref": "#/components/schemas/CreatedAt"
           }
         },
-        "required": [
-          "runID"
-        ]
+        "required": ["runID"]
       },
       "itemsPerPage": {
         "type": "integer",
@@ -3551,11 +3149,7 @@
           {
             "type": "string",
             "description": "Name of an ecommerce platform with which to authenticate.\nThis determines which authentication type you can select.\n",
-            "enum": [
-              "bigcommerce",
-              "commercetools",
-              "shopify"
-            ]
+            "enum": ["bigcommerce", "commercetools", "shopify"]
           },
           {
             "type": "null"
@@ -3565,9 +3159,7 @@
       "platformNone": {
         "type": "string",
         "description": "Authentication resource not tied to any ecommerce platform, used for filtering.",
-        "enum": [
-          "none"
-        ]
+        "enum": ["none"]
       },
       "platformWithNone": {
         "oneOf": [
@@ -3583,22 +3175,13 @@
         "type": "string",
         "description": "Property by which to sort the list of authentications.",
         "default": "createdAt",
-        "enum": [
-          "name",
-          "type",
-          "platform",
-          "updatedAt",
-          "createdAt"
-        ]
+        "enum": ["name", "type", "platform", "updatedAt", "createdAt"]
       },
       "orderKeys": {
         "type": "string",
         "description": "Ascending or descending sort order.",
         "default": "desc",
-        "enum": [
-          "asc",
-          "desc"
-        ]
+        "enum": ["asc", "desc"]
       },
       "authenticationID": {
         "type": "string",
@@ -3635,9 +3218,7 @@
             "description": "Private key of the Google service account. This field is `null` in the API response."
           }
         },
-        "x-discriminator-fields": [
-          "clientEmail"
-        ]
+        "x-discriminator-fields": ["clientEmail"]
       },
       "AuthBasicPartial": {
         "type": "object",
@@ -3653,9 +3234,7 @@
             "description": "Password. This field is `null` in the API response."
           }
         },
-        "x-discriminator-fields": [
-          "username"
-        ]
+        "x-discriminator-fields": ["username"]
       },
       "AuthAPIKeyPartial": {
         "type": "object",
@@ -3667,9 +3246,7 @@
             "description": "API key. This field is `null` in the API response."
           }
         },
-        "x-discriminator-fields": [
-          "key"
-        ]
+        "x-discriminator-fields": ["key"]
       },
       "AuthOAuthPartial": {
         "type": "object",
@@ -3694,9 +3271,7 @@
             "description": "OAuth scope."
           }
         },
-        "x-discriminator-fields": [
-          "url"
-        ]
+        "x-discriminator-fields": ["url"]
       },
       "AuthAlgoliaPartial": {
         "type": "object",
@@ -3795,14 +3370,7 @@
             "$ref": "#/components/schemas/updatedAt"
           }
         },
-        "required": [
-          "authenticationID",
-          "type",
-          "name",
-          "input",
-          "createdAt",
-          "updatedAt"
-        ]
+        "required": ["authenticationID", "type", "name", "input", "createdAt", "updatedAt"]
       },
       "Pagination": {
         "type": "object",
@@ -3826,12 +3394,7 @@
             "$ref": "#/components/schemas/itemsPerPage"
           }
         },
-        "required": [
-          "nbPages",
-          "page",
-          "nbItems",
-          "itemsPerPage"
-        ]
+        "required": ["nbPages", "page", "nbItems", "itemsPerPage"]
       },
       "AuthGoogleServiceAccount": {
         "title": "Google",
@@ -3849,14 +3412,8 @@
             "description": "Private key of the Google service account. This field is `null` in the API response."
           }
         },
-        "required": [
-          "clientEmail",
-          "privateKey"
-        ],
-        "x-discriminator-fields": [
-          "clientEmail",
-          "privateKey"
-        ]
+        "required": ["clientEmail", "privateKey"],
+        "x-discriminator-fields": ["clientEmail", "privateKey"]
       },
       "AuthBasic": {
         "title": "Basic",
@@ -3873,14 +3430,8 @@
             "description": "Password. This field is `null` in the API response."
           }
         },
-        "required": [
-          "username",
-          "password"
-        ],
-        "x-discriminator-fields": [
-          "username",
-          "password"
-        ]
+        "required": ["username", "password"],
+        "x-discriminator-fields": ["username", "password"]
       },
       "AuthAPIKey": {
         "title": "API key",
@@ -3893,12 +3444,8 @@
             "description": "API key. This field is `null` in the API response."
           }
         },
-        "required": [
-          "key"
-        ],
-        "x-discriminator-fields": [
-          "key"
-        ]
+        "required": ["key"],
+        "x-discriminator-fields": ["key"]
       },
       "AuthOAuth": {
         "title": "OAuth 2.0",
@@ -3924,16 +3471,8 @@
             "description": "OAuth scope."
           }
         },
-        "required": [
-          "url",
-          "client_id",
-          "client_secret"
-        ],
-        "x-discriminator-fields": [
-          "url",
-          "client_id",
-          "client_secret"
-        ]
+        "required": ["url", "client_id", "client_secret"],
+        "x-discriminator-fields": ["url", "client_id", "client_secret"]
       },
       "AuthAlgolia": {
         "title": "Algolia",
@@ -3950,10 +3489,7 @@
             "description": "Algolia API key with the ACL: `addObject`, `deleteObject`, `settings`, `editSettings`, `listIndexes`, `deleteIndex`.\nThis field is `null` in the API response.\n"
           }
         },
-        "required": [
-          "appID",
-          "apiKey"
-        ]
+        "required": ["appID", "apiKey"]
       },
       "AuthAlgoliaInsights": {
         "title": "Algolia Insights",
@@ -3970,10 +3506,7 @@
             "description": "Algolia API key with the ACL: `search`.\nThis field is `null` in the API response.\n"
           }
         },
-        "required": [
-          "appID",
-          "apiKey"
-        ]
+        "required": ["appID", "apiKey"]
       },
       "AuthInput": {
         "oneOf": [
@@ -4018,11 +3551,7 @@
             "$ref": "#/components/schemas/AuthInput"
           }
         },
-        "required": [
-          "type",
-          "name",
-          "input"
-        ]
+        "required": ["type", "name", "input"]
       },
       "AuthenticationCreateResponse": {
         "type": "object",
@@ -4039,11 +3568,7 @@
             "$ref": "#/components/schemas/CreatedAt"
           }
         },
-        "required": [
-          "authenticationID",
-          "name",
-          "createdAt"
-        ]
+        "required": ["authenticationID", "name", "createdAt"]
       },
       "AuthenticationSearch": {
         "type": "object",
@@ -4057,9 +3582,7 @@
             }
           }
         },
-        "required": [
-          "authenticationIDs"
-        ]
+        "required": ["authenticationIDs"]
       },
       "DeleteResponse": {
         "type": "object",
@@ -4069,9 +3592,7 @@
             "description": "Date of deletion in RFC 3339 format."
           }
         },
-        "required": [
-          "deletedAt"
-        ]
+        "required": ["deletedAt"]
       },
       "AuthenticationUpdate": {
         "type": "object",
@@ -4104,19 +3625,12 @@
             "$ref": "#/components/schemas/updatedAt"
           }
         },
-        "required": [
-          "authenticationID",
-          "name",
-          "updatedAt"
-        ]
+        "required": ["authenticationID", "name", "updatedAt"]
       },
       "DestinationType": {
         "type": "string",
         "description": "Destination type.\n\n- `search`.\n  Data is stored in an Algolia index.\n\n- `insights`.\n  Data is recorded as user events in the Insights API.\n",
-        "enum": [
-          "search",
-          "insights"
-        ]
+        "enum": ["search", "insights"]
       },
       "transformationID": {
         "type": "string",
@@ -4127,12 +3641,7 @@
         "type": "string",
         "description": "Property by which to sort the destinations.",
         "default": "createdAt",
-        "enum": [
-          "name",
-          "type",
-          "updatedAt",
-          "createdAt"
-        ]
+        "enum": ["name", "type", "updatedAt", "createdAt"]
       },
       "destinationID": {
         "type": "string",
@@ -4142,11 +3651,7 @@
       "RecordType": {
         "type": "string",
         "description": "Record type for ecommerce sources.",
-        "enum": [
-          "product",
-          "variant",
-          "collection"
-        ]
+        "enum": ["product", "variant", "collection"]
       },
       "AttributesToExclude": {
         "type": "array",
@@ -4170,9 +3675,7 @@
             "$ref": "#/components/schemas/AttributesToExclude"
           }
         },
-        "required": [
-          "indexName"
-        ]
+        "required": ["indexName"]
       },
       "transformationIDs": {
         "type": "array",
@@ -4213,14 +3716,7 @@
             "$ref": "#/components/schemas/transformationIDs"
           }
         },
-        "required": [
-          "destinationID",
-          "type",
-          "name",
-          "input",
-          "createdAt",
-          "updatedAt"
-        ]
+        "required": ["destinationID", "type", "name", "input", "createdAt", "updatedAt"]
       },
       "DestinationCreate": {
         "type": "object",
@@ -4243,11 +3739,7 @@
             "$ref": "#/components/schemas/transformationIDs"
           }
         },
-        "required": [
-          "type",
-          "name",
-          "input"
-        ]
+        "required": ["type", "name", "input"]
       },
       "DestinationCreateResponse": {
         "type": "object",
@@ -4264,11 +3756,7 @@
             "$ref": "#/components/schemas/CreatedAt"
           }
         },
-        "required": [
-          "destinationID",
-          "name",
-          "createdAt"
-        ]
+        "required": ["destinationID", "name", "createdAt"]
       },
       "DestinationSearch": {
         "type": "object",
@@ -4282,9 +3770,7 @@
             }
           }
         },
-        "required": [
-          "destinationIDs"
-        ]
+        "required": ["destinationIDs"]
       },
       "DestinationUpdate": {
         "type": "object",
@@ -4323,11 +3809,7 @@
             "$ref": "#/components/schemas/updatedAt"
           }
         },
-        "required": [
-          "destinationID",
-          "name",
-          "updatedAt"
-        ]
+        "required": ["destinationID", "name", "updatedAt"]
       },
       "SourceType": {
         "type": "string",
@@ -4347,12 +3829,7 @@
         "type": "string",
         "description": "Property by which to sort the list of sources.",
         "default": "createdAt",
-        "enum": [
-          "name",
-          "type",
-          "updatedAt",
-          "createdAt"
-        ]
+        "enum": ["name", "type", "updatedAt", "createdAt"]
       },
       "sourceID": {
         "type": "string",
@@ -4453,13 +3930,8 @@
             "$ref": "#/components/schemas/CommercetoolsCustomFields"
           }
         },
-        "required": [
-          "url",
-          "projectKey"
-        ],
-        "x-discriminator-fields": [
-          "projectKey"
-        ]
+        "required": ["url", "projectKey"],
+        "x-discriminator-fields": ["projectKey"]
       },
       "BigCommerceChannel": {
         "type": "object",
@@ -4472,10 +3944,7 @@
           "currencies": {
             "type": "array",
             "description": "Currencies for the given channel.",
-            "example": [
-              "usd",
-              "eur"
-            ],
+            "example": ["usd", "eur"],
             "items": {
               "type": "string",
               "description": "Three-letter code for the currency.",
@@ -4483,9 +3952,7 @@
             }
           }
         },
-        "required": [
-          "id"
-        ]
+        "required": ["id"]
       },
       "BigCommerceMetafield": {
         "type": "object",
@@ -4500,10 +3967,7 @@
             "description": "Key identifier of the metafield."
           }
         },
-        "required": [
-          "namespace",
-          "key"
-        ]
+        "required": ["namespace", "key"]
       },
       "SourceBigCommerce": {
         "type": "object",
@@ -4536,12 +4000,8 @@
             }
           }
         },
-        "required": [
-          "storeHash"
-        ],
-        "x-discriminator-fields": [
-          "storeHash"
-        ]
+        "required": ["storeHash"],
+        "x-discriminator-fields": ["storeHash"]
       },
       "UniqueIDColumn": {
         "type": "string",
@@ -4550,10 +4010,7 @@
       "MethodType": {
         "type": "string",
         "description": "HTTP method to be used for retrieving your data.",
-        "enum": [
-          "GET",
-          "POST"
-        ]
+        "enum": ["GET", "POST"]
       },
       "SourceJSON": {
         "type": "object",
@@ -4571,19 +4028,11 @@
             "$ref": "#/components/schemas/MethodType"
           }
         },
-        "required": [
-          "url"
-        ]
+        "required": ["url"]
       },
       "MappingTypeCSV": {
         "type": "string",
-        "enum": [
-          "string",
-          "integer",
-          "float",
-          "boolean",
-          "json"
-        ]
+        "enum": ["string", "integer", "float", "boolean", "json"]
       },
       "SourceCSV": {
         "type": "object",
@@ -4616,16 +4065,11 @@
             "description": "The character used to split the value on each line, default to a comma (\\r, \\n, 0xFFFD, and space are forbidden)."
           }
         },
-        "required": [
-          "url"
-        ]
+        "required": ["url"]
       },
       "BigQueryDataType": {
         "type": "string",
-        "enum": [
-          "ga4",
-          "ga360"
-        ]
+        "enum": ["ga4", "ga360"]
       },
       "SourceBigQuery": {
         "type": "object",
@@ -4659,13 +4103,8 @@
             "$ref": "#/components/schemas/UniqueIDColumn"
           }
         },
-        "required": [
-          "projectID",
-          "datasetID"
-        ],
-        "x-discriminator-fields": [
-          "projectID"
-        ]
+        "required": ["projectID", "datasetID"],
+        "x-discriminator-fields": ["projectID"]
       },
       "SourceGA4BigQueryExport": {
         "type": "object",
@@ -4686,16 +4125,8 @@
             "example": "events_intraday_"
           }
         },
-        "required": [
-          "projectID",
-          "datasetID",
-          "tablePrefix"
-        ],
-        "x-discriminator-fields": [
-          "projectID",
-          "datasetID",
-          "tablePrefix"
-        ]
+        "required": ["projectID", "datasetID", "tablePrefix"],
+        "x-discriminator-fields": ["projectID", "datasetID", "tablePrefix"]
       },
       "SourceDocker": {
         "type": "object",
@@ -4712,14 +4143,8 @@
             "description": "Configuration of the spec."
           }
         },
-        "required": [
-          "image",
-          "configuration"
-        ],
-        "x-discriminator-fields": [
-          "image",
-          "configuration"
-        ]
+        "required": ["image", "configuration"],
+        "x-discriminator-fields": ["image", "configuration"]
       },
       "SourceUpdateShopify": {
         "type": "object",
@@ -4742,12 +4167,8 @@
             "description": "URL of the Shopify store."
           }
         },
-        "required": [
-          "shopURL"
-        ],
-        "x-discriminator-fields": [
-          "shopURL"
-        ]
+        "required": ["shopURL"],
+        "x-discriminator-fields": ["shopURL"]
       },
       "SourceShopify": {
         "allOf": [
@@ -4816,13 +4237,7 @@
             "$ref": "#/components/schemas/updatedAt"
           }
         },
-        "required": [
-          "sourceID",
-          "type",
-          "name",
-          "createdAt",
-          "updatedAt"
-        ]
+        "required": ["sourceID", "type", "name", "createdAt", "updatedAt"]
       },
       "SourceCreate": {
         "type": "object",
@@ -4842,10 +4257,7 @@
             "$ref": "#/components/schemas/authenticationID"
           }
         },
-        "required": [
-          "type",
-          "name"
-        ]
+        "required": ["type", "name"]
       },
       "SourceCreateResponse": {
         "type": "object",
@@ -4862,11 +4274,7 @@
             "$ref": "#/components/schemas/CreatedAt"
           }
         },
-        "required": [
-          "sourceID",
-          "name",
-          "createdAt"
-        ]
+        "required": ["sourceID", "name", "createdAt"]
       },
       "SourceSearch": {
         "type": "object",
@@ -4879,9 +4287,7 @@
             }
           }
         },
-        "required": [
-          "sourceIDs"
-        ]
+        "required": ["sourceIDs"]
       },
       "SourceUpdateCommercetools": {
         "type": "object",
@@ -4935,12 +4341,8 @@
             "description": "Configuration of the spec."
           }
         },
-        "required": [
-          "configuration"
-        ],
-        "x-discriminator-fields": [
-          "configuration"
-        ]
+        "required": ["configuration"],
+        "x-discriminator-fields": ["configuration"]
       },
       "SourceUpdateInput": {
         "oneOf": [
@@ -4998,19 +4400,12 @@
             "$ref": "#/components/schemas/updatedAt"
           }
         },
-        "required": [
-          "sourceID",
-          "name",
-          "updatedAt"
-        ]
+        "required": ["sourceID", "name", "updatedAt"]
       },
       "EntityType": {
         "type": "string",
         "description": "Type of entity to update.",
-        "enum": [
-          "product",
-          "collection"
-        ]
+        "enum": ["product", "collection"]
       },
       "RunSourcePayload": {
         "type": "object",
@@ -5050,35 +4445,18 @@
       "ActionType": {
         "type": "string",
         "description": "Action to perform on the Algolia index.",
-        "enum": [
-          "replace",
-          "save",
-          "partial",
-          "partialNoCreate",
-          "append"
-        ]
+        "enum": ["replace", "save", "partial", "partialNoCreate", "append"]
       },
       "TriggerType": {
         "type": "string",
         "description": "Task trigger, describing when a task should run.\n\n- `onDemand`.\n  Manually trigger the task with the `/run` endpoint.\n\n- `schedule`.\n  Regularly trigger the task on a `cron` schedule.\n\n- `subscription`.\n  Trigger the task after an event is received, such as, a webhook.\n\n- `streaming`.\n  Run the task continuously.\n",
-        "enum": [
-          "onDemand",
-          "schedule",
-          "subscription",
-          "streaming"
-        ]
+        "enum": ["onDemand", "schedule", "subscription", "streaming"]
       },
       "taskSortKeys": {
         "type": "string",
         "description": "Property by which to sort the list of tasks.",
         "default": "createdAt",
-        "enum": [
-          "enabled",
-          "triggerType",
-          "action",
-          "updatedAt",
-          "createdAt"
-        ]
+        "enum": ["enabled", "triggerType", "action", "updatedAt", "createdAt"]
       },
       "taskID": {
         "type": "string",
@@ -5101,9 +4479,7 @@
       "MappingFormatSchema": {
         "type": "string",
         "description": "Mapping format schema.",
-        "enum": [
-          "mappingkit/v1"
-        ]
+        "enum": ["mappingkit/v1"]
       },
       "MappingFieldDirective": {
         "type": "object",
@@ -5120,10 +4496,7 @@
             "description": "How the destination field should be resolved from the source."
           }
         },
-        "required": [
-          "fieldKey",
-          "value"
-        ]
+        "required": ["fieldKey", "value"]
       },
       "MappingKitAction": {
         "type": "object",
@@ -5149,11 +4522,7 @@
             }
           }
         },
-        "required": [
-          "enabled",
-          "trigger",
-          "fieldDirectives"
-        ]
+        "required": ["enabled", "trigger", "fieldDirectives"]
       },
       "MappingInput": {
         "type": "object",
@@ -5170,14 +4539,8 @@
             }
           }
         },
-        "required": [
-          "format",
-          "actions"
-        ],
-        "x-discriminator-fields": [
-          "format",
-          "actions"
-        ]
+        "required": ["format", "actions"],
+        "x-discriminator-fields": ["format", "actions"]
       },
       "StreamingInput": {
         "title": "Streaming input",
@@ -5189,20 +4552,13 @@
             "$ref": "#/components/schemas/MappingInput"
           }
         },
-        "required": [
-          "mapping"
-        ],
-        "x-discriminator-fields": [
-          "mapping"
-        ]
+        "required": ["mapping"],
+        "x-discriminator-fields": ["mapping"]
       },
       "DockerStreamsSyncMode": {
         "type": "string",
         "description": "The strategy to use to fetch the data.",
-        "enum": [
-          "incremental",
-          "fullTable"
-        ]
+        "enum": ["incremental", "fullTable"]
       },
       "DockerStreams": {
         "type": "object",
@@ -5222,10 +4578,7 @@
             "$ref": "#/components/schemas/DockerStreamsSyncMode"
           }
         },
-        "required": [
-          "name",
-          "syncMode"
-        ]
+        "required": ["name", "syncMode"]
       },
       "DockerStreamsInput": {
         "title": "Docker streams",
@@ -5239,12 +4592,8 @@
             }
           }
         },
-        "required": [
-          "streams"
-        ],
-        "x-discriminator-fields": [
-          "streams"
-        ]
+        "required": ["streams"],
+        "x-discriminator-fields": ["streams"]
       },
       "ShopifyMetafield": {
         "type": "object",
@@ -5261,11 +4610,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "namespace",
-          "key",
-          "value"
-        ]
+        "required": ["namespace", "key", "value"]
       },
       "ShopifyMarket": {
         "type": "object",
@@ -5291,11 +4636,7 @@
             }
           }
         },
-        "required": [
-          "countries",
-          "currencies",
-          "locales"
-        ]
+        "required": ["countries", "currencies", "locales"]
       },
       "ShopifyInput": {
         "title": "Shopify input",
@@ -5313,10 +4654,7 @@
             "$ref": "#/components/schemas/ShopifyMarket"
           }
         },
-        "required": [
-          "metafields",
-          "market"
-        ]
+        "required": ["metafields", "market"]
       },
       "TaskInput": {
         "description": "Configuration of the task, depending on its type.",
@@ -5359,9 +4697,7 @@
             }
           }
         },
-        "required": [
-          "email"
-        ]
+        "required": ["email"]
       },
       "Policies": {
         "type": "object",
@@ -5434,14 +4770,7 @@
             "$ref": "#/components/schemas/updatedAt"
           }
         },
-        "required": [
-          "taskID",
-          "sourceID",
-          "destinationID",
-          "enabled",
-          "createdAt",
-          "updatedAt"
-        ]
+        "required": ["taskID", "sourceID", "destinationID", "enabled", "createdAt", "updatedAt"]
       },
       "TaskCreate": {
         "type": "object",
@@ -5483,11 +4812,7 @@
             "$ref": "#/components/schemas/Policies"
           }
         },
-        "required": [
-          "sourceID",
-          "destinationID",
-          "action"
-        ]
+        "required": ["sourceID", "destinationID", "action"]
       },
       "TaskCreateResponse": {
         "type": "object",
@@ -5501,10 +4826,7 @@
             "$ref": "#/components/schemas/CreatedAt"
           }
         },
-        "required": [
-          "taskID",
-          "createdAt"
-        ]
+        "required": ["taskID", "createdAt"]
       },
       "TaskSearch": {
         "type": "object",
@@ -5517,9 +4839,7 @@
             }
           }
         },
-        "required": [
-          "taskIDs"
-        ]
+        "required": ["taskIDs"]
       },
       "TaskReplace": {
         "type": "object",
@@ -5558,10 +4878,7 @@
             "$ref": "#/components/schemas/Policies"
           }
         },
-        "required": [
-          "destinationID",
-          "action"
-        ]
+        "required": ["destinationID", "action"]
       },
       "TaskUpdateResponse": {
         "type": "object",
@@ -5575,10 +4892,7 @@
             "$ref": "#/components/schemas/updatedAt"
           }
         },
-        "required": [
-          "taskID",
-          "updatedAt"
-        ]
+        "required": ["taskID", "updatedAt"]
       },
       "TaskUpdate": {
         "type": "object",
@@ -5635,17 +4949,12 @@
             "$ref": "#/components/schemas/CreatedAt"
           }
         },
-        "required": [
-          "runID",
-          "createdAt"
-        ]
+        "required": ["runID", "createdAt"]
       },
       "OnDemandTriggerType": {
         "type": "string",
         "description": "Task is run manually, with the `/run` endpoint.",
-        "enum": [
-          "onDemand"
-        ]
+        "enum": ["onDemand"]
       },
       "OnDemandTrigger": {
         "type": "object",
@@ -5659,16 +4968,12 @@
             "$ref": "#/components/schemas/LastRun"
           }
         },
-        "required": [
-          "type"
-        ]
+        "required": ["type"]
       },
       "ScheduleTriggerType": {
         "type": "string",
         "description": "Task runs on a schedule.",
-        "enum": [
-          "schedule"
-        ]
+        "enum": ["schedule"]
       },
       "ScheduleTrigger": {
         "type": "object",
@@ -5688,18 +4993,12 @@
             "$ref": "#/components/schemas/NextRun"
           }
         },
-        "required": [
-          "type",
-          "cron",
-          "nextRun"
-        ]
+        "required": ["type", "cron", "nextRun"]
       },
       "SubscriptionTriggerType": {
         "type": "string",
         "description": "Task runs after receiving subscribed event.",
-        "enum": [
-          "subscription"
-        ]
+        "enum": ["subscription"]
       },
       "SubscriptionTrigger": {
         "type": "object",
@@ -5710,16 +5009,12 @@
             "$ref": "#/components/schemas/SubscriptionTriggerType"
           }
         },
-        "required": [
-          "type"
-        ]
+        "required": ["type"]
       },
       "StreamingTriggerType": {
         "type": "string",
         "description": "Task runs continuously.",
-        "enum": [
-          "streaming"
-        ]
+        "enum": ["streaming"]
       },
       "StreamingTrigger": {
         "type": "object",
@@ -5730,9 +5025,7 @@
             "$ref": "#/components/schemas/StreamingTriggerType"
           }
         },
-        "required": [
-          "type"
-        ]
+        "required": ["type"]
       },
       "Trigger": {
         "description": "Trigger that runs the task.",
@@ -5818,9 +5111,7 @@
             "$ref": "#/components/schemas/OnDemandTriggerType"
           }
         },
-        "required": [
-          "type"
-        ]
+        "required": ["type"]
       },
       "ScheduleTriggerInput": {
         "type": "object",
@@ -5834,13 +5125,8 @@
             "$ref": "#/components/schemas/Cron"
           }
         },
-        "required": [
-          "type",
-          "cron"
-        ],
-        "x-discriminator-fields": [
-          "cron"
-        ]
+        "required": ["type", "cron"],
+        "x-discriminator-fields": ["cron"]
       },
       "TaskCreateTrigger": {
         "oneOf": [
@@ -5890,12 +5176,7 @@
             "$ref": "#/components/schemas/cursor"
           }
         },
-        "required": [
-          "sourceID",
-          "destinationID",
-          "trigger",
-          "action"
-        ]
+        "required": ["sourceID", "destinationID", "trigger", "action"]
       },
       "TriggerUpdateInput": {
         "type": "object",
@@ -5906,9 +5187,7 @@
             "$ref": "#/components/schemas/Cron"
           }
         },
-        "required": [
-          "cron"
-        ]
+        "required": ["cron"]
       },
       "Enabled": {
         "type": "boolean",
@@ -5941,19 +5220,12 @@
         "type": "string",
         "description": "Property by which to sort the list of transformations.",
         "default": "createdAt",
-        "enum": [
-          "name",
-          "updatedAt",
-          "createdAt"
-        ]
+        "enum": ["name", "updatedAt", "createdAt"]
       },
       "TransformationType": {
         "type": "string",
         "description": "The type of transformation, which can be either 'code' or 'noCode'.",
-        "enum": [
-          "code",
-          "noCode"
-        ]
+        "enum": ["code", "noCode"]
       },
       "AuthenticationIDs": {
         "description": "The authentications associated with the current transformation.",
@@ -5978,9 +5250,7 @@
             "description": "The source code of the transformation."
           }
         },
-        "required": [
-          "code"
-        ]
+        "required": ["code"]
       },
       "TransformationNoCodeStep": {
         "type": "object",
@@ -5999,9 +5269,7 @@
             }
           }
         },
-        "required": [
-          "steps"
-        ]
+        "required": ["steps"]
       },
       "TransformationInput": {
         "description": "The input for the transformation, which can be either code or a no-code configuration.",
@@ -6057,13 +5325,7 @@
             "$ref": "#/components/schemas/updatedAt"
           }
         },
-        "required": [
-          "transformationID",
-          "code",
-          "name",
-          "createdAt",
-          "updatedAt"
-        ]
+        "required": ["transformationID", "code", "name", "createdAt", "updatedAt"]
       },
       "TransformationCreate": {
         "type": "object",
@@ -6089,9 +5351,7 @@
             "$ref": "#/components/schemas/AuthenticationIDs"
           }
         },
-        "required": [
-          "name"
-        ]
+        "required": ["name"]
       },
       "TransformationCreateResponse": {
         "type": "object",
@@ -6105,10 +5365,7 @@
             "$ref": "#/components/schemas/CreatedAt"
           }
         },
-        "required": [
-          "transformationID",
-          "createdAt"
-        ]
+        "required": ["transformationID", "createdAt"]
       },
       "TransformationTry": {
         "type": "object",
@@ -6134,9 +5391,7 @@
             }
           }
         },
-        "required": [
-          "sampleRecord"
-        ]
+        "required": ["sampleRecord"]
       },
       "TransformationTryResponse": {
         "type": "object",
@@ -6165,9 +5420,7 @@
             }
           }
         },
-        "required": [
-          "payloads"
-        ]
+        "required": ["payloads"]
       },
       "TransformationSearch": {
         "type": "object",
@@ -6180,9 +5433,7 @@
             }
           }
         },
-        "required": [
-          "transformationIDs"
-        ]
+        "required": ["transformationIDs"]
       },
       "TransformationUpdateResponse": {
         "type": "object",
@@ -6196,49 +5447,28 @@
             "$ref": "#/components/schemas/updatedAt"
           }
         },
-        "required": [
-          "transformationID",
-          "updatedAt"
-        ]
+        "required": ["transformationID", "updatedAt"]
       },
       "RunStatus": {
         "type": "string",
         "description": "Task run status.",
-        "enum": [
-          "created",
-          "started",
-          "finished",
-          "skipped"
-        ]
+        "enum": ["created", "started", "finished", "skipped"]
       },
       "RunType": {
         "type": "string",
         "description": "Task run type.",
-        "enum": [
-          "reindex",
-          "update",
-          "discover",
-          "validate",
-          "push"
-        ]
+        "enum": ["reindex", "update", "discover", "validate", "push"]
       },
       "runSortKeys": {
         "type": "string",
         "description": "Property by which to sort the list of task runs.",
         "default": "createdAt",
-        "enum": [
-          "status",
-          "updatedAt",
-          "createdAt"
-        ]
+        "enum": ["status", "updatedAt", "createdAt"]
       },
       "RunOutcome": {
         "type": "string",
         "description": "Task run outcome.",
-        "enum": [
-          "success",
-          "failure"
-        ]
+        "enum": ["success", "failure"]
       },
       "RunReasonCode": {
         "type": "string",
@@ -6291,10 +5521,7 @@
                 "type": "integer"
               }
             },
-            "required": [
-              "expectedNbOfEvents",
-              "receivedNbOfEvents"
-            ]
+            "required": ["expectedNbOfEvents", "receivedNbOfEvents"]
           },
           "outcome": {
             "$ref": "#/components/schemas/RunOutcome"
@@ -6322,14 +5549,7 @@
             "$ref": "#/components/schemas/finishedAt"
           }
         },
-        "required": [
-          "runID",
-          "appID",
-          "taskID",
-          "status",
-          "type",
-          "createdAt"
-        ]
+        "required": ["runID", "appID", "taskID", "status", "type", "createdAt"]
       },
       "Window": {
         "type": "object",
@@ -6345,10 +5565,7 @@
             "description": "Date in RFC 3339 format representing the newest data in the time window."
           }
         },
-        "required": [
-          "startDate",
-          "endDate"
-        ]
+        "required": ["startDate", "endDate"]
       },
       "RunListResponse": {
         "type": "object",
@@ -6367,20 +5584,12 @@
             "$ref": "#/components/schemas/Window"
           }
         },
-        "required": [
-          "runs",
-          "pagination",
-          "window"
-        ]
+        "required": ["runs", "pagination", "window"]
       },
       "eventSortKeys": {
         "type": "string",
         "description": "Property by which to sort the list of task run events.",
-        "enum": [
-          "status",
-          "type",
-          "publishedAt"
-        ]
+        "enum": ["status", "type", "publishedAt"]
       }
     },
     "responses": {

@@ -101,10 +101,10 @@ const properties: INodeProperties[] = [
         },
       },
       {
-        name: 'Upsert a composition',
+        name: 'Update and insert (upsert) a composition',
         value: 'putComposition',
-        action: 'Upsert a composition',
-        description: 'Upsert a composition in the current Algolia application.',
+        action: 'Update and insert (upsert) a composition',
+        description: 'Update and insert a composition in the current Algolia application.',
         routing: {
           request: {
             method: 'PUT',
@@ -133,6 +133,18 @@ const properties: INodeProperties[] = [
           request: {
             method: 'POST',
             url: '=/1/compositions/*/batch',
+          },
+        },
+      },
+      {
+        name: 'Set or update the "sortingStrategy" configuration for an existing composition',
+        value: 'updateSortingStrategyComposition',
+        action: 'Set or update the "sortingStrategy" configuration for an existing composition',
+        description: 'Updates the "sortingStrategy" field of an existing composition.',
+        routing: {
+          request: {
+            method: 'POST',
+            url: '=/1/compositions/{{ $parameter.compositionID_string }}/sortingStrategy',
           },
         },
       },
@@ -508,6 +520,10 @@ const properties: INodeProperties[] = [
         name: 'Composition Behavior',
         value: 'composition_behavior_object',
       },
+      {
+        name: 'Sorting Strategy',
+        value: 'sorting_strategy_object',
+      },
     ],
     displayOptions: {
       show: {
@@ -607,6 +623,29 @@ const properties: INodeProperties[] = [
     },
   },
   {
+    type: 'json',
+    description:
+      'A mapping of sorting labels to the indices (or replicas) that implement those sorting rules. The sorting indices MUST be related to the associated main targeted index in the composition.\nEach key is the label your frontend sends at runtime (for example, "Price (asc)"), and each value is the name of the index that should be queried when that label is selected.\n\nWhen a request includes a "sortBy" parameter, the platform looks up the corresponding index in this mapping and uses it to execute the query. The main targeted index is replaced\nwith the sorting strategy index it is mapped to.\n\nUp to 20 sorting strategies can be defined.\n',
+    required: false,
+    default: '{}',
+    routing: {
+      send: {
+        type: 'body',
+        property: 'sortingStrategy',
+        value: '={{ JSON.parse($value) }}',
+      },
+    },
+    displayName: 'Sorting Strategy',
+    name: 'sorting_strategy_object',
+    displayOptions: {
+      show: {
+        composition_object: ['sorting_strategy_object'],
+        resource: ['Compositions'],
+        operation: ['putComposition'],
+      },
+    },
+  },
+  {
     type: 'string',
     placeholder: 'my_composition_object_id',
     default: '',
@@ -660,6 +699,41 @@ const properties: INodeProperties[] = [
         batch_params_object: ['requests_json'],
         resource: ['Compositions'],
         operation: ['multipleBatch'],
+      },
+    },
+  },
+  {
+    type: 'string',
+    placeholder: 'my_composition_object_id',
+    default: '',
+    description: 'Composition unique identifier.',
+    displayName: 'Composition ID',
+    name: 'compositionID_string',
+    required: true,
+    displayOptions: {
+      show: {
+        resource: ['Compositions'],
+        operation: ['updateSortingStrategyComposition'],
+      },
+    },
+  },
+  {
+    type: 'json',
+    description:
+      'A mapping of sorting labels to the indices (or replicas) that implement those sorting rules. The sorting indices MUST be related to the associated main targeted index in the composition.\nEach key is the label your frontend sends at runtime (for example, "Price (asc)"), and each value is the name of the index that should be queried when that label is selected.\n\nWhen a request includes a "sortBy" parameter, the platform looks up the corresponding index in this mapping and uses it to execute the query. The main targeted index is replaced\nwith the sorting strategy index it is mapped to.\n\nUp to 20 sorting strategies can be defined.\n',
+    required: false,
+    default: '{}',
+    routing: {
+      request: {
+        body: '={{ JSON.parse($value) }}',
+      },
+    },
+    displayName: 'Sorting Strategy',
+    name: 'sorting_strategy_object',
+    displayOptions: {
+      show: {
+        resource: ['Compositions'],
+        operation: ['updateSortingStrategyComposition'],
       },
     },
   },
