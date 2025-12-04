@@ -23,18 +23,11 @@ export const generateResourceIndexContent = (
   operationNames: string[],
   simplifyOperations: OperationToSimplify[],
 ): string => {
-  const regularOps = operationNames.filter((name) => name !== '_shared');
-  const hasShared = operationNames.includes('_shared');
+  const imports = operationNames
+    .map((name) => `import ${name}Properties from './${name}';`)
+    .join('\n');
 
-  const imports = [
-    ...regularOps.map((name) => `import ${name}Properties from './${name}';`),
-    ...(hasShared ? [`import sharedProperties from './_shared';`] : []),
-  ].join('\n');
-
-  const spreads = [
-    ...(hasShared ? ['  ...sharedProperties,'] : []),
-    ...regularOps.map((name) => `  ...${name}Properties,`),
-  ].join('\n');
+  const spreads = operationNames.map((name) => `  ...${name}Properties,`).join('\n');
 
   const operationPropertyStr = operationProperty ? objectToJavaScript([operationProperty]) : '[]';
 
