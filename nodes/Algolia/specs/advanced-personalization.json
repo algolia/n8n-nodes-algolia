@@ -2,7 +2,8 @@
   "openapi": "3.0.2",
   "info": {
     "title": "Advanced Personalization API",
-    "description": "The Advanced Personalization API lets you access user profiles built based on the behavior of your users on your website or app.\n\n## Client libraries\n\nUse Algolia's API clients and libraries to reliably integrate Algolia's APIs with your apps.\nThe official API clients are covered by Algolia's [Service Level Agreement](https://www.algolia.com/policies/sla).\n\nSee: [Algolia's ecosystem](https://www.algolia.com/doc/guides/getting-started/how-algolia-works/in-depth/ecosystem)\n\n## Base URLs\n\nThe Advanced Personalization API can be reached from multiple domains, each specific to a region.\n\n- `https://ai-personalization.eu.algolia.com`\n- `https://ai-personalization.us.algolia.com`\n\nUse the URL that matches your [analytics region](https://dashboard.algolia.com/account/infrastructure/analytics).\n\n**All requests must use HTTPS.**\n\n## Authentication\n\nTo authenticate your API requests, add these headers:\n\n- `x-algolia-application-id`. Your Algolia application ID.\n- `x-algolia-api-key`. An API key with the `search`, `browse` and `recommendation` ACL permissions.\n\nYou can find your application ID and API key in the [Algolia dashboard](https://dashboard.algolia.com/account/api-keys).\n\n## Request format\n\nRequest bodies must be JSON objects.\n\n## Response status and errors\n\nThe Advanced Personalization API returns JSON responses.\nSince JSON doesn't guarantee any specific ordering, don't rely on the order of attributes in the API response.\n\nSuccessful responses return a `2xx` status. Client errors return a `4xx` status. Server errors are indicated by a `5xx` status.\nError responses have a `message` property with more information.\n\n## Rate limiting\n\nWhen making requests to the Advanced Personalization API, you are limited to 500 API calls per minute per application.\n\nThe following headers provide information about your current limit:\n\n- `x-ratelimit-limit`: The number of requests allowed every 60 seconds.\n- `x-ratelimit-remaining`: The number of requests remaining in the current 60 second period.\n- `x-ratelimit-reset`: [Unix timestamp](https://www.unixtimestamp.com) of the next time period.\n\n## Version\n\nThe current version of the Advanced Personalization API is version 2, as indicated by the `/2/` in each endpoint's URL.\n",
+    "summary": "The Advanced Personalization API lets you access user profiles built based on the behavior of your users on your website or app",
+    "description": "## Client libraries\n\nUse Algolia's API clients and libraries to reliably integrate Algolia's APIs with your apps.\nThe official API clients are covered by Algolia's [Service Level Agreement](https://www.algolia.com/policies/sla).\n\nSee: [Algolia's ecosystem](https://www.algolia.com/doc/guides/getting-started/how-algolia-works/in-depth/ecosystem)\n\n## Base URLs\n\nThe Advanced Personalization API can be reached from multiple domains, each specific to a region.\n\n- `https://ai-personalization.eu.algolia.com`\n- `https://ai-personalization.us.algolia.com`\n\nUse the URL that matches your [analytics region](https://dashboard.algolia.com/account/infrastructure/analytics).\n\n**All requests must use HTTPS.**\n\n## Authentication\n\nTo authenticate your API requests, add these headers:\n\n- `x-algolia-application-id`. Your Algolia application ID.\n- `x-algolia-api-key`. An API key with the `search`, `browse` and `recommendation` ACL permissions.\n\nYou can find your application ID and API key in the [Algolia dashboard](https://dashboard.algolia.com/account/api-keys).\n\n## Request format\n\nRequest bodies must be JSON objects.\n\n## Response status and errors\n\nThe Advanced Personalization API returns JSON responses.\nSince JSON doesn't guarantee any specific ordering, don't rely on the order of attributes in the API response.\n\nSuccessful responses return a `2xx` status. Client errors return a `4xx` status. Server errors are indicated by a `5xx` status.\nError responses have a `message` property with more information.\n\n## Rate limiting\n\nWhen making requests to the Advanced Personalization API, you are limited to 500 API calls per minute per application.\n\nThe following headers provide information about your current limit:\n\n- `x-ratelimit-limit`: The number of requests allowed every 60 seconds.\n- `x-ratelimit-remaining`: The number of requests remaining in the current 60 second period.\n- `x-ratelimit-reset`: [Unix timestamp](https://www.unixtimestamp.com) of the next time period.\n\n## Version\n\nThe current version of the Advanced Personalization API is version 2, as indicated by the `/2/` in each endpoint's URL.\n",
     "version": "2.0.0"
   },
   "servers": [
@@ -11,7 +12,10 @@
       "variables": {
         "region": {
           "description": "Use the URL that matches your [analytics region](https://dashboard.algolia.com/account/infrastructure/analytics).\n",
-          "enum": ["eu", "us"],
+          "enum": [
+            "eu",
+            "us"
+          ],
           "default": "eu"
         }
       }
@@ -216,9 +220,15 @@
     },
     "/2/config": {
       "get": {
-        "tags": ["config"],
+        "tags": [
+          "config"
+        ],
         "operationId": "getConfig",
-        "x-acl": ["search", "browse", "recommendation"],
+        "x-acl": [
+          "search",
+          "browse",
+          "recommendation"
+        ],
         "summary": "Retrieve the configuration",
         "description": "Retrieves a list of configuration objects for each index.",
         "responses": {
@@ -241,9 +251,15 @@
         }
       },
       "put": {
-        "tags": ["config"],
+        "tags": [
+          "config"
+        ],
         "operationId": "putConfig",
-        "x-acl": ["search", "browse", "recommendation"],
+        "x-acl": [
+          "search",
+          "browse",
+          "recommendation"
+        ],
         "summary": "Update the configuration",
         "description": "Updates the configuration.\n\nThe configuration is a list of configuration objects for each index. To configure Advanced Personalization for an index, create a new configuration object for the index.\n",
         "requestBody": {
@@ -280,11 +296,17 @@
                               "$ref": "#/components/schemas/events"
                             }
                           },
-                          "required": ["type"]
+                          "required": [
+                            "type"
+                          ]
                         }
                       }
                     },
-                    "required": ["index", "affinities", "source"]
+                    "required": [
+                      "index",
+                      "affinities",
+                      "source"
+                    ]
                   },
                   "personalizationReRanking": {
                     "$ref": "#/components/schemas/personalizationReRanking"
@@ -296,7 +318,12 @@
                     "$ref": "#/components/schemas/features"
                   }
                 },
-                "required": ["indices", "personalizationReRanking", "profileType", "features"]
+                "required": [
+                  "indices",
+                  "personalizationReRanking",
+                  "profileType",
+                  "features"
+                ]
               }
             }
           }
@@ -329,7 +356,12 @@
                       "type": "string"
                     }
                   },
-                  "required": ["status", "errors", "warnings", "message"]
+                  "required": [
+                    "status",
+                    "errors",
+                    "warnings",
+                    "message"
+                  ]
                 }
               }
             }
@@ -351,9 +383,15 @@
     },
     "/2/users": {
       "get": {
-        "tags": ["users"],
+        "tags": [
+          "users"
+        ],
         "operationId": "getUsers",
-        "x-acl": ["search", "browse", "recommendation"],
+        "x-acl": [
+          "search",
+          "browse",
+          "recommendation"
+        ],
         "summary": "Get a list of user profiles",
         "description": "Retrieves a list of user profiles in [lexicographical order](https://www.educative.io/answers/what-is-a-lexicographic-order).",
         "parameters": [
@@ -401,7 +439,9 @@
                       "type": "string"
                     }
                   },
-                  "required": ["users"]
+                  "required": [
+                    "users"
+                  ]
                 }
               }
             }
@@ -420,9 +460,15 @@
     },
     "/2/users/{userID}": {
       "get": {
-        "tags": ["users"],
+        "tags": [
+          "users"
+        ],
         "operationId": "getUser",
-        "x-acl": ["search", "browse", "recommendation"],
+        "x-acl": [
+          "search",
+          "browse",
+          "recommendation"
+        ],
         "summary": "Get a user profile",
         "description": "Retrieves a user profile.",
         "parameters": [
@@ -459,9 +505,15 @@
         }
       },
       "delete": {
-        "tags": ["users"],
+        "tags": [
+          "users"
+        ],
         "operationId": "deleteUser",
-        "x-acl": ["search", "browse", "recommendation"],
+        "x-acl": [
+          "search",
+          "browse",
+          "recommendation"
+        ],
         "summary": "Delete a user profile",
         "description": "Deletes a user profile.",
         "parameters": [
@@ -515,9 +567,13 @@
     },
     "/2/realtime/users/{userToken}": {
       "get": {
-        "tags": ["users"],
+        "tags": [
+          "users"
+        ],
         "operationId": "getRealtimeUser",
-        "x-acl": ["recommendation"],
+        "x-acl": [
+          "recommendation"
+        ],
         "summary": "Retrieve the real-time user's personalization profile",
         "description": "Retrieves the real-time user's personalization profiles containing search filters.",
         "parameters": [
@@ -553,9 +609,13 @@
     },
     "/2/realtime/users/{userToken}/compute": {
       "post": {
-        "tags": ["users"],
+        "tags": [
+          "users"
+        ],
         "operationId": "computeRealtimeUser",
-        "x-acl": ["recommendation"],
+        "x-acl": [
+          "recommendation"
+        ],
         "summary": "Compute the real-time user's personalization profile",
         "description": "Sends a request to compute the real-time user's personalization profile.",
         "deprecated": true,
@@ -594,7 +654,9 @@
         "x-helper": true,
         "x-asynchronous-helper": false,
         "x-acl": [],
-        "tags": ["Api Key"],
+        "tags": [
+          "Api Key"
+        ],
         "operationId": "setClientApiKey",
         "summary": "Switch the API key used to authenticate requests",
         "description": "Switch the API key used to authenticate requests.\n",
@@ -682,11 +744,16 @@
         },
         "examples": {
           "singleIndex": {
-            "value": ["products_EN"],
+            "value": [
+              "products_EN"
+            ],
             "summary": "Filter by single index"
           },
           "multipleIndices": {
-            "value": ["products_EN", "products_FR"],
+            "value": [
+              "products_EN",
+              "products_FR"
+            ],
             "summary": "Filter by multiple indices"
           }
         },
@@ -784,15 +851,24 @@
       "sourceType": {
         "title": "type",
         "type": "string",
-        "enum": ["insights"]
+        "enum": [
+          "insights"
+        ]
       },
       "eventType": {
         "type": "string",
-        "enum": ["view", "click", "conversion"]
+        "enum": [
+          "view",
+          "click",
+          "conversion"
+        ]
       },
       "subtype": {
         "type": "string",
-        "enum": ["addToCart", "purchase"]
+        "enum": [
+          "addToCart",
+          "purchase"
+        ]
       },
       "event": {
         "type": "object",
@@ -807,7 +883,10 @@
             "type": "string"
           }
         },
-        "required": ["type", "name"]
+        "required": [
+          "type",
+          "name"
+        ]
       },
       "events": {
         "type": "object",
@@ -837,7 +916,12 @@
             }
           }
         },
-        "required": ["viewDetails", "viewListing", "addToCart", "purchase"]
+        "required": [
+          "viewDetails",
+          "viewListing",
+          "addToCart",
+          "purchase"
+        ]
       },
       "issue": {
         "type": "object",
@@ -853,22 +937,38 @@
             "type": "string"
           }
         },
-        "required": ["code", "index", "message"]
+        "required": [
+          "code",
+          "index",
+          "message"
+        ]
       },
       "personalizationReRanking": {
         "type": "string",
         "description": "The impact that personalization has on the re-ranking of search results.",
-        "enum": ["none", "low", "medium", "high", "maximum"]
+        "enum": [
+          "none",
+          "low",
+          "medium",
+          "high",
+          "maximum"
+        ]
       },
       "profileType": {
         "type": "string",
-        "enum": ["basic"],
+        "enum": [
+          "basic"
+        ],
         "description": "The type of user profiles to generate.\n\nBasic profiles are based on past behaviors, ensuring search results align with previous interests.\n"
       },
       "status": {
         "title": "status",
         "type": "string",
-        "enum": ["pending", "active", "paused"]
+        "enum": [
+          "pending",
+          "active",
+          "paused"
+        ]
       },
       "errorCodes": {
         "title": "errorCodes",
@@ -965,7 +1065,14 @@
                   "type": "string"
                 }
               },
-              "required": ["index", "affinities", "source", "errors", "warnings", "lastUpdatedAt"]
+              "required": [
+                "index",
+                "affinities",
+                "source",
+                "errors",
+                "warnings",
+                "lastUpdatedAt"
+              ]
             }
           },
           "personalizationReRanking": {
@@ -981,17 +1088,27 @@
             "$ref": "#/components/schemas/features"
           }
         },
-        "required": ["indices", "personalzationReRanking", "profileType", "status", "features"]
+        "required": [
+          "indices",
+          "personalzationReRanking",
+          "profileType",
+          "status",
+          "features"
+        ]
       },
       "unauthorized": {
         "type": "integer",
         "description": "HTTP status code for an authorization error.",
-        "enum": [401]
+        "enum": [
+          401
+        ]
       },
       "ErrorMessages_unauthorized": {
         "type": "string",
         "description": "Details about the response, such as error messages.",
-        "enum": ["Unauthorized"]
+        "enum": [
+          "Unauthorized"
+        ]
       },
       "ErrorResponses_unauthorized": {
         "type": "object",
@@ -1007,12 +1124,16 @@
       "internalServerError": {
         "type": "integer",
         "description": "HTTP status code for an internal server error.",
-        "enum": [500]
+        "enum": [
+          500
+        ]
       },
       "ErrorMessages_internalServerError": {
         "type": "string",
         "description": "Details about the response, such as error messages.",
-        "enum": ["Internal Server Error"]
+        "enum": [
+          "Internal Server Error"
+        ]
       },
       "ErrorResponses_internalServerError": {
         "type": "object",
@@ -1028,12 +1149,16 @@
       "badRequest": {
         "type": "integer",
         "description": "HTTP status code for a bad request error.",
-        "enum": [400]
+        "enum": [
+          400
+        ]
       },
       "ErrorMessages_badRequest": {
         "type": "string",
         "description": "Details about the response, such as error messages.",
-        "enum": ["Invalid request body"]
+        "enum": [
+          "Invalid request body"
+        ]
       },
       "ErrorResponses_badRequest": {
         "type": "object",
@@ -1049,7 +1174,9 @@
       "paymentRequired": {
         "type": "integer",
         "description": "HTTP status code for a payment required error.",
-        "enum": [402]
+        "enum": [
+          402
+        ]
       },
       "featureNotEnabled": {
         "type": "string",
@@ -1104,24 +1231,38 @@
                   "type": "string"
                 }
               },
-              "required": ["name", "indices", "value", "score", "lastUpdatedAt"]
+              "required": [
+                "name",
+                "indices",
+                "value",
+                "score",
+                "lastUpdatedAt"
+              ]
             }
           },
           "lastUpdatedAt": {
             "type": "string"
           }
         },
-        "required": ["userID", "affinities", "lastUpdatedAt"]
+        "required": [
+          "userID",
+          "affinities",
+          "lastUpdatedAt"
+        ]
       },
       "unprocessableEntity": {
         "type": "integer",
         "description": "HTTP status code for an unprocessable entity error.",
-        "enum": [422]
+        "enum": [
+          422
+        ]
       },
       "genericUnprocessableEntity": {
         "type": "string",
         "description": "Details about the response, such as error messages.",
-        "enum": ["Unprocessable Entity"]
+        "enum": [
+          "Unprocessable Entity"
+        ]
       },
       "ErrorResponses_genericUnprocessableEntity": {
         "type": "object",
@@ -1137,7 +1278,9 @@
       "badUserID": {
         "type": "string",
         "description": "Details about the response, such as error messages.",
-        "enum": ["Invalid userID format"]
+        "enum": [
+          "Invalid userID format"
+        ]
       },
       "ErrorResponses_badUserID": {
         "type": "object",
@@ -1153,12 +1296,16 @@
       "notFound": {
         "type": "integer",
         "description": "HTTP status code for a not found error.",
-        "enum": [404]
+        "enum": [
+          404
+        ]
       },
       "genericNotFound": {
         "type": "string",
         "description": "Details about the response, such as error messages.",
-        "enum": ["Not Found"]
+        "enum": [
+          "Not Found"
+        ]
       },
       "ErrorResponses_genericNotFound": {
         "type": "object",
@@ -1199,11 +1346,17 @@
         "type": "string",
         "description": "Unique pseudonymous or anonymous user identifier.\n\nThis helps with analytics and click and conversion events.\nFor more information, see [user token](https://www.algolia.com/doc/guides/sending-events/concepts/usertoken).\n",
         "example": "test-user-123",
-        "x-categories": ["Personalization"]
+        "x-categories": [
+          "Personalization"
+        ]
       },
       "strategy": {
         "type": "string",
-        "enum": ["session", "historical", "hybrid"],
+        "enum": [
+          "session",
+          "historical",
+          "hybrid"
+        ],
         "example": "session"
       },
       "searchFilter": {
@@ -1215,7 +1368,9 @@
             "items": {
               "type": "string"
             },
-            "example": ["brand:Dyson<score=12>"]
+            "example": [
+              "brand:Dyson<score=12>"
+            ]
           }
         }
       },
@@ -1228,7 +1383,11 @@
             "items": {
               "type": "string"
             },
-            "example": ["storefront", "storefront_price_asc", "storefront_price_desc"]
+            "example": [
+              "storefront",
+              "storefront_price_asc",
+              "storefront_price_desc"
+            ]
           },
           "strategy": {
             "$ref": "#/components/schemas/strategy"
@@ -1242,7 +1401,12 @@
         "title": "RealtimeUser",
         "type": "object",
         "additionalProperties": false,
-        "required": ["version", "userID", "lastUpdatedAt", "search"],
+        "required": [
+          "version",
+          "userID",
+          "lastUpdatedAt",
+          "search"
+        ],
         "properties": {
           "version": {
             "type": "string",
@@ -1396,7 +1560,10 @@
               "title": "tooManyRequestsResponse",
               "type": "object",
               "additionalProperties": false,
-              "required": ["status", "message"],
+              "required": [
+                "status",
+                "message"
+              ],
               "properties": {
                 "status": {
                   "type": "integer",
@@ -1431,7 +1598,10 @@
               "title": "acceptedResponse",
               "type": "object",
               "additionalProperties": false,
-              "required": ["status", "message"],
+              "required": [
+                "status",
+                "message"
+              ],
               "properties": {
                 "status": {
                   "type": "integer",
@@ -1456,7 +1626,10 @@
               "title": "conflictResponse",
               "type": "object",
               "additionalProperties": false,
-              "required": ["status", "message"],
+              "required": [
+                "status",
+                "message"
+              ],
               "properties": {
                 "status": {
                   "type": "integer",
@@ -1488,7 +1661,10 @@
   "x-tagGroups": [
     {
       "name": "Advanced Personalization",
-      "tags": ["config", "users"]
+      "tags": [
+        "config",
+        "users"
+      ]
     }
   ]
 }
