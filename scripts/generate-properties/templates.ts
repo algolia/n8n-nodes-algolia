@@ -3,9 +3,9 @@ import { simplifyFields } from '../nodes/overrides/simplify';
 import { objectToJavaScript } from '../nodes/utils';
 import { OperationToSimplify } from './types';
 
-/** Converts "Api Keys" → "ApiKeys" for valid JS identifiers */
+/** Converts "Api Keys" → "ApiKeys" or "api-keys" → "apiKeys" for valid JS identifiers */
 export const toIdentifier = (name: string): string =>
-  name.replace(/\s+(.)/g, (_, char) => char.toUpperCase()).replace(/\s+/g, '');
+  name.replace(/[-\s]+(.)/g, (_, char) => char.toUpperCase()).replace(/[-\s]+/g, '');
 
 /** Converts "Api Keys" → "api-keys" for folder names */
 export const toFolderName = (name: string): string => name.replace(/\s+/g, '-').toLowerCase();
