@@ -1,3 +1,14 @@
+# [0.12.0](https://github.com/algolia/n8n-nodes-algolia/compare/v0.11.1...v0.12.0) (2025-12-15)
+
+
+### Features
+
+* **parser:** update package to group optional fields ([#57](https://github.com/algolia/n8n-nodes-algolia/issues/57)) ([5d904d1](https://github.com/algolia/n8n-nodes-algolia/commit/5d904d103bf3d39167e33992c34259220bff17a8))
+* **specs:** remove unused specs from codebase ([#58](https://github.com/algolia/n8n-nodes-algolia/issues/58)) ([a8e59ec](https://github.com/algolia/n8n-nodes-algolia/commit/a8e59ec9a72b38085d6a76a36b2068082564b55d))
+* update OpenAPI specs ([#56](https://github.com/algolia/n8n-nodes-algolia/issues/56)) ([71f45db](https://github.com/algolia/n8n-nodes-algolia/commit/71f45dba4e80c5baed4576f53cc668f2afa880e2))
+
+
+
 ## [0.11.1](https://github.com/algolia/n8n-nodes-algolia/compare/v0.11.0...v0.11.1) (2025-11-07)
 
 ### Bug Fixes
