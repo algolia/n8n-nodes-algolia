@@ -4143,12 +4143,12 @@ const properties: INodeProperties[] = [
     default: '',
     options: [
       {
-        name: 'Search parameters as query string',
-        value: 'search_parameters_as_query_string',
+        name: 'Search parameters as object',
+        value: 'search_parameters_as_object',
       },
       {
-        name: 'Browse params object',
-        value: 'browse_params_object',
+        name: 'Search parameters as query string',
+        value: 'search_parameters_as_query_string',
       },
     ],
     routing: {
@@ -4166,31 +4166,9 @@ const properties: INodeProperties[] = [
     },
   },
   {
-    type: 'string',
-    placeholder: 'hitsPerPage=2&getRankingInfo=1',
-    default: '',
-    description: 'Search parameters as a URL-encoded query string.',
-    routing: {
-      send: {
-        type: 'body',
-        value: '={{ $value }}',
-        property: 'params',
-      },
-    },
-    displayName: 'Params',
-    name: 'params_string',
-    displayOptions: {
-      show: {
-        browseParams: ['search_parameters_as_query_string'],
-        resource: ['Search'],
-        operation: ['browse'],
-      },
-    },
-  },
-  {
     type: 'multiOptions',
-    name: 'browse_params_object',
-    displayName: 'Browse Params Object',
+    name: 'search_parameters_as_object',
+    displayName: 'Search Parameters As Object',
     description: undefined,
     default: [],
     options: [
@@ -4493,7 +4471,7 @@ const properties: INodeProperties[] = [
     ],
     displayOptions: {
       show: {
-        browseParams: ['browse_params_object'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -4514,8 +4492,8 @@ const properties: INodeProperties[] = [
     name: 'query_string',
     displayOptions: {
       show: {
-        browse_params_object: ['query_string'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['query_string'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -4538,8 +4516,8 @@ const properties: INodeProperties[] = [
     name: 'similarQuery_string',
     displayOptions: {
       show: {
-        browse_params_object: ['similarquery_string'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['similarquery_string'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -4562,8 +4540,8 @@ const properties: INodeProperties[] = [
     name: 'filters_string',
     displayOptions: {
       show: {
-        browse_params_object: ['filters_string'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['filters_string'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -4594,8 +4572,8 @@ const properties: INodeProperties[] = [
     },
     displayOptions: {
       show: {
-        browse_params_object: ['facetfilters'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['facetfilters'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -4611,8 +4589,8 @@ const properties: INodeProperties[] = [
     displayOptions: {
       show: {
         facetFilters: ['array'],
-        browse_params_object: ['facetfilters'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['facetfilters'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -4626,8 +4604,8 @@ const properties: INodeProperties[] = [
     displayOptions: {
       show: {
         facetFilters: ['string'],
-        browse_params_object: ['facetfilters'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['facetfilters'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -4658,8 +4636,8 @@ const properties: INodeProperties[] = [
     },
     displayOptions: {
       show: {
-        browse_params_object: ['optionalfilters'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['optionalfilters'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -4675,8 +4653,8 @@ const properties: INodeProperties[] = [
     displayOptions: {
       show: {
         optionalFilters: ['array'],
-        browse_params_object: ['optionalfilters'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['optionalfilters'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -4690,8 +4668,8 @@ const properties: INodeProperties[] = [
     displayOptions: {
       show: {
         optionalFilters: ['string'],
-        browse_params_object: ['optionalfilters'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['optionalfilters'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -4722,8 +4700,8 @@ const properties: INodeProperties[] = [
     },
     displayOptions: {
       show: {
-        browse_params_object: ['numericfilters'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['numericfilters'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -4739,8 +4717,8 @@ const properties: INodeProperties[] = [
     displayOptions: {
       show: {
         numericFilters: ['array'],
-        browse_params_object: ['numericfilters'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['numericfilters'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -4754,8 +4732,8 @@ const properties: INodeProperties[] = [
     displayOptions: {
       show: {
         numericFilters: ['string'],
-        browse_params_object: ['numericfilters'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['numericfilters'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -4786,8 +4764,8 @@ const properties: INodeProperties[] = [
     },
     displayOptions: {
       show: {
-        browse_params_object: ['tagfilters'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['tagfilters'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -4803,8 +4781,8 @@ const properties: INodeProperties[] = [
     displayOptions: {
       show: {
         tagFilters: ['array'],
-        browse_params_object: ['tagfilters'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['tagfilters'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -4818,8 +4796,8 @@ const properties: INodeProperties[] = [
     displayOptions: {
       show: {
         tagFilters: ['string'],
-        browse_params_object: ['tagfilters'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['tagfilters'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -4841,8 +4819,8 @@ const properties: INodeProperties[] = [
     name: 'sumOrFiltersScores_boolean',
     displayOptions: {
       show: {
-        browse_params_object: ['sumorfiltersscores_boolean'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['sumorfiltersscores_boolean'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -4865,8 +4843,8 @@ const properties: INodeProperties[] = [
     },
     displayOptions: {
       show: {
-        browse_params_object: ['restrictsearchableattributes_json'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['restrictsearchableattributes_json'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -4889,8 +4867,8 @@ const properties: INodeProperties[] = [
     },
     displayOptions: {
       show: {
-        browse_params_object: ['facets_json'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['facets_json'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -4912,8 +4890,8 @@ const properties: INodeProperties[] = [
     name: 'facetingAfterDistinct_boolean',
     displayOptions: {
       show: {
-        browse_params_object: ['facetingafterdistinct_boolean'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['facetingafterdistinct_boolean'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -4937,8 +4915,8 @@ const properties: INodeProperties[] = [
     name: 'page_number',
     displayOptions: {
       show: {
-        browse_params_object: ['page_number'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['page_number'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -4959,8 +4937,8 @@ const properties: INodeProperties[] = [
     name: 'offset_number',
     displayOptions: {
       show: {
-        browse_params_object: ['offset_number'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['offset_number'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -4985,8 +4963,8 @@ const properties: INodeProperties[] = [
     name: 'length_number',
     displayOptions: {
       show: {
-        browse_params_object: ['length_number'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['length_number'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -5009,8 +4987,8 @@ const properties: INodeProperties[] = [
     name: 'aroundLatLng_string',
     displayOptions: {
       show: {
-        browse_params_object: ['aroundlatlng_string'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['aroundlatlng_string'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -5031,8 +5009,8 @@ const properties: INodeProperties[] = [
     name: 'aroundLatLngViaIP_boolean',
     displayOptions: {
       show: {
-        browse_params_object: ['aroundlatlngviaip_boolean'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['aroundlatlngviaip_boolean'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -5063,8 +5041,8 @@ const properties: INodeProperties[] = [
     },
     displayOptions: {
       show: {
-        browse_params_object: ['aroundradius'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['aroundradius'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -5082,8 +5060,8 @@ const properties: INodeProperties[] = [
     displayOptions: {
       show: {
         aroundRadius: ['integer'],
-        browse_params_object: ['aroundradius'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['aroundradius'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -5104,8 +5082,8 @@ const properties: INodeProperties[] = [
     displayOptions: {
       show: {
         aroundRadius: ['all'],
-        browse_params_object: ['aroundradius'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['aroundradius'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -5136,8 +5114,8 @@ const properties: INodeProperties[] = [
     },
     displayOptions: {
       show: {
-        browse_params_object: ['aroundprecision'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['aroundprecision'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -5153,8 +5131,8 @@ const properties: INodeProperties[] = [
     displayOptions: {
       show: {
         aroundPrecision: ['integer'],
-        browse_params_object: ['aroundprecision'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['aroundprecision'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -5170,8 +5148,8 @@ const properties: INodeProperties[] = [
     displayOptions: {
       show: {
         aroundPrecision: ['range_objects'],
-        browse_params_object: ['aroundprecision'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['aroundprecision'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -5196,8 +5174,8 @@ const properties: INodeProperties[] = [
     name: 'minimumAroundRadius_number',
     displayOptions: {
       show: {
-        browse_params_object: ['minimumaroundradius_number'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['minimumaroundradius_number'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -5232,8 +5210,8 @@ const properties: INodeProperties[] = [
     },
     displayOptions: {
       show: {
-        browse_params_object: ['insideboundingbox'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['insideboundingbox'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -5247,8 +5225,8 @@ const properties: INodeProperties[] = [
     displayOptions: {
       show: {
         insideBoundingBox: ['string'],
-        browse_params_object: ['insideboundingbox'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['insideboundingbox'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -5269,8 +5247,8 @@ const properties: INodeProperties[] = [
     displayOptions: {
       show: {
         insideBoundingBox: ['null'],
-        browse_params_object: ['insideboundingbox'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['insideboundingbox'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -5287,8 +5265,8 @@ const properties: INodeProperties[] = [
     displayOptions: {
       show: {
         insideBoundingBox: ['inside_bounding_box_array'],
-        browse_params_object: ['insideboundingbox'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['insideboundingbox'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -5311,8 +5289,8 @@ const properties: INodeProperties[] = [
     },
     displayOptions: {
       show: {
-        browse_params_object: ['insidepolygon_json'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['insidepolygon_json'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -5335,8 +5313,8 @@ const properties: INodeProperties[] = [
     },
     displayOptions: {
       show: {
-        browse_params_object: ['naturallanguages_json'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['naturallanguages_json'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -5359,8 +5337,8 @@ const properties: INodeProperties[] = [
     },
     displayOptions: {
       show: {
-        browse_params_object: ['rulecontexts_json'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['rulecontexts_json'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -5386,8 +5364,8 @@ const properties: INodeProperties[] = [
     name: 'personalizationImpact_number',
     displayOptions: {
       show: {
-        browse_params_object: ['personalizationimpact_number'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['personalizationimpact_number'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -5410,8 +5388,8 @@ const properties: INodeProperties[] = [
     name: 'userToken_string',
     displayOptions: {
       show: {
-        browse_params_object: ['usertoken_string'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['usertoken_string'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -5432,8 +5410,8 @@ const properties: INodeProperties[] = [
     name: 'getRankingInfo_boolean',
     displayOptions: {
       show: {
-        browse_params_object: ['getrankinginfo_boolean'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['getrankinginfo_boolean'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -5454,8 +5432,8 @@ const properties: INodeProperties[] = [
     name: 'synonyms_boolean',
     displayOptions: {
       show: {
-        browse_params_object: ['synonyms_boolean'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['synonyms_boolean'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -5477,8 +5455,8 @@ const properties: INodeProperties[] = [
     name: 'clickAnalytics_boolean',
     displayOptions: {
       show: {
-        browse_params_object: ['clickanalytics_boolean'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['clickanalytics_boolean'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -5499,8 +5477,8 @@ const properties: INodeProperties[] = [
     name: 'analytics_boolean',
     displayOptions: {
       show: {
-        browse_params_object: ['analytics_boolean'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['analytics_boolean'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -5523,8 +5501,8 @@ const properties: INodeProperties[] = [
     },
     displayOptions: {
       show: {
-        browse_params_object: ['analyticstags_json'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['analyticstags_json'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -5545,8 +5523,8 @@ const properties: INodeProperties[] = [
     name: 'percentileComputation_boolean',
     displayOptions: {
       show: {
-        browse_params_object: ['percentilecomputation_boolean'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['percentilecomputation_boolean'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -5567,8 +5545,8 @@ const properties: INodeProperties[] = [
     name: 'enableABTest_boolean',
     displayOptions: {
       show: {
-        browse_params_object: ['enableabtest_boolean'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['enableabtest_boolean'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -5591,8 +5569,8 @@ const properties: INodeProperties[] = [
     },
     displayOptions: {
       show: {
-        browse_params_object: ['attributestoretrieve_json'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['attributestoretrieve_json'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -5615,8 +5593,8 @@ const properties: INodeProperties[] = [
     },
     displayOptions: {
       show: {
-        browse_params_object: ['ranking_json'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['ranking_json'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -5639,8 +5617,8 @@ const properties: INodeProperties[] = [
     name: 'relevancyStrictness_number',
     displayOptions: {
       show: {
-        browse_params_object: ['relevancystrictness_number'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['relevancystrictness_number'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -5663,8 +5641,8 @@ const properties: INodeProperties[] = [
     },
     displayOptions: {
       show: {
-        browse_params_object: ['attributestohighlight_json'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['attributestohighlight_json'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -5687,8 +5665,8 @@ const properties: INodeProperties[] = [
     },
     displayOptions: {
       show: {
-        browse_params_object: ['attributestosnippet_json'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['attributestosnippet_json'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -5710,8 +5688,8 @@ const properties: INodeProperties[] = [
     name: 'highlightPreTag_string',
     displayOptions: {
       show: {
-        browse_params_object: ['highlightpretag_string'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['highlightpretag_string'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -5733,8 +5711,8 @@ const properties: INodeProperties[] = [
     name: 'highlightPostTag_string',
     displayOptions: {
       show: {
-        browse_params_object: ['highlightposttag_string'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['highlightposttag_string'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -5755,8 +5733,8 @@ const properties: INodeProperties[] = [
     name: 'snippetEllipsisText_string',
     displayOptions: {
       show: {
-        browse_params_object: ['snippetellipsistext_string'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['snippetellipsistext_string'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -5778,8 +5756,8 @@ const properties: INodeProperties[] = [
     name: 'restrictHighlightAndSnippetArrays_boolean',
     displayOptions: {
       show: {
-        browse_params_object: ['restricthighlightandsnippetarrays_boolean'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['restricthighlightandsnippetarrays_boolean'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -5804,8 +5782,8 @@ const properties: INodeProperties[] = [
     name: 'hitsPerPage_number',
     displayOptions: {
       show: {
-        browse_params_object: ['hitsperpage_number'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['hitsperpage_number'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -5827,8 +5805,8 @@ const properties: INodeProperties[] = [
     name: 'minWordSizefor1Typo_number',
     displayOptions: {
       show: {
-        browse_params_object: ['minwordsizefor1typo_number'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['minwordsizefor1typo_number'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -5850,8 +5828,8 @@ const properties: INodeProperties[] = [
     name: 'minWordSizefor2Typos_number',
     displayOptions: {
       show: {
-        browse_params_object: ['minwordsizefor2typos_number'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['minwordsizefor2typos_number'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -5882,8 +5860,8 @@ const properties: INodeProperties[] = [
     },
     displayOptions: {
       show: {
-        browse_params_object: ['typotolerance'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['typotolerance'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -5899,8 +5877,8 @@ const properties: INodeProperties[] = [
     displayOptions: {
       show: {
         typoTolerance: ['boolean'],
-        browse_params_object: ['typotolerance'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['typotolerance'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -5934,8 +5912,8 @@ const properties: INodeProperties[] = [
     displayOptions: {
       show: {
         typoTolerance: ['typo_tolerance'],
-        browse_params_object: ['typotolerance'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['typotolerance'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -5957,8 +5935,8 @@ const properties: INodeProperties[] = [
     name: 'allowTyposOnNumericTokens_boolean',
     displayOptions: {
       show: {
-        browse_params_object: ['allowtyposonnumerictokens_boolean'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['allowtyposonnumerictokens_boolean'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -5981,8 +5959,8 @@ const properties: INodeProperties[] = [
     },
     displayOptions: {
       show: {
-        browse_params_object: ['disabletypotoleranceonattributes_json'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['disabletypotoleranceonattributes_json'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -6017,8 +5995,8 @@ const properties: INodeProperties[] = [
     },
     displayOptions: {
       show: {
-        browse_params_object: ['ignoreplurals'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['ignoreplurals'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -6035,8 +6013,8 @@ const properties: INodeProperties[] = [
     displayOptions: {
       show: {
         ignorePlurals: ['array'],
-        browse_params_object: ['ignoreplurals'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['ignoreplurals'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -6060,8 +6038,8 @@ const properties: INodeProperties[] = [
     displayOptions: {
       show: {
         ignorePlurals: ['boolean_string'],
-        browse_params_object: ['ignoreplurals'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['ignoreplurals'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -6077,8 +6055,8 @@ const properties: INodeProperties[] = [
     displayOptions: {
       show: {
         ignorePlurals: ['boolean'],
-        browse_params_object: ['ignoreplurals'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['ignoreplurals'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -6109,8 +6087,8 @@ const properties: INodeProperties[] = [
     },
     displayOptions: {
       show: {
-        browse_params_object: ['removestopwords'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['removestopwords'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -6127,8 +6105,8 @@ const properties: INodeProperties[] = [
     displayOptions: {
       show: {
         removeStopWords: ['array'],
-        browse_params_object: ['removestopwords'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['removestopwords'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -6144,8 +6122,8 @@ const properties: INodeProperties[] = [
     displayOptions: {
       show: {
         removeStopWords: ['boolean'],
-        browse_params_object: ['removestopwords'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['removestopwords'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -6168,8 +6146,8 @@ const properties: INodeProperties[] = [
     },
     displayOptions: {
       show: {
-        browse_params_object: ['querylanguages_json'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['querylanguages_json'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -6191,8 +6169,8 @@ const properties: INodeProperties[] = [
     name: 'decompoundQuery_boolean',
     displayOptions: {
       show: {
-        browse_params_object: ['decompoundquery_boolean'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['decompoundquery_boolean'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -6213,8 +6191,8 @@ const properties: INodeProperties[] = [
     name: 'enableRules_boolean',
     displayOptions: {
       show: {
-        browse_params_object: ['enablerules_boolean'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['enablerules_boolean'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -6235,8 +6213,8 @@ const properties: INodeProperties[] = [
     name: 'enablePersonalization_boolean',
     displayOptions: {
       show: {
-        browse_params_object: ['enablepersonalization_boolean'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['enablepersonalization_boolean'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -6272,8 +6250,8 @@ const properties: INodeProperties[] = [
     name: 'queryType_options',
     displayOptions: {
       show: {
-        browse_params_object: ['querytype_options'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['querytype_options'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -6314,8 +6292,8 @@ const properties: INodeProperties[] = [
     name: 'removeWordsIfNoResults_options',
     displayOptions: {
       show: {
-        browse_params_object: ['removewordsifnoresults_options'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['removewordsifnoresults_options'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -6347,8 +6325,8 @@ const properties: INodeProperties[] = [
     name: 'mode_options',
     displayOptions: {
       show: {
-        browse_params_object: ['mode_options'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['mode_options'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -6371,8 +6349,8 @@ const properties: INodeProperties[] = [
     name: 'semantic_search_object',
     displayOptions: {
       show: {
-        browse_params_object: ['semantic_search_object'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['semantic_search_object'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -6394,8 +6372,8 @@ const properties: INodeProperties[] = [
     name: 'advancedSyntax_boolean',
     displayOptions: {
       show: {
-        browse_params_object: ['advancedsyntax_boolean'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['advancedsyntax_boolean'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -6430,8 +6408,8 @@ const properties: INodeProperties[] = [
     },
     displayOptions: {
       show: {
-        browse_params_object: ['optionalwords'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['optionalwords'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -6445,8 +6423,8 @@ const properties: INodeProperties[] = [
     displayOptions: {
       show: {
         optionalWords: ['string'],
-        browse_params_object: ['optionalwords'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['optionalwords'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -6467,8 +6445,8 @@ const properties: INodeProperties[] = [
     displayOptions: {
       show: {
         optionalWords: ['null'],
-        browse_params_object: ['optionalwords'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['optionalwords'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -6485,8 +6463,8 @@ const properties: INodeProperties[] = [
     displayOptions: {
       show: {
         optionalWords: ['optional_words_array'],
-        browse_params_object: ['optionalwords'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['optionalwords'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -6509,8 +6487,8 @@ const properties: INodeProperties[] = [
     },
     displayOptions: {
       show: {
-        browse_params_object: ['disableexactonattributes_json'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['disableexactonattributes_json'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -6546,8 +6524,8 @@ const properties: INodeProperties[] = [
     name: 'exactOnSingleWordQuery_options',
     displayOptions: {
       show: {
-        browse_params_object: ['exactonsinglewordquery_options'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['exactonsinglewordquery_options'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -6570,8 +6548,8 @@ const properties: INodeProperties[] = [
     },
     displayOptions: {
       show: {
-        browse_params_object: ['alternativesasexact_json'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['alternativesasexact_json'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -6594,8 +6572,8 @@ const properties: INodeProperties[] = [
     },
     displayOptions: {
       show: {
-        browse_params_object: ['advancedsyntaxfeatures_json'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['advancedsyntaxfeatures_json'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -6626,8 +6604,8 @@ const properties: INodeProperties[] = [
     },
     displayOptions: {
       show: {
-        browse_params_object: ['distinct'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['distinct'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -6643,8 +6621,8 @@ const properties: INodeProperties[] = [
     displayOptions: {
       show: {
         distinct: ['boolean'],
-        browse_params_object: ['distinct'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['distinct'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -6664,8 +6642,8 @@ const properties: INodeProperties[] = [
     displayOptions: {
       show: {
         distinct: ['integer'],
-        browse_params_object: ['distinct'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['distinct'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -6687,8 +6665,8 @@ const properties: INodeProperties[] = [
     name: 'replaceSynonymsInHighlight_boolean',
     displayOptions: {
       show: {
-        browse_params_object: ['replacesynonymsinhighlight_boolean'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['replacesynonymsinhighlight_boolean'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -6714,8 +6692,8 @@ const properties: INodeProperties[] = [
     name: 'minProximity_number',
     displayOptions: {
       show: {
-        browse_params_object: ['minproximity_number'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['minproximity_number'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -6738,8 +6716,8 @@ const properties: INodeProperties[] = [
     },
     displayOptions: {
       show: {
-        browse_params_object: ['responsefields_json'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['responsefields_json'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -6763,8 +6741,8 @@ const properties: INodeProperties[] = [
     name: 'maxValuesPerFacet_number',
     displayOptions: {
       show: {
-        browse_params_object: ['maxvaluesperfacet_number'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['maxvaluesperfacet_number'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -6786,8 +6764,8 @@ const properties: INodeProperties[] = [
     name: 'sortFacetValuesBy_string',
     displayOptions: {
       show: {
-        browse_params_object: ['sortfacetvaluesby_string'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['sortfacetvaluesby_string'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -6809,8 +6787,8 @@ const properties: INodeProperties[] = [
     name: 'attributeCriteriaComputedByMinProximity_boolean',
     displayOptions: {
       show: {
-        browse_params_object: ['attributecriteriacomputedbyminproximity_boolean'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['attributecriteriacomputedbyminproximity_boolean'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -6833,8 +6811,8 @@ const properties: INodeProperties[] = [
     name: 'rendering_content_object',
     displayOptions: {
       show: {
-        browse_params_object: ['rendering_content_object'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['rendering_content_object'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -6856,8 +6834,8 @@ const properties: INodeProperties[] = [
     name: 'enableReRanking_boolean',
     displayOptions: {
       show: {
-        browse_params_object: ['enablereranking_boolean'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['enablereranking_boolean'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -6892,8 +6870,8 @@ const properties: INodeProperties[] = [
     },
     displayOptions: {
       show: {
-        browse_params_object: ['rerankingapplyfilter'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['rerankingapplyfilter'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -6909,8 +6887,8 @@ const properties: INodeProperties[] = [
     displayOptions: {
       show: {
         reRankingApplyFilter: ['array'],
-        browse_params_object: ['rerankingapplyfilter'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['rerankingapplyfilter'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -6924,8 +6902,8 @@ const properties: INodeProperties[] = [
     displayOptions: {
       show: {
         reRankingApplyFilter: ['string'],
-        browse_params_object: ['rerankingapplyfilter'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['rerankingapplyfilter'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -6946,8 +6924,8 @@ const properties: INodeProperties[] = [
     displayOptions: {
       show: {
         reRankingApplyFilter: ['null'],
-        browse_params_object: ['rerankingapplyfilter'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['rerankingapplyfilter'],
+        browseParams: ['search_parameters_as_object'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -6970,8 +6948,30 @@ const properties: INodeProperties[] = [
     name: 'cursor_string',
     displayOptions: {
       show: {
-        browse_params_object: ['cursor_string'],
-        browseParams: ['browse_params_object'],
+        search_parameters_as_object: ['cursor_string'],
+        browseParams: ['search_parameters_as_object'],
+        resource: ['Search'],
+        operation: ['browse'],
+      },
+    },
+  },
+  {
+    type: 'string',
+    placeholder: 'hitsPerPage=2&getRankingInfo=1',
+    default: '',
+    description: 'Search parameters as a URL-encoded query string.',
+    routing: {
+      send: {
+        type: 'body',
+        value: '={{ $value }}',
+        property: 'params',
+      },
+    },
+    displayName: 'Params',
+    name: 'params_string',
+    displayOptions: {
+      show: {
+        browseParams: ['search_parameters_as_query_string'],
         resource: ['Search'],
         operation: ['browse'],
       },
@@ -11724,6 +11724,14 @@ const properties: INodeProperties[] = [
         name: 'Validity',
         value: 'validity_json',
       },
+      {
+        name: 'Tags',
+        value: 'tags_json',
+      },
+      {
+        name: 'Scope',
+        value: 'scope_string',
+      },
     ],
     displayOptions: {
       show: {
@@ -11861,6 +11869,48 @@ const properties: INodeProperties[] = [
     displayOptions: {
       show: {
         rule_object: ['validity_json'],
+        resource: ['Rules'],
+        operation: ['saveRule'],
+      },
+    },
+  },
+  {
+    type: 'json',
+    displayName: 'Tags',
+    name: 'tags_json',
+    default: '[]',
+    description: undefined,
+    required: false,
+    routing: {
+      send: {
+        type: 'body',
+        value: '={{ JSON.parse($value) }}',
+        property: 'tags',
+      },
+    },
+    displayOptions: {
+      show: {
+        rule_object: ['tags_json'],
+        resource: ['Rules'],
+        operation: ['saveRule'],
+      },
+    },
+  },
+  {
+    type: 'string',
+    default: '',
+    routing: {
+      send: {
+        type: 'body',
+        value: '={{ $value }}',
+        property: 'scope',
+      },
+    },
+    displayName: 'Scope',
+    name: 'scope_string',
+    displayOptions: {
+      show: {
+        rule_object: ['scope_string'],
         resource: ['Rules'],
         operation: ['saveRule'],
       },
