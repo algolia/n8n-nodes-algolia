@@ -26,10 +26,9 @@
     "format": "prettier nodes credentials --write",
     "lint": "n8n-node lint",
     "lintfix": "n8n-node lint --fix",
-    "generate-properties": "npx tsx scripts/generate-properties.ts",
-    "generate-specs-index": "npx tsx scripts/generate-specs-index.ts",
+    "generate-properties": "npx tsx scripts/generate-properties/index.ts",
     "generate-readme-operations": "npx tsx scripts/generate-readme-operations.ts",
-    "generate": "npm run generate-properties && npm run generate-specs-index && npm run generate-readme-operations"
+    "generate": "npm run generate-properties && npm run generate-readme-operations"
   },
   "files": [
     "dist"
