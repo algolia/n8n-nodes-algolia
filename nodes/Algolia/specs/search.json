@@ -2,7 +2,8 @@
   "openapi": "3.0.2",
   "info": {
     "title": "Search API",
-    "description": "The Algolia Search API lets you search, configure, and manage your indices and records.\n\n## Client libraries\n\nUse Algolia's API clients and libraries to reliably integrate Algolia's APIs with your apps.\nThe official API clients are covered by Algolia's [Service Level Agreement](https://www.algolia.com/policies/sla).\n\nSee: [Algolia's ecosystem](https://www.algolia.com/doc/guides/getting-started/how-algolia-works/in-depth/ecosystem)\n\n## Base URLs\n\nThe base URLs for requests to the Search API are:\n\n- `https://{APPLICATION_ID}.algolia.net`\n- `https://{APPLICATION_ID}-dsn.algolia.net`.\n  If your subscription includes a [Distributed Search Network](https://dashboard.algolia.com/infra),\n  this ensures that requests are sent to servers closest to users.\n\nBoth URLs provide high availability by distributing requests with load balancing.\n\n**All requests must use HTTPS.**\n\n## Retry strategy\n\nTo guarantee high availability, implement a retry strategy for all API requests using the URLs of your servers as fallbacks:\n\n- `https://{APPLICATION_ID}-1.algolianet.com`\n- `https://{APPLICATION_ID}-2.algolianet.com`\n- `https://{APPLICATION_ID}-3.algolianet.com`\n\nThese URLs use a different DNS provider than the primary URLs.\nYou should randomize this list to ensure an even load across the three servers.\n\nAll Algolia API clients implement this retry strategy.\n\n## Authentication\n\nTo authenticate your API requests, add these headers:\n\n- `x-algolia-application-id`. Your Algolia application ID.\n- `x-algolia-api-key`. An API key with the necessary permissions to make the request.\n  The required access control list (ACL) to make a request is listed in each endpoint's reference.\n\nYou can find your application ID and API key in the [Algolia dashboard](https://dashboard.algolia.com/account/api-keys).\n\n## Request format\n\nDepending on the endpoint, request bodies are either JSON objects or arrays of JSON objects,\n\n## Parameters\n\nParameters are passed as query parameters for GET and DELETE requests,\nand in the request body for POST and PUT requests.\n\nQuery parameters must be [URL-encoded](https://developer.mozilla.org/en-US/docs/Glossary/Percent-encoding).\nNon-ASCII characters must be UTF-8 encoded.\nPlus characters (`+`) are interpreted as spaces.\nArrays as query parameters must be one of:\n\n- A comma-separated string: `attributesToRetrieve=title,description`\n- A URL-encoded JSON array: `attributesToRetrieve=%5B%22title%22,%22description%22%D`\n\n## Response status and errors\n\nThe Search API returns JSON responses.\nSince JSON doesn't guarantee any specific ordering, don't rely on the order of attributes in the API response.\n\nSuccessful responses return a `2xx` status. Client errors return a `4xx` status. Server errors are indicated by a `5xx` status.\nError responses have a `message` property with more information.\n\n## Version\n\nThe current version of the Search API is version 1, as indicated by the `/1/` in each endpoint's URL.\n",
+    "summary": "The Algolia Search API lets you search, configure, and manage your indices and records",
+    "description": "## Client libraries\n\nUse Algolia's API clients and libraries to reliably integrate Algolia's APIs with your apps.\nThe official API clients are covered by Algolia's [Service Level Agreement](https://www.algolia.com/policies/sla).\n\nSee: [Algolia's ecosystem](https://www.algolia.com/doc/guides/getting-started/how-algolia-works/in-depth/ecosystem)\n\n## Base URLs\n\nThe base URLs for requests to the Search API are:\n\n- `https://{APPLICATION_ID}.algolia.net`\n- `https://{APPLICATION_ID}-dsn.algolia.net`.\n  If your subscription includes a [Distributed Search Network](https://dashboard.algolia.com/infra),\n  this ensures that requests are sent to servers closest to users.\n\nBoth URLs provide high availability by distributing requests with load balancing.\n\n**All requests must use HTTPS.**\n\n## Retry strategy\n\nTo guarantee high availability, implement a retry strategy for all API requests using the URLs of your servers as fallbacks:\n\n- `https://{APPLICATION_ID}-1.algolianet.com`\n- `https://{APPLICATION_ID}-2.algolianet.com`\n- `https://{APPLICATION_ID}-3.algolianet.com`\n\nThese URLs use a different DNS provider than the primary URLs.\nYou should randomize this list to ensure an even load across the three servers.\n\nAll Algolia API clients implement this retry strategy.\n\n## Authentication\n\nTo authenticate your API requests, add these headers:\n\n- `x-algolia-application-id`. Your Algolia application ID.\n- `x-algolia-api-key`. An API key with the necessary permissions to make the request.\n  The required access control list (ACL) to make a request is listed in each endpoint's reference.\n\nYou can find your application ID and API key in the [Algolia dashboard](https://dashboard.algolia.com/account/api-keys).\n\n## Request format\n\nDepending on the endpoint, request bodies are either JSON objects or arrays of JSON objects,\n\n## Parameters\n\nParameters are passed as query parameters for GET and DELETE requests,\nand in the request body for POST and PUT requests.\n\nQuery parameters must be [URL-encoded](https://developer.mozilla.org/en-US/docs/Glossary/Percent-encoding).\nNon-ASCII characters must be UTF-8 encoded.\nPlus characters (`+`) are interpreted as spaces.\nArrays as query parameters must be one of:\n\n- A comma-separated string: `attributesToRetrieve=title,description`\n- A URL-encoded JSON array: `attributesToRetrieve=%5B%22title%22,%22description%22%D`\n\n## Response status and errors\n\nThe Search API returns JSON responses.\nSince JSON doesn't guarantee any specific ordering, don't rely on the order of attributes in the API response.\n\nSuccessful responses return a `2xx` status. Client errors return a `4xx` status. Server errors are indicated by a `5xx` status.\nError responses have a `message` property with more information.\n\n## Version\n\nThe current version of the Search API is version 1, as indicated by the `/1/` in each endpoint's URL.\n",
     "version": "1.0.0"
   },
   "servers": [
@@ -3855,7 +3856,7 @@
         "x-acl": ["addObject"],
         "operationId": "replaceAllObjects",
         "summary": "Replace all records in an index",
-        "description": "Replace all records from your index with a new set of records.\n\nThis method lets you replace all records in your index without downtime. It performs these operations:\n  1. Copy settings, synonyms, and rules from your original index to a temporary index.\n  2. Add your new records to the temporary index.\n  3. Replace your original index with the temporary index.\n\nUse the safe parameter to ensure that these (asynchronous) operations are performed in sequence.\nIf there's an error duing one of these steps, the temporary index won't be deleted.\nThis operation is rate-limited.\nThis method creates a temporary index: your record count is temporarily doubled. Algolia doesn't count the three days with the highest number of records towards your monthly usage.\nIf you're on a legacy plan (before July 2020), this method counts two operations towards your usage (in addition to the number of records): copySettings and moveIndex.\nThe API key you use for this operation must have access to the index YourIndex and the temporary index YourIndex_tmp.\n",
+        "description": "This method replaces all records in an index without interrupting ongoing searches.\n\nIt combines [batch](https://www.algolia.com/doc/rest-api/search/batch) and [copy/move](https://www.algolia.com/doc/rest-api/search/operation-index) index operations:\n1. Copy settings, synonyms, and rules to a temporary index.\n2. Add the records from the `objects` parameter to the temporary index.\n3. Replace the original index with the temporary one.\n\nIf there's an error during one of these steps, the temporary index is deleted if your API key has the `deleteIndex` ACL.\n\nIf your API key restricts access to specific indices, make sure it also grants access to the temporary index INDEX_NAME_tmp_* (replace INDEX_NAME with the name of your original index).\n\nThis method is subject to [indexing rate limits](https://support.algolia.com/hc/en-us/articles/4406975251089-Is-there-a-rate-limit-for-indexing-on-Algolia).\n\nThe response includes the results of the individual API requests.\n\nThis method creates a temporary index: your record count is temporarily doubled. Algolia doesn't count the three days with the highest number of records towards your monthly usage.\n",
         "parameters": [
           {
             "in": "query",
@@ -3891,7 +3892,7 @@
           {
             "in": "query",
             "name": "scopes",
-            "description": "List of scopes to kepp in the index. Defaults to `settings`, `synonyms`, and `rules`.",
+            "description": "List of scopes to keep in the index. Defaults to `settings`, `synonyms`, and `rules`.",
             "required": false,
             "schema": {
               "type": "array",
@@ -4644,7 +4645,7 @@
       },
       "searchParamsString": {
         "type": "object",
-        "title": "Search parameters as query string.",
+        "title": "Search parameters as query string",
         "description": "Search parameters as query string.",
         "additionalProperties": false,
         "x-discriminator-fields": ["params"],
@@ -6630,10 +6631,11 @@
       "browseParams": {
         "oneOf": [
           {
-            "$ref": "#/components/schemas/searchParamsString"
+            "title": "Search parameters as object",
+            "$ref": "#/components/schemas/browseParamsObject"
           },
           {
-            "$ref": "#/components/schemas/browseParamsObject"
+            "$ref": "#/components/schemas/searchParamsString"
           }
         ]
       },
@@ -7583,6 +7585,15 @@
             "items": {
               "$ref": "#/components/schemas/timeRange"
             }
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "scope": {
+            "type": "string"
           }
         },
         "required": ["objectID", "consequence"]
