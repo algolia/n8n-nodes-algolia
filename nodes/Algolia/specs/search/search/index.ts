@@ -6,139 +6,123 @@ import searchSingleIndexProperties from './searchSingleIndex';
 
 const operationProperties: INodeProperties[] = [
   {
-    "displayName": 'Operation',
-    "name": 'operation',
-    "type": 'options',
-    "default": '',
-    "description": 'Select the operation to work with',
-    "options": [
+    displayName: 'Operation',
+    name: 'operation',
+    type: 'options',
+    default: '',
+    description: 'Select the operation to work with',
+    options: [
       {
-        "name": 'Search an index',
-        "value": 'searchSingleIndex',
-        "action": 'Search an index',
-        "description": 'Searches a single index and returns matching search results as hits.',
-        "routing": {
-          "request": {
-            "method": 'POST',
-            "url": '=/1/indexes/{{ $parameter.indexName_string }}/query'
+        name: 'Search an index',
+        value: 'searchSingleIndex',
+        action: 'Search an index',
+        description: 'Searches a single index and returns matching search results as hits.',
+        routing: {
+          request: {
+            method: 'POST',
+            url: '=/1/indexes/{{ $parameter.indexName_string }}/query',
           },
-          "output": {
-            "postReceive": [
+          output: {
+            postReceive: [
               async function (items) {
-              const simple = this.getNodeParameter('simplify', 0);
-              if (!simple) return items;
-              return items.map((item) => {
-                const json = item.json || {};
-                const simplified = new Map();
-                ["hits","params","query"].forEach((f) => {
-                  if (json[f] !== undefined) simplified.set(f, json[f]);
+                const simple = this.getNodeParameter('simplify', 0);
+                if (!simple) return items;
+                return items.map((item) => {
+                  const json = item.json || {};
+                  const simplified = new Map();
+                  ['hits', 'params', 'query'].forEach((f) => {
+                    if (json[f] !== undefined) simplified.set(f, json[f]);
+                  });
+                  return { json: Object.fromEntries(simplified) };
                 });
-                return { json: Object.fromEntries(simplified) };
-              });
-            }
-            ]
-          }
-        },
-        "inputSchema": {
-          "simplifiedOutput": [
-            'hits',
-            'params',
-            'query'
-          ]
-        }
-      },
-      {
-        "name": 'Search multiple indices',
-        "value": 'search',
-        "action": 'Search multiple indices',
-        "description": 'Sends multiple search requests to one or more indices.',
-        "routing": {
-          "request": {
-            "method": 'POST',
-            "url": '=/1/indexes/*/queries'
-          }
-        }
-      },
-      {
-        "name": 'Search for facet values',
-        "value": 'searchForFacetValues',
-        "action": 'Search for facet values',
-        "description": 'Searches for values of a specified facet attribute.',
-        "routing": {
-          "request": {
-            "method": 'POST',
-            "url": '=/1/indexes/{{ $parameter.indexName_string }}/facets/{{ $parameter.facetName_string }}/query'
-          }
-        }
-      },
-      {
-        "name": 'Browse for records',
-        "value": 'browse',
-        "action": 'Browse for records',
-        "description": 'Retrieves records from an index, up to 1,000 per request.',
-        "routing": {
-          "request": {
-            "method": 'POST',
-            "url": '=/1/indexes/{{ $parameter.indexName_string }}/browse'
+              },
+            ],
           },
-          "output": {
-            "postReceive": [
-              async function (items) {
-              const simple = this.getNodeParameter('simplify', 0);
-              if (!simple) return items;
-              return items.map((item) => {
-                const json = item.json || {};
-                const simplified = new Map();
-                ["hits","params","query"].forEach((f) => {
-                  if (json[f] !== undefined) simplified.set(f, json[f]);
-                });
-                return { json: Object.fromEntries(simplified) };
-              });
-            }
-            ]
-          }
         },
-        "inputSchema": {
-          "simplifiedOutput": [
-            'hits',
-            'params',
-            'query'
-          ]
-        }
-      }
+        inputSchema: {
+          simplifiedOutput: ['hits', 'params', 'query'],
+        },
+      },
+      {
+        name: 'Search multiple indices',
+        value: 'search',
+        action: 'Search multiple indices',
+        description: 'Sends multiple search requests to one or more indices.',
+        routing: {
+          request: {
+            method: 'POST',
+            url: '=/1/indexes/*/queries',
+          },
+        },
+      },
+      {
+        name: 'Search for facet values',
+        value: 'searchForFacetValues',
+        action: 'Search for facet values',
+        description: 'Searches for values of a specified facet attribute.',
+        routing: {
+          request: {
+            method: 'POST',
+            url: '=/1/indexes/{{ $parameter.indexName_string }}/facets/{{ $parameter.facetName_string }}/query',
+          },
+        },
+      },
+      {
+        name: 'Browse for records',
+        value: 'browse',
+        action: 'Browse for records',
+        description: 'Retrieves records from an index, up to 1,000 per request.',
+        routing: {
+          request: {
+            method: 'POST',
+            url: '=/1/indexes/{{ $parameter.indexName_string }}/browse',
+          },
+          output: {
+            postReceive: [
+              async function (items) {
+                const simple = this.getNodeParameter('simplify', 0);
+                if (!simple) return items;
+                return items.map((item) => {
+                  const json = item.json || {};
+                  const simplified = new Map();
+                  ['hits', 'params', 'query'].forEach((f) => {
+                    if (json[f] !== undefined) simplified.set(f, json[f]);
+                  });
+                  return { json: Object.fromEntries(simplified) };
+                });
+              },
+            ],
+          },
+        },
+        inputSchema: {
+          simplifiedOutput: ['hits', 'params', 'query'],
+        },
+      },
     ],
-    "displayOptions": {
-      "show": {
-        "resource": [
-          'Search'
-        ]
-      }
-    }
-  }
+    displayOptions: {
+      show: {
+        resource: ['Search'],
+      },
+    },
+  },
 ];
 
 const properties: INodeProperties[] = [
   ...operationProperties,
-  
+
   {
-    "displayName": 'Simplify',
-    "name": 'simplify',
-    "type": 'boolean',
-    "default": false,
-    "description": 'Whether to return a simplified version of the response instead of the raw data',
-    "displayOptions": {
-      "show": {
-        "resource": [
-          'Search'
-        ],
-        "operation": [
-          'searchSingleIndex',
-          'browse'
-        ]
-      }
-    }
-  }
-,
+    displayName: 'Simplify',
+    name: 'simplify',
+    type: 'boolean',
+    default: false,
+    description: 'Whether to return a simplified version of the response instead of the raw data',
+    displayOptions: {
+      show: {
+        resource: ['Search'],
+        operation: ['searchSingleIndex', 'browse'],
+      },
+    },
+  },
   ...browseProperties,
   ...searchProperties,
   ...searchForFacetValuesProperties,
