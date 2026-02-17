@@ -30,7 +30,7 @@ const operationProperties: INodeProperties[] = [
                 return items.map((item) => {
                   const json = item.json || {};
                   const simplified = new Map();
-                  ['hits', 'params', 'query'].forEach((f) => {
+                  ['hits'].forEach((f) => {
                     if (json[f] !== undefined) simplified.set(f, json[f]);
                   });
                   return { json: Object.fromEntries(simplified) };
@@ -40,7 +40,7 @@ const operationProperties: INodeProperties[] = [
           },
         },
         inputSchema: {
-          simplifiedOutput: ['hits', 'params', 'query'],
+          simplifiedOutput: ['hits'],
         },
       },
       {
@@ -85,7 +85,7 @@ const operationProperties: INodeProperties[] = [
                 return items.map((item) => {
                   const json = item.json || {};
                   const simplified = new Map();
-                  ['hits', 'params', 'query'].forEach((f) => {
+                  ['hits'].forEach((f) => {
                     if (json[f] !== undefined) simplified.set(f, json[f]);
                   });
                   return { json: Object.fromEntries(simplified) };
@@ -95,7 +95,7 @@ const operationProperties: INodeProperties[] = [
           },
         },
         inputSchema: {
-          simplifiedOutput: ['hits', 'params', 'query'],
+          simplifiedOutput: ['hits'],
         },
       },
     ],

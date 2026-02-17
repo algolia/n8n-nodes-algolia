@@ -45,7 +45,7 @@ const properties: INodeProperties[] = [
         name: 'indexes_json',
         default: '[]',
         description:
-          'Index names or patterns that this API key can access.\nBy default, an API key can access all indices in the same application.\n\nYou can use leading and trailing wildcard characters (`*`):\n\n- `dev_*` matches all indices starting with "dev_".\n- `*_dev` matches all indices ending with "_dev".\n- `*_products_*` matches all indices containing "_products_".\n',
+          'Index names or patterns that this API key can access.\nBy default, an API key can access all indices in the same application.\n\nYou can use leading and trailing wildcard characters (`*`):\n\n- `dev_*` matches all indices starting with "dev_"\n- `*_dev` matches all indices ending with "_dev"\n- `*_products_*` matches all indices containing "_products_".\n',
         required: false,
       },
       {
