@@ -28,7 +28,8 @@
     "lintfix": "n8n-node lint --fix",
     "generate-properties": "npx tsx scripts/generate-properties/index.ts",
     "generate-readme-operations": "npx tsx scripts/generate-readme-operations.ts",
-    "generate": "npm run generate-properties && npm run generate-readme-operations"
+    "generate": "npm run generate-properties && npm run generate-readme-operations",
+    "release": "shipjs prepare"
   },
   "files": [
     "dist"
@@ -52,7 +53,7 @@
     "openapi-types": "12.1.3",
     "prettier": "^3.5.3",
     "shelljs": "^0.10.0",
-    "shipjs": "^0.27.0",
+    "shipjs": "0.28.2",
     "tsc-alias": "^1.8.16",
     "tsx": "^4.7.0",
     "typescript": "^5.8.2",
