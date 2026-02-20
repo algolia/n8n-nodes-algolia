@@ -1,3 +1,12 @@
+## [0.14.1](https://github.com/algolia/n8n-nodes-algolia/compare/v0.14.0...v0.14.1) (2026-02-20)
+
+
+### Bug Fixes
+
+* **config:** Algolia -> algolia ([#73](https://github.com/algolia/n8n-nodes-algolia/issues/73)) ([aea9bb8](https://github.com/algolia/n8n-nodes-algolia/commit/aea9bb84a2f7519e7968225a7568350dfe848099))
+
+
+
 # [0.14.0](https://github.com/algolia/n8n-nodes-algolia/compare/v0.13.0...v0.14.0) (2026-02-19)
 
 
