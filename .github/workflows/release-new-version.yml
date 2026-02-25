@@ -11,10 +11,14 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event_name == 'workflow_dispatch' || (github.event.pull_request.merged == true && startsWith(github.event.pull_request.head.ref, 'releases/v'))
     steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: main
+
       - name: Setup Node.js
         uses: ./.github/actions/setup-node
         with:
-          ref: main
           npm-auth-token: ${{ secrets.NPM_AUTH_TOKEN }}
 
       - run: |

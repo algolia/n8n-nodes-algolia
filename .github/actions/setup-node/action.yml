@@ -1,25 +1,15 @@
 name: Setup Node.js
-description: Checkout code, setup Node.js, and install dependencies
+description: Setup Node.js and install dependencies (repo must already be checked out)
 
 inputs:
   npm-auth-token:
     description: NPM auth token for installing private packages
     required: false
     default: ''
-  ref:
-    description: Git ref to checkout
-    required: false
-    default: ''
 
 runs:
   using: composite
   steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
-        ref: ${{ inputs.ref }}
-
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
