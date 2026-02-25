@@ -1,13 +1,12 @@
-name: Generate Properties on Specs Update
+name: Format Changelog
 
 on:
   pull_request:
     paths:
-      - 'nodes/Algolia/specs/*.json'
+      - 'CHANGELOG.md'
 
 jobs:
-  generate-properties:
-    if: startsWith(github.head_ref, 'feat/auto-openapi-sync')
+  changelog-format:
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
@@ -19,11 +18,6 @@ jobs:
 
       - name: Setup Node.js
         uses: ./.github/actions/setup-node
-        with:
-          npm-auth-token: ${{ secrets.NPM_AUTH_TOKEN }}
-
-      - name: Generate properties
-        run: npm run generate
 
       - name: Format code
         run: npx prettier --write .
@@ -31,5 +25,5 @@ jobs:
       - name: Commit and push
         uses: ./.github/actions/commit-and-push
         with:
-          commit-message: 'chore(nodes): auto-generate properties from updated specs'
+          commit-message: 'chore(changelog): format'
           github-token: ${{ secrets.ALGOLIA_BOT_TOKEN }}

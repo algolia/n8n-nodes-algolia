@@ -1,0 +1,62 @@
+name: Commit and Push
+description: Check for changes, commit, and push to the current branch
+
+inputs:
+  commit-message:
+    description: The commit message to use
+    required: true
+  github-token:
+    description: GitHub token for pushing
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Check for changes
+      id: check-changes
+      run: |
+        if [ -n "$(git status --porcelain)" ]; then
+          echo "changes=true" >> $GITHUB_OUTPUT
+        else
+          echo "changes=false" >> $GITHUB_OUTPUT
+        fi
+      shell: bash
+
+    - name: Set up Git user
+      if: steps.check-changes.outputs.changes == 'true'
+      run: |
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+      shell: bash
+
+    - name: Configure Git remote
+      if: steps.check-changes.outputs.changes == 'true'
+      run: |
+        git remote set-url origin https://github.com/${{ github.repository }}.git
+      shell: bash
+
+    - name: Get current branch name
+      if: steps.check-changes.outputs.changes == 'true'
+      id: get_branch
+      run: |
+        if [[ "${GITHUB_HEAD_REF}" != "" ]]; then
+          echo "branch=${GITHUB_HEAD_REF}" >> $GITHUB_OUTPUT
+        else
+          echo "branch=${GITHUB_REF#refs/heads/}" >> $GITHUB_OUTPUT
+        fi
+      shell: bash
+
+    - name: Commit changes
+      if: steps.check-changes.outputs.changes == 'true'
+      run: |
+        git add .
+        git commit -m "${{ inputs.commit-message }}"
+      shell: bash
+
+    - name: Push changes
+      if: steps.check-changes.outputs.changes == 'true'
+      run: git push origin HEAD:${{ steps.get_branch.outputs.branch }}
+      shell: bash
+      env:
+        GITHUB_TOKEN: ${{ inputs.github-token }}
+        GH_TOKEN: ${{ inputs.github-token }}
