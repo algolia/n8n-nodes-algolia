@@ -155,6 +155,15 @@ const properties: INodeProperties[] = [
         displayName: 'Scope',
         name: 'scope_string',
       },
+      {
+        type: 'json',
+        description:
+          'Legacy field for a single condition. This field is maintained for backward compatibility \nwith older rules but should not be used in new implementations.\n',
+        required: false,
+        default: '{}',
+        displayName: 'Condition',
+        name: 'condition_object',
+      },
     ],
     routing: {
       request: {
@@ -165,6 +174,7 @@ const properties: INodeProperties[] = [
           validity: '={{ JSON.parse($value.validity_json) }}',
           tags: '={{ JSON.parse($value.tags_json) }}',
           scope: '={{ $value.scope_string }}',
+          condition: '={{ JSON.parse($value.condition_object) }}',
         },
       },
     },
