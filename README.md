@@ -111,7 +111,7 @@ This node supports the following operations:
 ### Search
 
 - **Search an index** - Searches a single index and returns matching search results as hits.
-- **Search multiple indices** - Sends multiple search requests to one or more indices.
+- **Search multiple queries** - Runs multiple search queries against one or more indices in a single API request.
 - **Search for facet values** - Searches for values of a specified facet attribute.
 - **Browse for records** - Retrieves records from an index, up to 1,000 per request.
 
