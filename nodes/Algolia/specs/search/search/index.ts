@@ -44,10 +44,11 @@ const operationProperties: INodeProperties[] = [
         },
       },
       {
-        name: 'Search multiple indices',
+        name: 'Search multiple queries',
         value: 'search',
-        action: 'Search multiple indices',
-        description: 'Sends multiple search requests to one or more indices.',
+        action: 'Search multiple queries',
+        description:
+          'Runs multiple search queries against one or more indices in a single API request.',
         routing: {
           request: {
             method: 'POST',
