@@ -45,7 +45,7 @@ const properties: INodeProperties[] = [
         name: 'indexes_json',
         default: '[]',
         description:
-          'Index names or patterns that this API key can access.\nBy default, an API key can access all indices in the same application.\n\nYou can use leading and trailing wildcard characters (`*`):\n\n- `dev_*` matches all indices starting with "dev_"\n- `*_dev` matches all indices ending with "_dev"\n- `*_products_*` matches all indices containing "_products_".\n',
+          'Index names or patterns that this API key can access.\nBy default, an API key can access all indices in the same application.\n\nYou can use leading and trailing wildcard characters (`*`):\n\n- `dev_*` matches all indices starting with "dev_".\n- `*_dev` matches all indices ending with "_dev".\n- `*_products_*` matches all indices containing "_products_".\n',
         required: false,
       },
       {
@@ -79,7 +79,7 @@ const properties: INodeProperties[] = [
         name: 'referers_json',
         default: '[]',
         description:
-          'Allowed HTTP referrers for this API key.\n\nBy default, all referrers are allowed.\nYou can use leading and trailing wildcard characters (`*`):\n\n- `https://algolia.com/*` allows all referrers starting with "https://algolia.com/"\n- `*.algolia.com` allows all referrers ending with ".algolia.com"\n- `*algolia.com*` allows all referrers in the domain "algolia.com".\n\nLike all HTTP headers, referrers can be spoofed. Don\'t rely on them to secure your data.\nFor more information, see [HTTP referrer restrictions](https://www.algolia.com/doc/guides/security/security-best-practices/#http-referrers-restrictions).\n',
+          'Allowed HTTP referrers for this API key.\n\nBy default, all referrers are allowed.\nYou can use leading and trailing wildcard characters (`*`):\n\n- `https://algolia.com/*` allows all referrers starting with "https://algolia.com/".\n- `*.algolia.com` allows all referrers ending with ".algolia.com".\n- `*algolia.com*` allows all referrers in the domain "algolia.com".\n\nLike all HTTP headers, referrers can be spoofed. Don\'t rely on them to secure your data.\nFor more information, see [HTTP referrer restrictions](https://www.algolia.com/doc/guides/security/security-best-practices/#http-referrer-restrictions).\n',
         required: false,
       },
       {
