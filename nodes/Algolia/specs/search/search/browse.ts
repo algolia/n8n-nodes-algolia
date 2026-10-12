@@ -85,7 +85,7 @@ const properties: INodeProperties[] = [
         placeholder: 'comedy drama crime Macy Buscemi',
         default: '',
         description:
-          'Keywords to be used instead of the search query to conduct a more broader search\nUsing the `similarQuery` parameter changes other settings\n- `queryType` is set to `prefixNone`.\n- `removeStopWords` is set to true.\n- `words` is set as the first ranking criterion.\n- All remaining words are treated as `optionalWords`\nSince the `similarQuery` is supposed to do a broad search, they usually return many results.\nCombine it with `filters` to narrow down the list of results.\n',
+          'Keywords to be used instead of the search query to conduct a more broader search.\nUsing the `similarQuery` parameter changes other settings\n- `queryType` is set to `prefixNone`.\n- `removeStopWords` is set to true.\n- `words` is set as the first ranking criterion.\n- All remaining words are treated as `optionalWords`.\nSince the `similarQuery` is supposed to do a broad search, they usually return many results.\nCombine it with `filters` to narrow down the list of results.\n',
         displayName: 'Similar Query',
         name: 'similarQuery_string',
         displayOptions: {
@@ -156,7 +156,7 @@ const properties: INodeProperties[] = [
         type: 'boolean',
         default: false,
         description:
-          'Whether to sum all filter scores\nIf true, all filter scores are summed.\nOtherwise, the maximum filter score is kept.\nFor more information, see [filter scores](https://www.algolia.com/doc/guides/managing-results/refine-results/filtering/in-depth/filter-scoring/#accumulating-scores-with-sumorfiltersscores).\n',
+          'Whether to sum all filter scores.\nIf true, all filter scores are summed.\nOtherwise, the maximum filter score is kept.\nFor more information, see [filter scores](https://www.algolia.com/doc/guides/managing-results/refine-results/filtering/in-depth/filter-scoring/#accumulate-scores-with-sumorfiltersscores).\n',
         displayName: 'Sum Or Filters Scores',
         name: 'sumOrFiltersScores_boolean',
         displayOptions: {
@@ -185,7 +185,7 @@ const properties: INodeProperties[] = [
         name: 'facets_json',
         default: '[]',
         description:
-          'Facets for which to retrieve facet values that match the search criteria and the number of matching facet values\nTo retrieve all facets, use the wildcard character `*`.\nFor more information, see [facets](https://www.algolia.com/doc/guides/managing-results/refine-results/faceting/#contextual-facet-values-and-counts).\n',
+          'Facets for which to retrieve facet values that match the search criteria and the number of matching facet values.\nTo retrieve all facets, use the wildcard character `*`.\nFor more information, see [facets](https://www.algolia.com/doc/guides/managing-results/refine-results/faceting/#contextual-facet-values-and-counts).\n',
         required: false,
         displayOptions: {
           show: {
@@ -197,7 +197,7 @@ const properties: INodeProperties[] = [
         type: 'boolean',
         default: false,
         description:
-          "Whether faceting should be applied after deduplication with `distinct`\nThis leads to accurate facet counts when using faceting in combination with `distinct`.\nIt's usually better to use `afterDistinct` modifiers in the `attributesForFaceting` setting,\nas `facetingAfterDistinct` only computes correct facet counts if all records have the same facet values for the `attributeForDistinct`.\n",
+          "Whether faceting should be applied after deduplication with `distinct`.\nThis leads to accurate facet counts when using faceting in combination with `distinct`.\nIt's usually better to use `afterDistinct` modifiers in the `attributesForFaceting` setting,\nas `facetingAfterDistinct` only computes correct facet counts if all records have the same facet values for the `attributeForDistinct`.\n",
         displayName: 'Faceting After Distinct',
         name: 'facetingAfterDistinct_boolean',
         displayOptions: {
@@ -344,7 +344,7 @@ const properties: INodeProperties[] = [
         name: 'naturalLanguages_json',
         default: '[]',
         description:
-          'ISO language codes that adjust settings that are useful for processing natural language queries (as opposed to keyword searches)\n- Sets `removeStopWords` and `ignorePlurals` to the list of provided languages.\n- Sets `removeWordsIfNoResults` to `allOptional`.\n- Adds a `natural_language` attribute to `ruleContexts` and `analyticsTags`.\n',
+          'ISO language codes that adjust settings that are useful for processing natural language queries (as opposed to keyword searches).\n- Sets `removeStopWords` and `ignorePlurals` to the list of provided languages.\n- Sets `removeWordsIfNoResults` to `allOptional`.\n- Adds a `natural_language` attribute to `ruleContexts` and `analyticsTags`.\n',
         required: false,
         displayOptions: {
           show: {
@@ -358,7 +358,7 @@ const properties: INodeProperties[] = [
         name: 'ruleContexts_json',
         default: '[]',
         description:
-          'Assigns a rule context to the search query\n[Rule contexts](https://www.algolia.com/doc/guides/managing-results/rules/rules-overview/how-to/customize-search-results-by-platform/#whats-a-context) are strings that you can use to trigger matching rules.\n',
+          'Assigns a rule context to the search query.\n[Rule contexts](https://www.algolia.com/doc/guides/managing-results/rules/rules-overview/how-to/customize-search-results-by-platform/#assign-context) are strings that you can use to trigger matching rules.\n',
         required: false,
         displayOptions: {
           show: {
@@ -370,7 +370,7 @@ const properties: INodeProperties[] = [
         type: 'number',
         default: 100,
         description:
-          'Impact that Personalization should have on this search\nThe higher this value is, the more Personalization determines the ranking compared to other factors.\nFor more information, see [Understanding Personalization impact](https://www.algolia.com/doc/guides/personalization/personalizing-results/in-depth/configuring-personalization/#understanding-personalization-impact).\n',
+          'Impact that Personalization should have on this search.\nThe higher this value is, the more Personalization determines the ranking compared to other factors.\nFor more information, see [Understanding Personalization impact](https://www.algolia.com/doc/guides/personalization/personalizing-results/in-depth/configuring-personalization/#understanding-personalization-impact).\n',
         typeOptions: {
           minValue: 0,
           maxValue: 100,
@@ -425,7 +425,7 @@ const properties: INodeProperties[] = [
         type: 'boolean',
         default: false,
         description:
-          'Whether to include a `queryID` attribute in the response\nThe query ID is a unique identifier for a search query and is required for tracking [click and conversion events](https://www.algolia.com/doc/guides/sending-events/getting-started).\n',
+          'Whether to include a `queryID` attribute in the response.\nThe query ID is a unique identifier for a search query and is required for tracking [click and conversion events](https://www.algolia.com/doc/guides/sending-events/getting-started).\n',
         displayName: 'Click Analytics',
         name: 'clickAnalytics_boolean',
         displayOptions: {
@@ -490,7 +490,7 @@ const properties: INodeProperties[] = [
         name: 'attributesToRetrieve_json',
         default: '[]',
         description:
-          'Attributes to include in the API response\nTo reduce the size of your response, you can retrieve only some of the attributes.\nAttribute names are case-sensitive\n- `*` retrieves all attributes, except attributes included in the `customRanking` and `unretrievableAttributes` settings.\n- To retrieve all attributes except a specific one, prefix the attribute with a dash and combine it with the `*`: `["*", "-ATTRIBUTE"]`.\n- The `objectID` attribute is always included.\n',
+          'Attributes to include in the API response.\nTo reduce the size of your response, you can retrieve only some of the attributes.\nAttribute names are case-sensitive\n- `*` retrieves all attributes, except attributes included in the `customRanking` and `unretrievableAttributes` settings.\n- To retrieve all attributes except a specific one, prefix the attribute with a dash and combine it with the `*`: `["*", "-ATTRIBUTE"]`.\n- The `objectID` attribute is always included.\n',
         required: false,
         displayOptions: {
           show: {
@@ -517,7 +517,7 @@ const properties: INodeProperties[] = [
         placeholder: '90',
         default: 100,
         description:
-          "Relevancy threshold below which less relevant results aren't included in the results\nYou can only set `relevancyStrictness` on [virtual replica indices](https://www.algolia.com/doc/guides/managing-results/refine-results/sorting/in-depth/replicas/#what-are-virtual-replicas).\nUse this setting to strike a balance between the relevance and number of returned results.\n",
+          "Relevancy threshold below which less relevant results aren't included in the results.\nYou can only set `relevancyStrictness` on [virtual replica indices](https://www.algolia.com/doc/guides/managing-results/refine-results/sorting/in-depth/replicas/#standard-and-virtual-replicas).\nUse this setting to strike a balance between the relevance and number of returned results.\n",
         displayName: 'Relevancy Strictness',
         name: 'relevancyStrictness_number',
         displayOptions: {
@@ -532,7 +532,7 @@ const properties: INodeProperties[] = [
         name: 'attributesToHighlight_json',
         default: '[]',
         description:
-          'Attributes to highlight\nBy default, all searchable attributes are highlighted.\nUse `*` to highlight all attributes or use an empty array `[]` to turn off highlighting.\nAttribute names are case-sensitive\nWith highlighting, strings that match the search query are surrounded by HTML tags defined by `highlightPreTag` and `highlightPostTag`.\nYou can use this to visually highlight matching parts of a search query in your UI\nFor more information, see [Highlighting and snippeting](https://www.algolia.com/doc/guides/building-search-ui/ui-and-ux-patterns/highlighting-snippeting/js).\n',
+          'Attributes to highlight.\nBy default, all searchable attributes are highlighted.\nUse `*` to highlight all attributes or use an empty array `[]` to turn off highlighting.\nAttribute names are case-sensitive\nWith highlighting, strings that match the search query are surrounded by HTML tags defined by `highlightPreTag` and `highlightPostTag`.\nYou can use this to visually highlight matching parts of a search query in your UI\nFor more information, see [Highlighting and snippeting](https://www.algolia.com/doc/guides/building-search-ui/ui-and-ux-patterns/highlighting-snippeting/js).\n',
         required: false,
         displayOptions: {
           show: {
@@ -625,7 +625,7 @@ const properties: INodeProperties[] = [
         type: 'number',
         default: 4,
         description:
-          'Minimum number of characters a word in the search query must contain to accept matches with [one typo](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/typo-tolerance/in-depth/configuring-typo-tolerance/#configuring-word-length-for-typos).',
+          'Minimum number of characters a word in the search query must contain to accept matches with [one typo](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/typo-tolerance/in-depth/configuring-typo-tolerance/#configure-word-size-threshold-for-typos).',
         displayName: 'Min Word Sizefor1Typo',
         name: 'minWordSizefor1Typo_number',
         displayOptions: {
@@ -638,7 +638,7 @@ const properties: INodeProperties[] = [
         type: 'number',
         default: 8,
         description:
-          'Minimum number of characters a word in the search query must contain to accept matches with [two typos](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/typo-tolerance/in-depth/configuring-typo-tolerance/#configuring-word-length-for-typos).',
+          'Minimum number of characters a word in the search query must contain to accept matches with [two typos](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/typo-tolerance/in-depth/configuring-typo-tolerance/#configure-word-size-threshold-for-typos).',
         displayName: 'Min Word Sizefor2Typos',
         name: 'minWordSizefor2Typos_number',
         displayOptions: {
@@ -662,7 +662,7 @@ const properties: INodeProperties[] = [
         type: 'boolean',
         default: true,
         description:
-          'Whether to allow typos on numbers in the search query\nTurn off this setting to reduce the number of irrelevant matches\nwhen searching in large sets of similar numbers.\n',
+          'Whether to allow typos on numbers in the search query.\nTurn off this setting to reduce the number of irrelevant matches\nwhen searching in large sets of similar numbers.\n',
         displayName: 'Allow Typos On Numeric Tokens',
         name: 'allowTyposOnNumericTokens_boolean',
         displayOptions: {
@@ -677,7 +677,7 @@ const properties: INodeProperties[] = [
         name: 'disableTypoToleranceOnAttributes_json',
         default: '[]',
         description:
-          'Attributes for which you want to turn off [typo tolerance](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/typo-tolerance).\nAttribute names are case-sensitive\nReturning only exact matches can help when\n- [Searching in hyphenated attributes](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/typo-tolerance/how-to/how-to-search-in-hyphenated-attributes).\n- Reducing the number of matches when you have too many.\n  This can happen with attributes that are long blocks of text, such as product descriptions\nConsider alternatives such as `disableTypoToleranceOnWords` or adding synonyms if your attributes have intentional unusual spellings that might look like typos.\n',
+          'Attributes for which you want to turn off [typo tolerance](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/typo-tolerance).\nAttribute names are case-sensitive\nReturning only exact matches can help when\n- [Searching in hyphenated attributes](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/typo-tolerance/how-to/how-to-search-in-hyphenated-attributes).\n- Reducing the number of matches when you have too many.\n  This can happen with attributes that are long blocks of text, such as product descriptions.\nConsider alternatives such as `disableTypoToleranceOnWords` or adding synonyms if your attributes have intentional unusual spellings that might look like typos.\n',
         required: false,
         displayOptions: {
           show: {
@@ -725,7 +725,7 @@ const properties: INodeProperties[] = [
         type: 'boolean',
         default: true,
         description:
-          "Whether to split compound words in the query into their building blocks\nFor more information, see [Word segmentation](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/handling-natural-languages-nlp/in-depth/language-specific-configurations/#splitting-compound-words).\nWord segmentation is supported for these languages: German, Dutch, Finnish, Swedish, and Norwegian.\nDecompounding doesn't work for words with [non-spacing mark Unicode characters](https://www.charactercodes.net/category/non-spacing_mark).\nFor example, `Gartenstühle` won't be decompounded if the `ü` consists of `u` (U+0075) and `◌̈` (U+0308).\n",
+          "Whether to split compound words in the query into their building blocks.\nFor more information, see [Word segmentation](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/handling-natural-languages-nlp/in-depth/language-specific-configurations/#split-compound-words).\nWord segmentation is supported for these languages: German, Dutch, Finnish, Swedish, and Norwegian.\nDecompounding doesn't work for words with [non-spacing mark Unicode characters](https://www.charactercodes.net/category/non-spacing_mark).\nFor example, `Gartenstühle` won't be decompounded if the `ü` consists of `u` (U+0075) and `◌̈` (U+0308).\n",
         displayName: 'Decompound Query',
         name: 'decompoundQuery_boolean',
         displayOptions: {
@@ -858,7 +858,7 @@ const properties: INodeProperties[] = [
         type: 'boolean',
         default: false,
         description:
-          'Whether to support phrase matching and excluding words from search queries\nUse the `advancedSyntaxFeatures` parameter to control which feature is supported.\n',
+          'Whether to support phrase matching and excluding words from search queries.\nUse the `advancedSyntaxFeatures` parameter to control which feature is supported.\n',
         displayName: 'Advanced Syntax',
         name: 'advancedSyntax_boolean',
         displayOptions: {
@@ -925,7 +925,7 @@ const properties: INodeProperties[] = [
         name: 'alternativesAsExact_json',
         default: '[]',
         description:
-          'Determine which plurals and synonyms should be considered an exact matches\nBy default, Algolia treats singular and plural forms of a word, and single-word synonyms, as [exact](https://www.algolia.com/doc/guides/managing-results/relevance-overview/in-depth/ranking-criteria/#exact) matches when searching.\nFor example\n- "swimsuit" and "swimsuits" are treated the same\n- "swimsuit" and "swimwear" are treated the same (if they are [synonyms](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/adding-synonyms/#regular-synonyms))\n- `ignorePlurals`.\n  Plurals and similar declensions added by the `ignorePlurals` setting are considered exact matches\n- `singleWordSynonym`.\n  Single-word synonyms, such as "NY" = "NYC", are considered exact matches\n- `multiWordsSynonym`.\n  Multi-word synonyms, such as "NY" = "New York", are considered exact matches.\n',
+          'Determine which plurals and synonyms should be considered an exact matches.\nBy default, Algolia treats singular and plural forms of a word, and single-word synonyms, as [exact](https://www.algolia.com/doc/guides/managing-results/relevance-overview/in-depth/ranking-criteria/#exact) matches when searching.\nFor example:\n- "swimsuit" and "swimsuits" are treated the same.\n- "swimsuit" and "swimwear" are treated the same (if they are [synonyms](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/adding-synonyms/#regular-synonyms)).\n- `ignorePlurals`.\n  Plurals and similar declensions added by the `ignorePlurals` setting are considered exact matches.\n- `singleWordSynonym`.\n  Single-word synonyms, such as "NY" = "NYC", are considered exact matches.\n- `multiWordsSynonym`.\n  Multi-word synonyms, such as "NY" = "New York", are considered exact matches.\n',
         required: false,
         displayOptions: {
           show: {
@@ -939,7 +939,7 @@ const properties: INodeProperties[] = [
         name: 'advancedSyntaxFeatures_json',
         default: '[]',
         description:
-          'Advanced search syntax features you want to support\n- `exactPhrase`.\n  Phrases in quotes must match exactly.\n  For example, `sparkly blue "iPhone case"` only returns records with the exact string "iPhone case"\n- `excludeWords`.\n  Query words prefixed with a `-` must not occur in a record.\n  For example, `search -engine` matches records that contain "search" but not "engine"\nThis setting only has an effect if `advancedSyntax` is true.\n',
+          'Advanced search syntax features you want to support.\n- `exactPhrase`.\n  Phrases in quotes must match exactly.\n  For example, `sparkly blue "iPhone case"` only returns records with the exact string "iPhone case".\n- `excludeWords`.\n  Query words prefixed with a `-` must not occur in a record.\n  For example, `search -engine` matches records that contain "search" but not "engine".\nThis setting only has an effect if `advancedSyntax` is true.\n',
         required: false,
         displayOptions: {
           show: {
@@ -962,7 +962,7 @@ const properties: INodeProperties[] = [
         type: 'boolean',
         default: false,
         description:
-          'Whether to replace a highlighted word with the matched synonym\nBy default, the original words are highlighted even if a synonym matches.\nFor example, with `home` as a synonym for `house` and a search for `home`,\nrecords matching either "home" or "house" are included in the search results,\nand either "home" or "house" are highlighted\nWith `replaceSynonymsInHighlight` set to `true`, a search for `home` still matches the same records,\nbut all occurrences of "house" are replaced by "home" in the highlighted response.\n',
+          'Whether to replace a highlighted word with the matched synonym.\nBy default, the original words are highlighted even if a synonym matches.\nFor example, with `home` as a synonym for `house` and a search for `home`,\nrecords matching either "home" or "house" are included in the search results,\nand either "home" or "house" are highlighted\nWith `replaceSynonymsInHighlight` set to `true`, a search for `home` still matches the same records,\nbut all occurrences of "house" are replaced by "home" in the highlighted response.\n',
         displayName: 'Replace Synonyms In Highlight',
         name: 'replaceSynonymsInHighlight_boolean',
         displayOptions: {
@@ -975,7 +975,7 @@ const properties: INodeProperties[] = [
         type: 'number',
         default: 1,
         description:
-          'Minimum proximity score for two matching words\nThis adjusts the [Proximity ranking criterion](https://www.algolia.com/doc/guides/managing-results/relevance-overview/in-depth/ranking-criteria/#proximity)\nby equally scoring matches that are farther apart\nFor example, if `minProximity` is 2, neighboring matches and matches with one word between them would have the same score.\n',
+          'Minimum proximity score for two matching words.\nThis adjusts the [Proximity ranking criterion](https://www.algolia.com/doc/guides/managing-results/relevance-overview/in-depth/ranking-criteria/#proximity)\nby equally scoring matches that are farther apart\nFor example, if `minProximity` is 2, neighboring matches and matches with one word between them would have the same score.\n',
         typeOptions: {
           minValue: 1,
           maxValue: 7,
@@ -994,7 +994,7 @@ const properties: INodeProperties[] = [
         name: 'responseFields_json',
         default: '[]',
         description:
-          "Properties to include in the API response of search and browse requests\nBy default, all response properties are included.\nTo reduce the response size, you can select which properties should be included\nAn empty list may lead to an empty API response (except properties you can't exclude)\nYou can't exclude these properties:\n`message`, `warning`, `cursor`, `abTestVariantID`,\nor any property added by setting `getRankingInfo` to true\nYour search depends on the `hits` field. If you omit this field, searches won't return any results.\nYour UI might also depend on other properties, for example, for pagination.\nBefore restricting the response size, check the impact on your search experience.\n",
+          "Properties to include in the API response of search and browse requests.\nBy default, all response properties are included.\nTo reduce the response size, you can select which properties should be included\nAn empty list may lead to an empty API response (except properties you can't exclude)\nYou can't exclude these properties:\n`message`, `warning`, `cursor`, `abTestVariantID`,\nor any property added by setting `getRankingInfo` to true\nYour search depends on the `hits` field. If you omit this field, searches won't return any results.\nYour UI might also depend on other properties, for example, for pagination.\nBefore restricting the response size, check the impact on your search experience.\n",
         required: false,
         displayOptions: {
           show: {
@@ -1021,7 +1021,7 @@ const properties: INodeProperties[] = [
         type: 'string',
         default: 'count',
         description:
-          "Order in which to retrieve facet values\n- `count`.\n  Facet values are retrieved by decreasing count.\n  The count is the number of matching records containing this facet value\n- `alpha`.\n  Retrieve facet values alphabetically\nThis setting doesn't influence how facet values are displayed in your UI (see `renderingContent`).\nFor more information, see [facet value display](https://www.algolia.com/doc/guides/building-search-ui/ui-and-ux-patterns/facet-display/js).\n",
+          "Order in which to retrieve facet values.\n- `count`.\n  Facet values are retrieved by decreasing count.\n  The count is the number of matching records containing this facet value.\n- `alpha`.\n  Retrieve facet values alphabetically.\nThis setting doesn't influence how facet values are displayed in your UI (see `renderingContent`).\nFor more information, see [facet value display](https://www.algolia.com/doc/guides/building-search-ui/ui-and-ux-patterns/facet-display/js).\n",
         displayName: 'Sort Facet Values By',
         name: 'sortFacetValuesBy_string',
         displayOptions: {
@@ -1034,9 +1034,36 @@ const properties: INodeProperties[] = [
         type: 'boolean',
         default: false,
         description:
-          'Whether the best matching attribute should be determined by minimum proximity\nThis setting only affects ranking if the Attribute ranking criterion comes before Proximity in the `ranking` setting.\nIf true, the best matching attribute is selected based on the minimum proximity of multiple matches.\nOtherwise, the best matching attribute is determined by the order in the `searchableAttributes` setting.\n',
+          'Whether the best matching attribute should be determined by minimum proximity.\nThis setting only affects ranking if the Attribute ranking criterion comes before Proximity in the `ranking` setting.\nIf true, the best matching attribute is selected based on the minimum proximity of multiple matches.\nOtherwise, the best matching attribute is determined by the order in the `searchableAttributes` setting.\n\nPrefer `attributeCriteriaComputedBy`, which expresses the same two behaviors and adds the `sum` strategy.\nIf you set both, `attributeCriteriaComputedBy` takes precedence.\n',
         displayName: 'Attribute Criteria Computed By Min Proximity',
         name: 'attributeCriteriaComputedByMinProximity_boolean',
+        displayOptions: {
+          show: {
+            browseParams_options: ['search_parameters_as_object'],
+          },
+        },
+      },
+      {
+        type: 'options',
+        default: 'best',
+        description:
+          "Strategy for computing the Attribute ranking criterion.\nThis mainly affects multi-word queries with matches in more than one attribute.\n\nThe `ranking` setting decides whether `best` takes effect.\nWhen Attribute comes after Proximity, which is the default order, the engine always uses the `minProximity` strategy and ignores `best`.\nTo select `best`, move Attribute before Proximity in `ranking`.\nThe `sum` strategy applies in both orders.\n\n- `minProximity`.\n  Pick the best matching attribute from the attributes that form the best proximity score.\n  On an ordered attribute, the match position breaks ties.\n- `best`.\n  Pick the best matching attribute from all attributes that match any query word.\n  On an ordered attribute, the match position breaks ties.\n- `sum`.\n  Add up a score for every query word instead of picking one attribute.\n  Each word's score comes from the attribute it matched, and from its position in that attribute when the attribute is ordered.\n  A query word that matches nothing adds a large penalty.\n  A record with a lower total ranks higher.\n  A record therefore cannot rank high only because one word of a multi-word query matched a top attribute.\n  Use `sum` with short, relevant attributes, and set long-text attributes to unordered.\n",
+        options: [
+          {
+            name: 'minProximity',
+            value: 'minProximity',
+          },
+          {
+            name: 'best',
+            value: 'best',
+          },
+          {
+            name: 'sum',
+            value: 'sum',
+          },
+        ],
+        displayName: 'Attribute Criteria Computed By',
+        name: 'attributeCriteriaComputedBy_options',
         displayOptions: {
           show: {
             browseParams_options: ['search_parameters_as_object'],
@@ -1061,7 +1088,7 @@ const properties: INodeProperties[] = [
         type: 'boolean',
         default: true,
         description:
-          'Whether this search will use [Dynamic Re-Ranking](https://www.algolia.com/doc/guides/algolia-ai/re-ranking)\nThis setting only has an effect if you activated Dynamic Re-Ranking for this index in the Algolia dashboard.\n',
+          'Whether this search will use [Dynamic Re-Ranking](https://www.algolia.com/doc/guides/algolia-ai/re-ranking).\nThis setting only has an effect if you activated Dynamic Re-Ranking for this index in the Algolia dashboard.\n',
         displayName: 'Enable Re Ranking',
         name: 'enableReRanking_boolean',
         displayOptions: {
@@ -1186,6 +1213,7 @@ const properties: INodeProperties[] = [
           sortFacetValuesBy: '={{ $value.sortFacetValuesBy_string }}',
           attributeCriteriaComputedByMinProximity:
             '={{ $value.attributeCriteriaComputedByMinProximity_boolean }}',
+          attributeCriteriaComputedBy: '={{ $value.attributeCriteriaComputedBy_options }}',
           renderingContent: '={{ JSON.parse($value.rendering_content_object) }}',
           enableReRanking: '={{ $value.enableReRanking_boolean }}',
           reRankingApplyFilter: '={{ JSON.parse($value.reRankingApplyFilter) }}',
