@@ -50,11 +50,11 @@ const operationProperties: INodeProperties[] = [
                     'allowCompressionOfIntegerArray',
                     'allowTyposOnNumericTokens',
                     'alternativesAsExact',
+                    'attributeCriteriaComputedBy',
                     'attributeCriteriaComputedByMinProximity',
                     'attributeForDistinct',
                     'attributesForFaceting',
                     'attributesToHighlight',
-                    'attributesToRetrieve',
                   ].forEach((f) => {
                     if (json[f] !== undefined) simplified.set(f, json[f]);
                   });
@@ -71,11 +71,11 @@ const operationProperties: INodeProperties[] = [
             'allowCompressionOfIntegerArray',
             'allowTyposOnNumericTokens',
             'alternativesAsExact',
+            'attributeCriteriaComputedBy',
             'attributeCriteriaComputedByMinProximity',
             'attributeForDistinct',
             'attributesForFaceting',
             'attributesToHighlight',
-            'attributesToRetrieve',
           ],
         },
       },
